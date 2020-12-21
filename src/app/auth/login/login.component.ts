@@ -11,8 +11,13 @@ export class LoginComponent implements OnInit {
    * Formulario para login reactivo
    */
   public loginForm: FormGroup;
+  /**
+   * Estado de ocultación para contraseña
+   */
+  public hide: boolean;
 
   constructor(private fb: FormBuilder) {
+    this.hide = true;
     this.createLoginForm();
   }
 
@@ -33,10 +38,11 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  login() {
-    console.log(this.loginForm);
+  login(): void {
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
+    } else {
+      console.log(this.loginForm.value);
     }
   }
 }

@@ -22,14 +22,9 @@ export class RecoverPasswordComponent implements OnInit {
     return this.recoveryForm.get('email').invalid && this.recoveryForm.get('email').touched;
   }
 
-  get passwordIsInvalid(): boolean {
-    return this.recoveryForm.get('password').invalid && this.recoveryForm.get('password').touched;
-  }
-
   createLoginForm(): void {
     this.recoveryForm = this.fb.group({
       email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$')]],
-      password: ['', [Validators.required]],
     });
   }
 
