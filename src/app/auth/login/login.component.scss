@@ -1,0 +1,66 @@
+@import '../../../styles.scss';
+a {
+    color: $principal-color-pinkish;
+}
+
+.shadow {
+    box-shadow: black;
+    -moz-box-shadow: 0px 1px 5px 0px #6b6b6b;
+    -webkit-box-shadow: 0px 1px 5px 0px #6b6b6b;
+    border-radius: 10px !important;
+}
+
+.cont-back-ground {
+    padding: 0px !important;
+}
+
+.cont-form {
+    padding-top: 150px;
+}
+
+.login-title {
+    color: $principal-color-blue;
+}
+
+.back-ground {
+    width: 100%;
+    height: 100%;
+}
+
+.recover-link {
+    margin-top: 10px !important;
+}
+
+@media (max-width: 700px) {
+    .cont-login {
+        margin: 0px !important;
+    }
+    .cont-form {
+        padding-top: 50px !important;
+        margin-bottom: 50px !important;
+    }
+    .btn-login {
+        width: 100% !important;
+    }
+    .cont-back-ground {
+        width: 100% !important;
+    }
+}
+
+@media (max-width: 1200px) {
+    .cont-login {
+        margin: auto !important;
+    }
+    .cont-form {
+        padding-top: 50px !important;
+        margin-bottom: 50px !important;
+    }
+    .btn-login {
+        width: 80% !important;
+        margin: 0px !important;
+    }
+    .text-center {
+        width: 85% !important;
+        padding-left: 10px !important;
+    }
+}

@@ -1,0 +1,79 @@
+@import './../../../styles.scss';
+.navbar {
+    padding-left: 100px !important;
+    padding-right: 100px !important;
+    box-shadow: 0px 1px 5px 0px #6b6b6b;
+    -moz-box-shadow: 0px 1px 5px 0px #6b6b6b;
+    -webkit-box-shadow: 0px 1px 5px 0px #6b6b6b;
+    border-radius: 5px !important;
+}
+
+.shield {
+    width: 100px !important;
+    height: 110px !important;
+}
+
+.turmeque-shield {
+    padding-left: 30px !important;
+}
+
+.first-title {
+    color: $principal-color-blue;
+    padding-right: 0px !important;
+}
+
+.first-title h3 {
+    font-size: 27px !important;
+}
+
+.second-title {
+    color: $principal-color-pinkish;
+    padding-right: 70px !important;
+    text-shadow: 2px 2px 1px rgb(199, 199, 199);
+    letter-spacing: 1px;
+}
+
+.second-title h1 {
+    margin-top: 7px !important;
+    font-size: 40px !important;
+}
+
+@media (max-width: 700px) {
+    .navbar {
+        padding-left: 20px !important;
+        padding-right: 10px !important;
+    }
+    .first-title {
+        align-content: center !important;
+    }
+    .first-title h3 {
+        font-size: 20px !important;
+    }
+    .shield {
+        width: 100px !important;
+        height: 110px !important;
+    }
+    .turmeque-shield {
+        padding-left: 20px !important;
+    }
+    .second-title {
+        padding-right: 0px !important;
+    }
+    .second-title h1 {
+        font-size: 30px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding-left: 20px !important;
+        padding-right: 10px !important;
+    }
+}
+
+@media (max-width: 1024px) {
+    .navbar {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+}

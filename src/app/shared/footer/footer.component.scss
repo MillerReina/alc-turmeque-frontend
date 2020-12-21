@@ -1,0 +1,144 @@
+@import '../../../styles.scss';
+footer {
+    background-color: $principal-color-blue;
+    width: 100%;
+    box-shadow: 0px -1px 5px 0px #6b6b6b;
+    -moz-box-shadow: 0px -1px 5px 0px #6b6b6b;
+    -webkit-box-shadow: 0px -1px 5px 0px #6b6b6b;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: 116px;
+}
+
+.logo img {
+    width: 50% !important;
+    height: 50% !important;
+}
+
+.uptc-img {
+    width: 10% !important;
+    height: 10% !important;
+}
+
+.co-img {
+    width: 5% !important;
+    height: 5% !important;
+}
+
+.gov-img {
+    margin-top: 20px !important;
+    width: 10% !important;
+    height: 10% !important;
+}
+
+.verticalLine {
+    border-left: thin solid white;
+    border-radius: 2px !important;
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+    footer {
+        position: relative;
+        bottom: 0;
+        width: 100%;
+        height: 80px;
+    }
+    .uptc-img {
+        width: 20% !important;
+        height: 20% !important;
+    }
+    .co-img {
+        width: 10% !important;
+        height: 10% !important;
+    }
+    .gov-img {
+        margin-top: 10px !important;
+        width: 30% !important;
+        height: 30% !important;
+    }
+    .logo img {
+        width: 30% !important;
+        height: 30% !important;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 998px) {
+    footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 130px;
+    }
+    .uptc-img {
+        width: 20% !important;
+        height: 20% !important;
+    }
+    .co-img {
+        width: 10% !important;
+        height: 10% !important;
+    }
+    .gov-img {
+        margin-top: 16px !important;
+        width: 30% !important;
+        height: 30% !important;
+    }
+    .logo img {
+        width: 20% !important;
+        height: 20% !important;
+    }
+}
+
+@media (min-width: 999px) and (max-width: 1200px) {
+    footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 105px;
+    }
+    .uptc-img {
+        width: 10% !important;
+        height: 10% !important;
+    }
+    .co-img {
+        width: 5% !important;
+        height: 5% !important;
+    }
+    .gov-img {
+        margin-top: 16px !important;
+        width: 10% !important;
+        height: 10% !important;
+    }
+    .logo img {
+        width: 20% !important;
+        height: 20% !important;
+    }
+}
+
+@media (min-width: 1201px) and (max-width: 1400px) {
+    footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 120px;
+    }
+    .uptc-img {
+        width: 10% !important;
+        height: 10% !important;
+    }
+    .co-img {
+        width: 5% !important;
+        height: 5% !important;
+    }
+    .gov-img {
+        margin-top: 16px !important;
+        width: 10% !important;
+        height: 10% !important;
+    }
+    .logo img {
+        width: 20% !important;
+        height: 20% !important;
+    }
+}
