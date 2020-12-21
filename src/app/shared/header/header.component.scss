@@ -29,8 +29,9 @@
 .second-title {
     color: $principal-color-pinkish;
     padding-right: 70px !important;
-    text-shadow: 2px 2px 1px rgb(199, 199, 199);
+    text-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
     letter-spacing: 1px;
+    margin-right: 15px !important;
 }
 
 .second-title h1 {
@@ -48,6 +49,7 @@
     }
     .first-title h3 {
         font-size: 20px !important;
+        margin-left: 20px !important;
     }
     .shield {
         width: 100px !important;
@@ -58,9 +60,15 @@
     }
     .second-title {
         padding-right: 0px !important;
+        text-align: end !important;
+        align-content: flex-end !important;
+        justify-content: flex-end !important;
     }
     .second-title h1 {
         font-size: 30px !important;
+    }
+    .a {
+        margin: 0px !important;
     }
 }
 

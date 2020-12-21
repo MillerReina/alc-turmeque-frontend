@@ -1,20 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import "./assets/scss/align-content.scss";
+@import './assets/scss/align-content.scss';
 
 /* Colores */
 
 $principal-color-pinkish: #ff007d !important;
 $principal-color-blue: #1d59c9 !important;
-html,
-body {
-    height: 100%;
-}
-
 body {
     margin: 0;
-    font-family: "Roboto", sans-serif !important;
+    font-family: 'Roboto', sans-serif !important;
     font-size: 14px;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html,
+body {
+    margin: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    height: 100%;
+}

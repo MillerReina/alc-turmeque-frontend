@@ -4,9 +4,7 @@ a {
 }
 
 .shadow {
-    box-shadow: black;
-    -moz-box-shadow: 0px 1px 5px 0px #6b6b6b;
-    -webkit-box-shadow: 0px 1px 5px 0px #6b6b6b;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px !important;
     border-radius: 10px !important;
 }
 
@@ -32,6 +30,22 @@ a {
 }
 
 @media (max-width: 700px) {
+    .cont-login {
+        margin: 0px !important;
+    }
+    .cont-form {
+        padding-top: 50px !important;
+        margin-bottom: 50px !important;
+    }
+    .btn-login {
+        width: 100% !important;
+    }
+    .cont-back-ground {
+        width: 100% !important;
+    }
+}
+
+@media (max-width: 991px) {
     .cont-login {
         margin: 0px !important;
     }

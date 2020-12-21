@@ -20,7 +20,8 @@
 
                     <div class="col-12 center-horizontal-vertical">
                         <mat-form-field appearance="outline" class="col-12 col-md-10 col-lg-8" color="accent">
-                            <input matInput placeholder="Contraseña" [type]="hide ? 'password' : 'text'" formControlName="password" required />
+                            <mat-label> Contraseña </mat-label>
+                            <input matInput placeholder="Contraseña" [type]="hide ? 'password' : 'text'" formControlName="password" />
                             <mat-icon matSuffix (click)="hide = !hide">{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
                             <mat-error *ngIf="passwordIsInvalid"> Ingrese una contraseña por favor </mat-error>
                         </mat-form-field>
