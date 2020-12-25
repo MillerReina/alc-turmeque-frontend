@@ -16,6 +16,8 @@ export class LoginComponent implements OnInit {
    */
   public hide: boolean;
 
+  public state: boolean = false;
+
   constructor(private fb: FormBuilder) {
     this.hide = true;
     this.createLoginForm();

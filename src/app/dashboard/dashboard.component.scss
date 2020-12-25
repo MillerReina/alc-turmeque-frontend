@@ -1,0 +1,149 @@
+@import './../../styles.scss';
+
+/* Material */
+
+mat-sidenav-container {
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+
+mat-sidenav {
+    width: 230px !important;
+}
+
+mat-sidenav-content {
+    height: 70px !important;
+}
+
+mat-nav-list {
+    padding-top: 0px !important;
+}
+
+::ng-deep .mat-menu-content {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+.mat-list-item:hover {
+    background-color: $principal-color-pinkish;
+    color: whitesmoke;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+
+
+/*Otros*/
+
+.drop-down:hover {
+    background-color: $principal-color-pinkish;
+    color: whitesmoke;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    border-radius: 4px !important;
+}
+
+.principal-icon {
+    width: 25%;
+    height: 90%;
+}
+
+.content-icon-list {
+    margin-bottom: 0px !important;
+    height: 100% !important;
+}
+
+.container-sidenav {
+    flex: 1;
+}
+
+.icon-btn {
+    border-radius: 10px;
+    outline: none;
+}
+
+.user-icon {
+    margin-top: 15px !important;
+    width: 40px !important;
+    height: 40px !important;
+}
+
+.user-name {
+    margin-top: 20px !important;
+    margin-left: 15px !important;
+}
+
+
+/* Estilos para la card */
+
+
+/* Material */
+
+mat-card-content {
+    height: 800px !important;
+}
+
+
+/* Otros */
+
+.welcome-card {
+    max-width: 800px;
+}
+
+.welcome-card h1 {
+    margin-top: 130px !important;
+    font-size: 80px !important;
+    color: $principal-color-blue;
+    text-shadow: 0px 3px 3px rgba(150, 150, 150, 1);
+}
+
+.welcome-card h3 {
+    padding-right: 100px !important;
+    padding-left: 100px !important;
+    margin-top: 40px !important;
+    margin-bottom: 40px !important;
+    font-size: 30px !important;
+    text-align: justify !important;
+    text-shadow: 0px 1px 1px rgba(150, 150, 150, 1);
+    color: rgb(121, 121, 121);
+}
+
+.description {
+    max-width: 800px !important;
+    max-height: 800px !important;
+}
+
+.check-icon {
+    max-width: 60px !important;
+}
+
+@media (max-width: 700px) {
+    .welcome-card h1 {
+        margin-top: 80px !important;
+        font-size: 50px !important;
+    }
+    .welcome-card h3 {
+        padding-right: 20px !important;
+        padding-left: 20px !important;
+        margin-top: 40px !important;
+        margin-bottom: 30px !important;
+        font-size: 20px !important;
+        text-align: justify !important;
+    }
+    .check-icon {
+        max-width: 40px !important;
+    }
+    .user-name {
+        margin-top: 20px !important;
+        margin-left: 15px !important;
+        margin-right: 5px !important;
+    }
+}
+
+@media (max-width: 377px) {
+    mat-sidenav {
+        top: 174px !important;
+    }
+}
+
+@media (max-width: 494px) and (min-width: 378px) {
+    mat-sidenav {
+        top: 145px !important;
+    }
+}

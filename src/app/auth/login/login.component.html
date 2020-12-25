@@ -10,8 +10,10 @@
                     <h1><strong> Iniciar sesión</strong></h1>
                 </div>
                 <form autocomplete="off" [formGroup]="loginForm" (ngSubmit)="login()">
-                    <div class="col-12 center-horizontal-vertical">
-                        <mat-form-field appearance="outline" class="col-12 col-md-10 col-lg-8" color="accent">
+                    <div class="col-12 center-horizontal-vertical" [ngClass]="{
+              myelement: emailIsInvalid
+            }">
+                        <mat-form-field appearance="outline" class="col-12 col-md-10 col-lg-8">
                             <mat-label> Usuario </mat-label>
                             <input matInput formControlName="email" />
                             <mat-error *ngIf="emailIsInvalid"> Ingrese un correo válido por favor </mat-error>
@@ -19,7 +21,9 @@
                     </div>
 
                     <div class="col-12 center-horizontal-vertical">
-                        <mat-form-field appearance="outline" class="col-12 col-md-10 col-lg-8" color="accent">
+                        <mat-form-field appearance="outline" class="col-12 col-md-10 col-lg-8" [ngClass]="{
+                myelement: passwordIsInvalid
+              }">
                             <mat-label> Contraseña </mat-label>
                             <input matInput placeholder="Contraseña" [type]="hide ? 'password' : 'text'" formControlName="password" />
                             <mat-icon matSuffix (click)="hide = !hide">{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
