@@ -5,12 +5,12 @@ import { HomeComponent } from './home/home.component';
 
 const childRoutes: Routes = [
   {
-    path: 'all',
-    component: DocumentsComponent,
-  },
-  {
     path: 'home',
     component: HomeComponent,
+  },
+  {
+    path: 'all',
+    component: DocumentsComponent,
   },
 ];
 @NgModule({

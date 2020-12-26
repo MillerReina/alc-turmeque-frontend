@@ -4,10 +4,12 @@
 
 mat-sidenav-container {
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    background-color: #ebebeb;
 }
 
 mat-sidenav {
     width: 230px !important;
+    background-color: #ebebeb;
 }
 
 mat-sidenav-content {
@@ -26,7 +28,7 @@ mat-nav-list {
 .mat-list-item:hover {
     background-color: $principal-color-pinkish;
     color: whitesmoke;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
 
 
@@ -35,7 +37,7 @@ mat-nav-list {
 .drop-down:hover {
     background-color: $principal-color-pinkish;
     color: whitesmoke;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
     border-radius: 4px !important;
 }
 
@@ -69,6 +71,23 @@ mat-nav-list {
     margin-left: 15px !important;
 }
 
+.img-map {
+    position: absolute;
+    top: 300px;
+    right: 20px;
+    opacity: 0.1;
+    background-repeat: repeat-x;
+    height: 500px !important;
+}
+
+.img-flag {
+    position: absolute;
+    top: 300px;
+    left: 100px;
+    opacity: 0.1;
+    background-repeat: repeat-x;
+}
+
 
 /* Estilos para la card */
 
@@ -87,7 +106,7 @@ mat-card-content {
 }
 
 .welcome-card h1 {
-    margin-top: 130px !important;
+    margin-top: 80px !important;
     font-size: 80px !important;
     color: $principal-color-blue;
     text-shadow: 0px 3px 3px rgba(150, 150, 150, 1);
@@ -113,9 +132,21 @@ mat-card-content {
     max-width: 60px !important;
 }
 
+@media (max-width: 377px) {
+    mat-sidenav {
+        top: 174px !important;
+    }
+}
+
+@media (max-width: 494px) and (min-width: 378px) {
+    mat-sidenav {
+        top: 145px !important;
+    }
+}
+
 @media (max-width: 700px) {
     .welcome-card h1 {
-        margin-top: 80px !important;
+        margin-top: 30px !important;
         font-size: 50px !important;
     }
     .welcome-card h3 {
@@ -130,20 +161,53 @@ mat-card-content {
         max-width: 40px !important;
     }
     .user-name {
-        margin-top: 20px !important;
+        margin-top: 10px !important;
         margin-left: 15px !important;
         margin-right: 5px !important;
+        width: 100px !important;
+    }
+    .img-map {
+        position: absolute;
+        top: 500px;
+        right: 20px;
+        opacity: 0.1;
+        background-repeat: repeat-x;
+    }
+    .img-flag {
+        position: absolute;
+        top: 230px;
+        left: 0px;
+        opacity: 0.1;
+        background-repeat: repeat-x;
+    }
+    .map {
+        width: 250px !important;
+        height: 250px !important;
+    }
+    .flag {
+        width: 250px !important;
+        height: 250px !important;
     }
 }
 
-@media (max-width: 377px) {
-    mat-sidenav {
-        top: 174px !important;
+@media (max-width: 999px) and (min-width: 701px) {
+    .map {
+        width: 450px !important;
+        height: 450px !important;
+    }
+    .flag {
+        width: 450px !important;
+        height: 450px !important;
     }
 }
 
-@media (max-width: 494px) and (min-width: 378px) {
-    mat-sidenav {
-        top: 145px !important;
+@media (max-width: 1360px) and (min-width: 1000px) {
+    .map {
+        width: 450px !important;
+        height: 450px !important;
+    }
+    .flag {
+        width: 450px !important;
+        height: 450px !important;
     }
 }

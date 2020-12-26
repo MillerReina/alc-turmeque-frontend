@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 
 const routes: Routes = [
+  { path: 'dashboard', pathMatch: 'full', redirectTo: 'dashboard/home' },
   {
     path: 'dashboard',
     component: DashboardComponent,

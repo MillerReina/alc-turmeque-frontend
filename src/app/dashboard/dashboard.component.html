@@ -10,8 +10,7 @@
                 </div>
 
                 <div class="col content-icon-list d-flex justify-content-end full-height">
-                    <img class="user-icon" src="./../../assets/icon/profile-icon.png" alt="" />
-
+                    <img class="user-icon" src="./../../assets/icon/profile-icon.png" alt="icono de desplegar" />
                     <div class="user-name">
                         <h3>Miller Johao Uchamocha</h3>
                     </div>
@@ -32,7 +31,7 @@
                 <img class="principal-icon" src="./../../assets/icon/docger-icon.png" alt="icono docger" />
                 <strong>DOCGER</strong>
             </a>
-            <a mat-list-item routerLink="/dashboard">
+            <a mat-list-item [routerLink]="'/dashboard/home'">
                 <mat-icon mat-list-icon>home</mat-icon>Inicio</a>
             <a mat-list-item (click)="toggleMenuDocuments()">
                 <mat-icon mat-list-icon>description</mat-icon>Documentos
@@ -40,7 +39,7 @@
                 <mat-icon *ngIf="showMenuDocuments">expand_more</mat-icon>
             </a>
             <mat-nav-list class="sidenav-submenu" *ngIf="showMenuDocuments">
-                <a mat-list-item> Todos</a>
+                <a mat-list-item [routerLink]="'/dashboard/all'"> Todos</a>
                 <a mat-list-item> En proceso</a>
                 <a mat-list-item> Resueltos</a>
                 <a mat-list-item> Finalizados</a>
@@ -59,6 +58,12 @@
     </mat-sidenav>
 </mat-sidenav-container>
 
+<div class="img-map">
+    <img class="map" src="./../../assets/img/map.png" height="500px" alt="mapa de boyaca" />
+</div>
+<div class="img-flag">
+    <img class="flag" src="./../../assets/img/flag-boyaca.svg" alt="bandera de boyaca" />
+</div>
 <div class="container">
     <div class="row">
         <div class="col-12 center-horizontal-vertical full-width">
