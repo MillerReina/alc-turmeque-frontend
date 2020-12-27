@@ -1,0 +1,38 @@
+::ng-deep body .ui-toast .ui-toast-message.ui-toast-message-info {
+    background-color: #0087d7 !important;
+    color: white !important;
+    border-radius: 10px !important;
+}
+
+::ng-deep body .ui-toast .ui-toast-message.ui-toast-message-warn {
+    background-color: #ffbc00 !important;
+    color: white !important;
+    border-radius: 10px !important;
+}
+
+::ng-deep body .ui-toast .ui-toast-message.ui-toast-message-success {
+    background-color: #41d888 !important;
+    color: white !important;
+    border-radius: 10px !important;
+}
+
+::ng-deep body .ui-toast .ui-toast-message.ui-toast-message-error {
+    background-color: #ff5252 !important;
+    color: white !important;
+    border-radius: 10px !important;
+}
+
+::ng-deep body .p-datepicker .p-timepicke {
+    padding: 0px !important;
+}
+
+::ng-deep body .p-calendar .p-inputtext {
+    border-radius: 20px !important;
+    border: 1px solid #476a8d !important;
+    padding: 10px 15px !important;
+    height: 50px !important;
+}
+
+::ng-deep body .p-toast {
+    z-index: 99999999999999999999999999 !important;
+}

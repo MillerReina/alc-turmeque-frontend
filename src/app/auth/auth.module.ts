@@ -11,6 +11,7 @@ import { AngularMaterialModule } from '../shared-module/angular-material/angular
 import { LoginComponent } from './login/login.component';
 import { RecoverPasswordComponent } from './recover-password/recover-password.component';
 import { AuthComponent } from './auth.component';
+import { NgPrimeModule } from '../shared-module/ng-prime/ng-prime.module';
 
 @NgModule({
   declarations: [LoginComponent, RecoverPasswordComponent, AuthComponent],
@@ -18,6 +19,7 @@ import { AuthComponent } from './auth.component';
     CommonModule,
     RouterModule,
     AngularMaterialModule,
+    NgPrimeModule,
     AuthRoutingModule,
     SharedModule,
     FormsModule,
