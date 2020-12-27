@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { delay, timeout } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -19,7 +21,7 @@ export class LoginComponent implements OnInit {
 
   public state: boolean = false;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.hide = true;
     this.createLoginForm();
   }
@@ -49,8 +51,17 @@ export class LoginComponent implements OnInit {
     } else {
       console.log(this.loginForm.value);
       this.authService.login(this.loginForm.value).subscribe((res) => {
+        this.router.navigateByUrl('/dashboard');
+        console.log('go to dashboard');
         console.log(res);
+        console.log(this.authService.getToken);
+        console.log(this.authService.getHeaders);
       });
+      /* setTimeout(() => {
+        this.authService.getMyDetails().subscribe((res) => {
+          console.log(res);
+        });
+      }, 3000); */
     }
   }
 }

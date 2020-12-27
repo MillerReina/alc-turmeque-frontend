@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth/services/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,7 +12,7 @@ export class DashboardComponent implements OnInit {
   public showMenuDocuments: boolean;
   public showMenuUsers: boolean;
 
-  constructor() {
+  constructor(private authService: AuthService, private router: Router) {
     this.showMenuDocuments = false;
     this.showMenuUsers = false;
   }
@@ -22,5 +24,10 @@ export class DashboardComponent implements OnInit {
   }
   toggleMenuUsers(): void {
     this.showMenuUsers = !this.showMenuUsers;
+  }
+
+  logout(): void {
+    this.authService.logout();
+    this.router.navigateByUrl('/login');
   }
 }

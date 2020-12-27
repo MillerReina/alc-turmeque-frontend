@@ -19,7 +19,8 @@
           </button>
                     <mat-menu #menu="matMenu">
                         <button class="icon-btn drop-down" mat-menu-item>Mi perfil</button>
-                        <button class="icon-btn drop-down" mat-menu-item>Cerrar sesión</button>
+                        <hr />
+                        <button class="icon-btn drop-down" mat-menu-item (click)="logout()">Cerrar sesión</button>
                     </mat-menu>
                 </div>
             </div>
@@ -27,33 +28,39 @@
     </mat-sidenav-content>
     <mat-sidenav #sidenav mode="side" [(opened)]="opened" [fixedInViewport]="true" fixedTopGap="137">
         <mat-nav-list>
-            <a mat-list-item routerLink=".">
+            <a mat-list-item routerLink="." class="docger">
                 <img class="principal-icon" src="./../../assets/icon/docger-icon.png" alt="icono docger" />
                 <strong>DOCGER</strong>
             </a>
+
             <a mat-list-item [routerLink]="'/dashboard/home'">
-                <mat-icon mat-list-icon>home</mat-icon>Inicio</a>
+                <mat-icon mat-list-icon>home</mat-icon>
+                <div style="float: right !important">Inicio</div>
+            </a>
+            <hr />
             <a mat-list-item (click)="toggleMenuDocuments()">
                 <mat-icon mat-list-icon>description</mat-icon>Documentos
                 <mat-icon *ngIf="!showMenuDocuments">chevron_right</mat-icon>
                 <mat-icon *ngIf="showMenuDocuments">expand_more</mat-icon>
             </a>
-            <mat-nav-list class="sidenav-submenu" *ngIf="showMenuDocuments">
+            <mat-nav-list class="sidenav-submenu animation-fadeIn" *ngIf="showMenuDocuments">
                 <a mat-list-item [routerLink]="'/dashboard/all'"> Todos</a>
                 <a mat-list-item> En proceso</a>
                 <a mat-list-item> Resueltos</a>
                 <a mat-list-item> Finalizados</a>
                 <a mat-list-item> Devueltos</a>
             </mat-nav-list>
+            <hr />
             <a mat-list-item (click)="toggleMenuUsers()">
                 <mat-icon mat-list-icon>face</mat-icon>Usuarios
                 <mat-icon *ngIf="!showMenuUsers">chevron_right</mat-icon>
                 <mat-icon *ngIf="showMenuUsers">expand_more</mat-icon>
             </a>
-            <mat-nav-list class="sidenav-submenu" *ngIf="showMenuUsers">
+            <mat-nav-list class="sidenav-submenu animation-fadeIn" *ngIf="showMenuUsers">
                 <a mat-list-item> Radicadores</a>
                 <a mat-list-item> Funcionarios</a>
             </mat-nav-list>
+            <hr />
         </mat-nav-list>
     </mat-sidenav>
 </mat-sidenav-container>

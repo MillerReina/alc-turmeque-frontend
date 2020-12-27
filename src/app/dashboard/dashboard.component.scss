@@ -4,12 +4,14 @@
 
 mat-sidenav-container {
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-    background-color: #ebebeb;
+    background-color: $principal-color-gray;
 }
 
 mat-sidenav {
     width: 230px !important;
-    background-color: #ebebeb;
+    background-color: $principal-color-gray;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    border-radius: 4px !important;
 }
 
 mat-sidenav-content {
@@ -17,22 +19,36 @@ mat-sidenav-content {
 }
 
 mat-nav-list {
-    padding-top: 0px !important;
+    padding-top: 2px !important;
 }
 
 ::ng-deep .mat-menu-content {
     padding-top: 0px !important;
     padding-bottom: 0px !important;
+    background-color: #ebebeb !important;
 }
 
 .mat-list-item:hover {
     background-color: $principal-color-pinkish;
     color: whitesmoke;
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    border-radius: 4px !important;
 }
 
 
 /*Otros*/
+
+hr {
+    margin: 0px !important;
+}
+
+.docger:hover {
+    cursor: default;
+}
+
+.drop-down {
+    background-color: #ebebeb;
+}
 
 .drop-down:hover {
     background-color: $principal-color-pinkish;
@@ -86,6 +102,11 @@ mat-nav-list {
     left: 100px;
     opacity: 0.1;
     background-repeat: repeat-x;
+}
+
+.animation-fadeIn {
+    animation: fadeIn;
+    animation-duration: 1s;
 }
 
 
