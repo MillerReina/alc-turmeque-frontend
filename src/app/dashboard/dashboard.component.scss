@@ -114,6 +114,21 @@ strong {
     animation-duration: 1s;
 }
 
+.btn-bell {
+    background-color: transparent !important;
+    outline: none;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px !important;
+}
+
+.btn-bell:hover {
+    background-color: rgb(216, 216, 216) !important;
+}
+
+.icon-bell {
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
 
 /* Estilos para la card */
 

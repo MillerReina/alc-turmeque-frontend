@@ -2,6 +2,11 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DocumentsComponent } from './documents/documents.component';
 import { HomeComponent } from './home/home.component';
+import { InProcessComponent } from './documents/in-process/in-process.component';
+import { ResolvedComponent } from './documents/resolved/resolved.component';
+import { FinishedComponent } from './documents/finished/finished.component';
+import { ReturnedComponent } from './documents/returned/returned.component';
+import { UsersComponent } from './users/users.component';
 
 const childRoutes: Routes = [
   {
@@ -11,6 +16,26 @@ const childRoutes: Routes = [
   {
     path: 'all',
     component: DocumentsComponent,
+  },
+  {
+    path: 'in-process',
+    component: InProcessComponent,
+  },
+  {
+    path: 'resolved',
+    component: ResolvedComponent,
+  },
+  {
+    path: 'finished',
+    component: FinishedComponent,
+  },
+  {
+    path: 'returned',
+    component: ReturnedComponent,
+  },
+  {
+    path: 'users',
+    component: UsersComponent,
   },
 ];
 @NgModule({

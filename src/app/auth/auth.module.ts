@@ -12,9 +12,10 @@ import { LoginComponent } from './login/login.component';
 import { RecoverPasswordComponent } from './recover-password/recover-password.component';
 import { AuthComponent } from './auth.component';
 import { NgPrimeModule } from '../shared-module/ng-prime/ng-prime.module';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
-  declarations: [LoginComponent, RecoverPasswordComponent, AuthComponent],
+  declarations: [LoginComponent, RecoverPasswordComponent, AuthComponent, ChangePasswordComponent],
   imports: [
     CommonModule,
     RouterModule,

@@ -10,6 +10,9 @@
                 </div>
 
                 <div class="col content-icon-list d-flex justify-content-end full-height">
+                    <button class="user-icon btn-bell" mat-raised-button matBadge="1" matBadgePosition="before" matBadgeColor="accent" [matBadgeHidden]="hidden" (click)="toggleBadgeVisibility()" style="margin-right: 10px !important">
+            <mat-icon mat-list-icon class="icon-bell">notifications</mat-icon>
+          </button>
                     <img class="user-icon" src="./../../assets/icon/profile-icon.png" alt="icono de desplegar" />
                     <div class="user-name">
                         <h3>Miller Johao Uchamocha</h3>
@@ -35,7 +38,7 @@
 
             <a mat-list-item [routerLink]="'/dashboard/home'">
                 <mat-icon mat-list-icon>home</mat-icon>
-                <div style="float: right !important">Inicio</div>
+                Inicio
             </a>
             <hr />
             <a mat-list-item (click)="toggleMenuDocuments()">
@@ -45,22 +48,26 @@
             </a>
             <mat-nav-list class="sidenav-submenu animation-fadeIn" *ngIf="showMenuDocuments">
                 <a mat-list-item [routerLink]="'/dashboard/all'"> Todos</a>
-                <a mat-list-item> En proceso</a>
-                <a mat-list-item> Resueltos</a>
-                <a mat-list-item> Finalizados</a>
-                <a mat-list-item> Devueltos</a>
+                <a mat-list-item [routerLink]="'/dashboard/in-process'"> En proceso</a>
+                <a mat-list-item [routerLink]="'/dashboard/resolved'"> Resueltos</a>
+                <a mat-list-item [routerLink]="'/dashboard/finished'"> Finalizados</a>
+                <a mat-list-item [routerLink]="'/dashboard/returned'"> Devueltos</a>
             </mat-nav-list>
             <hr />
             <a mat-list-item (click)="toggleMenuUsers()">
-                <mat-icon mat-list-icon>face</mat-icon>Usuarios
+                <mat-icon mat-list-icon>face</mat-icon> Usuarios
                 <mat-icon *ngIf="!showMenuUsers">chevron_right</mat-icon>
                 <mat-icon *ngIf="showMenuUsers">expand_more</mat-icon>
             </a>
             <mat-nav-list class="sidenav-submenu animation-fadeIn" *ngIf="showMenuUsers">
-                <a mat-list-item> Radicadores</a>
-                <a mat-list-item> Funcionarios</a>
+                <a mat-list-item> Registrados </a>
+                <a mat-list-item [routerLink]="'/dashboard/users'"> Funcionarios </a>
             </mat-nav-list>
             <hr />
+            <a mat-list-item>
+                <mat-icon mat-list-icon>apartment</mat-icon>
+                Dependencias
+            </a>
         </mat-nav-list>
     </mat-sidenav>
 </mat-sidenav-container>

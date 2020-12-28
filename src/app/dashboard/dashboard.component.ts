@@ -9,9 +9,22 @@ import { ToastMessageService } from '../services/toast-message.service';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit, AfterViewInit {
+  /**
+   * Estado del sidenav
+   */
   public opened: boolean;
+  /**
+   * Estado activo/inactivo del menu documentos
+   */
   public showMenuDocuments: boolean;
+  /**
+   * Estado activo/inactivo del menu usuarios
+   */
   public showMenuUsers: boolean;
+  /**
+   * Estado del badge
+   */
+  public hidden: boolean;
 
   constructor(private authService: AuthService, private router: Router, private toastService: ToastMessageService) {
     this.showMenuDocuments = false;
@@ -21,7 +34,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {}
 
   showMessageSuccesfully(): void {
-    this.toastService.showSuccessMessage('SESIÓN INICIADA', 'Logueado correctamente');
+    setTimeout(() => {
+      this.toastService.showSuccessMessage('SESIÓN INICIADA', 'Logueado correctamente');
+    }, 500);
   }
 
   toggleMenuDocuments(): void {
@@ -34,6 +49,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   logout(): void {
     this.authService.logout();
     this.router.navigateByUrl('/login');
+  }
+
+  toggleBadgeVisibility(): void {
+    this.hidden = !this.hidden;
   }
 
   ngAfterViewInit(): void {

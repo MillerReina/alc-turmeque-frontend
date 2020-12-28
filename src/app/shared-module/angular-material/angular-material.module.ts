@@ -7,6 +7,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatBadgeModule } from '@angular/material/badge';
 
 @NgModule({
   declarations: [],
@@ -19,6 +20,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatListModule,
     MatCardModule,
     MatMenuModule,
+    MatBadgeModule,
   ],
   exports: [
     MatInputModule,
@@ -28,6 +30,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatListModule,
     MatCardModule,
     MatMenuModule,
+    MatBadgeModule,
   ],
 })
 export class AngularMaterialModule {}

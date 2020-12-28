@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { delay, timeout } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
 import { ToastMessageService } from '../../services/toast-message.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -19,15 +20,41 @@ export class LoginComponent implements OnInit {
    * Estado de ocultación para contraseña
    */
   public hide: boolean;
+  /**
+   * Parametro uidb64
+   */
+  public uid = '';
+  /**
+   * Parametro para token de activación
+   */
+  public tkn = '';
 
-  public state: boolean = false;
-
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router,
+    private activatedRouter: ActivatedRoute
+  ) {
     this.hide = true;
     this.createLoginForm();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.existsParams();
+  }
+
+  private existsParams(): void {
+    if (this.router.url.match('uid' && 'tkn')) {
+      this.uid = this.activatedRouter.snapshot.params['uid'];
+      this.tkn = this.activatedRouter.snapshot.params['tkn'];
+      Swal.fire({
+        title: 'ACTIVACIÓN EXITOSA',
+        text: 'Su cuenta ha sido confirmada, por favor inicie sesión',
+        icon: 'success',
+        confirmButtonText: 'Aceptar',
+      });
+    }
+  }
 
   get emailIsInvalid(): boolean {
     return this.loginForm.get('username').invalid && this.loginForm.get('username').touched;
@@ -54,7 +81,6 @@ export class LoginComponent implements OnInit {
       this.authService.login(this.loginForm.value).subscribe((res) => {
         this.router.navigateByUrl('/dashboard');
         console.log('go to dashboard');
-        console.log(res);
         console.log(this.authService.getToken);
         console.log(this.authService.getHeaders);
       });
