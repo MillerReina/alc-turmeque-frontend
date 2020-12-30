@@ -1,0 +1,18 @@
+@import './../../../../styles.scss';
+table {
+    width: 100% !important;
+    position: relative;
+}
+
+mat-paginator {
+    margin-bottom: 30px !important;
+}
+
+mat-paginator mat-button {
+    outline: none !important;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100% !important;
+}

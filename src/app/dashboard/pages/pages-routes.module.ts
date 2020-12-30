@@ -7,6 +7,7 @@ import { ResolvedComponent } from './documents/resolved/resolved.component';
 import { FinishedComponent } from './documents/finished/finished.component';
 import { ReturnedComponent } from './documents/returned/returned.component';
 import { UsersComponent } from './users/users.component';
+import { AdminGuard } from '../../guards/admin.guard';
 
 const childRoutes: Routes = [
   {
@@ -36,6 +37,7 @@ const childRoutes: Routes = [
   {
     path: 'users',
     component: UsersComponent,
+    canActivate: [AdminGuard],
   },
 ];
 @NgModule({

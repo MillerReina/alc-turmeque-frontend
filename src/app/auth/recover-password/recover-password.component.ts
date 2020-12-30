@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-recover-password',
@@ -12,7 +14,7 @@ export class RecoverPasswordComponent implements OnInit {
    */
   public recoveryForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private authService: AuthService) {
     this.createLoginForm();
   }
 
@@ -27,11 +29,28 @@ export class RecoverPasswordComponent implements OnInit {
       email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$')]],
     });
   }
-
-  login() {
-    console.log(this.recoveryForm);
+  /**
+   * Envia petición para recuperar contraseña
+   */
+  recoverPassword(): void {
     if (this.recoveryForm.invalid) {
       this.recoveryForm.markAllAsTouched();
+    } else {
+      Swal.fire({
+        icon: 'info',
+        title: 'Enviando e-mail...',
+        allowOutsideClick: false,
+      });
+      Swal.showLoading();
+      this.authService.recoverPassword(this.recoveryForm.value).subscribe((__) => {
+        Swal.close();
+        Swal.fire({
+          title: '¡Correo enviado!',
+          icon: 'success',
+          text: 'Revisa tu bandeja de entrada y/o spam',
+          confirmButtonText: 'Aceptar',
+        });
+      });
     }
   }
 }

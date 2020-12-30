@@ -8,8 +8,8 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    /* canActivate: [AuthGuard],
-    canLoad: [AuthGuard], */
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard],
     loadChildren: () => import('./pages/pages-routes.module').then((module) => module.PagesRoutesModule),
   },
 ];

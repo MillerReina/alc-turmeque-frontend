@@ -118,6 +118,10 @@ strong {
     background-color: transparent !important;
     outline: none;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px !important;
+    margin-top: 15px !important;
+    width: 20px !important;
+    height: 40px !important;
+    padding: 0px !important;
 }
 
 .btn-bell:hover {
@@ -203,8 +207,8 @@ mat-card-content {
     }
     .user-name {
         margin-top: 10px !important;
-        margin-left: 15px !important;
-        margin-right: 5px !important;
+        margin-left: 10px !important;
+        margin-right: 0px !important;
         width: 100px !important;
     }
     .img-map {
@@ -228,6 +232,10 @@ mat-card-content {
     .flag {
         width: 250px !important;
         height: 250px !important;
+    }
+    .content-icon-list {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
     }
 }
 

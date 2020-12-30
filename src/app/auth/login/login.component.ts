@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { delay, timeout } from 'rxjs/operators';
+import { delay, timeout, catchError } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
 import { ToastMessageService } from '../../services/toast-message.service';
 import Swal from 'sweetalert2';
@@ -43,6 +43,17 @@ export class LoginComponent implements OnInit {
     this.existsParams();
   }
 
+  get emailIsInvalid(): boolean {
+    return this.loginForm.get('username').invalid && this.loginForm.get('username').touched;
+  }
+
+  get passwordIsInvalid(): boolean {
+    return this.loginForm.get('password').invalid && this.loginForm.get('password').touched;
+  }
+
+  /**
+   * Segundo factor de validación para cuentas
+   */
   private existsParams(): void {
     if (this.router.url.match('uid' && 'tkn')) {
       this.uid = this.activatedRouter.snapshot.params['uid'];
@@ -54,14 +65,6 @@ export class LoginComponent implements OnInit {
         confirmButtonText: 'Aceptar',
       });
     }
-  }
-
-  get emailIsInvalid(): boolean {
-    return this.loginForm.get('username').invalid && this.loginForm.get('username').touched;
-  }
-
-  get passwordIsInvalid(): boolean {
-    return this.loginForm.get('password').invalid && this.loginForm.get('password').touched;
   }
 
   /* Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$') */
@@ -77,18 +80,29 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
     } else {
-      console.log(this.loginForm.value);
-      this.authService.login(this.loginForm.value).subscribe((res) => {
-        this.router.navigateByUrl('/dashboard');
-        console.log('go to dashboard');
-        console.log(this.authService.getToken);
-        console.log(this.authService.getHeaders);
+      Swal.fire({
+        icon: 'success',
+        title: 'Iniciando sesión...',
+        allowOutsideClick: false,
       });
-      /* setTimeout(() => {
-        this.authService.getMyDetails().subscribe((res) => {
-          console.log(res);
-        });
-      }, 3000); */
+
+      Swal.showLoading();
+      this.authService.login(this.loginForm.value).subscribe(
+        (__) => {
+          this.router.navigateByUrl('/dashboard');
+          console.log(this.authService.getToken);
+          console.log(this.authService.getHeaders);
+          Swal.close();
+        },
+        (__) => {
+          Swal.fire({
+            title: 'Error al autenticar',
+            icon: 'error',
+            text: '¡Datos incorrectos!',
+            confirmButtonText: 'Aceptar',
+          });
+        }
+      );
     }
   }
 }

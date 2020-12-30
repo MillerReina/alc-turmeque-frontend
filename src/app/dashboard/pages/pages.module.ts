@@ -9,6 +9,7 @@ import { NgPrimeModule } from '../../shared-module/ng-prime/ng-prime.module';
 import { FinishedComponent } from './documents/finished/finished.component';
 import { ReturnedComponent } from './documents/returned/returned.component';
 import { UsersComponent } from './users/users.component';
+import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,6 @@ import { UsersComponent } from './users/users.component';
     ReturnedComponent,
     UsersComponent,
   ],
-  imports: [CommonModule, AngularMaterialModule, NgPrimeModule],
+  imports: [CommonModule, AngularMaterialModule, NgPrimeModule, ComponentsModule],
 })
 export class PagesModule {}
