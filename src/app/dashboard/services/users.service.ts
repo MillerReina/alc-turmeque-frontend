@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IRegisteredUser, IUsers } from '../../interfaces/registered-user.interface';
 import { catchError, map, tap } from 'rxjs/operators';
+import { IRegisteredOfficers, IOfficers } from '../../interfaces/registered-officers.interface';
 
 const base_url = environment.base_url;
 
@@ -40,5 +41,19 @@ export class UsersService {
     return this.http
       .get<IUsers>(`${base_url}/users/user?term=${term}&pg=${pg}`, this.getHeaders)
       .pipe(map((res) => res.results));
+  }
+  /**
+   * Obtiene todos los usuarios del sistema
+   */
+  getAllOfficers(term: string, pg: string, fn: boolean): Observable<IRegisteredOfficers[]> {
+    return this.http
+      .get<IOfficers>(`${base_url}/users/user?term=${term}&fn=${fn}&pg=${pg}`, this.getHeaders)
+      .pipe(map((res) => res.results));
+  }
+  /**
+   * Activar usuario
+   */
+  activateUser(id: string): Observable<IOfficers> {
+    return this.http.delete<IOfficers>(`${base_url}/users/officer?id=${id}`, this.getHeaders);
   }
 }

@@ -102,8 +102,6 @@ export class LoginComponent implements OnInit {
       this.authService.login(this.loginForm.value).subscribe(
         (__) => {
           this.router.navigateByUrl('/dashboard');
-          console.log(this.authService.getToken);
-          console.log(this.authService.getHeaders);
           Swal.close();
         },
         (__) => {

@@ -11,6 +11,10 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatTableModule } from '@angular/material/table';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [],
@@ -27,6 +31,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatTableModule,
     MatGridListModule,
     MatPaginatorModule,
+    MatSlideToggleModule,
+    MatTooltipModule,
+    MatButtonToggleModule,
+    MatDialogModule,
   ],
   exports: [
     MatInputModule,
@@ -40,6 +48,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatTableModule,
     MatGridListModule,
     MatPaginatorModule,
+    MatSlideToggleModule,
+    MatTooltipModule,
+    MatButtonToggleModule,
+    MatDialogModule,
   ],
 })
 export class AngularMaterialModule {}

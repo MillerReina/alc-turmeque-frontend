@@ -68,8 +68,8 @@
                     <mat-icon *ngIf="showMenuUsers">expand_more</mat-icon>
                 </a>
                 <mat-nav-list class="sidenav-submenu animation-fadeIn" *ngIf="showMenuUsers" (click)="sidenav.close()">
-                    <a mat-list-item> Registrados </a>
-                    <a mat-list-item [routerLink]="'/dashboard/users'"> Funcionarios </a>
+                    <a mat-list-item [routerLink]="'/dashboard/users'"> Registrados </a>
+                    <a mat-list-item [routerLink]="'/dashboard/officers'"> Funcionarios </a>
                 </mat-nav-list>
                 <hr />
                 <a *ngIf="isAdmin" mat-list-item (click)="sidenav.close()">
@@ -88,7 +88,7 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-12 full-width">
+            <div class="col-12 col-md-6 full-width">
                 <router-outlet></router-outlet>
             </div>
         </div>

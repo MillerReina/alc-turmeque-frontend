@@ -21,7 +21,7 @@ export class UsersTableComponent implements OnInit {
   /**
    * Atributos de la tabla como cabeceras
    */
-  public displayedColumns: string[] = ['nombre', 'apellido', 'identificacion', 'email', 'phone'];
+  public displayedColumns: string[] = ['nombre', 'apellido', 'identificacion', 'email', 'telefono', 'direccion'];
   /**
    * Información fuente que se carga desde el servicio
    */
@@ -40,13 +40,13 @@ export class UsersTableComponent implements OnInit {
   refreshTable(): void {
     this.dataSource = new MatTableDataSource(this.registeredUsers);
     this.dataSource.paginator = this.paginator;
+    this.preload = false;
   }
 
   loadUsers(): void {
     this.usersService.getAllUsers('', '0').subscribe((res) => {
       this.registeredUsers = res;
       this.refreshTable();
-      this.preload = false;
     });
   }
 

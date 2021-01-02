@@ -10,6 +10,7 @@ import { FinishedComponent } from './documents/finished/finished.component';
 import { ReturnedComponent } from './documents/returned/returned.component';
 import { UsersComponent } from './users/users.component';
 import { ComponentsModule } from '../components/components.module';
+import { OfficersComponent } from './users/officers/officers.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ComponentsModule } from '../components/components.module';
     FinishedComponent,
     ReturnedComponent,
     UsersComponent,
+    OfficersComponent,
   ],
   imports: [CommonModule, AngularMaterialModule, NgPrimeModule, ComponentsModule],
 })

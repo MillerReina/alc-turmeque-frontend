@@ -1,0 +1,11 @@
+@import './../../../../styles.scss';
+@import './../users-table/users-table.component.scss';
+td,
+th {
+    width: 14% !important;
+}
+
+.btn-username {
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+    outline: none;
+}
