@@ -16,6 +16,10 @@ export class AuthService {
    * Usuario actualmente logueado
    */
   public user: User;
+  /**
+   * constante confirmacion de cuenta creada
+   */
+  private messageConfirmation = 'La cuenta ya fue confirmada';
 
   constructor(private http: HttpClient) {}
   /* Obtiene el token del usuario */
@@ -33,6 +37,10 @@ export class AuthService {
 
   get getRole(): string[] {
     return this.user.role;
+  }
+
+  get getMessageConfirmation(): string {
+    return this.messageConfirmation;
   }
 
   /* Inicia sesion */
@@ -101,5 +109,11 @@ export class AuthService {
    */
   recoverPassword(formData): Observable<any> {
     return this.http.post<any>(`${base_url}/users/restore`, formData);
+  }
+  /**
+   * Activar mi cuenta
+   */
+  activateMyAccount(uid: string, token: string): Observable<any> {
+    return this.http.get<any>(`${base_url}/users/activate/${uid}/${token}`);
   }
 }

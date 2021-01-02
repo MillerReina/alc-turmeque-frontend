@@ -1,16 +1,15 @@
 @import './../../../styles.scss';
 .navbar {
-    padding-left: 100px !important;
-    padding-right: 100px !important;
+    padding-left: 70px !important;
+    padding-right: 70px !important;
     box-shadow: 0px 1px 5px 0px #6b6b6b;
     -moz-box-shadow: 0px 1px 5px 0px #6b6b6b;
     -webkit-box-shadow: 0px 1px 5px 0px #6b6b6b;
 }
 
 .shield {
-    width: 100px !important;
-    height: 110px !important;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    width: 70px !important;
+    height: 80px !important;
 }
 
 .turmeque-shield {
@@ -24,6 +23,7 @@
 }
 
 .first-title h3 {
+    margin-top: 8px !important;
     font-size: 27px !important;
 }
 
@@ -36,7 +36,7 @@
 }
 
 .second-title h1 {
-    margin-top: 7px !important;
+    margin-top: 0px !important;
     font-size: 40px !important;
 }
 
@@ -47,6 +47,7 @@
     }
     .first-title {
         align-content: center !important;
+        margin-left: 20px !important;
     }
     .first-title h3 {
         font-size: 20px !important;

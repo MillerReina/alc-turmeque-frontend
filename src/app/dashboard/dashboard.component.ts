@@ -62,7 +62,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     setTimeout(() => {
       this.preload = false;
       this.showMessageSuccesfully();
-    }, 2000);
+    }, 1000);
   }
   /**
    * Obtiene la información del usuario

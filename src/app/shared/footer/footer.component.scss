@@ -2,7 +2,9 @@
 footer {
     background-color: $principal-color-blue;
     width: 100%;
+    bottom: 0px !important;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px !important;
+    position: absolute;
 }
 
 hr {
@@ -16,23 +18,22 @@ hr {
 }
 
 .uptc-img {
-    padding: 20px !important;
-    width: 15% !important;
+    width: 7% !important;
     height: 100% !important;
-    margin-bottom: 20px !important;
+    margin-bottom: 0px !important;
 }
 
 .co-img {
-    padding: 20px !important;
-    width: 10% !important;
+    width: 4% !important;
     height: 100% !important;
 }
 
 .gov-img {
-    margin-top: 20px !important;
+    margin-top: 0px !important;
     padding: 10px !important;
-    width: 20% !important;
+    width: 13% !important;
     height: 50% !important;
+    margin-bottom: 20px !important;
 }
 
 .verticalLine {
@@ -44,14 +45,12 @@ hr {
 
 @media (max-width: 700px) and (min-width: 320px) {
     .uptc-img {
-        padding: 0px !important;
         margin-top: 0px !important;
         margin-left: 20px !important;
         width: 25% !important;
         height: 100% !important;
     }
     .co-img {
-        padding: 0px !important;
         margin-top: 0px !important;
         margin-left: 20px !important;
         width: 13% !important;
@@ -62,6 +61,10 @@ hr {
         margin-left: 20px !important;
         width: 40% !important;
         height: 100% !important;
+    }
+    footer {
+        bottom: -300px !important;
+        position: absolute;
     }
 }
 
@@ -70,25 +73,47 @@ hr {
         padding: 0px !important;
         margin-top: 0px !important;
         margin-left: 40px !important;
-        width: 25% !important;
+        width: 20% !important;
         height: 100% !important;
     }
     .co-img {
         padding: 0px !important;
         margin-top: 0px !important;
         margin-left: 40px !important;
-        width: 13% !important;
+        width: 10% !important;
         height: 100% !important;
     }
     .gov-img {
         margin-top: 5px !important;
         margin-left: 40px !important;
-        width: 40% !important;
+        width: 30% !important;
         height: 100% !important;
+    }
+    footer {
+        bottom: -300px !important;
+        position: absolute;
     }
 }
 
 @media (max-width: 1399px) and (min-width: 992px) {
+    .uptc-img {
+        margin-top: 5px !important;
+        margin-left: 40px !important;
+        width: 8% !important;
+        height: 100% !important;
+    }
+    .co-img {
+        margin-top: 0px !important;
+        margin-left: 40px !important;
+        width: 5% !important;
+        height: 100% !important;
+    }
+    .gov-img {
+        margin-top: 5px !important;
+        margin-left: 40px !important;
+        width: 15% !important;
+        height: 100% !important;
+    }
     footer {
         position: fixed;
         left: 0;

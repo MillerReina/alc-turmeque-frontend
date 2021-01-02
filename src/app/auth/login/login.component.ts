@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { delay, timeout, catchError } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
-import { ToastMessageService } from '../../services/toast-message.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -58,11 +57,22 @@ export class LoginComponent implements OnInit {
     if (this.router.url.match('uid' && 'tkn')) {
       this.uid = this.activatedRouter.snapshot.params['uid'];
       this.tkn = this.activatedRouter.snapshot.params['tkn'];
-      Swal.fire({
-        title: 'ACTIVACIÓN EXITOSA',
-        text: 'Su cuenta ha sido confirmada, por favor inicie sesión',
-        icon: 'success',
-        confirmButtonText: 'Aceptar',
+      this.authService.activateMyAccount(this.uid, this.tkn).subscribe((res) => {
+        if (this.authService.getMessageConfirmation.match(res.message)) {
+          Swal.fire({
+            title: 'Cuenta confirmada',
+            icon: 'warning',
+            text: 'Esta cuenta ya ha sido activada.',
+            confirmButtonText: 'Aceptar',
+          });
+        } else {
+          Swal.fire({
+            title: 'ACTIVACIÓN EXITOSA',
+            text: 'Su cuenta ha sido confirmada, por favor inicie sesión.',
+            icon: 'success',
+            confirmButtonText: 'Aceptar',
+          });
+        }
       });
     }
   }
@@ -71,8 +81,10 @@ export class LoginComponent implements OnInit {
 
   createLoginForm(): void {
     this.loginForm = this.fb.group({
-      username: ['fabian', [Validators.required]],
-      password: ['fabian123', [Validators.required]],
+      /*   username: ['fabian', [Validators.required]],
+      password: ['fabian123', [Validators.required]], */
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required]],
     });
   }
 

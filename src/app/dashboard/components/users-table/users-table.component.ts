@@ -1,25 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: string;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Fabian', weight: 'Peréz', symbol: 'Comisaria de familia' },
-  { position: 2, name: 'Fabian', weight: 'Peréz', symbol: 'Comisaria de familia' },
-  { position: 3, name: 'Fabian', weight: 'Peréz', symbol: 'Comisaria de familia' },
-  { position: 4, name: 'Fabian', weight: 'Peréz', symbol: 'Comisaria de familia' },
-  { position: 5, name: 'Fabian', weight: 'Peréz', symbol: 'Comisaria de familia' },
-  { position: 6, name: 'Fabian', weight: 'Peréz', symbol: 'Comisaria de familia' },
-  { position: 7, name: 'Fabian', weight: 'Peréz', symbol: 'Comisaria de familia' },
-  { position: 8, name: 'Fabian', weight: 'Peréz', symbol: 'Comisaria de familia' },
-  { position: 9, name: 'Fabian', weight: 'Peréz', symbol: 'Comisaria de familia' },
-  { position: 10, name: 'Fabian', weight: 'Peréz', symbol: 'Comisaria de familia' },
-];
+import { UsersService } from '../../services/users.service';
+import { IRegisteredUser } from '../../../interfaces/registered-user.interface';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-users-table',
@@ -27,15 +10,50 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./users-table.component.scss'],
 })
 export class UsersTableComponent implements OnInit {
-  constructor() {}
+  /**
+   * Estado de carga
+   */
+  public preload: boolean;
+  /**
+   * Arreglo de usuarios registrados en el sistema
+   */
+  public registeredUsers: IRegisteredUser[];
+  /**
+   * Atributos de la tabla como cabeceras
+   */
+  public displayedColumns: string[] = ['nombre', 'apellido', 'identificacion', 'email', 'phone'];
+  /**
+   * Información fuente que se carga desde el servicio
+   */
+  public dataSource: MatTableDataSource<IRegisteredUser>;
 
-  ngOnInit(): void {}
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  displayedColumns: string[] = ['usuario', 'nombre', 'apellido', 'dependencia'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  constructor(private usersService: UsersService) {
+    this.preload = true;
+  }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  ngOnInit(): void {
+    this.loadUsers();
+  }
+
+  refreshTable(): void {
+    this.dataSource = new MatTableDataSource(this.registeredUsers);
+    this.dataSource.paginator = this.paginator;
+  }
+
+  loadUsers(): void {
+    this.usersService.getAllUsers('', '0').subscribe((res) => {
+      this.registeredUsers = res;
+      this.refreshTable();
+      this.preload = false;
+    });
+  }
+
+  searchUsersByCoincidence(term): void {
+    this.usersService.getAllUsers(term, '0').subscribe((res) => {
+      this.registeredUsers = res;
+      this.refreshTable();
+    });
   }
 }

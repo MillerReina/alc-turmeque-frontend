@@ -89,7 +89,7 @@ strong {
 
 .user-name {
     margin-top: 20px !important;
-    margin-left: 15px !important;
+    margin-right: 15px !important;
 }
 
 .img-map {
@@ -179,13 +179,19 @@ mat-card-content {
 
 @media (max-width: 377px) {
     mat-sidenav {
-        top: 174px !important;
+        top: 180px !important;
     }
 }
 
-@media (max-width: 494px) and (min-width: 378px) {
+@media (max-width: 511px) and (min-width: 378px) {
     mat-sidenav {
-        top: 145px !important;
+        top: 150px !important;
+    }
+}
+
+@media (max-width: 699px) and (min-width: 512px) {
+    mat-sidenav {
+        top: 135px !important;
     }
 }
 
