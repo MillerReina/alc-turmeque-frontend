@@ -1,2 +1,23 @@
 @import './../../../../../styles.scss';
 @import './../users.component.scss';
+::ng-deep .mat-raised-button {
+    outline: none !important;
+}
+
+.btn-create-user:hover {
+    background-color: rgb(78, 65, 255) !important;
+}
+
+.btn-create-user {
+    background-color: $principal-color-blue;
+    color: whitesmoke !important;
+}
+
+.btn-import:hover {
+    background-color: rgb(18, 211, 0) !important;
+}
+
+.btn-import {
+    background-color: $secondary-color-green;
+    color: whitesmoke !important;
+}

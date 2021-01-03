@@ -4,6 +4,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { UsersService } from '../../services/users.service';
 import { IRegisteredOfficers } from '../../../interfaces/registered-officers.interface';
 import Swal from 'sweetalert2';
+import { MatDialog } from '@angular/material/dialog';
+import { ProfileInfoDialogComponent } from '../profile-info-dialog/profile-info-dialog.component';
 
 @Component({
   selector: 'app-officers-table',
@@ -38,7 +40,7 @@ export class OfficersTableComponent implements OnInit {
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  constructor(private usersService: UsersService) {
+  constructor(private usersService: UsersService, public dialog: MatDialog) {
     this.preload = true;
   }
 
@@ -74,6 +76,19 @@ export class OfficersTableComponent implements OnInit {
         icon: 'success',
         confirmButtonText: 'Aceptar',
       });
+    });
+  }
+
+  openDialog(element): void {
+    const dialogRef = this.dialog.open(ProfileInfoDialogComponent, {
+      width: '450px',
+      height: '600px',
+      data: element,
+      autoFocus: false,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
     });
   }
 }

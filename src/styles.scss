@@ -2,12 +2,14 @@
 
 @import './assets/scss/align-content.scss';
 @import './assets/scss/ng-prime.scss';
+@import './assets/scss/angular-material.scss';
 
 /* Colores */
 
 $principal-color-pinkish: #ff007d !important;
 $principal-color-blue: #1d59c9 !important;
 $principal-color-gray: #ebebeb !important;
+$secondary-color-green: #53bc5d !important;
 body {
     margin: 0;
     font-family: 'Roboto', sans-serif !important;
