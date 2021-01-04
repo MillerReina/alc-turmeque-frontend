@@ -1,0 +1,109 @@
+<div class="title-users d-flex justify-content-between mt-4">
+    <h1>Crear nuevo funcionario</h1>
+    <button class="btn-question" mat-raised-button matTooltip="Esta sección es para crear las cuentas de los funcionarios que trabajan en la alcaldía." aria-label="Button that displays a tooltip when focused or hovered over">
+    <i class="fas fa-question-circle fa-2x"></i>
+  </button>
+</div>
+<div class="container content-principal">
+    <mat-card>
+        <form autocomplete="off" [formGroup]="registerForm" (ngSubmit)="createOfficer()">
+            <div class="row">
+                <div class="col-sm">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Usuario</mat-label>
+                        <input matInput formControlName="username" value="" autocomplete="off" />
+                        <mat-error *ngIf="userNameIsInvalid"> Ingrese un usuario válido por favor </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Nombres</mat-label>
+                        <input matInput formControlName="name" value="" autocomplete="off" />
+                        <mat-error *ngIf="nameIsInvalid"> Ingrese un nombre válido por favor </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Apellidos</mat-label>
+                        <input matInput formControlName="lastName" value="" autocomplete="off" />
+                        <mat-error *ngIf="lastNameIsInvalid"> Ingrese un apellido válido por favor </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Email</mat-label>
+                        <input matInput formControlName="email" value="" autocomplete="off" />
+                        <mat-error *ngIf="emailIsInvalid"> Ingrese un correo válido por favor </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Fecha de nacimiento</mat-label>
+                        <input matInput formControlName="birthDate" [matDatepicker]="picker" [max]="max_date" [value]="" autocomplete="off" />
+                        <mat-error *ngIf="emailIsInvalid"> Ingrese una fecha válida por favor </mat-error>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Teléfono</mat-label>
+                        <input matInput formControlName="phone" value="" autocomplete="off" />
+                        <mat-error *ngIf="phoneIsInvalid"> Ingrese un teléfono válido por favor </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Número de identificación</mat-label>
+                        <input matInput formControlName="id" value="" autocomplete="off" />
+                        <mat-error *ngIf="idIsInvalid"> Ingrese una identificación válida por favor </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Tipo de identificación</mat-label>
+                        <mat-select formControlName="typeId" name="typeId">
+                            <mat-option *ngFor="let type of listIDTypes" [value]="type.name">{{ type.name }} </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="typeIdIsInvalid"> Seleccione un tipo válido por favor </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Dependencia</mat-label>
+                        <mat-select formControlName="dependency" name="dependency">
+                            <mat-option *ngFor="let dependency of listDependencies" [value]="dependency.name_dependency">{{ dependency.name_dependency }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="dependencyIsInvalid"> Seleccione una dependencia válida por favor </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Rol</mat-label>
+                        <mat-select formControlName="role" name="role">
+                            <mat-option *ngFor="let role of listRoles" [value]="role.name_role">{{ role.name_role }} </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="roleIsInvalid"> Seleccione un rol válido por favor </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Contraseña</mat-label>
+                        <input matInput formControlName="passwordOne" value="" autocomplete="off" />
+                        <mat-error *ngIf="roleIsInvalid"> Ingrese una contraseña válida por favor </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Confirmar contraseña</mat-label>
+                        <input matInput formControlName="passwordTwo" value="" autocomplete="off" />
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div mat-dialog-actions class="content-actions center-horizontal full-width mt-4 mb-3">
+                <div class="container">
+                    <div class="row">
+                        <div class="col d-flex justify-content-end">
+                            <button mat-raised-button type="submit" style="margin-right: 8px !important">Crear usuario</button>
+                        </div>
+                        <div class="col d-flex justify-content-start content-type-id">
+                            <button mat-raised-button (click)="goToBack()">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </mat-card>
+</div>

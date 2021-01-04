@@ -9,8 +9,17 @@ import { ReturnedComponent } from './documents/returned/returned.component';
 import { UsersComponent } from './users/users.component';
 import { AdminGuard } from '../../guards/admin.guard';
 import { OfficersComponent } from './users/officers/officers.component';
+import { CreateComponent } from './create/create.component';
+import { AuthGuard } from '../../guards/auth.guard';
 
 const childRoutes: Routes = [
+  {
+    path: 'create',
+    component: CreateComponent,
+    canActivate: [AuthGuard, AdminGuard],
+    canLoad: [AuthGuard],
+    loadChildren: () => import('./create/create.module').then((module) => module.CreateModule),
+  },
   {
     path: 'home',
     component: HomeComponent,

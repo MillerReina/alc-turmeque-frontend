@@ -11,9 +11,11 @@ export interface IRegisteredOfficers {
   dependency?: number;
   dependency_name?: string;
   type_identification: string;
+  type_identification_name?: string;
   identification: string;
   is_active: boolean;
   name_dependency?: string;
   phone_number?: string;
   birthdate?: string;
+  roles?: string[];
 }

@@ -94,18 +94,18 @@ strong {
 
 .img-map {
     position: absolute;
-    top: 300px;
+    top: 325px;
     right: 20px;
-    opacity: 0.1;
+    opacity: 0.04;
     background-repeat: repeat-x;
     height: 500px !important;
 }
 
 .img-flag {
     position: absolute;
-    top: 300px;
+    top: 325px;
     left: 100px;
-    opacity: 0.1;
+    opacity: 0.04;
     background-repeat: repeat-x;
 }
 
@@ -219,16 +219,16 @@ mat-card-content {
     }
     .img-map {
         position: absolute;
-        top: 500px;
+        top: 550px;
         right: 20px;
-        opacity: 0.1;
+        opacity: 0.04;
         background-repeat: repeat-x;
     }
     .img-flag {
         position: absolute;
-        top: 230px;
+        top: 295px;
         left: 0px;
-        opacity: 0.1;
+        opacity: 0.04;
         background-repeat: repeat-x;
     }
     .map {

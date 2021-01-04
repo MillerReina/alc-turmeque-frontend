@@ -4,11 +4,12 @@
 }
 
 ::ng-deep .mat-raised-button:hover {
-    background-color: $principal-color-gray;
+    background-color: $principal-color-pinkish;
+    color: whitesmoke !important;
 }
 
 ::ng-deep .mat-dialog-title {
-    background-color: $principal-color-pinkish;
+    background-color: $principal-color-blue;
     color: whitesmoke !important;
     font-size: 2.3em !important;
     font-weight: bold !important;
@@ -19,7 +20,7 @@
 }
 
 ::ng-deep .mat-dialog-content {
-    height: 78%;
+    height: 70%;
 }
 
 mat-form-field {
@@ -32,11 +33,20 @@ mat-form-field {
 
 .subtitle {
     margin-left: 10px !important;
-    font-size: 1.5em !important;
+    font-size: 20px !important;
 }
 
 .principal {
     padding: 0px !important;
     height: 100%;
     border-radius: 5px !important;
+}
+
+@media (max-width: 700px) {
+    .title {
+        font-size: 1.5em !important;
+    }
+    .subtitle {
+        font-size: 16px !important;
+    }
 }

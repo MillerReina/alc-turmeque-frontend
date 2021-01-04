@@ -21,3 +21,12 @@
     background-color: $secondary-color-green;
     color: whitesmoke !important;
 }
+
+@media (max-width: 700px) {
+    .right-side {
+        margin-left: 50px !important;
+    }
+    .btn-import {
+        margin-bottom: 5px !important;
+    }
+}

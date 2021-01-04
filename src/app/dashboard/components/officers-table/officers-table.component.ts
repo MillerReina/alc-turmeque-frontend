@@ -69,26 +69,38 @@ export class OfficersTableComponent implements OnInit {
   }
 
   activateUser(element): void {
-    this.usersService.activateUser(element.id).subscribe((__) => {
-      Swal.fire({
-        title: 'Cuenta desactivada',
-        text: `El usuario: ${element.first_name} ha sido desactivado`,
-        icon: 'success',
-        confirmButtonText: 'Aceptar',
+    this.preload = true;
+    if (element.is_active) {
+      this.usersService.activateUser(element.id).subscribe((__) => {
+        Swal.fire({
+          title: 'CUENTA DESACTIVADA',
+          text: `El usuario: ${element.first_name} ha sido desactivado`,
+          icon: 'success',
+          confirmButtonText: 'Aceptar',
+        });
+        this.loadUsers();
       });
-    });
+    } else {
+      this.usersService.activateUser(element.id).subscribe((__) => {
+        Swal.fire({
+          title: 'CUENTA ACTIVADA',
+          text: `El usuario: ${element.first_name} ha sido activado`,
+          icon: 'success',
+          confirmButtonText: 'Aceptar',
+        });
+        this.loadUsers();
+      });
+    }
   }
 
   openDialog(element): void {
     const dialogRef = this.dialog.open(ProfileInfoDialogComponent, {
-      width: '450px',
-      height: '600px',
+      width: '500px',
+      height: '500px',
       data: element,
       autoFocus: false,
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
-    });
+    dialogRef.afterClosed().subscribe((__) => {});
   }
 }

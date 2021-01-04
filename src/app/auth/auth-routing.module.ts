@@ -8,7 +8,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'login/uid/:uid/tkn/:tkn', component: LoginComponent },
   { path: 'recover', component: RecoverPasswordComponent },
-  { path: 'recover/password', component: ChangePasswordComponent },
+  { path: 'recover/password/uid/:uid/tkn/:tkn', component: ChangePasswordComponent },
 ];
 
 @NgModule({

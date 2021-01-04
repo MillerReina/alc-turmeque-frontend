@@ -3,39 +3,47 @@
     <div mat-dialog-content>
         <div class="container center-horizontal-vertical full-height">
             <div class="row full-height">
-                <div class="subtitle">
-                    <mat-form-field class="full-width">
-                        <mat-label><strong>Usuario:</strong></mat-label>
-                        <input matInput [value]="actualUser.username" [disabled]="true" />
-                    </mat-form-field>
-                    <mat-form-field class="full-width">
-                        <mat-label><strong>Nombre:</strong></mat-label>
-                        <input matInput [value]="actualUser.first_name" [disabled]="true" />
-                    </mat-form-field>
-                    <mat-form-field class="full-width">
-                        <mat-label><strong>Apellido:</strong></mat-label>
-                        <input matInput [value]="actualUser.last_name" [disabled]="true" />
-                    </mat-form-field>
-                    <mat-form-field class="full-width">
-                        <mat-label> <strong>Dependencia:</strong></mat-label>
-                        <input matInput [value]="actualUser.dependency_name" [disabled]="true" />
-                    </mat-form-field>
-                    <mat-form-field class="full-width">
-                        <mat-label><strong>Identificación:</strong></mat-label>
-                        <input matInput [value]="actualUser.identification" [disabled]="true" />
-                    </mat-form-field>
-                    <mat-form-field class="full-width">
-                        <mat-label><strong>Email:</strong></mat-label>
-                        <input matInput [value]="actualUser.email" [disabled]="true" />
-                    </mat-form-field>
-                    <mat-form-field class="full-width">
-                        <mat-label><strong>Teléfono:</strong></mat-label>
-                        <input matInput [value]="actualUser.phone_number" [disabled]="true" />
-                    </mat-form-field>
-                    <mat-form-field class="full-width">
-                        <mat-label><strong>Fecha de nacimiento:</strong></mat-label>
-                        <input matInput [value]="actualUser.birthdate" [disabled]="true" />
-                    </mat-form-field>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm subtitle">
+                            <mat-form-field class="full-width">
+                                <mat-label><strong>Usuario:</strong></mat-label>
+                                <input matInput [value]="actualUser.username" [disabled]="true" />
+                            </mat-form-field>
+                            <mat-form-field class="full-width">
+                                <mat-label><strong>Apellido:</strong></mat-label>
+                                <input matInput [value]="actualUser.last_name" [disabled]="true" />
+                            </mat-form-field>
+                            <mat-form-field class="full-width">
+                                <mat-label><strong>Identificación:</strong></mat-label>
+                                <input matInput [value]="actualUser.identification" [disabled]="true" />
+                            </mat-form-field>
+                            <mat-form-field class="full-width">
+                                <mat-label><strong>Teléfono:</strong></mat-label>
+                                <input *ngIf="actualUser.phone_number != undefined" matInput [value]="actualUser.phone_number" [disabled]="true" />
+                                <input *ngIf="actualUser.phone_number === undefined" matInput [value]="'---------'" [disabled]="true" />
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm subtitle">
+                            <mat-form-field class="full-width">
+                                <mat-label><strong>Nombre:</strong></mat-label>
+                                <input matInput [value]="actualUser.first_name" [disabled]="true" />
+                            </mat-form-field>
+                            <mat-form-field class="full-width">
+                                <mat-label> <strong>Dependencia:</strong></mat-label>
+                                <input matInput [value]="actualUser.name_dependency" [disabled]="true" />
+                            </mat-form-field>
+                            <mat-form-field class="full-width">
+                                <mat-label><strong>Email:</strong></mat-label>
+                                <input matInput [value]="actualUser.email" [disabled]="true" />
+                            </mat-form-field>
+                            <mat-form-field class="full-width">
+                                <mat-label><strong>Fecha de nacimiento:</strong></mat-label>
+                                <input *ngIf="actualUser.phone_number != undefined" matInput [value]="actualUser.birthdate" [disabled]="true" />
+                                <input *ngIf="actualUser.phone_number === undefined || ''" matInput [value]="'---------'" [disabled]="true" />
+                            </mat-form-field>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

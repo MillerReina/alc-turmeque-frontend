@@ -15,6 +15,9 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCommonModule, MAT_DATE_LOCALE, MatNativeDateModule, MAT_DATE_FORMATS } from '@angular/material/core';
 
 @NgModule({
   declarations: [],
@@ -35,6 +38,10 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatTooltipModule,
     MatButtonToggleModule,
     MatDialogModule,
+    MatDatepickerModule,
+    MatCommonModule,
+    MatNativeDateModule,
+    MatSelectModule,
   ],
   exports: [
     MatInputModule,
@@ -52,6 +59,11 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatTooltipModule,
     MatButtonToggleModule,
     MatDialogModule,
+    MatDatepickerModule,
+    MatCommonModule,
+    MatNativeDateModule,
+    MatSelectModule,
   ],
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'es-CO' }],
 })
 export class AngularMaterialModule {}

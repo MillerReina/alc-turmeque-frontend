@@ -50,6 +50,13 @@ export class UsersService {
       .get<IOfficers>(`${base_url}/users/user?term=${term}&fn=${fn}&pg=${pg}`, this.getHeaders)
       .pipe(map((res) => res.results));
   }
+
+  /**
+   * Obtiene la información de un solo usuario por id
+   */
+  getDetailUser(id): Observable<IOfficers> {
+    return this.http.get<IOfficers>(`${base_url}/users/user?id=${id}`, this.getHeaders);
+  }
   /**
    * Activar usuario
    */

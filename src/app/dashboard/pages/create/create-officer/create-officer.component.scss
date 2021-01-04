@@ -1,0 +1,39 @@
+@import './../../../../../styles.scss';
+@import './../../users/users.component.scss';
+::ng-deep .mat-raised-button {
+    outline: none !important;
+}
+
+::ng-deep .mat-raised-button:hover {
+    background-color: $principal-color-pinkish;
+    color: whitesmoke !important;
+}
+
+.content-principal {
+    margin-top: 60px !important;
+    background-color: $principal-color-gray !important;
+    padding: 0px !important;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.content-type-id {
+    padding-right: 0px !important;
+}
+
+.btn-question {
+    border-radius: 100px !important;
+}
+
+.col-sm {
+    font-size: 1em !important;
+}
+
+.content-actions .mat-raised-button {
+    font-size: 1em !important;
+}
+
+@media (max-width: 700px) {
+    .content-principal {
+        margin-bottom: 50px !important;
+    }
+}

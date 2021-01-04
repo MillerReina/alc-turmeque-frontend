@@ -1,12 +1,14 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'undefinedPipe'
+  name: 'undefined',
 })
 export class UndefinedPipePipe implements PipeTransform {
-
-  transform(value: unknown, ...args: unknown[]): unknown {
-    return null;
+  transform(value: string): unknown {
+    if (value === undefined) {
+      return '';
+    } else {
+      return value;
+    }
   }
-
 }
