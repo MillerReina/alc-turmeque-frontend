@@ -157,21 +157,18 @@ export class CreateOfficerComponent implements OnInit {
   createRegisterForm(): void {
     this.registerForm = this.fb.group(
       {
-        username: ['duban', [Validators.required]],
-        first_name: ['asdasdasd', [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
-        last_name: ['asdasddsa', [Validators.required]],
-        email: [
-          'asdasdads@gmail.com',
-          [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$')],
-        ],
+        username: ['', [Validators.required]],
+        first_name: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
+        last_name: ['', [Validators.required]],
+        email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$')]],
         birthdate: ['', [Validators.required]],
-        phone_number: ['3213808302', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
-        identification: ['463690', [Validators.required]],
+        phone_number: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+        identification: ['', [Validators.required]],
         type_identification: [1, [Validators.required]],
         dependency: [1, [Validators.required]],
         roles: this.fb.array([this.role()]),
-        password: ['123456', [Validators.required, Validators.minLength(6)]],
-        password_2: ['123456', [Validators.required, Validators.minLength(6)]],
+        password: ['', [Validators.required, Validators.minLength(6)]],
+        password_2: ['', [Validators.required, Validators.minLength(6)]],
       },
       {
         validators: this.validatorsService.passwordIsInvalid('password', 'password_2'),

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { delay, timeout, catchError } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
 import Swal from 'sweetalert2';
+import { ToastMessageService } from '../../services/toast-message.service';
 
 @Component({
   selector: 'app-login',
@@ -27,15 +28,21 @@ export class LoginComponent implements OnInit {
    * Parametro para token de activación
    */
   public tkn = '';
+  /**
+   * contador de intentos
+   */
+  public count: number;
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private activatedRouter: ActivatedRoute
+    private activatedRouter: ActivatedRoute,
+    private toastService: ToastMessageService
   ) {
-    this.hide = true;
     this.createLoginForm();
+    this.hide = true;
+    this.count = 0;
   }
 
   ngOnInit(): void {
@@ -55,8 +62,8 @@ export class LoginComponent implements OnInit {
    */
   private existsParams(): void {
     if (this.router.url.match('uid' && 'tkn')) {
-      this.uid = this.activatedRouter.snapshot.params['uid'];
-      this.tkn = this.activatedRouter.snapshot.params['tkn'];
+      this.uid = this.activatedRouter.snapshot.params.uid;
+      this.tkn = this.activatedRouter.snapshot.params.tkn;
       this.authService.activateMyAccount(this.uid, this.tkn).subscribe((res) => {
         if (this.authService.getMessageConfirmation.match(res.message)) {
           Swal.fire({
@@ -81,8 +88,6 @@ export class LoginComponent implements OnInit {
 
   createLoginForm(): void {
     this.loginForm = this.fb.group({
-      /*   username: ['fabian', [Validators.required]],
-      password: ['fabian123', [Validators.required]], */
       username: ['', [Validators.required]],
       password: ['', [Validators.required]],
     });
@@ -97,7 +102,6 @@ export class LoginComponent implements OnInit {
         title: 'Iniciando sesión...',
         allowOutsideClick: false,
       });
-
       Swal.showLoading();
       this.authService.login(this.loginForm.value).subscribe(
         (__) => {
@@ -105,12 +109,12 @@ export class LoginComponent implements OnInit {
           Swal.close();
         },
         (__) => {
-          Swal.fire({
-            title: 'Error al autenticar',
-            icon: 'error',
-            text: '¡Datos incorrectos!',
-            confirmButtonText: 'Aceptar',
-          });
+          this.count++;
+          Swal.close();
+          this.toastService.showErrorMessage2('ERROR AL AUTENTICAR', `Usuario y/o contraseña incorrectos`);
+          if (this.count === 4) {
+            this.router.navigateByUrl('/recover');
+          }
         }
       );
     }

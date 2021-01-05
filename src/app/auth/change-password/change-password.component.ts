@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import Swal from 'sweetalert2';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ValidatorsService } from '../../dashboard/pages/create/services/validators.service';
 
 @Component({
   selector: 'app-change-password',
@@ -13,44 +15,94 @@ export class ChangePasswordComponent implements OnInit {
    * Formulario reactivo para cambiar la contraseña
    */
   public recoveryForm: FormGroup;
+  /**
+   * Estado de ocultación para contraseña
+   */
+  public hide: boolean;
+  /**
+   * Parametro uidb64
+   */
+  public uid = '';
+  /**
+   * Parametro para token de activación
+   */
+  public tkn = '';
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private validatorsService: ValidatorsService,
+    private router: Router,
+    private activatedRouter: ActivatedRoute
+  ) {
+    this.existsParams();
     this.createForm();
+    this.hide = true;
   }
 
   ngOnInit(): void {}
 
   get passwordOneIsInvalid(): boolean {
-    return this.recoveryForm.get('passwordOne').invalid && this.recoveryForm.get('passwordOne').touched;
+    return this.recoveryForm.get('password').invalid && this.recoveryForm.get('password').touched;
+  }
+
+  get passwordTwoIsEmpty(): boolean {
+    return this.recoveryForm.get('password_2').touched;
+  }
+
+  get passwordTwoIsInvalid(): boolean {
+    const passOne = this.recoveryForm.get('password').value;
+    const passTwo = this.recoveryForm.get('password_2').value;
+    return passOne === passTwo ? false : true;
+  }
+
+  /**
+   * Segundo factor de validación para cuentas
+   */
+  private existsParams(): void {
+    if (this.router.url.match('uid' && 'tkn')) {
+      this.uid = this.activatedRouter.snapshot.params.uid;
+      this.tkn = this.activatedRouter.snapshot.params.tkn;
+      this.authService.checkTime(this.uid, this.tkn).subscribe((res) => {
+        if (!res) {
+          this.router.navigate([`/login`]);
+          Swal.fire({
+            title: '¡Tiempo agotado!',
+            icon: 'error',
+            text: 'Tu link para cambio de contraseña ya expiró',
+            confirmButtonText: 'Aceptar',
+          });
+        }
+      });
+    }
   }
 
   createForm(): void {
-    this.recoveryForm = this.fb.group({
-      passwordOne: ['', [Validators.required]],
-      passwordTwo: ['', [Validators.required]],
-    });
+    this.recoveryForm = this.fb.group(
+      {
+        password: ['', [Validators.required, Validators.minLength(6)]],
+        password_2: ['', [Validators.required, Validators.minLength(6)]],
+      },
+      {
+        validators: this.validatorsService.passwordIsInvalid('password', 'password_2'),
+      }
+    );
   }
   /**
    * Envia petición para recuperar contraseña
    */
-  recoverPassword(): void {
+  changePassword(): void {
     if (this.recoveryForm.invalid) {
       this.recoveryForm.markAllAsTouched();
     } else {
-      Swal.fire({
-        icon: 'info',
-        title: 'Enviando e-mail...',
-        allowOutsideClick: false,
-      });
-      Swal.showLoading();
-      this.authService.recoverPassword(this.recoveryForm.value).subscribe((__) => {
-        Swal.close();
+      this.authService.changeMyPassword(this.uid, this.tkn, this.recoveryForm.value).subscribe((res) => {
         Swal.fire({
-          title: '¡Correo enviado!',
+          title: '¡Contraseña actualizada!',
           icon: 'success',
-          text: 'Revisa tu bandeja de entrada y/o spam',
+          text: 'Puedes iniciar sesión ahora con tu nueva contraseña',
           confirmButtonText: 'Aceptar',
         });
+        this.router.navigate([`/login`]);
       });
     }
   }

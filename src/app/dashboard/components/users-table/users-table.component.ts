@@ -33,14 +33,14 @@ export class UsersTableComponent implements OnInit {
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  public page_size: number;
-  public page_number: number;
+  public pageSize: number;
+  public pageNumber: number;
   public totalData: number;
 
   constructor(private usersService: UsersService) {
     this.preload = true;
-    this.page_size = 10;
-    this.page_number = 1;
+    this.pageSize = 10;
+    this.pageNumber = 1;
   }
 
   ngOnInit(): void {
@@ -56,7 +56,7 @@ export class UsersTableComponent implements OnInit {
 
   loadUsers(): void {
     this.preloadSearch = true;
-    this.usersService.getAllUsers('', this.page_number.toString()).subscribe((res) => {
+    this.usersService.getAllUsers('', this.pageNumber.toString()).subscribe((res) => {
       this.registeredUsers = res;
       this.totalData = this.usersService.getPagination.total_records;
       this.refreshTable();
@@ -65,7 +65,7 @@ export class UsersTableComponent implements OnInit {
 
   searchUsersByCoincidence(term): void {
     this.preloadSearch = true;
-    this.usersService.getAllUsers(term, this.page_number.toString()).subscribe((res) => {
+    this.usersService.getAllUsers(term, this.pageNumber.toString()).subscribe((res) => {
       this.registeredUsers = res;
       this.totalData = this.usersService.getPagination.total_records;
       this.refreshTable();
@@ -73,8 +73,8 @@ export class UsersTableComponent implements OnInit {
   }
 
   handlePage(e: PageEvent): void {
-    this.page_size = e.pageSize;
-    this.page_number = e.pageIndex + 1;
+    this.pageSize = e.pageSize;
+    this.pageNumber = e.pageIndex + 1;
     let inputValue = (<HTMLInputElement>document.getElementById('term')).value;
     if (inputValue) {
       this.searchUsersByCoincidence(inputValue);

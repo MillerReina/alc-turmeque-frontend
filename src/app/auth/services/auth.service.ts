@@ -126,4 +126,20 @@ export class AuthService {
   activateMyAccount(uid: string, token: string): Observable<any> {
     return this.http.get<any>(`${base_url}/users/activate/${uid}/${token}`);
   }
+
+  /**
+   * Revisa si está dentro de la hora
+   */
+  checkTime(uid: string, token: string): Observable<any> {
+    return this.http.get<any>(`${base_url}/users/reset-password/${uid}/${token}`).pipe(
+      map((__) => true),
+      catchError((__) => of(false))
+    );
+  }
+  /**
+   * Cambia la contraseña
+   */
+  changeMyPassword(uid: string, token: string, formData): Observable<any> {
+    return this.http.post<any>(`${base_url}/users/reset-password/${uid}/${token}`, formData);
+  }
 }
