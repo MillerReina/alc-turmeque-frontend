@@ -12,10 +12,9 @@ import { PagesModule } from './pages/pages.module';
 import { DashboardComponent } from './dashboard.component';
 /* Servicio toast */
 import { ToastMessageService } from '../services/toast-message.service';
-import { UndefinedPipePipe } from './pipes/undefined-pipe.pipe';
 
 @NgModule({
-  declarations: [DashboardComponent, UndefinedPipePipe],
+  declarations: [DashboardComponent],
   imports: [
     CommonModule,
     RouterModule,

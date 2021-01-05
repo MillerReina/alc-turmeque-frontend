@@ -1,11 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { UsersService } from '../../services/users.service';
 import { IRegisteredOfficers } from '../../../interfaces/registered-officers.interface';
 import Swal from 'sweetalert2';
 import { MatDialog } from '@angular/material/dialog';
 import { ProfileInfoDialogComponent } from '../profile-info-dialog/profile-info-dialog.component';
+import { $ } from 'protractor';
 
 @Component({
   selector: 'app-officers-table',
@@ -17,6 +18,10 @@ export class OfficersTableComponent implements OnInit {
    * Estado de carga
    */
   public preload: boolean;
+  /**
+   * Estado de carga para busqueda
+   */
+  public preloadSearch: boolean;
   /**
    * Arreglo de usuarios registrados en el sistema
    */
@@ -37,11 +42,16 @@ export class OfficersTableComponent implements OnInit {
    * Información fuente que se carga desde el servicio
    */
   public dataSource: MatTableDataSource<IRegisteredOfficers>;
-
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+
+  public page_size: number;
+  public page_number: number;
+  public totalData: number;
 
   constructor(private usersService: UsersService, public dialog: MatDialog) {
     this.preload = true;
+    this.page_size = 10;
+    this.page_number = 1;
   }
 
   ngOnInit(): void {
@@ -52,18 +62,23 @@ export class OfficersTableComponent implements OnInit {
     this.dataSource = new MatTableDataSource(this.registeredUsers);
     this.dataSource.paginator = this.paginator;
     this.preload = false;
+    this.preloadSearch = false;
   }
 
   loadUsers(): void {
-    this.usersService.getAllOfficers('', '0', true).subscribe((res) => {
+    this.preloadSearch = true;
+    this.usersService.getAllOfficers('', this.page_number.toString(), true).subscribe((res) => {
       this.registeredUsers = res;
+      this.totalData = this.usersService.getPagination.total_records;
       this.refreshTable();
     });
   }
 
   searchUsersByCoincidence(term): void {
-    this.usersService.getAllOfficers(term, '0', true).subscribe((res) => {
+    this.preloadSearch = true;
+    this.usersService.getAllOfficers(term, this.page_number.toString(), true).subscribe((res) => {
       this.registeredUsers = res;
+      this.totalData = this.usersService.getPagination.total_records;
       this.refreshTable();
     });
   }
@@ -102,5 +117,16 @@ export class OfficersTableComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((__) => {});
+  }
+
+  handlePage(e: PageEvent): void {
+    this.page_size = e.pageSize;
+    this.page_number = e.pageIndex + 1;
+    let inputValue = (<HTMLInputElement>document.getElementById('term')).value;
+    if (inputValue) {
+      this.searchUsersByCoincidence(inputValue);
+    } else {
+      this.loadUsers();
+    }
   }
 }

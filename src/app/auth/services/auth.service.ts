@@ -43,6 +43,16 @@ export class AuthService {
     return this.messageConfirmation;
   }
 
+  get isAdminConfirmation(): boolean {
+    let aux = false;
+    this.user.role.forEach((element: any) => {
+      if (element.name === 'Administrador') {
+        aux = true;
+      }
+    });
+    return aux;
+  }
+
   /* Inicia sesion */
   login(formData: ILoginForm): Observable<any> {
     return this.http.post<any>(`${base_url}/users/login`, formData).pipe(

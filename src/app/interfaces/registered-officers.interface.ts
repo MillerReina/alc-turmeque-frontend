@@ -1,5 +1,10 @@
 export interface IOfficers {
   results: IRegisteredOfficers[];
+  total_records: number;
+  total_pages: number;
+  page: number;
+  has_next: boolean;
+  has_prev: boolean;
 }
 
 export interface IRegisteredOfficers {

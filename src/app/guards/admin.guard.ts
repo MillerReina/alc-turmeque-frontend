@@ -8,16 +8,13 @@ import { AuthService } from '../auth/services/auth.service';
 })
 export class AdminGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
+
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    let value = false;
-    this.authService.getRole.forEach((element: any) => {
-      if (element.name === 'Administrador') {
-        value = true;
-      } else {
-        this.router.navigateByUrl('/dashboard');
-        value = false;
-      }
-    });
-    return value;
+    if (this.authService.isAdminConfirmation) {
+      return true;
+    } else {
+      this.router.navigateByUrl('/dashboard');
+      return false;
+    }
   }
 }

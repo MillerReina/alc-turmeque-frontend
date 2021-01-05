@@ -7,6 +7,9 @@ import { IRole } from 'src/app/interfaces/role-interface';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { ValidatorsService } from '../services/validators.service';
+import { ToastMessageService } from '../../../../services/toast-message.service';
+import { catchError } from 'rxjs/operators';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-create-officer',
@@ -18,6 +21,10 @@ export class CreateOfficerComponent implements OnInit {
    * Preload
    */
   public preload: boolean;
+  /**
+   * Preload
+   */
+  public postCreate: boolean;
   /**
    * fecha minima de hoy
    */
@@ -52,12 +59,14 @@ export class CreateOfficerComponent implements OnInit {
     private createService: CreateService,
     private router: Router,
     private datePipe: DatePipe,
-    private validatorsService: ValidatorsService
+    private validatorsService: ValidatorsService,
+    private toastService: ToastMessageService
   ) {
     this.createRegisterForm();
     this.maxDate = new Date(Date.now() - 568036800000);
     this.counter = 0;
     this.preload = true;
+    this.postCreate = false;
     this.hide = true;
   }
 
@@ -148,21 +157,21 @@ export class CreateOfficerComponent implements OnInit {
   createRegisterForm(): void {
     this.registerForm = this.fb.group(
       {
-        username: ['', [Validators.required], this.validatorsService.existeUsuario],
+        username: ['duban', [Validators.required]],
         first_name: ['asdasdasd', [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
-        last_name: ['asdasdasdasd', [Validators.required]],
+        last_name: ['asdasddsa', [Validators.required]],
         email: [
-          'asdasdasd@gmail.com',
+          'asdasdads@gmail.com',
           [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$')],
         ],
         birthdate: ['', [Validators.required]],
         phone_number: ['3213808302', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
-        identification: ['11111111', [Validators.required]],
-        type_identification: ['', [Validators.required]],
-        dependency: ['', [Validators.required]],
+        identification: ['463690', [Validators.required]],
+        type_identification: [1, [Validators.required]],
+        dependency: [1, [Validators.required]],
         roles: this.fb.array([this.role()]),
-        password: ['111111', [Validators.required, Validators.minLength(6)]],
-        password_2: ['111111', [Validators.required, Validators.minLength(6)]],
+        password: ['123456', [Validators.required, Validators.minLength(6)]],
+        password_2: ['123456', [Validators.required, Validators.minLength(6)]],
       },
       {
         validators: this.validatorsService.passwordIsInvalid('password', 'password_2'),
@@ -177,13 +186,42 @@ export class CreateOfficerComponent implements OnInit {
       this.registerForm.markAllAsTouched();
       this.registerForm.get('roles').markAllAsTouched();
     } else {
+      this.postCreate = true;
       const date = this.registerForm.get('birthdate').value;
       const newDate = this.datePipe.transform(date, 'dd/MM/yyyy');
       this.registerForm.get('birthdate').setValue(newDate);
-      console.log(this.registerForm.value);
-      /* this.createService.createOfficer(this.registerForm.value).subscribe((res) => {
-        console.log(res);
-      }); */
+      this.createService.createOfficer(this.registerForm.value).subscribe(
+        (__) => {
+          this.toastService.showSuccessMessage(
+            `USUARIO ${this.registerForm.get('username').value} CREADO`,
+            `Cuenta creada satisfactoriamente`
+          );
+          this.router.navigate([`dashboard/officers`]);
+        },
+        (err) => {
+          this.registerForm.patchValue({
+            birthdate: date,
+          });
+          if (err.error.identification) {
+            this.registerForm.setErrors({ invalid: true });
+            Swal.fire({
+              title: 'Error al crear usuario',
+              icon: 'error',
+              text: err.error.identification,
+              confirmButtonText: 'Aceptar',
+            });
+          } else {
+            this.registerForm.setErrors({ invalid: true });
+            Swal.fire({
+              title: 'Error al crear usuario',
+              icon: 'error',
+              text: err.error.username,
+              confirmButtonText: 'Aceptar',
+            });
+          }
+          this.postCreate = false;
+        }
+      );
     }
   }
   /**

@@ -11,12 +11,20 @@ import { DatePipe } from '@angular/common';
 import { AppComponent } from './app.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import localeES from '@angular/common/locales/es';
+import { MatPaginatorIntl } from '@angular/material/paginator';
+import { CustomMatPaginatorIntl } from './dashboard/i18n/paginator-es';
 registerLocaleData(localeES, 'es');
 
 @NgModule({
   declarations: [AppComponent, NotFoundComponent],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule, AuthModule, BrowserAnimationsModule],
-  providers: [DatePipe],
+  providers: [
+    DatePipe,
+    {
+      provide: MatPaginatorIntl,
+      useClass: CustomMatPaginatorIntl,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

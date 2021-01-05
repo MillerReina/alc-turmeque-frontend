@@ -1,12 +1,12 @@
-<div *ngIf="preload" class="row justify-content-center full-height" style="min-height: 100% !important">
+<div *ngIf="preload || postCreate" class="row justify-content-center full-height" style="min-height: 100% !important">
     <div class="col-12 center-horizontal-vertical full-height flexbox-col">
         <img src="../../../../assets/loading/loading.gif" height="400px" alt="gif cargando" />
     </div>
 </div>
-<div *ngIf="!preload">
+<div *ngIf="!preload && !postCreate">
     <div class="title-users d-flex justify-content-between mt-4" style="margin-left: 10px !important">
         <h1>Crear nuevo funcionario</h1>
-        <button class="btn-question" mat-raised-button matTooltip="Esta sección es para crear las cuentas de los funcionarios que trabajan en la alcaldía." aria-label="Button that displays a tooltip when focused or hovered over">
+        <button class="btn-question" mat-raised-button matTooltip="Sección para crear las cuentas de los funcionarios que trabajan en la alcaldía." aria-label="Button that displays a tooltip when focused or hovered over">
       <i class="fas fa-question-circle fa-2x"></i>
     </button>
     </div>
@@ -18,6 +18,7 @@
                         <mat-form-field appearance="outline" class="full-width">
                             <mat-label>Usuario</mat-label>
                             <input matInput formControlName="username" value="" autocomplete="off" type="text" pattern="[A-Za-z0-9_-]{1,15}" />
+                            <mat-icon matSuffix matTooltip="ejm: nombre.apellido"> help</mat-icon>
                             <mat-error *ngIf="userNameIsInvalid"> Ingrese un usuario válido por favor </mat-error>
                         </mat-form-field>
 
@@ -97,7 +98,7 @@
                         <table class="table table-content" formArrayName="roles">
                             <tr>
                                 <th>
-                                    <h4 class="title">Asignar rol</h4>
+                                    <h4 class="title" style="font-style: oblique">Asignar rol:</h4>
                                 </th>
                                 <th>
                                     <button *ngIf="counter < listRoles.length - 1" mat-raised-button type="button" (click)="addRol()" class="td-icon">
@@ -140,3 +141,4 @@
         </mat-card>
     </div>
 </div>
+<p-toast></p-toast>
