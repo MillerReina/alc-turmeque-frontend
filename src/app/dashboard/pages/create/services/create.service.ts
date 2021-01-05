@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { ITypeID, IType } from '../../../../interfaces/type-id.interface';
 import { IDepedency, IDependencies } from '../../../../interfaces/dependency-interface';
 import { IRole, IRoles } from '../../../../interfaces/role-interface';
+import { IOfficer } from '../../../../interfaces/registered-officers.interface';
 const base_url = environment.base_url;
 
 @Injectable({
@@ -51,5 +52,12 @@ export class CreateService {
    */
   getListOfRoles(): Observable<IRole[]> {
     return this.http.get<IRoles>(`${base_url}/users/roles`, this.getHeaders).pipe(map((res) => res.roles));
+  }
+
+  /**
+   * Crea la cuenta de un funcionario
+   */
+  createOfficer(formData: IOfficer): Observable<IOfficer> {
+    return this.http.post<IOfficer>(`${base_url}/users/officer`, formData, this.getHeaders);
   }
 }

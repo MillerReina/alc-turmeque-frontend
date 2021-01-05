@@ -74,7 +74,7 @@ export class OfficersTableComponent implements OnInit {
       this.usersService.activateUser(element.id).subscribe((__) => {
         Swal.fire({
           title: 'CUENTA DESACTIVADA',
-          text: `El usuario: ${element.first_name} ha sido desactivado`,
+          text: `El usuario: ${element.username} ha sido desactivado`,
           icon: 'success',
           confirmButtonText: 'Aceptar',
         });
@@ -84,7 +84,7 @@ export class OfficersTableComponent implements OnInit {
       this.usersService.activateUser(element.id).subscribe((__) => {
         Swal.fire({
           title: 'CUENTA ACTIVADA',
-          text: `El usuario: ${element.first_name} ha sido activado`,
+          text: `El usuario: ${element.username} ha sido activado`,
           icon: 'success',
           confirmButtonText: 'Aceptar',
         });

@@ -17,6 +17,9 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatChipsModule } from '@angular/material/chips';
 import { MatCommonModule, MAT_DATE_LOCALE, MatNativeDateModule, MAT_DATE_FORMATS } from '@angular/material/core';
 
 @NgModule({
@@ -42,6 +45,9 @@ import { MatCommonModule, MAT_DATE_LOCALE, MatNativeDateModule, MAT_DATE_FORMATS
     MatCommonModule,
     MatNativeDateModule,
     MatSelectModule,
+    MatFormFieldModule,
+    MatCheckboxModule,
+    MatChipsModule,
   ],
   exports: [
     MatInputModule,
@@ -63,6 +69,9 @@ import { MatCommonModule, MAT_DATE_LOCALE, MatNativeDateModule, MAT_DATE_FORMATS
     MatCommonModule,
     MatNativeDateModule,
     MatSelectModule,
+    MatFormFieldModule,
+    MatCheckboxModule,
+    MatChipsModule,
   ],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'es-CO' }],
 })
