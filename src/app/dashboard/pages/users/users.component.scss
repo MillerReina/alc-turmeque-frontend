@@ -1,4 +1,17 @@
 @import './../../../../styles.scss';
+::ng-deep .mat-raised-button {
+    outline: none !important;
+}
+
+.btn-create-user:hover {
+    background-color: rgb(78, 65, 255) !important;
+}
+
+.btn-create-user {
+    background-color: $principal-color-blue;
+    color: whitesmoke !important;
+}
+
 .title-users h1 {
     margin-bottom: 0px !important;
     font-weight: bold;

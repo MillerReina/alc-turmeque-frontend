@@ -7,7 +7,7 @@ export class CustomMatPaginatorIntl extends MatPaginatorIntl {
     super();
   }
 
-  itemsPerPageLabel = 'Usuarios por página: ';
+  itemsPerPageLabel = 'Registros por página: ';
   nextPageLabel = 'Página siguiente';
   previousPageLabel = 'Página anterior';
 

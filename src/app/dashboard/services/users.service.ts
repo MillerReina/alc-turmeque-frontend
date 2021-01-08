@@ -25,15 +25,6 @@ export class UsersService {
     return localStorage.getItem('tkn-user') || '';
   }
 
-  /* Obtiene los headers para solicitudes http */
-  get getHeaders() {
-    return {
-      headers: {
-        Authorization: `Token ${this.getToken}`,
-      },
-    };
-  }
-
   /**
    * Obtiene la informacón de paginación
    */
@@ -45,13 +36,13 @@ export class UsersService {
    * Obtiene la información personal del perfil autenticado
    */
   getMyDetails(): Observable<any> {
-    return this.http.get<any>(`${base_url}/users/user`, this.getHeaders);
+    return this.http.get<any>(`${base_url}/users/user`);
   }
   /**
    * Obtiene todos los usuarios del sistema
    */
   getAllUsers(term: string, pg: string): Observable<IRegisteredUser[]> {
-    return this.http.get<IUsers>(`${base_url}/users/user?term=${term}&pg=${pg}`, this.getHeaders).pipe(
+    return this.http.get<IUsers>(`${base_url}/users/user?term=${term}&pg=${pg}`).pipe(
       tap((res) => {
         this.pagination.total_records = res.total_records;
         this.pagination.total_pages = res.total_pages;
@@ -66,7 +57,7 @@ export class UsersService {
    * Obtiene todos los funcionarios del sistema
    */
   getAllOfficers(term: string, pg: string, fn: boolean): Observable<IRegisteredOfficers[]> {
-    return this.http.get<IOfficers>(`${base_url}/users/user?term=${term}&fn=${fn}&pg=${pg}`, this.getHeaders).pipe(
+    return this.http.get<IOfficers>(`${base_url}/users/user?term=${term}&fn=${fn}&pg=${pg}`).pipe(
       tap((res) => {
         this.pagination.total_records = res.total_records;
         this.pagination.total_pages = res.total_pages;
@@ -86,12 +77,12 @@ export class UsersService {
    * Obtiene la información de un solo usuario por id
    */
   getDetailUser(id): Observable<IOfficers> {
-    return this.http.get<IOfficers>(`${base_url}/users/user?id=${id}`, this.getHeaders);
+    return this.http.get<IOfficers>(`${base_url}/users/user?id=${id}`);
   }
   /**
    * Activar usuario
    */
   activateUser(id: string): Observable<IOfficers> {
-    return this.http.delete<IOfficers>(`${base_url}/users/officer?id=${id}`, this.getHeaders);
+    return this.http.delete<IOfficers>(`${base_url}/users/officer?id=${id}`);
   }
 }

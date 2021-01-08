@@ -26,6 +26,11 @@ th {
     font-size: 1em;
 }
 
+.btn-username {
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+    outline: none;
+}
+
 @media (max-width: 700px) {
     .example-container {
         overflow-x: scroll;

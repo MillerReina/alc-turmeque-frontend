@@ -26,14 +26,6 @@ export class AuthService {
   get getToken(): string {
     return localStorage.getItem('tkn-user') || '';
   }
-  /* Obtiene los headers para solicitudes http */
-  get getHeaders() {
-    return {
-      headers: {
-        Authorization: `Token ${this.getToken}`,
-      },
-    };
-  }
 
   get getRole(): string[] {
     return this.user.role;
@@ -73,11 +65,11 @@ export class AuthService {
   }
 
   getMyDetails(): Observable<any> {
-    return this.http.get<any>(`${base_url}/users/user`, this.getHeaders);
+    return this.http.get<any>(`${base_url}/users/user`);
   }
   /* Valida que el token sea autentico */
   validateToken(): Observable<boolean> {
-    return this.http.get(`${base_url}/users/user`, this.getHeaders).pipe(
+    return this.http.get(`${base_url}/users/user`).pipe(
       tap((res: any) => {
         const {
           dependency,

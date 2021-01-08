@@ -1,0 +1,103 @@
+<div *ngIf="preload || postCreate" class="row justify-content-center full-height" style="min-height: 100% !important">
+    <div class="col-12 center-horizontal-vertical full-height flexbox-col">
+        <img src="../../../../assets/loading/loading.gif" height="400px" alt="gif cargando" />
+    </div>
+</div>
+<div *ngIf="!preload && !postCreate">
+    <div *ngIf="!editState" class="title-users d-flex justify-content-between mt-4" style="margin-left: 10px !important">
+        <h1>Crear nuevo beneficiario</h1>
+        <button class="btn-question" mat-raised-button matTooltip="Sección para crear registros de beneficiarios que radican documentos." aria-label="Button that displays a tooltip when focused or hovered over">
+      <i class="fas fa-question-circle fa-2x"></i>
+    </button>
+    </div>
+
+    <div *ngIf="editState" class="title-users d-flex justify-content-between mt-4" style="margin-left: 10px !important">
+        <h1>Editar beneficiario</h1>
+        <button class="btn-question" mat-raised-button matTooltip="Sección para crear registros de beneficiarios que radican documentos." aria-label="Button that displays a tooltip when focused or hovered over">
+      <i class="fas fa-question-circle fa-2x"></i>
+    </button>
+    </div>
+
+    <div class="container content-principal">
+        <mat-card>
+            <form autocomplete="off" [formGroup]="registerForm" (ngSubmit)="createUser()">
+                <div class="row">
+                    <div class="col-sm">
+                        <mat-form-field appearance="outline" class="full-width" [ngClass]="{
+                myelement: nameIsInvalid
+              }">
+                            <mat-label>Nombres</mat-label>
+                            <input matInput type="text" appAlphabetOnlyDirective formControlName="first_name" value="" autocomplete="off" pattern="[a-zA-Z ]*" maxlength="30" />
+                            <mat-error *ngIf="nameIsInvalid"> Ingrese un nombre válido por favor </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="full-width" [ngClass]="{
+                myelement: lastNameIsInvalid
+              }">
+                            <mat-label>Apellidos</mat-label>
+                            <input matInput type="text" appAlphabetOnlyDirective formControlName="last_name" value="" autocomplete="off" maxlength="30" />
+                            <mat-error *ngIf="lastNameIsInvalid"> Ingrese un apellido válido por favor </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="full-width" [ngClass]="{
+                myelement: emailIsInvalid
+              }">
+                            <mat-label>Email</mat-label>
+                            <input matInput formControlName="email" value="" autocomplete="off" />
+                            <mat-error *ngIf="emailIsInvalid"> Ingrese un correo válido por favor </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm">
+                        <mat-form-field appearance="outline" class="full-width" [ngClass]="{
+                myelement: idIsInvalid
+              }">
+                            <mat-label>Número de identificación o NIT</mat-label>
+                            <input matInput formControlName="identification" value="" autocomplete="off" onkeypress="return event.charCode >= 48 && event.charCode <= 57" minlength="6" />
+                            <mat-error *ngIf="idIsInvalid"> Ingrese una identificación válida por favor </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="full-width" [ngClass]="{
+                myelement: typeIdIsInvalid
+              }">
+                            <mat-label>Tipo de identificación</mat-label>
+                            <mat-select formControlName="type_identification" name="typeId">
+                                <mat-option *ngFor="let type of listIDTypes" [value]="type.id">{{ type.name }} </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="typeIdIsInvalid"> Seleccione un tipo válido por favor </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="full-width" [ngClass]="{
+                myelement: phoneIsInvalid
+              }">
+                            <mat-label>Teléfono</mat-label>
+                            <input matInput formControlName="phone_number" value="" autocomplete="off" onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="10" />
+                            <mat-error *ngIf="phoneIsInvalid"> Ingrese un teléfono válido por favor </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div mat-dialog-actions class="content-actions center-horizontal full-width mt-4 mb-3">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col d-flex justify-content-end">
+                                <button *ngIf="!editState" mat-raised-button type="submit" class="btn-create full-width">
+                  <i class="fas fa-user-plus fa-lg" style="margin-right: 5px !important"></i>
+                  Registrar beneficiario
+                </button>
+                                <button *ngIf="editState" mat-raised-button type="button" class="btn-create full-width" (click)="saveChanges()">
+                  <i class="fas fa-save fa-lg" style="margin-right: 5px !important"></i>
+                  Guardar cambios
+                </button>
+                            </div>
+                            <div class="col d-flex justify-content-start content-type-id">
+                                <button mat-raised-button type="button" (click)="goToBack()" class="full-width">
+                  <i class="fas fa-window-close fa-lg" style="margin-right: 5px !important"></i>
+                  Cancelar
+                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </mat-card>
+    </div>
+</div>

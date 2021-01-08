@@ -23,6 +23,7 @@ export interface IRegisteredOfficers {
   phone_number?: string;
   birthdate?: string;
   roles?: string[];
+  address?: string;
 }
 
 export interface IOfficer {

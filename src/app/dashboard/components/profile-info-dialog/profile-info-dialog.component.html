@@ -1,12 +1,12 @@
 <div class="container principal">
-    <h1 mat-dialog-title class="title center-horizontal">Información del usuario</h1>
+    <h1 mat-dialog-title class="title center-horizontal">Detalles del usuario</h1>
     <div mat-dialog-content>
         <div class="container center-horizontal-vertical full-height">
             <div class="row full-height">
                 <div class="container">
                     <div class="row">
                         <div class="col-sm subtitle">
-                            <mat-form-field class="full-width">
+                            <mat-form-field *ngIf="isOfficer" class="full-width">
                                 <mat-label><strong>Usuario:</strong></mat-label>
                                 <input matInput [value]="actualUser.username" [disabled]="true" />
                             </mat-form-field>
@@ -29,7 +29,7 @@
                                 <mat-label><strong>Nombre:</strong></mat-label>
                                 <input matInput [value]="actualUser.first_name" [disabled]="true" />
                             </mat-form-field>
-                            <mat-form-field class="full-width">
+                            <mat-form-field *ngIf="isOfficer" class="full-width">
                                 <mat-label> <strong>Dependencia:</strong></mat-label>
                                 <input matInput [value]="actualUser.name_dependency" [disabled]="true" />
                             </mat-form-field>
@@ -37,10 +37,15 @@
                                 <mat-label><strong>Email:</strong></mat-label>
                                 <input matInput [value]="actualUser.email" [disabled]="true" />
                             </mat-form-field>
-                            <mat-form-field class="full-width">
+                            <mat-form-field *ngIf="isOfficer" class="full-width">
                                 <mat-label><strong>Fecha de nacimiento:</strong></mat-label>
                                 <input *ngIf="actualUser.phone_number != undefined" matInput [value]="actualUser.birthdate" [disabled]="true" />
                                 <input *ngIf="actualUser.phone_number === undefined || ''" matInput [value]="'---------'" [disabled]="true" />
+                            </mat-form-field>
+                            <mat-form-field *ngIf="!isOfficer" class="full-width">
+                                <mat-label><strong>Dirección:</strong></mat-label>
+                                <input *ngIf="actualUser.address != null" matInput [value]="actualUser.address" [disabled]="true" />
+                                <input *ngIf="actualUser.address === null || ''" matInput [value]="'No-registra'" [disabled]="true" style="font-style: oblique" />
                             </mat-form-field>
                         </div>
                     </div>
@@ -50,7 +55,21 @@
     </div>
 
     <div mat-dialog-actions class="center-horizontal full-width">
-        <button mat-raised-button>Editar usuario</button>
-        <button mat-raised-button (click)="onNoClick()">Cerrar</button>
+        <div class="container">
+            <div class="row">
+                <div class="col d-flex justify-content-end">
+                    <button mat-raised-button (click)="editUser()" class="full-width">
+            <i class="fas fa-edit fa-lg" style="margin-right: 5px !important"></i>
+            Editar
+          </button>
+                </div>
+                <div class="col d-flex justify-content-start">
+                    <button mat-raised-button (click)="onNoClick()" class="full-width">
+            <i class="fas fa-window-close fa-lg" style="margin-right: 5px !important"></i>
+            Cerrar
+          </button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

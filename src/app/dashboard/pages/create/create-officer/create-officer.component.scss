@@ -35,7 +35,7 @@ mat-card {
 }
 
 .content-type-id {
-    padding-right: 0px !important;
+    padding-left: 10px !important;
 }
 
 .btn-question {
@@ -65,8 +65,16 @@ mat-card {
     border-radius: 10px !important;
 }
 
+.myelement {
+    animation: headShake;
+    animation-duration: 1s;
+}
+
 @media (max-width: 700px) {
     .content-principal {
         margin-bottom: 50px !important;
+    }
+    .btn-create {
+        margin-bottom: 12px !important;
     }
 }

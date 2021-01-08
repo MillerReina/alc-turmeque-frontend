@@ -3,6 +3,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { UsersService } from '../../services/users.service';
 import { IRegisteredUser } from '../../../interfaces/registered-user.interface';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatDialog } from '@angular/material/dialog';
+import { ProfileInfoDialogComponent } from '../profile-info-dialog/profile-info-dialog.component';
 
 @Component({
   selector: 'app-users-table',
@@ -37,7 +39,7 @@ export class UsersTableComponent implements OnInit {
   public pageNumber: number;
   public totalData: number;
 
-  constructor(private usersService: UsersService) {
+  constructor(private usersService: UsersService, public dialog: MatDialog) {
     this.preload = true;
     this.pageSize = 10;
     this.pageNumber = 1;
@@ -81,5 +83,16 @@ export class UsersTableComponent implements OnInit {
     } else {
       this.loadUsers();
     }
+  }
+
+  openDialog(element): void {
+    const dialogRef = this.dialog.open(ProfileInfoDialogComponent, {
+      width: '500px',
+      height: '500px',
+      data: element,
+      autoFocus: false,
+    });
+
+    dialogRef.afterClosed().subscribe((__) => {});
   }
 }

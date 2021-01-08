@@ -23,21 +23,31 @@ export class AuthGuard implements CanActivate, CanLoad {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     return this.authService.validateToken().pipe(
-      tap((isAuth) => {
-        if (!isAuth) {
-          this.router.navigateByUrl('/login');
+      tap(
+        (isAuth) => {
+          if (!isAuth) {
+            this.router.navigateByUrl('/login');
+          }
+        },
+        (__) => {
+          this.authService.logout();
         }
-      })
+      )
     );
   }
 
   canLoad(route: Route, segments: UrlSegment[]): Observable<boolean> {
     return this.authService.validateToken().pipe(
-      tap((isAuth) => {
-        if (!isAuth) {
-          this.router.navigateByUrl('/login');
+      tap(
+        (isAuth) => {
+          if (!isAuth) {
+            this.router.navigateByUrl('/login');
+          }
+        },
+        (__) => {
+          this.authService.logout();
         }
-      })
+      )
     );
   }
 }

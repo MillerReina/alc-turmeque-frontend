@@ -10,6 +10,7 @@ import { ValidatorsService } from '../services/validators.service';
 import { ToastMessageService } from '../../../../services/toast-message.service';
 import { catchError } from 'rxjs/operators';
 import Swal from 'sweetalert2';
+import { IOfficer } from '../../../../interfaces/registered-officers.interface';
 
 @Component({
   selector: 'app-create-officer',
@@ -22,9 +23,13 @@ export class CreateOfficerComponent implements OnInit {
    */
   public preload: boolean;
   /**
-   * Preload
+   * Preload despues de crear
    */
   public postCreate: boolean;
+  /**
+   * Preload de editar
+   */
+  public preloadEdit: boolean;
   /**
    * fecha minima de hoy
    */
@@ -53,6 +58,18 @@ export class CreateOfficerComponent implements OnInit {
    * Estado de ocultación para contraseña
    */
   public hide: boolean;
+  /**
+   * Id del usuario que se va a editar
+   */
+  public idUser: string;
+  /**
+   * estado de editar
+   */
+  public editState: boolean;
+  /**
+   * informacion del usuario actual
+   */
+  public actualUser: IOfficer;
 
   constructor(
     private fb: FormBuilder,
@@ -63,6 +80,7 @@ export class CreateOfficerComponent implements OnInit {
     private toastService: ToastMessageService
   ) {
     this.createRegisterForm();
+    this.isEditingUser();
     this.maxDate = new Date(Date.now() - 568036800000);
     this.counter = 0;
     this.preload = true;
@@ -71,8 +89,8 @@ export class CreateOfficerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getTypesOfID();
     this.getRoles();
+    this.getTypesOfID();
     this.getDependencies();
   }
 
@@ -114,6 +132,10 @@ export class CreateOfficerComponent implements OnInit {
 
   get roleIsInvalid(): boolean {
     return this.registerForm.get('roles').invalid && this.registerForm.get('roles').touched;
+  }
+
+  get rols() {
+    return this.registerForm.get('roles') as FormArray;
   }
 
   get passwordOneIsInvalid(): boolean {
@@ -164,8 +186,8 @@ export class CreateOfficerComponent implements OnInit {
         birthdate: ['', [Validators.required]],
         phone_number: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
         identification: ['', [Validators.required]],
-        type_identification: [1, [Validators.required]],
-        dependency: [1, [Validators.required]],
+        type_identification: [, [Validators.required]],
+        dependency: [, [Validators.required]],
         roles: this.fb.array([this.role()]),
         password: ['', [Validators.required, Validators.minLength(6)]],
         password_2: ['', [Validators.required, Validators.minLength(6)]],
@@ -262,5 +284,91 @@ export class CreateOfficerComponent implements OnInit {
   removeQuantity(i: number): void {
     this.counter--;
     this.roles().removeAt(i);
+  }
+
+  isEditingUser(): void {
+    if (this.router.url.match('edit')) {
+      this.preload = true;
+      this.editState = true;
+      this.idUser = this.router.url.split('/')[4];
+      this.createService.getUserById(this.idUser).subscribe((res) => {
+        this.actualUser = res.user;
+        this.loadInfoToForm();
+        setTimeout(() => {
+          this.preload = false;
+        }, 500);
+      });
+    } else {
+      this.editState = false;
+    }
+  }
+
+  loadInfoToForm(): void {
+    this.registerForm.reset({
+      id: this.actualUser.identification,
+      username: this.actualUser.username,
+      first_name: this.actualUser.first_name,
+      last_name: this.actualUser.last_name,
+      email: this.actualUser.email,
+      birthdate: this.actualUser.birthdate,
+      phone_number: this.actualUser.phone_number,
+      identification: this.actualUser.identification,
+      type_identification: this.actualUser.type_identification,
+      dependency: this.actualUser.dependency,
+      password: '123456',
+      password_2: '123456',
+    });
+    this.actualUser.roles.forEach((valor: any) =>
+      this.rols.push(
+        this.fb.group({
+          rol: [valor.id],
+        })
+      )
+    );
+    this.counter = this.rols.length - 1;
+  }
+
+  saveChanges(): void {
+    if (this.registerForm.invalid) {
+      this.registerForm.markAllAsTouched();
+      this.registerForm.get('roles').markAllAsTouched();
+    } else {
+      this.postCreate = true;
+      const date = this.registerForm.get('birthdate').value;
+      const newDate = this.datePipe.transform(date, 'dd/MM/yyyy');
+      this.registerForm.get('birthdate').setValue(newDate);
+      this.createService.updateOfficerById(this.registerForm.value).subscribe(
+        (res) => {
+          this.toastService.showSuccessMessage(
+            `USUARIO ${this.registerForm.get('username').value} ACTUALIZADO`,
+            `Cuenta actualizada satisfactoriamente`
+          );
+          this.router.navigate([`dashboard/officers`]);
+        },
+        (err) => {
+          this.registerForm.patchValue({
+            birthdate: date,
+          });
+          if (err.error.identification) {
+            this.registerForm.setErrors({ invalid: true });
+            Swal.fire({
+              title: 'Error al actualizar usuario',
+              icon: 'error',
+              text: err.error.identification,
+              confirmButtonText: 'Aceptar',
+            });
+          } else {
+            this.registerForm.setErrors({ invalid: true });
+            Swal.fire({
+              title: 'Error al actualizar usuario',
+              icon: 'error',
+              text: err.error.username,
+              confirmButtonText: 'Aceptar',
+            });
+          }
+          this.postCreate = false;
+        }
+      );
+    }
   }
 }
