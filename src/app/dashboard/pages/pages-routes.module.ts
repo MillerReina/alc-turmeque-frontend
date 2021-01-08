@@ -11,6 +11,7 @@ import { AdminGuard } from '../../guards/admin.guard';
 import { OfficersComponent } from './users/officers/officers.component';
 import { CreateComponent } from './create/create.component';
 import { AuthGuard } from '../../guards/auth.guard';
+import { DependicesComponent } from './dependencies/dependices.component';
 
 const childRoutes: Routes = [
   {
@@ -19,6 +20,13 @@ const childRoutes: Routes = [
     canActivate: [AuthGuard, AdminGuard],
     canLoad: [AuthGuard],
     loadChildren: () => import('./create/create.module').then((module) => module.CreateModule),
+  },
+  {
+    path: 'dependencies',
+    component: DependicesComponent,
+    canActivate: [AuthGuard, AdminGuard],
+    canLoad: [AuthGuard],
+    loadChildren: () => import('./../pages/dependencies/dependices.module').then((module) => module.DependicesModule),
   },
   {
     path: 'home',
