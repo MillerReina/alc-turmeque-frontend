@@ -72,7 +72,7 @@
                     <a mat-list-item [routerLink]="'/dashboard/officers'"> Funcionarios </a>
                 </mat-nav-list>
                 <hr />
-                <a *ngIf="isAdmin" mat-list-item (click)="sidenav.close()">
+                <a *ngIf="isAdmin" mat-list-item [routerLink]="'/dashboard/dependencies'" (click)="sidenav.close()">
                     <mat-icon mat-list-icon>apartment</mat-icon>
                     Dependencias
                 </a>

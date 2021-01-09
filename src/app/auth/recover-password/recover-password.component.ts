@@ -1,7 +1,9 @@
+import { ToastMessageService } from './../../services/toast-message.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recover-password',
@@ -14,11 +16,29 @@ export class RecoverPasswordComponent implements OnInit {
    */
   public recoveryForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router,
+    private toastService: ToastMessageService
+  ) {
     this.createLoginForm();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.showMessageTryFailed();
+  }
+
+  showMessageTryFailed(): void {
+    if (this.router.url.match('failed')) {
+      Swal.fire({
+        title: 'DEMASIADOS INTENTOS',
+        text: 'Prueba cambiando tu contraseña :)',
+        icon: 'info',
+        confirmButtonText: 'Aceptar',
+      });
+    }
+  }
 
   get emailIsInvalid(): boolean {
     return this.recoveryForm.get('email').invalid && this.recoveryForm.get('email').touched;

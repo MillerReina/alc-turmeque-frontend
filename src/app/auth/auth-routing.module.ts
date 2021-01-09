@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'login/uid/:uid/tkn/:tkn', component: LoginComponent },
   { path: 'recover', component: RecoverPasswordComponent },
+  { path: 'recover/failed', component: RecoverPasswordComponent },
   { path: 'restore/password/uid/:uid/tkn/:tkn', component: ChangePasswordComponent },
 ];
 

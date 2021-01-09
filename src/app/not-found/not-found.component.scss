@@ -1,0 +1,70 @@
+@import './../../styles.scss';
+::ng-deep .mat-raised-button {
+    outline: none !important;
+}
+
+.mat-raised-button {
+    background-color: $principal-color-pinkish;
+    color: whitesmoke !important;
+    font-size: 17px !important;
+}
+
+h1 {
+    font-size: 80px !important;
+    font-weight: bold !important;
+}
+
+p {
+    font-size: 40px !important;
+    font-weight: bold !important;
+}
+
+.content-text {
+    margin-top: 70px !important;
+    padding-left: 200px !important;
+}
+
+.content-img {
+    margin-top: 40px !important;
+}
+
+.text {
+    margin-top: 70px !important;
+}
+
+@media (max-width: 700px) {
+    .content-img img {
+        width: 85% !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+    .content-text {
+        padding-left: 0px !important;
+    }
+    .content-text h1 {
+        font-size: 60px !important;
+    }
+    .text {
+        margin-top: 40px !important;
+        font-size: 30px !important;
+    }
+}
+
+@media (max-width: 1199px) {
+    .content-text {
+        padding-left: 100px !important;
+    }
+    .text {
+        font-size: 30px !important;
+    }
+}
+
+@media (max-width: 1399px) and (min-width: 1200px) {
+    .content-text {
+        padding-left: 100px !important;
+    }
+    .text {
+        font-size: 38px !important;
+    }
+}

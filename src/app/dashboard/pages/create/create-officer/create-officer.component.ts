@@ -291,13 +291,18 @@ export class CreateOfficerComponent implements OnInit {
       this.preload = true;
       this.editState = true;
       this.idUser = this.router.url.split('/')[4];
-      this.createService.getUserById(this.idUser).subscribe((res) => {
-        this.actualUser = res.user;
-        this.loadInfoToForm();
-        setTimeout(() => {
-          this.preload = false;
-        }, 500);
-      });
+      this.createService.getUserById(this.idUser).subscribe(
+        (res) => {
+          this.actualUser = res.user;
+          this.loadInfoToForm();
+          setTimeout(() => {
+            this.preload = false;
+          }, 500);
+        },
+        (__) => {
+          this.router.navigate([`dashboard/officers`]);
+        }
+      );
     } else {
       this.editState = false;
     }

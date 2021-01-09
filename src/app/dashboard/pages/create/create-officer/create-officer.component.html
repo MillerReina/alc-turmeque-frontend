@@ -162,14 +162,14 @@
                             <div class="col d-flex justify-content-end">
                                 <button *ngIf="!editState" mat-raised-button type="submit" class="btn-create full-width">
                   <i class="fas fa-user-plus fa-lg" style="margin-right: 5px !important"></i>
-                  Crear usuario
+                  Registrar funcionario
                 </button>
                                 <button *ngIf="editState" mat-raised-button type="button" class="btn-create full-width" (click)="saveChanges()">
                   <i class="fas fa-save fa-lg" style="margin-right: 5px !important"></i>
                   Guardar cambios
                 </button>
                             </div>
-                            <div class="col d-flex justify-content-start">
+                            <div class="col d-flex justify-content-start content-type-id">
                                 <button mat-raised-button type="button" (click)="goToBack()" class="full-width">
                   <i class="fas fa-window-close fa-lg" style="margin-right: 5px !important"></i>
                   Cancelar

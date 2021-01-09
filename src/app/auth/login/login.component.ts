@@ -113,7 +113,7 @@ export class LoginComponent implements OnInit {
           Swal.close();
           this.toastService.showErrorMessage2('ERROR AL AUTENTICAR', `Usuario y/o contraseña incorrectos`);
           if (this.count === 4) {
-            this.router.navigateByUrl('/recover');
+            this.router.navigateByUrl('/recover/failed');
           }
         }
       );

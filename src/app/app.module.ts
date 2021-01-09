@@ -1,3 +1,4 @@
+import { ToastMessageService } from './services/toast-message.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
@@ -14,11 +15,21 @@ import localeES from '@angular/common/locales/es';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { CustomMatPaginatorIntl } from './dashboard/i18n/paginator-es';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
+import { SharedModule } from './shared/shared.module';
+import { AngularMaterialModule } from './shared-module/angular-material/angular-material.module';
 registerLocaleData(localeES, 'es');
 
 @NgModule({
   declarations: [AppComponent, NotFoundComponent],
-  imports: [BrowserModule, HttpClientModule, AppRoutingModule, AuthModule, BrowserAnimationsModule],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+    AuthModule,
+    BrowserAnimationsModule,
+    SharedModule,
+    AngularMaterialModule,
+  ],
   providers: [
     DatePipe,
     {

@@ -163,11 +163,16 @@ export class CreateUserComponent implements OnInit, OnDestroy {
       this.preload = true;
       this.editState = true;
       this.idUser = this.router.url.split('/')[4];
-      this.createService.getUserById(this.idUser).subscribe((res) => {
-        this.actualUser = res.user;
-        this.loadInfoToForm();
-        this.preload = false;
-      });
+      this.createService.getUserById(this.idUser).subscribe(
+        (res) => {
+          this.actualUser = res.user;
+          this.loadInfoToForm();
+          this.preload = false;
+        },
+        (__) => {
+          this.router.navigate([`dashboard/users`]);
+        }
+      );
     } else {
       this.editState = false;
     }
