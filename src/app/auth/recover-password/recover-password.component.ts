@@ -16,12 +16,7 @@ export class RecoverPasswordComponent implements OnInit {
    */
   public recoveryForm: FormGroup;
 
-  constructor(
-    private fb: FormBuilder,
-    private authService: AuthService,
-    private router: Router,
-    private toastService: ToastMessageService
-  ) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.createLoginForm();
   }
 

@@ -26,6 +26,19 @@ export class DepenciesService {
   }
 
   /**
+   * Crea una dependencia
+   */
+  createDependency(formData): Observable<IDepedency> {
+    return this.http.post<IDepedency>(`${base_url}/users/dependency`, formData);
+  }
+  /**
+   * Edita una dependencia
+   */
+  updateDependencyById(formData): Observable<IDepedency> {
+    return this.http.put<IDepedency>(`${base_url}/users/dependency`, formData);
+  }
+
+  /**
    * Obtiene todos las dependencias del sistema
    */
   deleteDependencyById(id): Observable<IDepedency> {

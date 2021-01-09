@@ -119,15 +119,14 @@ export class CreateUserComponent implements OnInit, OnDestroy {
     } else {
       this.postCreate = true;
       this.createService.createUser(this.registerForm.value).subscribe(
-        (res) => {
+        (__) => {
           this.toastService.showSuccessMessage(
-            `REGISTRO ${this.registerForm.get('first_name').value} CREADO`,
+            `REGISTRO: ${this.registerForm.get('first_name').value} CREADO`,
             `Beneficiario creado satisfactoriamente`
           );
           this.router.navigate([`dashboard/users`]);
         },
         (err) => {
-          console.log(err);
           if (err.error.identification) {
             this.registerForm.setErrors({ invalid: true });
             Swal.fire({
@@ -180,7 +179,7 @@ export class CreateUserComponent implements OnInit, OnDestroy {
 
   loadInfoToForm(): void {
     this.registerForm.reset({
-      id: this.actualUser.identification,
+      id: this.actualUser.id,
       first_name: this.actualUser.first_name,
       last_name: this.actualUser.last_name,
       email: this.actualUser.email,
@@ -196,17 +195,14 @@ export class CreateUserComponent implements OnInit, OnDestroy {
     } else {
       this.postCreate = true;
       this.createService.updateUserById(this.registerForm.value).subscribe(
-        (res) => {
-          console.log(res);
-
+        (__) => {
           this.toastService.showSuccessMessage(
-            `REGISTRO ${this.registerForm.get('first_name').value} ACTUALIZADO`,
+            `REGISTRO: ${this.registerForm.get('first_name').value} ACTUALIZADO`,
             `Beneficiario actualizado satisfactoriamente`
           );
           this.router.navigate([`dashboard/users`]);
         },
         (err) => {
-          console.log(err);
           if (err.error.identification) {
             this.registerForm.setErrors({ invalid: true });
             Swal.fire({

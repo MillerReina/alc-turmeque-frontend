@@ -179,6 +179,7 @@ export class CreateOfficerComponent implements OnInit {
   createRegisterForm(): void {
     this.registerForm = this.fb.group(
       {
+        id: [''],
         username: ['', [Validators.required]],
         first_name: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
         last_name: ['', [Validators.required]],
@@ -212,7 +213,7 @@ export class CreateOfficerComponent implements OnInit {
       this.createService.createOfficer(this.registerForm.value).subscribe(
         (__) => {
           this.toastService.showSuccessMessage(
-            `USUARIO ${this.registerForm.get('username').value} CREADO`,
+            `USUARIO: ${this.registerForm.get('username').value} CREADO`,
             `Cuenta creada satisfactoriamente`
           );
           this.router.navigate([`dashboard/officers`]);
@@ -309,8 +310,10 @@ export class CreateOfficerComponent implements OnInit {
   }
 
   loadInfoToForm(): void {
+    console.log(this.actualUser);
+
     this.registerForm.reset({
-      id: this.actualUser.identification,
+      id: this.actualUser.id,
       username: this.actualUser.username,
       first_name: this.actualUser.first_name,
       last_name: this.actualUser.last_name,
@@ -320,8 +323,8 @@ export class CreateOfficerComponent implements OnInit {
       identification: this.actualUser.identification,
       type_identification: this.actualUser.type_identification,
       dependency: this.actualUser.dependency,
-      password: '123456',
-      password_2: '123456',
+      password: this.actualUser.password,
+      password_2: this.actualUser.password,
     });
     this.actualUser.roles.forEach((valor: any) =>
       this.rols.push(
@@ -338,14 +341,17 @@ export class CreateOfficerComponent implements OnInit {
       this.registerForm.markAllAsTouched();
       this.registerForm.get('roles').markAllAsTouched();
     } else {
+      console.log(this.registerForm.value);
       this.postCreate = true;
       const date = this.registerForm.get('birthdate').value;
       const newDate = this.datePipe.transform(date, 'dd/MM/yyyy');
       this.registerForm.get('birthdate').setValue(newDate);
       this.createService.updateOfficerById(this.registerForm.value).subscribe(
         (res) => {
+          console.log(res);
+
           this.toastService.showSuccessMessage(
-            `USUARIO ${this.registerForm.get('username').value} ACTUALIZADO`,
+            `USUARIO: ${this.registerForm.get('username').value} ACTUALIZADO`,
             `Cuenta actualizada satisfactoriamente`
           );
           this.router.navigate([`dashboard/officers`]);

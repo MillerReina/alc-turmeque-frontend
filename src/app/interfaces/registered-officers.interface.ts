@@ -27,6 +27,7 @@ export interface IRegisteredOfficers {
 }
 
 export interface IOfficer {
+  id: number;
   dependency: number;
   first_name: string;
   last_name: string;

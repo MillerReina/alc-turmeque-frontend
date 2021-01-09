@@ -4,10 +4,11 @@ import { DependenciesTableComponent } from './dependencies-table/dependencies-ta
 import { AngularMaterialModule } from '../../../../shared-module/angular-material/angular-material.module';
 import { DependencyDialogComponent } from './dependency-dialog/dependency-dialog.component';
 import { NgPrimeModule } from '../../../../shared-module/ng-prime/ng-prime.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [DependenciesTableComponent, DependencyDialogComponent],
-  imports: [CommonModule, AngularMaterialModule, NgPrimeModule],
+  imports: [CommonModule, AngularMaterialModule, NgPrimeModule, FormsModule, ReactiveFormsModule],
   exports: [DependenciesTableComponent],
 })
 export class ComponentsModule {}

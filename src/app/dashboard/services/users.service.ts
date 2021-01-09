@@ -3,8 +3,8 @@ import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IRegisteredUser, IUsers } from '../../interfaces/registered-user.interface';
-import { catchError, map, tap } from 'rxjs/operators';
-import { IRegisteredOfficers, IOfficers, IOfficer } from '../../interfaces/registered-officers.interface';
+import { map, tap } from 'rxjs/operators';
+import { IRegisteredOfficers, IOfficers } from '../../interfaces/registered-officers.interface';
 import { OfficersData } from '../../models/officer.model';
 
 const base_url = environment.base_url;

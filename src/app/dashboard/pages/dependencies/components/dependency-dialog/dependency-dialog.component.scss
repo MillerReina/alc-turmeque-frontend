@@ -1,0 +1,57 @@
+@import './../../../../../../styles.scss';
+::ng-deep .mat-dialog-title {
+    background-color: $principal-color-blue;
+    color: whitesmoke !important;
+    font-size: 2.3em !important;
+    font-weight: bold !important;
+    height: 50px !important;
+    border-bottom-right-radius: 5px !important;
+    border-bottom-left-radius: 5px !important;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.principal {
+    padding: 0px !important;
+    height: 100%;
+    border-radius: 5px !important;
+}
+
+.secondary {
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+}
+
+.mat-dialog-content {
+    margin-top: 30px !important;
+    height: 50%;
+}
+
+.title {
+    padding-top: 10px !important;
+}
+
+.subtitle {
+    margin-left: 10px !important;
+    font-size: 20px !important;
+}
+
+.myelement {
+    animation: headShake;
+    animation-duration: 1s;
+}
+
+@media (max-width: 700px) {
+    /*  .title {
+      font-size: 1.5em !important;
+  }
+  .subtitle {
+      font-size: 16px !important;
+  } */
+    .mat-dialog-content {
+        margin-top: 30px !important;
+        height: 35%;
+    }
+    .btn-close-dialog {
+        margin-top: 10px !important;
+    }
+}
