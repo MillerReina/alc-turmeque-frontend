@@ -63,12 +63,15 @@ export class DependenciesTableComponent implements OnInit, OnDestroy {
   valueChanges(): void {
     this.dependecyCreateSubscription = this.dependencyDialogService.newDependecy.subscribe((res) => {
       this.preload = true;
-      this.toastService.showSuccessMessage('DEPENDENCIA CREADA', `Dependencia: ${res} ha sido agregada`);
+      this.toastService.showSuccessMessage('DEPENDENCIA CREADA', `Dependencia: ${res.toUpperCase()} ha sido agregada`);
       this.loadDependencies();
     });
     this.dependecyUpdateSubscription = this.dependencyDialogService.updateDependecy.subscribe((res) => {
       this.preload = true;
-      this.toastService.showInfoMessage('DEPENDENCIA ACTUALIZADA', `Dependencia: ${res} ha sido actualizada`);
+      this.toastService.showInfoMessage(
+        'DEPENDENCIA ACTUALIZADA',
+        `Dependencia: ${res.toUpperCase()} ha sido actualizada`
+      );
       this.loadDependencies();
     });
   }
@@ -107,7 +110,7 @@ export class DependenciesTableComponent implements OnInit, OnDestroy {
    */
   deleteDependency(element: IDepedency): void {
     Swal.fire({
-      title: `Estas seguro de eliminar ${element.name_dependency}`,
+      title: `¿Estás seguro de eliminar: ${element.name_dependency}?`,
       text: 'No vas a poder revertir esta acción',
       icon: 'warning',
       showCancelButton: true,
@@ -122,7 +125,7 @@ export class DependenciesTableComponent implements OnInit, OnDestroy {
             this.preload = true;
             this.toastService.showSuccessMessage(
               'DEPENDENCIA BORRADA',
-              `La dependencia: ${element.name_dependency} fue eliminada satisfactoriamente`
+              `La dependencia: ${element.name_dependency.toUpperCase()} fue eliminada satisfactoriamente`
             );
             this.loadDependencies();
           },

@@ -27,6 +27,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
    */
   public showMenuUsers: boolean;
   /**
+   * Estado activo/inactivo del menu reportes
+   */
+  public showMenuReports: boolean;
+  /**
    * Estado del badge
    */
   public hidden: boolean;
@@ -76,7 +80,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
    */
   showMessageSuccesfully(): void {
     setTimeout(() => {
-      this.toastService.showSuccessMessage('SESIÓN INICIADA', `Logueado correctamente como ${this.user.firstName}`);
+      this.toastService.showSuccessMessage('SESIÓN INICIADA', `Logueado como: ${this.user.firstName.toUpperCase()}`);
     }, 500);
   }
   /**
@@ -90,6 +94,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
    */
   toggleMenuUsers(): void {
     this.showMenuUsers = !this.showMenuUsers;
+  }
+  /**
+   * Ocultar/mostrar menu reportes
+   */
+  toggleMenuReports(): void {
+    this.showMenuReports = !this.showMenuReports;
   }
   /**
    * Cerrar sesión

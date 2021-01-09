@@ -11,6 +11,7 @@ import { ReturnedComponent } from './documents/returned/returned.component';
 import { UsersComponent } from './users/users.component';
 import { ComponentsModule } from '../components/components.module';
 import { OfficersComponent } from './users/officers/officers.component';
+import { MyProfileComponent } from './my-profile/my-profile.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { OfficersComponent } from './users/officers/officers.component';
     ReturnedComponent,
     UsersComponent,
     OfficersComponent,
+    MyProfileComponent,
   ],
   imports: [CommonModule, AngularMaterialModule, NgPrimeModule, ComponentsModule],
 })

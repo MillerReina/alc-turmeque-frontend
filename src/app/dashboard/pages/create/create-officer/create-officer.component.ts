@@ -213,7 +213,7 @@ export class CreateOfficerComponent implements OnInit {
       this.createService.createOfficer(this.registerForm.value).subscribe(
         (__) => {
           this.toastService.showSuccessMessage(
-            `USUARIO: ${this.registerForm.get('username').value} CREADO`,
+            `USUARIO: ${this.registerForm.get('username').value.toUpperCase()} CREADO`,
             `Cuenta creada satisfactoriamente`
           );
           this.router.navigate([`dashboard/officers`]);
@@ -351,7 +351,7 @@ export class CreateOfficerComponent implements OnInit {
           console.log(res);
 
           this.toastService.showSuccessMessage(
-            `USUARIO: ${this.registerForm.get('username').value} ACTUALIZADO`,
+            `USUARIO: ${this.registerForm.get('username').value.toUpperCase()} ACTUALIZADO`,
             `Cuenta actualizada satisfactoriamente`
           );
           this.router.navigate([`dashboard/officers`]);

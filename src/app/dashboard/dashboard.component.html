@@ -29,7 +29,7 @@
             </button>
 
                         <mat-menu #menu="matMenu">
-                            <button class="icon-btn drop-down" mat-menu-item>Mi perfil</button>
+                            <button class="icon-btn drop-down" mat-menu-item [routerLink]="'/dashboard/my-profile'">Mi perfil</button>
                             <hr />
                             <button class="icon-btn drop-down" mat-menu-item (click)="logout()">Cerrar sesión</button>
                         </mat-menu>
@@ -76,6 +76,16 @@
                     <mat-icon mat-list-icon>apartment</mat-icon>
                     Dependencias
                 </a>
+                <hr />
+                <a mat-list-item (click)="toggleMenuReports()">
+                    <mat-icon mat-list-icon>description</mat-icon>Reportes
+                    <mat-icon *ngIf="!showMenuReports">chevron_right</mat-icon>
+                    <mat-icon *ngIf="showMenuReports">expand_more</mat-icon>
+                </a>
+                <mat-nav-list class="sidenav-submenu animation-fadeIn" *ngIf="showMenuReports" (click)="sidenav.close()">
+                    <a mat-list-item> Gráficas</a>
+                    <a mat-list-item> Registros</a>
+                </mat-nav-list>
             </mat-nav-list>
         </mat-sidenav>
     </mat-sidenav-container>

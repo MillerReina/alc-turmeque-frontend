@@ -121,7 +121,7 @@ export class CreateUserComponent implements OnInit, OnDestroy {
       this.createService.createUser(this.registerForm.value).subscribe(
         (__) => {
           this.toastService.showSuccessMessage(
-            `REGISTRO: ${this.registerForm.get('first_name').value} CREADO`,
+            `REGISTRO: ${this.registerForm.get('first_name').value.toUpperCase()} CREADO`,
             `Beneficiario creado satisfactoriamente`
           );
           this.router.navigate([`dashboard/users`]);
@@ -197,7 +197,7 @@ export class CreateUserComponent implements OnInit, OnDestroy {
       this.createService.updateUserById(this.registerForm.value).subscribe(
         (__) => {
           this.toastService.showSuccessMessage(
-            `REGISTRO: ${this.registerForm.get('first_name').value} ACTUALIZADO`,
+            `REGISTRO: ${this.registerForm.get('first_name').value.toUpperCase()} ACTUALIZADO`,
             `Beneficiario actualizado satisfactoriamente`
           );
           this.router.navigate([`dashboard/users`]);

@@ -13,6 +13,7 @@ import { CreateComponent } from './create/create.component';
 import { AuthGuard } from '../../guards/auth.guard';
 import { DependicesComponent } from './dependencies/dependices.component';
 import { CreateDependencyComponent } from './dependencies/create-dependency/create-dependency.component';
+import { MyProfileComponent } from './my-profile/my-profile.component';
 
 const childRoutes: Routes = [
   {
@@ -67,6 +68,11 @@ const childRoutes: Routes = [
     path: 'dependencies',
     component: DependicesComponent,
     canActivate: [AdminGuard],
+  },
+  {
+    path: 'my-profile',
+    component: MyProfileComponent,
+    canActivate: [AuthGuard],
   },
 ];
 @NgModule({

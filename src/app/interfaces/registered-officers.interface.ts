@@ -1,3 +1,4 @@
+import { IRole } from './role-interface';
 export interface IOfficers {
   results: IRegisteredOfficers[];
   total_records: number;
@@ -29,6 +30,7 @@ export interface IRegisteredOfficers {
 export interface IOfficer {
   id: number;
   dependency: number;
+  dependency_name?: string;
   first_name: string;
   last_name: string;
   type_identification: number;
@@ -39,5 +41,10 @@ export interface IOfficer {
   password?: string;
   password_2?: string;
   birthdate: Date;
-  roles?: string[];
+  roles?: ISubjectRole[];
+}
+
+export interface ISubjectRole {
+  id: number;
+  name: string;
 }
