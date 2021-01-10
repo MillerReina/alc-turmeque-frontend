@@ -29,7 +29,9 @@
             </button>
 
                         <mat-menu #menu="matMenu">
-                            <button class="icon-btn drop-down" mat-menu-item [routerLink]="'/dashboard/my-profile'">Mi perfil</button>
+                            <button class="icon-btn drop-down" mat-menu-item [routerLink]="'/dashboard/my-profile'" (click)="sidenav.close()">
+                Mi perfil
+              </button>
                             <hr />
                             <button class="icon-btn drop-down" mat-menu-item (click)="logout()">Cerrar sesión</button>
                         </mat-menu>
