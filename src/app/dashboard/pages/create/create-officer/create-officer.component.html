@@ -26,8 +26,7 @@
                 myelement: userNameIsInvalid
               }">
                             <mat-label>Usuario</mat-label>
-                            <input matInput formControlName="username" value="" autocomplete="off" type="text" pattern="[a-z0-9.-]+.[a-z0-9]{2,3}$" />
-                            <mat-icon matSuffix matTooltip="ejm: nombre.apellido"> help</mat-icon>
+                            <input matInput formControlName="username" value="" [placeholder]="'ejm: nombre.apellido'" autocomplete="off" type="text" pattern="[a-z0-9.-]+.[a-z0-9]{2,3}$" />
                             <mat-error *ngIf="userNameIsInvalid"> Ingrese un usuario válido por favor </mat-error>
                         </mat-form-field>
 
@@ -172,7 +171,7 @@
                             <div class="col d-flex justify-content-start content-type-id">
                                 <button mat-raised-button type="button" (click)="goToBack()" class="full-width">
                   <i class="fas fa-window-close fa-lg" style="margin-right: 5px !important"></i>
-                  Cancelar
+                  Cancelar acción
                 </button>
                             </div>
                         </div>

@@ -1,47 +1,49 @@
 <app-header></app-header>
-<div class="container principal shadow mt-5 animate__animated animate__fadeInLeft animate__faster">
-    <div class="row">
-        <div class="col-8 cont-back-ground">
-            <img src="./../../../assets/img/back-ground.jpg" class="back-ground d-inline-block align-top" alt="" loading="lazy" />
-        </div>
-        <div class="col cont-form">
-            <div class="row">
-                <div class="col login-title center-horizontal-vertical">
-                    <h1><strong> Iniciar sesión</strong></h1>
-                </div>
-                <form autocomplete="off" [formGroup]="loginForm" (ngSubmit)="login()">
-                    <div class="col-12 center-horizontal-vertical" [ngClass]="{
-              myelement: emailIsInvalid
-            }">
-                        <mat-form-field appearance="outline" class="col-12 col-md-10 col-lg-8">
-                            <mat-label> Usuario </mat-label>
-                            <input matInput formControlName="username" />
-                            <mat-error *ngIf="emailIsInvalid"> Ingrese un correo válido por favor </mat-error>
-                        </mat-form-field>
+<div class="principal">
+    <div class="container shadow mt-5 animate__animated animate__fadeInLeft animate__faster">
+        <div class="row secondary">
+            <div class="col-8 cont-back-ground">
+                <img src="./../../../assets/img/back-ground.jpg" class="back-ground d-inline-block align-top" alt="" loading="lazy" />
+            </div>
+            <div class="col cont-form">
+                <div class="row">
+                    <div class="col login-title center-horizontal-vertical">
+                        <h1><strong> Iniciar sesión</strong></h1>
                     </div>
-
-                    <div class="col-12 center-horizontal-vertical">
-                        <mat-form-field appearance="outline" class="col-12 col-md-10 col-lg-8" [ngClass]="{
-                myelement: passwordIsInvalid
+                    <form autocomplete="off" [formGroup]="loginForm" (ngSubmit)="login()">
+                        <div class="col-12 general-aspects center-horizontal-vertical" [ngClass]="{
+                myelement: emailIsInvalid
               }">
-                            <mat-label> Contraseña </mat-label>
-                            <input matInput placeholder="Contraseña" [type]="hide ? 'password' : 'text'" formControlName="password" />
-                            <mat-icon matSuffix (click)="hide = !hide">{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
-                            <mat-error *ngIf="passwordIsInvalid"> Ingrese una contraseña por favor </mat-error>
-                        </mat-form-field>
-                    </div>
+                            <mat-form-field appearance="outline" class="col-12 col-md-10 col-lg-8">
+                                <mat-label> Usuario </mat-label>
+                                <input matInput formControlName="username" />
+                                <mat-error *ngIf="emailIsInvalid"> Ingrese un correo válido por favor </mat-error>
+                            </mat-form-field>
+                        </div>
 
-                    <div class="col-12 cont-login center-horizontal-vertical mt-3">
-                        <div class="text-center">
-                            <button mat-raised-button class="btn-login" color="accent" style="margin-right: 10px !important">
-                Ingresar
-              </button>
+                        <div class="col-12 general-aspects center-horizontal-vertical">
+                            <mat-form-field appearance="outline" class="col-12 col-md-10 col-lg-8" [ngClass]="{
+                  myelement: passwordIsInvalid
+                }">
+                                <mat-label> Contraseña </mat-label>
+                                <input matInput placeholder="Contraseña" [type]="hide ? 'password' : 'text'" formControlName="password" />
+                                <mat-icon matSuffix (click)="hide = !hide">{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+                                <mat-error *ngIf="passwordIsInvalid"> Ingrese una contraseña por favor </mat-error>
+                            </mat-form-field>
                         </div>
-                        <div>
-                            <a class="recover-link" [routerLink]="['/recover']">Recuperar contraseña</a>
+
+                        <div class="col-12 cont-login center-horizontal-vertical mt-3">
+                            <div class="text-center">
+                                <button mat-raised-button class="btn-login" color="accent" style="margin-right: 10px !important">
+                  Ingresar
+                </button>
+                            </div>
+                            <div>
+                                <a class="recover-link" [routerLink]="['/recover']">Recuperar contraseña</a>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

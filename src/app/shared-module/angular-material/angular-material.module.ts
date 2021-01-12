@@ -20,6 +20,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCommonModule, MAT_DATE_LOCALE, MatNativeDateModule, MAT_DATE_FORMATS } from '@angular/material/core';
 
 @NgModule({
@@ -48,6 +49,7 @@ import { MatCommonModule, MAT_DATE_LOCALE, MatNativeDateModule, MAT_DATE_FORMATS
     MatFormFieldModule,
     MatCheckboxModule,
     MatChipsModule,
+    MatToolbarModule,
   ],
   exports: [
     MatInputModule,
@@ -72,6 +74,7 @@ import { MatCommonModule, MAT_DATE_LOCALE, MatNativeDateModule, MAT_DATE_FORMATS
     MatFormFieldModule,
     MatCheckboxModule,
     MatChipsModule,
+    MatToolbarModule,
   ],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'es-CO' }],
 })

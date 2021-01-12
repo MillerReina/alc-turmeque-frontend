@@ -2,9 +2,13 @@
 
 /* Material */
 
-mat-sidenav-container {
-    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+mat-toolbar {
     background-color: $principal-color-gray;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin-bottom: 1px !important;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
 }
 
 mat-sidenav {
@@ -15,7 +19,9 @@ mat-sidenav {
 }
 
 mat-sidenav-content {
-    height: 70px !important;
+    background: rgb(255, 255, 255);
+    background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 100%);
+    /* background-image: url('./../../assets/img/map.png'); */
 }
 
 mat-nav-list {
@@ -88,7 +94,7 @@ strong {
 }
 
 .user-name {
-    margin-top: 20px !important;
+    margin-top: 12px !important;
     margin-right: 15px !important;
 }
 
@@ -118,10 +124,9 @@ strong {
     background-color: transparent !important;
     outline: none;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px !important;
-    margin-top: 15px !important;
+    margin-top: 10px !important;
     width: 20px !important;
     height: 40px !important;
-    padding: 0px !important;
 }
 
 .btn-bell:hover {
@@ -211,12 +216,6 @@ mat-card-content {
     .check-icon {
         max-width: 40px !important;
     }
-    .user-name {
-        margin-top: 10px !important;
-        margin-left: 10px !important;
-        margin-right: 0px !important;
-        width: 100px !important;
-    }
     .img-map {
         position: absolute;
         top: 550px;
@@ -243,6 +242,18 @@ mat-card-content {
         padding-left: 0px !important;
         padding-right: 0px !important;
     }
+    .user-name {
+        padding-right: 60px !important;
+    }
+    .user-name h3 {
+        font-size: 16px !important;
+    }
+    mat-toolbar {
+        position: sticky;
+        position: -webkit-sticky;
+        top: 0;
+        z-index: 1000;
+    }
 }
 
 @media (max-width: 999px) and (min-width: 701px) {
@@ -253,6 +264,9 @@ mat-card-content {
     .flag {
         width: 450px !important;
         height: 450px !important;
+    }
+    .user-name {
+        padding-right: 15px !important;
     }
 }
 

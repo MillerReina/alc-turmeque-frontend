@@ -40,11 +40,17 @@ a {
 }
 
 @media (max-width: 700px) {
+    .principal {
+        margin-left: 20px !important;
+        margin-right: 20px !important;
+        padding-bottom: 10px !important;
+        margin-bottom: 150px !important;
+    }
     .cont-login {
         margin: 0px !important;
     }
     .cont-form {
-        padding-top: 50px !important;
+        padding-top: 20px !important;
         margin-bottom: 50px !important;
     }
     .btn-login {
@@ -55,6 +61,10 @@ a {
     }
     .shadow {
         margin-top: 10px !important;
+    }
+    .general-aspects {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
     }
 }
 

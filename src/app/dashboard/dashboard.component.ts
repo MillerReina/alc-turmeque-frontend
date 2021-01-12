@@ -1,8 +1,9 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth/services/auth.service';
 import { ToastMessageService } from '../services/toast-message.service';
 import { User } from '../models/user.model';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-dashboard',
@@ -42,6 +43,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
    * usuario
    */
   public user: User;
+  @ViewChild('sidenav') sidenav: MatSidenav;
 
   constructor(private authService: AuthService, private router: Router, private toastService: ToastMessageService) {
     this.showMenuDocuments = false;

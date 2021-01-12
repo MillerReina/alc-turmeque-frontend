@@ -108,10 +108,14 @@ export class LoginComponent implements OnInit {
           this.router.navigateByUrl('/dashboard');
           Swal.close();
         },
-        (__) => {
+        (err) => {
           this.count++;
           Swal.close();
-          this.toastService.showErrorMessage2('ERROR AL AUTENTICAR', `Usuario y/o contraseña incorrectos`);
+          if (err.error.__all__[0] === 'Datos incorrectos') {
+            this.toastService.showErrorMessage2('ERROR AL AUTENTICAR', `Usuario y/o contraseña incorrectos`);
+          } else {
+            this.toastService.showErrorMessage2('ERROR AL AUTENTICAR', `La cuenta está inhabilitada`);
+          }
           if (this.count === 4) {
             this.router.navigateByUrl('/recover/failed');
           }

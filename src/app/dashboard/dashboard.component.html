@@ -4,106 +4,121 @@
         <img src="../../../../assets/loading/loading.gif" height="400px" alt="gif cargando" />
     </div>
 </div>
-<div *ngIf="!preload">
-    <mat-sidenav-container class="container-sidenav">
-        <mat-sidenav-content>
-            <div class="container full-height">
-                <div class="row full-height">
-                    <div class="col content-icon-list d-flex justify-content-start">
-                        <button class="icon-btn" mat-button (click)="sidenav.toggle()">
-              <i class="fas fa-bars fa-2x"></i>
-            </button>
-                    </div>
+<div *ngIf="!preload" class="example-container full-height">
+    <mat-toolbar>
+        <div class="container full-height">
+            <div class="row full-height">
+                <div class="col content-icon-list d-flex justify-content-start">
+                    <button class="icon-btn" mat-button (click)="sidenav.toggle()">
+            <i class="fas fa-bars fa-2x"></i>
+          </button>
+                </div>
+                <div class="col content-icon-list d-flex justify-content-around full-height">
+                    <div class="container" style="padding-right: 0px !important">
+                        <div class="row full-height">
+                            <div class="col-8" style="padding-right: 0px !important">
+                                <div class="user-name d-flex justify-content-end">
+                                    <h3>{{ this.user.firstName }} {{ this.user.lastName }}</h3>
+                                </div>
+                            </div>
+                            <div class="col-4 d-flex justify-content-end" style="padding-right: 0px !important">
+                                <div>
+                                    <button class="btn-bell" mat-raised-button matBadge="1" matBadgePosition="before" matBadgeColor="accent" [matBadgeHidden]="hidden" (click)="toggleBadgeVisibility()" style="margin-left: 10px !important">
+                    <mat-icon mat-list-icon class="icon-bell">notifications</mat-icon>
+                  </button>
+                                </div>
+                                <div>
+                                    <button class="icon-btn full-height center-vertical" mat-button [matMenuTriggerFor]="menu">
+                    <i class="fas fa-caret-down fa-2x"></i>
+                  </button>
 
-                    <div class="col content-icon-list d-flex justify-content-end full-height">
-                        <!--   <img class="user-icon" src="./../../assets/icon/profile-icon.png" alt="icono de desplegar" /> -->
-                        <div class="user-name">
-                            <h3>{{ this.user.firstName }} {{ this.user.lastName }}</h3>
+                                    <mat-menu #menu="matMenu">
+                                        <button class="icon-btn drop-down" mat-menu-item [routerLink]="'/dashboard/my-profile'" (click)="sidenav.close()">
+                      Mi perfil
+                    </button>
+                                        <hr />
+                                        <button class="icon-btn drop-down" mat-menu-item (click)="logout()">Cerrar sesión</button>
+                                    </mat-menu>
+                                </div>
+                            </div>
                         </div>
-                        <button class="btn-bell" mat-raised-button matBadge="1" matBadgePosition="before" matBadgeColor="accent" [matBadgeHidden]="hidden" (click)="toggleBadgeVisibility()" style="margin-left: 10px !important">
-              <mat-icon mat-list-icon class="icon-bell">notifications</mat-icon>
-            </button>
-
-                        <button class="icon-btn full-height" mat-button [matMenuTriggerFor]="menu">
-              <i class="fas fa-caret-down fa-2x"></i>
-            </button>
-
-                        <mat-menu #menu="matMenu">
-                            <button class="icon-btn drop-down" mat-menu-item [routerLink]="'/dashboard/my-profile'" (click)="sidenav.close()">
-                Mi perfil
-              </button>
-                            <hr />
-                            <button class="icon-btn drop-down" mat-menu-item (click)="logout()">Cerrar sesión</button>
-                        </mat-menu>
                     </div>
+                    <!--
+
+
+                   -->
                 </div>
             </div>
-        </mat-sidenav-content>
-        <mat-sidenav #sidenav mode="side" [(opened)]="opened" [fixedInViewport]="true" fixedTopGap="105" [autoFocus]="true" [autoFocus]="false">
-            <mat-nav-list>
-                <a mat-list-item routerLink="." class="docger">
-                    <img class="principal-icon" src="./../../assets/icon/docger-icon.png" alt="icono docger" />
-                    <strong>DOCGER</strong>
-                </a>
-
-                <a mat-list-item [routerLink]="'/dashboard/home'" (click)="sidenav.close()">
-                    <mat-icon mat-list-icon>home</mat-icon>
-                    Inicio
-                </a>
-                <hr />
-                <a mat-list-item (click)="toggleMenuDocuments()">
-                    <mat-icon mat-list-icon>description</mat-icon>Documentos
-                    <mat-icon *ngIf="!showMenuDocuments">chevron_right</mat-icon>
-                    <mat-icon *ngIf="showMenuDocuments">expand_more</mat-icon>
-                </a>
-                <mat-nav-list class="sidenav-submenu animation-fadeIn" *ngIf="showMenuDocuments" (click)="sidenav.close()">
-                    <a mat-list-item [routerLink]="'/dashboard/all'"> Todos</a>
-                    <a mat-list-item [routerLink]="'/dashboard/in-process'"> En proceso</a>
-                    <a mat-list-item [routerLink]="'/dashboard/resolved'"> Resueltos</a>
-                    <a mat-list-item [routerLink]="'/dashboard/finished'"> Finalizados</a>
-                    <a mat-list-item [routerLink]="'/dashboard/returned'"> Devueltos</a>
-                </mat-nav-list>
-                <hr />
-                <a *ngIf="isAdmin" mat-list-item (click)="toggleMenuUsers()">
-                    <mat-icon mat-list-icon>face</mat-icon> Usuarios
-                    <mat-icon *ngIf="!showMenuUsers">chevron_right</mat-icon>
-                    <mat-icon *ngIf="showMenuUsers">expand_more</mat-icon>
-                </a>
-                <mat-nav-list class="sidenav-submenu animation-fadeIn" *ngIf="showMenuUsers" (click)="sidenav.close()">
-                    <a mat-list-item [routerLink]="'/dashboard/users'"> Beneficiarios </a>
-                    <a mat-list-item [routerLink]="'/dashboard/officers'"> Funcionarios </a>
-                </mat-nav-list>
-                <hr />
-                <a *ngIf="isAdmin" mat-list-item [routerLink]="'/dashboard/dependencies'" (click)="sidenav.close()">
-                    <mat-icon mat-list-icon>apartment</mat-icon>
-                    Dependencias
-                </a>
-                <hr />
-                <a mat-list-item (click)="toggleMenuReports()">
-                    <mat-icon mat-list-icon>description</mat-icon>Reportes
-                    <mat-icon *ngIf="!showMenuReports">chevron_right</mat-icon>
-                    <mat-icon *ngIf="showMenuReports">expand_more</mat-icon>
-                </a>
-                <mat-nav-list class="sidenav-submenu animation-fadeIn" *ngIf="showMenuReports" (click)="sidenav.close()">
-                    <a mat-list-item> Gráficas</a>
-                    <a mat-list-item> Registros</a>
-                </mat-nav-list>
-            </mat-nav-list>
-        </mat-sidenav>
-    </mat-sidenav-container>
-
-    <div class="img-map">
-        <img class="map" src="./../../assets/img/map.png" height="500px" alt="mapa de boyaca" />
-    </div>
-    <div class="img-flag">
-        <img class="flag" src="./../../assets/img/flag-boyaca.svg" alt="bandera de boyaca" />
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-12 col-md-6 full-width">
-                <router-outlet></router-outlet>
-            </div>
         </div>
+    </mat-toolbar>
+
+    <div class="full-height">
+        <!--  <div class="img-map">
+            <img class="map" src="./../../assets/img/map.png" height="500px" alt="mapa de boyaca" />
+        </div>
+        <div class="img-flag">
+            <img class="flag" src="./../../assets/img/flag-boyaca.svg" alt="bandera de boyaca" />
+        </div> -->
+        <mat-sidenav-container class="example-sidenav-container full-height">
+            <mat-sidenav #sidenav [(opened)]="opened" [fixedInViewport]="true" fixedTopGap="105" [autoFocus]="true" [autoFocus]="false">
+                <mat-nav-list>
+                    <a mat-list-item routerLink="." class="docger">
+                        <img class="principal-icon" src="./../../assets/icon/docger-icon.png" alt="icono docger" />
+                        <strong>DOCGER</strong>
+                    </a>
+
+                    <a mat-list-item [routerLink]="'/dashboard/home'" (click)="sidenav.close()">
+                        <mat-icon mat-list-icon>home</mat-icon>
+                        Inicio
+                    </a>
+                    <hr />
+                    <a mat-list-item (click)="toggleMenuDocuments()">
+                        <mat-icon mat-list-icon>description</mat-icon>Documentos
+                        <mat-icon *ngIf="!showMenuDocuments">chevron_right</mat-icon>
+                        <mat-icon *ngIf="showMenuDocuments">expand_more</mat-icon>
+                    </a>
+                    <mat-nav-list class="sidenav-submenu animation-fadeIn" *ngIf="showMenuDocuments" (click)="sidenav.close()">
+                        <a mat-list-item [routerLink]="'/dashboard/all'"> Todos</a>
+                        <a mat-list-item [routerLink]="'/dashboard/in-process'"> En proceso</a>
+                        <a mat-list-item [routerLink]="'/dashboard/resolved'"> Resueltos</a>
+                        <a mat-list-item [routerLink]="'/dashboard/finished'"> Finalizados</a>
+                        <a mat-list-item [routerLink]="'/dashboard/returned'"> Devueltos</a>
+                    </mat-nav-list>
+                    <hr />
+                    <a *ngIf="isAdmin" mat-list-item (click)="toggleMenuUsers()">
+                        <mat-icon mat-list-icon>face</mat-icon> Usuarios
+                        <mat-icon *ngIf="!showMenuUsers">chevron_right</mat-icon>
+                        <mat-icon *ngIf="showMenuUsers">expand_more</mat-icon>
+                    </a>
+                    <mat-nav-list class="sidenav-submenu animation-fadeIn" *ngIf="showMenuUsers" (click)="sidenav.close()">
+                        <a mat-list-item [routerLink]="'/dashboard/users'"> Beneficiarios </a>
+                        <a mat-list-item [routerLink]="'/dashboard/officers'"> Funcionarios </a>
+                    </mat-nav-list>
+                    <hr />
+                    <a *ngIf="isAdmin" mat-list-item [routerLink]="'/dashboard/dependencies'" (click)="sidenav.close()">
+                        <mat-icon mat-list-icon>apartment</mat-icon>
+                        Dependencias
+                    </a>
+                    <hr />
+                    <a *ngIf="isAdmin" mat-list-item (click)="toggleMenuReports()">
+                        <mat-icon mat-list-icon>bar_chart</mat-icon>Reportes
+                        <mat-icon *ngIf="!showMenuReports">chevron_right</mat-icon>
+                        <mat-icon *ngIf="showMenuReports">expand_more</mat-icon>
+                    </a>
+                    <mat-nav-list class="sidenav-submenu animation-fadeIn" *ngIf="showMenuReports" (click)="sidenav.close()">
+                        <a mat-list-item> Gráficas</a>
+                        <a mat-list-item> Registros</a>
+                    </mat-nav-list>
+                </mat-nav-list>
+            </mat-sidenav>
+            <mat-sidenav-content>
+                <div class="container">
+                    <div class="container full-height">
+                        <router-outlet></router-outlet>
+                    </div>
+                </div>
+            </mat-sidenav-content>
+        </mat-sidenav-container>
     </div>
 </div>
 <p-toast></p-toast>
