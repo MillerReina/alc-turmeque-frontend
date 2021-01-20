@@ -9,7 +9,6 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'dashboard/home' },
   {
     path: '',
-    component: DashboardComponent,
     loadChildren: () => import('./dashboard/dashboard.module').then((module) => module.DashboardModule),
   },
   { path: '**', component: NotFoundComponent },

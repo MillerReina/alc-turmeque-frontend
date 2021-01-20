@@ -41,6 +41,7 @@ export interface IOfficer {
   password?: string;
   password_2?: string;
   birthdate: Date;
+  address?: string;
   roles?: ISubjectRole[];
 }
 

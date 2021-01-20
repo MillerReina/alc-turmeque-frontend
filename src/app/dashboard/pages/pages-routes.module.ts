@@ -8,20 +8,46 @@ import { FinishedComponent } from './documents/finished/finished.component';
 import { ReturnedComponent } from './documents/returned/returned.component';
 import { UsersComponent } from './users/users.component';
 import { AdminGuard } from '../../guards/admin.guard';
-import { OfficersComponent } from './users/officers/officers.component';
-import { CreateComponent } from './create/create.component';
+import { OfficersComponent } from './officers/officers.component';
 import { AuthGuard } from '../../guards/auth.guard';
 import { DependicesComponent } from './dependencies/dependices.component';
 import { CreateDependencyComponent } from './dependencies/create-dependency/create-dependency.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
+import { CreateUserComponent } from './users/create-user/create-user.component';
+import { CreateOfficerComponent } from './officers/create-officer/create-officer.component';
 
 const childRoutes: Routes = [
   {
-    path: 'clients',
-    component: CreateComponent,
+    path: 'users',
+    component: UsersComponent,
     canActivate: [AuthGuard, AdminGuard],
     canLoad: [AuthGuard],
-    loadChildren: () => import('./create/create.module').then((module) => module.CreateModule),
+  },
+  {
+    path: 'officers',
+    component: OfficersComponent,
+    canActivate: [AuthGuard, AdminGuard],
+    canLoad: [AuthGuard],
+  },
+  {
+    path: 'create/user',
+    component: CreateUserComponent,
+    canActivate: [AuthGuard, AdminGuard],
+  },
+  {
+    path: 'edit/:id/user',
+    component: CreateUserComponent,
+    canActivate: [AuthGuard, AdminGuard],
+  },
+  {
+    path: 'create/officer',
+    component: CreateOfficerComponent,
+    canActivate: [AuthGuard, AdminGuard],
+  },
+  {
+    path: 'edit/:id/officer',
+    component: CreateOfficerComponent,
+    canActivate: [AuthGuard, AdminGuard],
   },
   {
     path: 'dependency',
@@ -53,16 +79,6 @@ const childRoutes: Routes = [
   {
     path: 'returned',
     component: ReturnedComponent,
-  },
-  {
-    path: 'users',
-    component: UsersComponent,
-    canActivate: [AdminGuard],
-  },
-  {
-    path: 'officers',
-    component: OfficersComponent,
-    canActivate: [AdminGuard],
   },
   {
     path: 'dependencies',

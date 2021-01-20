@@ -60,10 +60,10 @@
         height: 110px !important;
     }
     .turmeque-shield {
-        padding-left: 20px !important;
+        margin-left: 10px !important;
     }
     .second-title {
-        padding-right: 0px !important;
+        margin-right: 30px !important;
         text-align: end !important;
         align-content: flex-end !important;
         justify-content: flex-end !important;
@@ -80,6 +80,17 @@
     .navbar {
         padding-left: 20px !important;
         padding-right: 10px !important;
+    }
+    .second-title {
+        padding-right: 0px !important;
+        margin-right: 0px !important;
+        text-align: end !important;
+        align-content: flex-end !important;
+        justify-content: flex-end !important;
+    }
+    .turmeque-shield {
+        margin-left: 0px !important;
+        padding-left: 0px !important;
     }
 }
 

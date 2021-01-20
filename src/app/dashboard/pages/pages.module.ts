@@ -10,8 +10,12 @@ import { FinishedComponent } from './documents/finished/finished.component';
 import { ReturnedComponent } from './documents/returned/returned.component';
 import { UsersComponent } from './users/users.component';
 import { ComponentsModule } from '../components/components.module';
-import { OfficersComponent } from './users/officers/officers.component';
+import { OfficersComponent } from './officers/officers.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
+import { RouterModule } from '@angular/router';
+import { PagesComponent } from './pages.component';
+import { CreateOfficerComponent } from './officers/create-officer/create-officer.component';
+import { CreateUserComponent } from './users/create-user/create-user.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,10 @@ import { MyProfileComponent } from './my-profile/my-profile.component';
     UsersComponent,
     OfficersComponent,
     MyProfileComponent,
+    PagesComponent,
+    CreateOfficerComponent,
+    CreateUserComponent,
   ],
-  imports: [CommonModule, AngularMaterialModule, NgPrimeModule, ComponentsModule],
+  imports: [CommonModule, AngularMaterialModule, NgPrimeModule, ComponentsModule, RouterModule],
 })
 export class PagesModule {}

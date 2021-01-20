@@ -83,7 +83,7 @@ strong {
 }
 
 .icon-btn {
-    border-radius: 10px;
+    border-radius: 5px;
     outline: none;
 }
 
@@ -100,7 +100,7 @@ strong {
 
 .img-map {
     position: absolute;
-    top: 325px;
+    top: 150px;
     right: 20px;
     opacity: 0.04;
     background-repeat: repeat-x;
@@ -109,7 +109,7 @@ strong {
 
 .img-flag {
     position: absolute;
-    top: 325px;
+    top: 150px;
     left: 100px;
     opacity: 0.04;
     background-repeat: repeat-x;
@@ -248,12 +248,12 @@ mat-card-content {
     .user-name h3 {
         font-size: 16px !important;
     }
-    mat-toolbar {
+    /*  mat-toolbar {
         position: sticky;
         position: -webkit-sticky;
         top: 0;
         z-index: 1000;
-    }
+    } */
 }
 
 @media (max-width: 999px) and (min-width: 701px) {

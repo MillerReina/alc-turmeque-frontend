@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
-import { CreateService } from '../services/create.service';
+import { CreateService } from '../../../services/create.service';
 import { ITypeID } from '../../../../interfaces/type-id.interface';
 import { IDepedency } from '../../../../interfaces/dependency-interface';
 import { IRole } from 'src/app/interfaces/role-interface';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
-import { ValidatorsService } from '../services/validators.service';
+import { ValidatorsService } from '../../../services/validators.service';
 import { ToastMessageService } from '../../../../services/toast-message.service';
-import { catchError } from 'rxjs/operators';
-import Swal from 'sweetalert2';
 import { IOfficer } from '../../../../interfaces/registered-officers.interface';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-create-officer',

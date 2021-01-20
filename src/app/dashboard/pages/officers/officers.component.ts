@@ -12,6 +12,6 @@ export class OfficersComponent implements OnInit {
   ngOnInit(): void {}
 
   createUser(): void {
-    this.router.navigate([`dashboard/clients/create/officer`]);
+    this.router.navigate([`dashboard/create/officer`]);
   }
 }

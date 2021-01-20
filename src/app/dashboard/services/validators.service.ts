@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { AuthService } from '../../../../auth/services/auth.service';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../../../environments/environment';
+import { environment } from '../../../environments/environment';
 
 interface ErrorValidate {
   [s: string]: boolean;

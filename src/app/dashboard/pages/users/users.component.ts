@@ -12,6 +12,6 @@ export class UsersComponent implements OnInit {
   ngOnInit(): void {}
 
   registerUser(): void {
-    this.router.navigate([`dashboard/clients/create/user`]);
+    this.router.navigate([`dashboard/create/user`]);
   }
 }

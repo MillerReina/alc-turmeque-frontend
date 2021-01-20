@@ -2,12 +2,11 @@ import { ToastMessageService } from './../../../../services/toast-message.servic
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CreateService } from '../services/create.service';
 import { DatePipe } from '@angular/common';
-import { ValidatorsService } from '../services/validators.service';
 import { ITypeID } from '../../../../interfaces/type-id.interface';
 import Swal from 'sweetalert2';
 import { IOfficer } from 'src/app/interfaces/registered-officers.interface';
+import { CreateService } from '../../../services/create.service';
 
 @Component({
   selector: 'app-create-user',

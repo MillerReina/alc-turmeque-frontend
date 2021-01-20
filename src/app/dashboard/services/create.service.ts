@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../../../../environments/environment';
+import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError, of } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
-import { ITypeID, IType } from '../../../../interfaces/type-id.interface';
-import { IDepedency, IDependencies } from '../../../../interfaces/dependency-interface';
-import { IRole, IRoles } from '../../../../interfaces/role-interface';
-import { IOfficer, IOfficers } from '../../../../interfaces/registered-officers.interface';
-import { IUserInfoById } from '../../../../interfaces/info-user.interface';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { ITypeID, IType } from '../../interfaces/type-id.interface';
+import { IDepedency, IDependencies } from '../../interfaces/dependency-interface';
+import { IRole, IRoles } from '../../interfaces/role-interface';
+import { IOfficer } from '../../interfaces/registered-officers.interface';
+import { IUserInfoById } from '../../interfaces/info-user.interface';
 const base_url = environment.base_url;
 
 @Injectable({
