@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
-import { CreateService } from '../../../services/create.service';
 import { ITypeID } from '../../../../interfaces/type-id.interface';
 import { IDepedency } from '../../../../interfaces/dependency-interface';
 import { IRole } from 'src/app/interfaces/role-interface';
@@ -10,6 +9,7 @@ import { ValidatorsService } from '../../../services/validators.service';
 import { ToastMessageService } from '../../../../services/toast-message.service';
 import { IOfficer } from '../../../../interfaces/registered-officers.interface';
 import Swal from 'sweetalert2';
+import { CreateService } from 'src/app/dashboard/services/create.service';
 
 @Component({
   selector: 'app-create-officer',
@@ -290,7 +290,7 @@ export class CreateOfficerComponent implements OnInit {
     if (this.router.url.match('edit')) {
       this.preload = true;
       this.editState = true;
-      this.idUser = this.router.url.split('/')[4];
+      this.idUser = this.router.url.split('/')[3];
       this.createService.getUserById(this.idUser).subscribe(
         (res) => {
           this.actualUser = res.user;

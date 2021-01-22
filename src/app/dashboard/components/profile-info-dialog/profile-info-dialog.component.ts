@@ -44,9 +44,9 @@ export class ProfileInfoDialogComponent implements OnInit {
   }
   editUser(): void {
     if (!this.isOfficer) {
-      this.router.navigate([`/dashboard/clients/edit/${this.actualUser.id}/user`]);
+      this.router.navigate([`/dashboard/edit/${this.actualUser.id}/user`]);
     } else {
-      this.router.navigate([`/dashboard/clients/edit/${this.actualUser.id}/officer`]);
+      this.router.navigate([`/dashboard/edit/${this.actualUser.id}/officer`]);
     }
     this.dialogRef.close();
   }

@@ -2,11 +2,10 @@ import { ToastMessageService } from './../../../../services/toast-message.servic
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DatePipe } from '@angular/common';
 import { ITypeID } from '../../../../interfaces/type-id.interface';
 import Swal from 'sweetalert2';
 import { IOfficer } from 'src/app/interfaces/registered-officers.interface';
-import { CreateService } from '../../../services/create.service';
+import { CreateService } from 'src/app/dashboard/services/create.service';
 
 @Component({
   selector: 'app-create-user',
@@ -160,7 +159,7 @@ export class CreateUserComponent implements OnInit, OnDestroy {
     if (this.router.url.match('edit')) {
       this.preload = true;
       this.editState = true;
-      this.idUser = this.router.url.split('/')[4];
+      this.idUser = this.router.url.split('/')[3];
       this.createService.getUserById(this.idUser).subscribe(
         (res) => {
           this.actualUser = res.user;

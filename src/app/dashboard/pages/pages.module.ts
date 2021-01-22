@@ -16,6 +16,7 @@ import { RouterModule } from '@angular/router';
 import { PagesComponent } from './pages.component';
 import { CreateOfficerComponent } from './officers/create-officer/create-officer.component';
 import { CreateUserComponent } from './users/create-user/create-user.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,14 @@ import { CreateUserComponent } from './users/create-user/create-user.component';
     CreateOfficerComponent,
     CreateUserComponent,
   ],
-  imports: [CommonModule, AngularMaterialModule, NgPrimeModule, ComponentsModule, RouterModule],
+  imports: [
+    CommonModule,
+    AngularMaterialModule,
+    NgPrimeModule,
+    ComponentsModule,
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
 })
 export class PagesModule {}
