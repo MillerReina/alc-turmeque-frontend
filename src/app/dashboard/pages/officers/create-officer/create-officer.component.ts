@@ -69,6 +69,10 @@ export class CreateOfficerComponent implements OnInit {
    * informacion del usuario actual
    */
   public actualUser: IOfficer;
+  /**
+   * Constante de asignación
+   */
+  private passwordConstant = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9';
 
   constructor(
     private fb: FormBuilder,
@@ -309,8 +313,6 @@ export class CreateOfficerComponent implements OnInit {
   }
 
   loadInfoToForm(): void {
-    console.log(this.actualUser);
-
     this.registerForm.reset({
       id: this.actualUser.id,
       username: this.actualUser.username,
@@ -322,8 +324,8 @@ export class CreateOfficerComponent implements OnInit {
       identification: this.actualUser.identification,
       type_identification: this.actualUser.type_identification,
       dependency: this.actualUser.dependency,
-      password: this.actualUser.password,
-      password_2: this.actualUser.password,
+      password: this.passwordConstant,
+      password_2: this.passwordConstant,
     });
     this.actualUser.roles.forEach((valor: any) =>
       this.rols.push(
@@ -340,15 +342,12 @@ export class CreateOfficerComponent implements OnInit {
       this.registerForm.markAllAsTouched();
       this.registerForm.get('roles').markAllAsTouched();
     } else {
-      console.log(this.registerForm.value);
       this.postCreate = true;
       const date = this.registerForm.get('birthdate').value;
       const newDate = this.datePipe.transform(date, 'dd/MM/yyyy');
       this.registerForm.get('birthdate').setValue(newDate);
       this.createService.updateOfficerById(this.registerForm.value).subscribe(
         (res) => {
-          console.log(res);
-
           this.toastService.showSuccessMessage(
             `USUARIO: ${this.registerForm.get('username').value.toUpperCase()} ACTUALIZADO`,
             `Cuenta actualizada satisfactoriamente`
