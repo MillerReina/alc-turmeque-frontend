@@ -16,6 +16,8 @@ mat-sidenav {
     background-color: $principal-color-gray;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
     border-radius: 4px !important;
+    position: absolute;
+    z-index: 999;
 }
 
 mat-sidenav-content {
@@ -180,24 +182,6 @@ mat-card-content {
 
 .check-icon {
     max-width: 60px !important;
-}
-
-@media (max-width: 377px) {
-    mat-sidenav {
-        top: 180px !important;
-    }
-}
-
-@media (max-width: 511px) and (min-width: 378px) {
-    mat-sidenav {
-        top: 150px !important;
-    }
-}
-
-@media (max-width: 699px) and (min-width: 512px) {
-    mat-sidenav {
-        top: 135px !important;
-    }
 }
 
 @media (max-width: 700px) {
