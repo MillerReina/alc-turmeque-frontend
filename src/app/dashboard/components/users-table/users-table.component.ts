@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
-import { UsersService } from '../../services/users.service';
-import { IRegisteredUser } from '../../../interfaces/registered-user.interface';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { IRegisteredUser } from '../../../interfaces/registered-user.interface';
+import { UsersService } from '../../services/users.service';
 import { ProfileInfoDialogComponent } from '../profile-info-dialog/profile-info-dialog.component';
 
 @Component({

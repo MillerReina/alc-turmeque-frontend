@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { ITypeID } from '../../../../interfaces/type-id.interface';
 import { IDepedency } from '../../../../interfaces/dependency-interface';
 import { IRole } from 'src/app/interfaces/role-interface';
@@ -347,7 +347,7 @@ export class CreateOfficerComponent implements OnInit {
       const newDate = this.datePipe.transform(date, 'dd/MM/yyyy');
       this.registerForm.get('birthdate').setValue(newDate);
       this.createService.updateOfficerById(this.registerForm.value).subscribe(
-        (res) => {
+        (__) => {
           this.toastService.showSuccessMessage(
             `USUARIO: ${this.registerForm.get('username').value.toUpperCase()} ACTUALIZADO`,
             `Cuenta actualizada satisfactoriamente`

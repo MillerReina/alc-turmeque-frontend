@@ -1,5 +1,4 @@
-import { Component, OnInit, Inject, EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, Inject } from '@angular/core';
 import { IDepedency } from '../../../../../interfaces/dependency-interface';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -27,7 +26,6 @@ export class DependencyDialogComponent implements OnInit {
   public registerForm: FormGroup;
 
   constructor(
-    private router: Router,
     private fb: FormBuilder,
     private dependenciesService: DepenciesService,
     public dialogRef: MatDialogRef<DependencyDialogComponent>,

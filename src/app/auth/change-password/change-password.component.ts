@@ -95,7 +95,7 @@ export class ChangePasswordComponent implements OnInit {
     if (this.recoveryForm.invalid) {
       this.recoveryForm.markAllAsTouched();
     } else {
-      this.authService.changeMyPassword(this.uid, this.tkn, this.recoveryForm.value).subscribe((res) => {
+      this.authService.changeMyPassword(this.uid, this.tkn, this.recoveryForm.value).subscribe((__) => {
         Swal.fire({
           title: '¡Contraseña actualizada!',
           icon: 'success',

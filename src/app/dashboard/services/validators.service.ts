@@ -1,13 +1,10 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment';
 
 interface ErrorValidate {
   [s: string]: boolean;
 }
-
-const base_url = environment.base_url;
 
 @Injectable({
   providedIn: 'root',
@@ -32,7 +29,7 @@ export class ValidatorsService {
       return Promise.resolve(null);
     }
 
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       if (control.value === 'Dementor') {
         resolve({ existe: true });
       } else {

@@ -1,4 +1,3 @@
-import { IRole } from './role-interface';
 export interface IOfficers {
   results: IRegisteredOfficers[];
   total_records: number;

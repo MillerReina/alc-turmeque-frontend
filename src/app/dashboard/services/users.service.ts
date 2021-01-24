@@ -14,7 +14,6 @@ const base_url = environment.base_url;
 })
 export class UsersService {
   private pagination: OfficersData;
-  private numberPagination = 1;
 
   constructor(private http: HttpClient) {
     this.pagination = new OfficersData();

@@ -4,16 +4,15 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'paginator',
 })
 export class PaginatorPipe implements PipeTransform {
-  transform(array: any[], page_size: number | string, page_number: number, term: string): any[] {
+  transform(array: any[], pageSize: number | string, pageNumber: number): any[] {
     if (!array.length) return [];
-    if (page_size === 'all') {
+    if (pageSize === 'all') {
       return array;
     }
-    page_size = page_size || 10;
-    page_number = page_number || 1;
-    term = '';
-    --page_number;
+    pageSize = pageSize || 10;
+    pageNumber = pageNumber || 1;
+    --pageNumber;
     // @ts-ignore
-    return array.slice(page_number * page_size, (page_number + 1) * page_size);
+    return array.slice(pageNumber * pageSize, (pageNumber + 1) * pageSize);
   }
 }
