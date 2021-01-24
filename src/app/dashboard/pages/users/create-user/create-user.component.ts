@@ -3,9 +3,9 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ITypeID } from '../../../../interfaces/type-id.interface';
-import Swal from 'sweetalert2';
 import { IOfficer } from 'src/app/interfaces/registered-officers.interface';
 import { CreateService } from 'src/app/dashboard/services/create.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-create-user',

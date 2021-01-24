@@ -4,8 +4,8 @@ import { IDepedency } from '../../../../../interfaces/dependency-interface';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DepenciesService } from '../../../../services/depencies.service';
-import Swal from 'sweetalert2';
 import { DependecyDialogService } from '../../../../services/dependecy-dialog.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-dependency-dialog',

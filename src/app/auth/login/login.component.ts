@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { delay, timeout, catchError } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
-import Swal from 'sweetalert2';
 import { ToastMessageService } from '../../services/toast-message.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',

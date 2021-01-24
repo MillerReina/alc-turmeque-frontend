@@ -3,10 +3,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { UsersService } from '../../services/users.service';
 import { IRegisteredOfficers } from '../../../interfaces/registered-officers.interface';
-import Swal from 'sweetalert2';
 import { MatDialog } from '@angular/material/dialog';
 import { ProfileInfoDialogComponent } from '../profile-info-dialog/profile-info-dialog.component';
-import { $ } from 'protractor';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-officers-table',

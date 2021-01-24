@@ -3,11 +3,11 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { DepenciesService } from 'src/app/dashboard/services/depencies.service';
 import { IDepedency } from 'src/app/interfaces/dependency-interface';
-import Swal from 'sweetalert2';
 import { DependencyDialogComponent } from '../dependency-dialog/dependency-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { DependecyDialogService } from 'src/app/dashboard/services/dependecy-dialog.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-dependencies-table',

@@ -8,8 +8,8 @@ import { DatePipe } from '@angular/common';
 import { ValidatorsService } from '../../../services/validators.service';
 import { ToastMessageService } from '../../../../services/toast-message.service';
 import { IOfficer } from '../../../../interfaces/registered-officers.interface';
-import Swal from 'sweetalert2';
 import { CreateService } from 'src/app/dashboard/services/create.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-create-officer',
