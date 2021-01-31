@@ -13,28 +13,22 @@
 <div *ngIf="!preload" class="row content-principal my-info">
     <div class="col second-content">
         <mat-card class="full-width full-height">
+            <mat-label><strong>Nombre:</strong></mat-label>
             <mat-form-field class="full-width">
-                <mat-label><strong>Nombre:</strong></mat-label>
                 <input matInput [value]="actualUser.first_name" [disabled]="true" />
                 <mat-icon matSuffix>spellcheck</mat-icon>
             </mat-form-field>
 
+            <mat-label><strong>Apellido:</strong></mat-label>
             <mat-form-field class="full-width">
-                <mat-label><strong>Apellido:</strong></mat-label>
                 <input matInput [value]="actualUser.last_name" [disabled]="true" />
                 <mat-icon matSuffix>spellcheck</mat-icon>
             </mat-form-field>
 
+            <mat-label><strong>Usuario:</strong></mat-label>
             <mat-form-field class="full-width">
-                <mat-label><strong>Usuario:</strong></mat-label>
                 <input matInput [value]="actualUser.username" [disabled]="true" />
                 <mat-icon matSuffix>face</mat-icon>
-            </mat-form-field>
-
-            <mat-form-field class="full-width">
-                <mat-label><strong>Identificación:</strong></mat-label>
-                <input matInput [value]="actualUser.identification" [disabled]="true" />
-                <mat-icon matSuffix>assignment_ind</mat-icon>
             </mat-form-field>
         </mat-card>
     </div>
@@ -44,20 +38,20 @@
     <div class="w-100"></div>
     <div class="col third-content">
         <mat-card class="full-width full-height">
+            <mat-label><strong>Email:</strong></mat-label>
             <mat-form-field class="full-width">
-                <mat-label><strong>Email:</strong></mat-label>
                 <input matInput [value]="actualUser.email" [disabled]="true" />
                 <mat-icon matSuffix>email</mat-icon>
             </mat-form-field>
 
+            <mat-label><strong>Teléfono:</strong></mat-label>
             <mat-form-field class="full-width">
-                <mat-label><strong>Teléfono:</strong></mat-label>
                 <input matInput [value]="actualUser.phone_number" [disabled]="true" />
                 <mat-icon matSuffix>call</mat-icon>
             </mat-form-field>
 
+            <mat-label><strong>Fecha de nacimiento:</strong></mat-label>
             <mat-form-field class="full-width">
-                <mat-label><strong>Fecha de nacimiento:</strong></mat-label>
                 <input matInput [value]="actualUser.birthdate" [disabled]="true" />
                 <mat-icon matSuffix>insert_invitation</mat-icon>
             </mat-form-field>
@@ -65,13 +59,17 @@
     </div>
     <div class="col fourth-content">
         <mat-card class="full-width full-height">
-            <mat-label><strong>Mis roles asignados:</strong></mat-label>
-            <div *ngFor="let rol of actualUser.roles">
-                <mat-form-field class="full-width">
-                    <input matInput [disabled]="true" [value]="rol.name" />
-                    <mat-icon matSuffix>supervisor_account</mat-icon>
-                </mat-form-field>
-            </div>
+            <mat-label><strong>Identificación:</strong></mat-label>
+            <mat-form-field class="full-width">
+                <input matInput [value]="actualUser.identification" [disabled]="true" />
+                <mat-icon matSuffix>assignment_ind</mat-icon>
+            </mat-form-field>
+
+            <mat-label><strong>Mi rol asignado:</strong></mat-label>
+            <mat-form-field class="full-width">
+                <input matInput [disabled]="true" [value]="actualUser.role_name" />
+                <mat-icon matSuffix>supervisor_account</mat-icon>
+            </mat-form-field>
 
             <mat-label><strong>Mi dependencia:</strong></mat-label>
             <mat-form-field class="full-width">

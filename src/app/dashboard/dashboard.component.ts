@@ -60,11 +60,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
    * Cambiar la visibilidad de acuerdo a mi rol
    */
   changeVisibility(): void {
-    this.authService.getRole.forEach((element: any) => {
-      if (element.name === 'Administrador') {
-        this.isAdmin = true;
-      }
-    });
+    if (this.authService.isAdminConfirmation) {
+      this.isAdmin = true;
+    }
     setTimeout(() => {
       this.preload = false;
       this.showMessageSuccesfully();

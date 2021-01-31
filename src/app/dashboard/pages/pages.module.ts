@@ -8,14 +8,12 @@ import { AngularMaterialModule } from '../../shared-module/angular-material/angu
 import { NgPrimeModule } from '../../shared-module/ng-prime/ng-prime.module';
 import { FinishedComponent } from './documents/finished/finished.component';
 import { ReturnedComponent } from './documents/returned/returned.component';
-import { UsersComponent } from './users/users.component';
 import { ComponentsModule } from '../components/components.module';
 import { OfficersComponent } from './officers/officers.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { RouterModule } from '@angular/router';
 import { PagesComponent } from './pages.component';
 import { CreateOfficerComponent } from './officers/create-officer/create-officer.component';
-import { CreateUserComponent } from './users/create-user/create-user.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -26,12 +24,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ResolvedComponent,
     FinishedComponent,
     ReturnedComponent,
-    UsersComponent,
     OfficersComponent,
     MyProfileComponent,
     PagesComponent,
     CreateOfficerComponent,
-    CreateUserComponent,
   ],
   imports: [
     CommonModule,

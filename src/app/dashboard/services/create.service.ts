@@ -58,7 +58,7 @@ export class CreateService {
    * Trae la información de un usuario por id
    */
   getUserById(id: string): Observable<IUserInfoById> {
-    return this.http.get<IUserInfoById>(`${base_url}/users/user?id=${id}`);
+    return this.http.get<IUserInfoById>(`${base_url}/users/officer?id=${id}`);
   }
 
   updateUserById(formData): Observable<IOfficer> {

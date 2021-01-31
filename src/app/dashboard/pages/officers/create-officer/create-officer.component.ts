@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ITypeID } from '../../../../interfaces/type-id.interface';
 import { IDepedency } from '../../../../interfaces/dependency-interface';
 import { IRole } from 'src/app/interfaces/role-interface';
@@ -134,11 +134,7 @@ export class CreateOfficerComponent implements OnInit {
   }
 
   get roleIsInvalid(): boolean {
-    return this.registerForm.get('roles').invalid && this.registerForm.get('roles').touched;
-  }
-
-  get rols() {
-    return this.registerForm.get('roles') as FormArray;
+    return this.registerForm.get('role').invalid && this.registerForm.get('role').touched;
   }
 
   get passwordOneIsInvalid(): boolean {
@@ -192,7 +188,7 @@ export class CreateOfficerComponent implements OnInit {
         identification: ['', [Validators.required]],
         type_identification: [, [Validators.required]],
         dependency: [, [Validators.required]],
-        roles: this.fb.array([this.role()]),
+        role: [, [Validators.required]],
         password: ['', [Validators.required, Validators.minLength(6)]],
         password_2: ['', [Validators.required, Validators.minLength(6)]],
       },
@@ -207,7 +203,6 @@ export class CreateOfficerComponent implements OnInit {
   createOfficer(): void {
     if (this.registerForm.invalid) {
       this.registerForm.markAllAsTouched();
-      this.registerForm.get('roles').markAllAsTouched();
     } else {
       this.postCreate = true;
       const date = this.registerForm.get('birthdate').value;
@@ -222,6 +217,7 @@ export class CreateOfficerComponent implements OnInit {
           this.router.navigate([`dashboard/officers`]);
         },
         (err) => {
+          console.log(err);
           this.registerForm.patchValue({
             birthdate: date,
           });
@@ -253,42 +249,6 @@ export class CreateOfficerComponent implements OnInit {
   goToBack(): void {
     this.router.navigate([`dashboard/officers`]);
   }
-  /**
-   * Obtiene el array de roles para el Form
-   */
-  roles(): FormArray {
-    return this.registerForm.get('roles') as FormArray;
-  }
-  /**
-   * Agrega un espacio de rol
-   */
-  addRol(): void {
-    this.counter = this.counter + 1;
-    this.roles().push(this.newRol());
-  }
-  /**
-   * Instancia un form control para un rol
-   */
-  newRol(): FormGroup {
-    return this.fb.group({
-      rol: ['', [Validators.required]],
-    });
-  }
-  /**
-   *
-   */
-  role(): FormGroup {
-    return this.fb.group({
-      rol: ['', [Validators.required]],
-    });
-  }
-  /**
-   * Remueve un espacio de rol
-   */
-  removeQuantity(i: number): void {
-    this.counter--;
-    this.roles().removeAt(i);
-  }
 
   isEditingUser(): void {
     if (this.router.url.match('edit')) {
@@ -319,28 +279,26 @@ export class CreateOfficerComponent implements OnInit {
       first_name: this.actualUser.first_name,
       last_name: this.actualUser.last_name,
       email: this.actualUser.email,
-      birthdate: this.actualUser.birthdate,
+      birthdate: this.addDays(1),
       phone_number: this.actualUser.phone_number,
       identification: this.actualUser.identification,
       type_identification: this.actualUser.type_identification,
       dependency: this.actualUser.dependency,
+      role: this.actualUser.role,
       password: this.passwordConstant,
       password_2: this.passwordConstant,
     });
-    this.actualUser.roles.forEach((valor: any) =>
-      this.rols.push(
-        this.fb.group({
-          rol: [valor.id],
-        })
-      )
-    );
-    this.counter = this.rols.length - 1;
+  }
+
+  addDays(days: number): Date {
+    const futureDate = new Date(this.actualUser.birthdate);
+    futureDate.setDate(futureDate.getDate() + days);
+    return futureDate;
   }
 
   saveChanges(): void {
     if (this.registerForm.invalid) {
       this.registerForm.markAllAsTouched();
-      this.registerForm.get('roles').markAllAsTouched();
     } else {
       this.postCreate = true;
       const date = this.registerForm.get('birthdate').value;

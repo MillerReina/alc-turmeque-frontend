@@ -10,10 +10,6 @@ import { IRegisteredOfficers } from '../../../interfaces/registered-officers.int
 })
 export class ProfileInfoDialogComponent implements OnInit {
   /**
-   * Estado de ocultar/mostrar para el dialog
-   */
-  public isOfficer: boolean;
-  /**
    * Usuario actual con el que se abre el dialog
    */
   public actualUser: IRegisteredOfficers;
@@ -22,32 +18,23 @@ export class ProfileInfoDialogComponent implements OnInit {
     private router: Router,
     public dialogRef: MatDialogRef<ProfileInfoDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: IRegisteredOfficers
-  ) {
-    this.isOfficer = false;
-  }
+  ) {}
 
   ngOnInit(): void {
     this.actualUser = this.data;
-    this.activateStateOfficer();
   }
-
+  /**
+   * Cierra el modal
+   */
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-  activateStateOfficer(): void {
-    if (this.actualUser.is_active === undefined) {
-      this.isOfficer = false;
-    } else {
-      this.isOfficer = true;
-    }
-  }
+  /**
+   * Redirige a la interfaz de editar
+   */
   editUser(): void {
-    if (!this.isOfficer) {
-      this.router.navigate([`/dashboard/edit/${this.actualUser.id}/user`]);
-    } else {
-      this.router.navigate([`/dashboard/edit/${this.actualUser.id}/officer`]);
-    }
+    this.router.navigate([`/dashboard/edit/${this.actualUser.id}/officer`]);
     this.dialogRef.close();
   }
 }

@@ -6,38 +6,20 @@ import { InProcessComponent } from './documents/in-process/in-process.component'
 import { ResolvedComponent } from './documents/resolved/resolved.component';
 import { FinishedComponent } from './documents/finished/finished.component';
 import { ReturnedComponent } from './documents/returned/returned.component';
-import { UsersComponent } from './users/users.component';
 import { AdminGuard } from '../../guards/admin.guard';
 import { OfficersComponent } from './officers/officers.component';
 import { AuthGuard } from '../../guards/auth.guard';
 import { DependicesComponent } from './dependencies/dependices.component';
 import { CreateDependencyComponent } from './dependencies/create-dependency/create-dependency.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
-import { CreateUserComponent } from './users/create-user/create-user.component';
 import { CreateOfficerComponent } from './officers/create-officer/create-officer.component';
 
 const childRoutes: Routes = [
-  {
-    path: 'users',
-    component: UsersComponent,
-    canActivate: [AuthGuard, AdminGuard],
-    canLoad: [AuthGuard],
-  },
   {
     path: 'officers',
     component: OfficersComponent,
     canActivate: [AuthGuard, AdminGuard],
     canLoad: [AuthGuard],
-  },
-  {
-    path: 'create/user',
-    component: CreateUserComponent,
-    canActivate: [AuthGuard, AdminGuard],
-  },
-  {
-    path: 'edit/:id/user',
-    component: CreateUserComponent,
-    canActivate: [AuthGuard, AdminGuard],
   },
   {
     path: 'create/officer',

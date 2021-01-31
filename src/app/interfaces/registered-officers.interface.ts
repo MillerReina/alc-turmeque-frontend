@@ -22,7 +22,8 @@ export interface IRegisteredOfficers {
   name_dependency?: string;
   phone_number?: string;
   birthdate?: string;
-  roles?: string[];
+  role: number;
+  name_role: string;
   address?: string;
 }
 
@@ -41,10 +42,6 @@ export interface IOfficer {
   password_2?: string;
   birthdate: Date;
   address?: string;
-  roles?: ISubjectRole[];
-}
-
-export interface ISubjectRole {
-  id: number;
-  name: string;
+  role: number;
+  role_name: string;
 }

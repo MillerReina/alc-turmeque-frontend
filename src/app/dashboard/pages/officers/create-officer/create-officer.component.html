@@ -71,27 +71,6 @@
                             <input matInput formControlName="phone_number" value="" autocomplete="off" onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="10" />
                             <mat-error *ngIf="phoneIsInvalid"> Ingrese un teléfono válido por favor </mat-error>
                         </mat-form-field>
-
-                        <mat-form-field *ngIf="!editState" appearance="outline" class="full-width" [ngClass]="{
-                myelement: passwordOneIsInvalid
-              }">
-                            <mat-label>Contraseña</mat-label>
-                            <input matInput formControlName="password" value="" autocomplete="off" minlength="6" [type]="hide ? 'password' : 'text'" />
-                            <mat-icon matSuffix (click)="hide = !hide">{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
-                            <mat-error *ngIf="passwordOneIsInvalid"> Debe contener almenos 6 carácteres </mat-error>
-                        </mat-form-field>
-
-                        <mat-form-field *ngIf="!editState" appearance="outline" class="full-width" [ngClass]="{
-                myelement: passwordTwoIsInvalid
-              }">
-                            <mat-label>Confirmar contraseña</mat-label>
-                            <input matInput formControlName="password_2" value="" autocomplete="off" minlength="6" [type]="hide ? 'password' : 'text'" />
-                            <mat-icon matSuffix (click)="hide = !hide">{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
-                            <mat-error *ngIf="passwordTwoIsInvalid"> Las contraseñas no coinciden </mat-error>
-                            <!--  <small *ngIf="passwordTwoIsEmpty && passwordOneIsInvalid" class="text-danger">
-            Debe contener almenos 6 carácteres
-          </small> -->
-                        </mat-form-field>
                     </div>
                     <div class="col-sm">
                         <mat-form-field appearance="outline" class="full-width" [ngClass]="{
@@ -123,36 +102,36 @@
                             <mat-error *ngIf="dependencyIsInvalid"> Seleccione una dependencia válida por favor </mat-error>
                         </mat-form-field>
 
-                        <table class="table table-content" formArrayName="roles">
-                            <tr>
-                                <th>
-                                    <h4 class="title" style="font-style: oblique">Asignar rol:</h4>
-                                </th>
-                                <th>
-                                    <button *ngIf="counter < listRoles.length - 1" mat-raised-button type="button" (click)="addRol()" class="td-icon">
-                    <i class="fas fa-plus-circle fa-lg"></i>
-                  </button>
-                                </th>
-                            </tr>
-                            <tr *ngFor="let rol of roles().controls; let i = index" [formGroupName]="i">
-                                <td class="full-width" style="height: 10% !important">
-                                    <mat-form-field class="field" appearance="outline" class="full-width" style="margin-top: 15px !important" [ngClass]="{
-                      myelement: roleIsInvalid
-                    }">
-                                        <mat-label>Rol</mat-label>
-                                        <mat-select formControlName="rol" name="rol">
-                                            <mat-option *ngFor="let item of listRoles" [value]="item.id">{{ item.name_role }} </mat-option>
-                                        </mat-select>
-                                        <mat-error *ngIf="roleIsInvalid"> Seleccione un rol por favor </mat-error>
-                                    </mat-form-field>
-                                </td>
-                                <td>
-                                    <button *ngIf="counter" (click)="removeQuantity(i)" mat-raised-button type="button" class="td-icon">
-                    <i class="fas fa-trash-alt fa-lg"></i>
-                  </button>
-                                </td>
-                            </tr>
-                        </table>
+                        <mat-form-field appearance="outline" class="full-width" [ngClass]="{
+                myelement: roleIsInvalid
+              }">
+                            <mat-label>Asignar rol</mat-label>
+                            <mat-select formControlName="role" name="role">
+                                <mat-option *ngFor="let rol of listRoles" [value]="rol.id">{{ rol.name_role }} </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="roleIsInvalid"> Seleccione un rol por favor </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field *ngIf="!editState" appearance="outline" class="full-width" [ngClass]="{
+                myelement: passwordOneIsInvalid
+              }">
+                            <mat-label>Contraseña</mat-label>
+                            <input matInput formControlName="password" value="" autocomplete="off" minlength="6" [type]="hide ? 'password' : 'text'" />
+                            <mat-icon matSuffix (click)="hide = !hide">{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+                            <mat-error *ngIf="passwordOneIsInvalid"> Debe contener almenos 6 carácteres </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field *ngIf="!editState" appearance="outline" class="full-width" [ngClass]="{
+                myelement: passwordTwoIsInvalid
+              }">
+                            <mat-label>Confirmar contraseña</mat-label>
+                            <input matInput formControlName="password_2" value="" autocomplete="off" minlength="6" [type]="hide ? 'password' : 'text'" />
+                            <mat-icon matSuffix (click)="hide = !hide">{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+                            <mat-error *ngIf="passwordTwoIsInvalid"> Las contraseñas no coinciden </mat-error>
+                            <!--  <small *ngIf="passwordTwoIsEmpty && passwordOneIsInvalid" class="text-danger">
+                      Debe contener almenos 6 carácteres
+                    </small> -->
+                        </mat-form-field>
                     </div>
                 </div>
                 <div mat-dialog-actions class="content-actions center-horizontal full-width mt-4 mb-3">

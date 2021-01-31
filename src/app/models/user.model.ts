@@ -11,7 +11,8 @@ export class User {
   public birthdate?: string;
   public typeIdentificationName?: string;
   public dependencyName?: string;
-  public role?: string[];
+  public role: number;
+  public roleName: string;
 
   constructor(
     dependency,
@@ -26,7 +27,8 @@ export class User {
     birthdate,
     typeIdentificationName,
     dependencyName,
-    role
+    role,
+    role_name
   ) {
     this.dependency = dependency;
     this.id = id;
@@ -41,5 +43,6 @@ export class User {
     this.typeIdentificationName = typeIdentificationName;
     this.dependencyName = dependencyName;
     this.role = role;
+    this.roleName = role_name;
   }
 }

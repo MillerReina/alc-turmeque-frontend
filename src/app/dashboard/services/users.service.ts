@@ -35,7 +35,7 @@ export class UsersService {
    * Obtiene la información personal del perfil autenticado
    */
   getMyDetails(): Observable<any> {
-    return this.http.get<any>(`${base_url}/users/user`);
+    return this.http.get<any>(`${base_url}/users/officer`);
   }
   /**
    * Obtiene todos los usuarios del sistema
@@ -56,7 +56,7 @@ export class UsersService {
    * Obtiene todos los funcionarios del sistema
    */
   getAllOfficers(term: string, pg: string, fn: boolean): Observable<IRegisteredOfficers[]> {
-    return this.http.get<IOfficers>(`${base_url}/users/user?term=${term}&fn=${fn}&pg=${pg}`).pipe(
+    return this.http.get<IOfficers>(`${base_url}/users/officer?term=${term}&fn=${fn}&pg=${pg}`).pipe(
       tap((res) => {
         this.pagination.total_records = res.total_records;
         this.pagination.total_pages = res.total_pages;

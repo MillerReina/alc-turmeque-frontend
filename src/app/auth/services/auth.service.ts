@@ -27,8 +27,8 @@ export class AuthService {
     return localStorage.getItem('tkn-user') || '';
   }
 
-  get getRole(): string[] {
-    return this.user.role;
+  get getRole(): string {
+    return this.user.roleName;
   }
 
   get getMessageConfirmation(): string {
@@ -36,13 +36,7 @@ export class AuthService {
   }
 
   get isAdminConfirmation(): boolean {
-    let aux = false;
-    this.user.role.forEach((element: any) => {
-      if (element.name === 'Administrador') {
-        aux = true;
-      }
-    });
-    return aux;
+    return this.getRole === 'Administrador' ? true : false;
   }
 
   /* Inicia sesion */
@@ -69,11 +63,11 @@ export class AuthService {
   }
   /* Valida que el token sea autentico */
   validateToken(): Observable<boolean> {
-    return this.http.get(`${base_url}/users/user`).pipe(
+    return this.http.get(`${base_url}/users/officer`).pipe(
       tap((res: any) => {
         const {
           dependency,
-          id = '',
+          id,
           first_name,
           last_name,
           type_identification,
@@ -84,7 +78,8 @@ export class AuthService {
           birthdate,
           type_identification_name,
           dependency_name,
-          roles,
+          role,
+          role_name,
         } = res.user;
         this.user = new User(
           dependency,
@@ -99,7 +94,8 @@ export class AuthService {
           birthdate,
           type_identification_name,
           dependency_name,
-          roles
+          role,
+          role_name
         );
       }),
       map((__) => true),
