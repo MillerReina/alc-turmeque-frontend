@@ -19,7 +19,7 @@ export class DependenciesTableComponent implements OnInit, OnDestroy {
    * Estado de carga
    */
   public preload: boolean;
-  public displayedColumns: string[] = ['dependencia', 'editar', 'borrar'];
+  public displayedColumns: string[] = ['dependencia', 'titular', 'total', 'activo', 'editar', 'estado', 'borrar'];
   /**
    * Información fuente que se carga desde el servicio
    */
@@ -105,6 +105,34 @@ export class DependenciesTableComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe((__) => {});
   }
+
+  /**
+   *  Activa una dependencia
+   */
+  activateDependency(element): void {
+    this.preload = true;
+    if (element.is_active) {
+      this.dependeciesService.activateDependency(element.id).subscribe((__) => {
+        Swal.fire({
+          title: 'DEPENDENCIA DESACTIVADA',
+          text: `La dependencia: ${element.name_dependency} ha sido desactivada`,
+          icon: 'success',
+          confirmButtonText: 'Aceptar',
+        });
+        this.loadDependencies();
+      });
+    } else {
+      this.dependeciesService.activateDependency(element.id).subscribe((__) => {
+        Swal.fire({
+          title: 'DEPENDENCIA ACTIVADA',
+          text: `La dependencia: ${element.name_dependency} ha sido activada`,
+          icon: 'success',
+          confirmButtonText: 'Aceptar',
+        });
+        this.loadDependencies();
+      });
+    }
+  }
   /**
    * Borra una dependencia sin antes solicitar confirmación
    */
@@ -123,7 +151,7 @@ export class DependenciesTableComponent implements OnInit, OnDestroy {
         this.dependeciesService.deleteDependencyById(element.id).subscribe(
           (__) => {
             this.preload = true;
-            this.toastService.showSuccessMessage(
+            this.toastService.showWarningMessage(
               'DEPENDENCIA BORRADA',
               `La dependencia: ${element.name_dependency.toUpperCase()} fue eliminada satisfactoriamente`
             );

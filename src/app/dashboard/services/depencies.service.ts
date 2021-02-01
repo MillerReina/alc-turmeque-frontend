@@ -44,4 +44,10 @@ export class DepenciesService {
   deleteDependencyById(id): Observable<IDepedency> {
     return this.http.delete<IDepedency>(`${base_url}/users/dependency?id=${id}`);
   }
+  /**
+   * Activar dependencia
+   */
+  activateDependency(id: string): Observable<IDepedency> {
+    return this.http.delete<IDepedency>(`${base_url}/users/dependency?id=${id}&state=true`);
+  }
 }

@@ -10,9 +10,9 @@ import { AdminGuard } from '../../guards/admin.guard';
 import { OfficersComponent } from './officers/officers.component';
 import { AuthGuard } from '../../guards/auth.guard';
 import { DependicesComponent } from './dependencies/dependices.component';
-import { CreateDependencyComponent } from './dependencies/create-dependency/create-dependency.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { CreateOfficerComponent } from './officers/create-officer/create-officer.component';
+import { CreateDependencyComponent } from './dependencies/create-dependency/create-dependency.component';
 
 const childRoutes: Routes = [
   {

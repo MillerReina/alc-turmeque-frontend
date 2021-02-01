@@ -9,23 +9,12 @@
     color: whitesmoke !important;
 }
 
-.mat-table {
-    width: 100% !important;
-}
-
 td,
 th {
-    width: 40% !important;
+    width: 15% !important;
 }
 
 .btn-username {
     box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
     outline: none;
-}
-
-@media (max-width: 700px) {
-    .btn-username {
-        font-size: 1em;
-        margin-right: 10px !important;
-    }
 }

@@ -32,7 +32,7 @@ export class CreateService {
    * Obtiene la lista de dependencias
    */
   getListOfDependencies(): Observable<IDepedency[]> {
-    return this.http.get<IDependencies>(`${base_url}/users/dependency`).pipe(map((res) => res.dependencies));
+    return this.http.get<IDependencies>(`${base_url}/users/dependency?form=true`).pipe(map((res) => res.dependencies));
   }
 
   /**

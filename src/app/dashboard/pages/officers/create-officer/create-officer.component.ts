@@ -229,12 +229,20 @@ export class CreateOfficerComponent implements OnInit {
               text: err.error.identification,
               confirmButtonText: 'Aceptar',
             });
-          } else {
+          } else if (err.error.username) {
             this.registerForm.setErrors({ invalid: true });
             Swal.fire({
               title: 'Error al crear usuario',
               icon: 'error',
               text: err.error.username,
+              confirmButtonText: 'Aceptar',
+            });
+          } else if (err.error.__all__) {
+            this.registerForm.setErrors({ invalid: true });
+            Swal.fire({
+              title: 'Error al crear usuario',
+              icon: 'error',
+              text: err.error.__all__,
               confirmButtonText: 'Aceptar',
             });
           }
