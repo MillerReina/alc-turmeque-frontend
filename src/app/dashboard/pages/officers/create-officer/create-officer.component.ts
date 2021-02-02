@@ -62,13 +62,25 @@ export class CreateOfficerComponent implements OnInit {
    */
   public idUser: string;
   /**
-   * estado de editar
+   * Estado de editar
    */
   public editState: boolean;
   /**
-   * informacion del usuario actual
+   * Informacion del usuario actual
    */
   public actualUser: IOfficer;
+  /**
+   * Estado mayúsculas
+   */
+  public mayus: boolean;
+  /**
+   * Estado mayúsculas
+   */
+  public minus: boolean;
+  /**
+   * Estado mayúsculas
+   */
+  public number: boolean;
   /**
    * Constante de asignación
    */
@@ -89,6 +101,9 @@ export class CreateOfficerComponent implements OnInit {
     this.preload = true;
     this.postCreate = false;
     this.hide = true;
+    this.mayus = false;
+    this.minus = false;
+    this.number = false;
   }
 
   ngOnInit(): void {
@@ -217,7 +232,6 @@ export class CreateOfficerComponent implements OnInit {
           this.router.navigate([`dashboard/officers`]);
         },
         (err) => {
-          console.log(err);
           this.registerForm.patchValue({
             birthdate: date,
           });
@@ -235,6 +249,14 @@ export class CreateOfficerComponent implements OnInit {
               title: 'Error al crear usuario',
               icon: 'error',
               text: err.error.username,
+              confirmButtonText: 'Aceptar',
+            });
+          } else if (err.error.password) {
+            this.registerForm.setErrors({ invalid: true });
+            Swal.fire({
+              title: 'Error al crear usuario',
+              icon: 'error',
+              text: err.error.password,
               confirmButtonText: 'Aceptar',
             });
           } else if (err.error.__all__) {
@@ -345,5 +367,14 @@ export class CreateOfficerComponent implements OnInit {
         }
       );
     }
+  }
+
+  changeStatePassword(event: string): void {
+    const regexNumber = new RegExp(/[0-9]/);
+    const regexMinus = new RegExp(/[a-z]/);
+    const regexMayus = new RegExp(/[A-Z]/);
+    regexNumber.test(event) ? (this.number = true) : (this.number = false);
+    regexMinus.test(event) ? (this.minus = true) : (this.minus = false);
+    regexMayus.test(event) ? (this.mayus = true) : (this.mayus = false);
   }
 }

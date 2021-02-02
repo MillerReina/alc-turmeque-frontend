@@ -12,7 +12,7 @@
                     myelement: dependecyIsInvalid
                   }">
                                     <mat-label><strong>Nombre de dependencia:</strong></mat-label>
-                                    <input matInput type="text" appAlphabetOnlyDirective formControlName="name_dependency" autocomplete="off" maxlength="30" />
+                                    <input matInput type="text" formControlName="name_dependency" autocomplete="off" maxlength="30" />
                                     <mat-error *ngIf="dependecyIsInvalid"> Ingrese un nombre válido por favor </mat-error>
                                 </mat-form-field>
 

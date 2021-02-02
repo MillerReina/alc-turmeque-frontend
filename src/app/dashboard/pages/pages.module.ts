@@ -15,6 +15,7 @@ import { RouterModule } from '@angular/router';
 import { PagesComponent } from './pages.component';
 import { CreateOfficerComponent } from './officers/create-officer/create-officer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AlphabetOnlyDirective } from './officers/directives/alphabet-only-directive.directive';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MyProfileComponent,
     PagesComponent,
     CreateOfficerComponent,
+    AlphabetOnlyDirective,
   ],
   imports: [
     CommonModule,

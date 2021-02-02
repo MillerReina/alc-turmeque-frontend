@@ -34,7 +34,7 @@
                 myelement: nameIsInvalid
               }">
                             <mat-label>Nombres</mat-label>
-                            <input matInput type="text" appAlphabetOnlyDirective formControlName="first_name" value="" autocomplete="off" pattern="[a-zA-Z ]*" maxlength="30" />
+                            <input matInput type="text" alphabetOnly formControlName="first_name" value="" autocomplete="off" pattern="[a-zA-Z ]*" maxlength="30" />
                             <mat-error *ngIf="nameIsInvalid"> Ingrese un nombre válido por favor </mat-error>
                         </mat-form-field>
 
@@ -42,7 +42,7 @@
                 myelement: lastNameIsInvalid
               }">
                             <mat-label>Apellidos</mat-label>
-                            <input matInput type="text" appAlphabetOnlyDirective formControlName="last_name" value="" autocomplete="off" maxlength="30" />
+                            <input matInput type="text" alphabetOnly formControlName="last_name" value="" autocomplete="off" maxlength="30" />
                             <mat-error *ngIf="lastNameIsInvalid"> Ingrese un apellido válido por favor </mat-error>
                         </mat-form-field>
 
@@ -112,13 +112,28 @@
                             <mat-error *ngIf="roleIsInvalid"> Seleccione un rol por favor </mat-error>
                         </mat-form-field>
 
-                        <mat-form-field *ngIf="!editState" appearance="outline" class="full-width" [ngClass]="{
+                        <popover-content class="full-width" #myPopover title="Una contraseña segura:" placement="top" [animation]="true" [closeOnClickOutside]="true">
+                            <p>
+                                - Debe contener mayúsculas <i *ngIf="!mayus" class="icon-x fas fa-times-circle fa-lg"></i>
+                                <i *ngIf="mayus" class="icon-check fas fa-check-circle fa-lg"></i>
+                            </p>
+                            <p>
+                                - Debe contener minúsculas <i *ngIf="!minus" class="icon-x fas fa-times-circle fa-lg"></i>
+                                <i *ngIf="minus" class="icon-check fas fa-check-circle fa-lg"></i>
+                            </p>
+                            <p>
+                                - Al menos un número <i *ngIf="!number" class="icon-x fas fa-times-circle fa-lg"></i>
+                                <i *ngIf="number" class="icon-check fas fa-check-circle fa-lg"></i>
+                            </p>
+                        </popover-content>
+
+                        <mat-form-field [popover]="myPopover" *ngIf="!editState" appearance="outline" class="full-width" [ngClass]="{
                 myelement: passwordOneIsInvalid
               }">
                             <mat-label>Contraseña</mat-label>
-                            <input matInput formControlName="password" value="" autocomplete="off" minlength="6" [type]="hide ? 'password' : 'text'" />
+                            <input matInput formControlName="password" value="" autocomplete="off" minlength="6" [type]="hide ? 'password' : 'text'" pattern="^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{6,16}$" (keyup)="changeStatePassword(password.value)" #password />
                             <mat-icon matSuffix (click)="hide = !hide">{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
-                            <mat-error *ngIf="passwordOneIsInvalid"> Debe contener almenos 6 carácteres </mat-error>
+                            <mat-error *ngIf="passwordOneIsInvalid"> Ingrese una contraseña valida por favor </mat-error>
                         </mat-form-field>
 
                         <mat-form-field *ngIf="!editState" appearance="outline" class="full-width" [ngClass]="{
@@ -128,9 +143,6 @@
                             <input matInput formControlName="password_2" value="" autocomplete="off" minlength="6" [type]="hide ? 'password' : 'text'" />
                             <mat-icon matSuffix (click)="hide = !hide">{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
                             <mat-error *ngIf="passwordTwoIsInvalid"> Las contraseñas no coinciden </mat-error>
-                            <!--  <small *ngIf="passwordTwoIsEmpty && passwordOneIsInvalid" class="text-danger">
-                      Debe contener almenos 6 carácteres
-                    </small> -->
                         </mat-form-field>
                     </div>
                 </div>

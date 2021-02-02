@@ -86,6 +86,14 @@ mat-card {
     text-shadow: 0px 2px 2px rgba(150, 150, 150, 1);
 }
 
+.icon-x {
+    color: $principal-color-pinkish;
+}
+
+.icon-check {
+    color: $principal-color-blue;
+}
+
 @media (max-width: 700px) {
     .content-principal {
         margin-bottom: 50px !important;
