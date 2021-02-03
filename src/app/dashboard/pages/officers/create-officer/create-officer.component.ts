@@ -279,7 +279,9 @@ export class CreateOfficerComponent implements OnInit {
   goToBack(): void {
     this.router.navigate([`dashboard/officers`]);
   }
-
+  /**
+   * Estado para saber si se está editando un usuario
+   */
   isEditingUser(): void {
     if (this.router.url.match('edit')) {
       this.preload = true;
@@ -301,7 +303,9 @@ export class CreateOfficerComponent implements OnInit {
       this.editState = false;
     }
   }
-
+  /**
+   * Carga el formulario y le setea la información
+   */
   loadInfoToForm(): void {
     this.registerForm.reset({
       id: this.actualUser.id,
@@ -319,13 +323,17 @@ export class CreateOfficerComponent implements OnInit {
       password_2: this.passwordConstant,
     });
   }
-
+  /**
+   * Metodo para agregar dias a un date
+   */
   addDays(days: number): Date {
     const futureDate = new Date(this.actualUser.birthdate);
     futureDate.setDate(futureDate.getDate() + days);
     return futureDate;
   }
-
+  /**
+   * Guarda los cambios cuando se edita un usuario
+   */
   saveChanges(): void {
     if (this.registerForm.invalid) {
       this.registerForm.markAllAsTouched();
@@ -368,7 +376,9 @@ export class CreateOfficerComponent implements OnInit {
       );
     }
   }
-
+  /**
+   * Detector de cambios al momento de ingresar la contraseña
+   */
   changeStatePassword(event: string): void {
     const regexNumber = new RegExp(/[0-9]/);
     const regexMinus = new RegExp(/[a-z]/);

@@ -131,7 +131,7 @@
                 myelement: passwordOneIsInvalid
               }">
                             <mat-label>Contraseña</mat-label>
-                            <input matInput formControlName="password" value="" autocomplete="off" minlength="6" [type]="hide ? 'password' : 'text'" pattern="^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{6,16}$" (keyup)="changeStatePassword(password.value)" #password />
+                            <input matInput formControlName="password" value="" autocomplete="off" minlength="6" maxlength="16" [type]="hide ? 'password' : 'text'" pattern="^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{6,16}$" (keyup)="changeStatePassword(password.value)" #password />
                             <mat-icon matSuffix (click)="hide = !hide">{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
                             <mat-error *ngIf="passwordOneIsInvalid"> Ingrese una contraseña valida por favor </mat-error>
                         </mat-form-field>
@@ -140,7 +140,7 @@
                 myelement: passwordTwoIsInvalid
               }">
                             <mat-label>Confirmar contraseña</mat-label>
-                            <input matInput formControlName="password_2" value="" autocomplete="off" minlength="6" [type]="hide ? 'password' : 'text'" />
+                            <input matInput formControlName="password_2" value="" autocomplete="off" minlength="6" maxlength="16" [type]="hide ? 'password' : 'text'" />
                             <mat-icon matSuffix (click)="hide = !hide">{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
                             <mat-error *ngIf="passwordTwoIsInvalid"> Las contraseñas no coinciden </mat-error>
                         </mat-form-field>

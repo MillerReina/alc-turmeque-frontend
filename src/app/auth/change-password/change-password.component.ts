@@ -27,6 +27,18 @@ export class ChangePasswordComponent implements OnInit {
    * Parametro para token de activación
    */
   public tkn = '';
+  /**
+   * Estado mayúsculas
+   */
+  public mayus: boolean;
+  /**
+   * Estado mayúsculas
+   */
+  public minus: boolean;
+  /**
+   * Estado mayúsculas
+   */
+  public number: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -105,5 +117,16 @@ export class ChangePasswordComponent implements OnInit {
         this.router.navigate([`/login`]);
       });
     }
+  }
+  /**
+   * Detector de cambios al momento de ingresar la contraseña
+   */
+  changeStatePassword(event: string): void {
+    const regexNumber = new RegExp(/[0-9]/);
+    const regexMinus = new RegExp(/[a-z]/);
+    const regexMayus = new RegExp(/[A-Z]/);
+    regexNumber.test(event) ? (this.number = true) : (this.number = false);
+    regexMinus.test(event) ? (this.minus = true) : (this.minus = false);
+    regexMayus.test(event) ? (this.mayus = true) : (this.mayus = false);
   }
 }
