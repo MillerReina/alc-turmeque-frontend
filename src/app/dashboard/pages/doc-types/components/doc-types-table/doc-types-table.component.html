@@ -1,0 +1,55 @@
+<div *ngIf="preload" class="row justify-content-center full-height" style="min-height: 100% !important">
+    <div class="col-12 center-horizontal-vertical full-height flexbox-col">
+        <img src="../../../../assets/loading/loading.gif" height="400px" alt="gif cargando" />
+    </div>
+</div>
+<div *ngIf="!preload" class="col-12 example-container" style="margin-top: 50px !important">
+    <div class="row text-center" style="margin-top: 30px !important">
+        <table mat-table [dataSource]="dataSource" class="shadow full-width">
+            <ng-container matColumnDef="tipo">
+                <th mat-header-cell *matHeaderCellDef class="text-center">Tipo de documento</th>
+                <td mat-cell *matCellDef="let element">
+                    {{ element.name_document_type }}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="dias">
+                <th mat-header-cell *matHeaderCellDef class="text-center">Días</th>
+                <td mat-cell *matCellDef="let element">
+                    {{ element.suggested_working_days }}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="editar">
+                <th mat-header-cell *matHeaderCellDef class="text-center">Editar</th>
+                <td mat-cell *matCellDef="let element" style="padding-left: 10px !important">
+                    <button mat-raised-button class="btn-username" (click)="openDialog(element)">
+            <i class="fas fa-edit fa-lg"></i>
+          </button>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="estado">
+                <th mat-header-cell *matHeaderCellDef class="text-center">Estado</th>
+                <td mat-cell *matCellDef="let element">
+                    <section class="example-section">
+                        <mat-slide-toggle class="example-margin" [checked]="element.state_document_type" (click)="activateDependency(element)"></mat-slide-toggle>
+                    </section>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="borrar">
+                <th mat-header-cell *matHeaderCellDef class="text-center">Borrar</th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-raised-button class="btn-username" (click)="deleteDependency(element)">
+            <i class="fas fa-trash-alt fa-lg"></i>
+          </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+    </div>
+</div>
+<p-toast></p-toast>

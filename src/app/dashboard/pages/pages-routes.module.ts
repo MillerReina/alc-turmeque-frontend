@@ -12,7 +12,7 @@ import { AuthGuard } from '../../guards/auth.guard';
 import { DependicesComponent } from './dependencies/dependices.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { CreateOfficerComponent } from './officers/create-officer/create-officer.component';
-import { CreateDependencyComponent } from './dependencies/create-dependency/create-dependency.component';
+import { DocTypesComponent } from './doc-types/doc-types.component';
 
 const childRoutes: Routes = [
   {
@@ -33,7 +33,7 @@ const childRoutes: Routes = [
   },
   {
     path: 'dependency',
-    component: CreateDependencyComponent,
+    component: DependicesComponent,
     canActivate: [AuthGuard, AdminGuard],
     canLoad: [AuthGuard],
     loadChildren: () => import('./../pages/dependencies/dependices.module').then((module) => module.DependicesModule),
@@ -61,6 +61,13 @@ const childRoutes: Routes = [
   {
     path: 'returned',
     component: ReturnedComponent,
+  },
+  {
+    path: 'doc-types',
+    component: DocTypesComponent,
+    canActivate: [AuthGuard, AdminGuard],
+    canLoad: [AuthGuard],
+    loadChildren: () => import('./../pages/doc-types/doc-types.module').then((module) => module.DocTypesModule),
   },
   {
     path: 'dependencies',

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CreateDependencyComponent } from './create-dependency.component';
+import { DocTypesComponent } from './doc-types.component';
 
-describe('CreateDependencyComponent', () => {
-  let component: CreateDependencyComponent;
-  let fixture: ComponentFixture<CreateDependencyComponent>;
+describe('DocTypesComponent', () => {
+  let component: DocTypesComponent;
+  let fixture: ComponentFixture<DocTypesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CreateDependencyComponent ]
+      declarations: [ DocTypesComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CreateDependencyComponent);
+    fixture = TestBed.createComponent(DocTypesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

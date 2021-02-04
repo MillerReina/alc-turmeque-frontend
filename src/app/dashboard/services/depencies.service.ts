@@ -1,9 +1,9 @@
-import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { IDepedency, IDependencies } from '../../interfaces/dependency-interface';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 const base_url = environment.base_url;
 
@@ -39,7 +39,7 @@ export class DepenciesService {
   }
 
   /**
-   * Obtiene todos las dependencias del sistema
+   * Borrar una dependencia
    */
   deleteDependencyById(id): Observable<IDepedency> {
     return this.http.delete<IDepedency>(`${base_url}/users/dependency?id=${id}`);
