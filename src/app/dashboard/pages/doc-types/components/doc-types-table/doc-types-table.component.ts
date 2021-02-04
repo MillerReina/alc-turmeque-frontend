@@ -115,7 +115,7 @@ export class DocTypesTableComponent implements OnInit, OnDestroy {
       this.docTypeService.activateDocType(element.id).subscribe((__) => {
         Swal.fire({
           title: 'TIPO DE DOCUMENTO DESACTIVADO',
-          text: `El tipo: ${element.name_dependency} ha sido desactivado`,
+          text: `El tipo: ${element.name_document_type} ha sido desactivado`,
           icon: 'success',
           confirmButtonText: 'Aceptar',
         });
@@ -125,7 +125,7 @@ export class DocTypesTableComponent implements OnInit, OnDestroy {
       this.docTypeService.activateDocType(element.id).subscribe((__) => {
         Swal.fire({
           title: 'TIPO DE DOCUMENTO ACTIVADO',
-          text: `El tipo: ${element.name_dependency} ha sido activado`,
+          text: `El tipo: ${element.name_document_type} ha sido activado`,
           icon: 'success',
           confirmButtonText: 'Aceptar',
         });
