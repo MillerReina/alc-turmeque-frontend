@@ -16,6 +16,7 @@ import { PagesComponent } from './pages.component';
 import { CreateOfficerComponent } from './officers/create-officer/create-officer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AlphabetOnlyDirective } from './officers/directives/alphabet-only-directive.directive';
+import { DocumentsComponentsModule } from './documents/components/documents-components.module';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { AlphabetOnlyDirective } from './officers/directives/alphabet-only-direc
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
+    DocumentsComponentsModule,
   ],
 })
 export class PagesModule {}

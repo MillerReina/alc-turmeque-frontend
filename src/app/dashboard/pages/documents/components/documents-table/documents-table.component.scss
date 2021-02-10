@@ -1,0 +1,6 @@
+@import './../../../../../../styles.scss';
+@import './../../../dependencies/components/dependencies-table/dependencies-table.component.scss';
+td,
+th {
+    width: 14% !important;
+}
