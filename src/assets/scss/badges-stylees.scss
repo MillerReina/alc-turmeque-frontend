@@ -1,0 +1,54 @@
+/* Colores */
+
+$principal-color-pinkish: #ff007d !important;
+$principal-color-blue: #1d59c9 !important;
+$principal-color-gray: #ebebeb !important;
+$principal-color-whiteSmoke: #f5f5f5 !important;
+$secondary-color-green: #53bc5d !important;
+$secondary-color-blue: #1ccbe0 !important;
+$secondary-color-yellow: #f5d339 !important;
+$secondary-color-red: #ff625f !important;
+
+/* Estilos  badge */
+
+.badge-assign {
+    color: white !important;
+    background-color: $principal-color-blue;
+    font-size: 0.8rem;
+}
+
+.badge-not-assign {
+    color: white !important;
+    background-color: $principal-color-pinkish;
+    font-size: 0.8rem;
+}
+
+.badge-file-document {
+    color: black !important;
+    background-color: $principal-color-gray;
+    font-size: 0.8rem;
+}
+
+.badge-process {
+    color: white !important;
+    background-color: $secondary-color-blue;
+    font-size: 0.8rem;
+}
+
+.badge-resolved {
+    color: white !important;
+    background-color: $secondary-color-yellow;
+    font-size: 0.8rem;
+}
+
+.badge-finished {
+    color: white !important;
+    background-color: $secondary-color-green;
+    font-size: 0.8rem;
+}
+
+.badge-returned {
+    color: white !important;
+    background-color: $secondary-color-red;
+    font-size: 0.8rem;
+}

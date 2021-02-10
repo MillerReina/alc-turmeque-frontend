@@ -27,10 +27,10 @@ export class UsersService {
   /**
    * Obtiene la informacón de paginación
    */
-
   get getPagination(): OfficersData {
     return this.pagination;
   }
+
   /**
    * Obtiene la información personal del perfil autenticado
    */

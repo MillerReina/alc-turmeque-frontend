@@ -3,6 +3,7 @@
 @import './assets/scss/align-content.scss';
 @import './assets/scss/ng-prime.scss';
 @import './assets/scss/angular-material.scss';
+@import './assets/scss/badges-stylees.scss';
 
 /* Colores */
 
@@ -11,6 +12,9 @@ $principal-color-blue: #1d59c9 !important;
 $principal-color-gray: #ebebeb !important;
 $principal-color-whiteSmoke: #f5f5f5 !important;
 $secondary-color-green: #53bc5d !important;
+$secondary-color-blue: #1ccbe0 !important;
+$secondary-color-yellow: #f5d339 !important;
+$secondary-color-red: #ff625f !important;
 body {
     margin: 0;
     font-family: 'Roboto', sans-serif !important;

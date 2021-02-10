@@ -57,6 +57,10 @@ export class OfficersTableComponent implements OnInit {
     this.loadUsers();
   }
 
+  get inputTerm(): string {
+    return (document.getElementById('term') as HTMLInputElement).value;
+  }
+
   refreshTable(): void {
     this.dataSource = new MatTableDataSource(this.registeredUsers);
     this.dataSource.paginator = this.paginator;
@@ -121,7 +125,7 @@ export class OfficersTableComponent implements OnInit {
   handlePage(e: PageEvent): void {
     this.pageSize = e.pageSize;
     this.pageNumber = e.pageIndex + 1;
-    let inputValue = (<HTMLInputElement>document.getElementById('term')).value;
+    const inputValue = (document.getElementById('term') as HTMLInputElement).value;
     if (inputValue) {
       this.searchUsersByCoincidence(inputValue);
     } else {
