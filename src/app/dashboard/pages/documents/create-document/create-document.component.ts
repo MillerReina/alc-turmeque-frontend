@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ITypeID } from '../../../../interfaces/type-id.interface';
 import { CreateService } from '../../../services/create.service';
 import { IDepedency } from '../../../../interfaces/dependency-interface';
+import { DocTypeService } from 'src/app/dashboard/services/doc-type.service';
+import { IDocType } from 'src/app/interfaces/doc-type-interface';
 
 @Component({
   selector: 'app-create-document',
@@ -30,14 +32,23 @@ export class CreateDocumentComponent implements OnInit {
    * Lista de dependencias
    */
   public listDependencies: IDepedency[];
+  /**
+   * Lista de tipos de documento
+   */
+  public listDocumentType: IDocType[];
 
-  constructor(private fb: FormBuilder, private createService: CreateService) {
+  constructor(
+    private fb: FormBuilder,
+    private createService: CreateService,
+    private documentTypeService: DocTypeService
+  ) {
     this.createRegisterForm();
     this.preload = true;
     this.postCreate = false;
   }
 
   ngOnInit(): void {
+    this.getDocTypes();
     this.getTypesOfID();
     this.getDependencies();
   }
@@ -76,12 +87,25 @@ export class CreateDocumentComponent implements OnInit {
     return this.registerForm.get('identification_type').invalid && this.registerForm.get('identification_type').touched;
   }
 
+  get dependencyIsInvalid(): boolean {
+    return this.registerForm.get('dependency').invalid && this.registerForm.get('dependency').touched;
+  }
+
+  get subjectIsInvalid(): boolean {
+    return this.registerForm.get('subject').invalid && this.registerForm.get('subject').touched;
+  }
+
+  get documentTypeIsInvalid(): boolean {
+    return this.registerForm.get('document_type').invalid && this.registerForm.get('document_type').touched;
+  }
+
   /**
    * Obtiene los tipos de identificación
    */
   getTypesOfID(): void {
     this.createService.getListOfID().subscribe((res) => (this.listIDTypes = res));
   }
+
   /**
    * Obtiene las dependencias
    */
@@ -89,6 +113,15 @@ export class CreateDocumentComponent implements OnInit {
     this.createService.getListOfDependencies().subscribe((res) => {
       this.listDependencies = res;
       this.preload = false;
+    });
+  }
+
+  /**
+   * Obtiene los tipos de documento
+   */
+  getDocTypes(): void {
+    this.documentTypeService.getAllDocTypes().subscribe((res) => {
+      this.listDocumentType = res;
     });
   }
 
@@ -103,11 +136,13 @@ export class CreateDocumentComponent implements OnInit {
       sender_last_name: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
       phone_number: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
       sender_email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$')]],
-      institution_name: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
+      institution_name: ['', [Validators.pattern('^[a-zA-Z ]*$')]],
       address: ['', [Validators.required, Validators.minLength(15)]],
       sender_identification: ['', [Validators.required]],
       identification_type: [, [Validators.required]],
       dependency: [, [Validators.required]],
+      subject: [, [Validators.required]],
+      document_type: [, [Validators.required]],
     });
   }
 }

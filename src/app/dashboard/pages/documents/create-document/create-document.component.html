@@ -21,7 +21,7 @@
                 myelement: senderFirstNameIsInvalid
               }">
                             <mat-label>Nombre remitente</mat-label>
-                            <input matInput formControlName="sender_first_name" value="" [placeholder]="" autocomplete="off" type="text" maxlength="30" />
+                            <input matInput formControlName="sender_first_name" value="" [placeholder]="" autocomplete="off" type="text" maxlength="30" required />
                             <mat-error *ngIf="senderFirstNameIsInvalid"> Ingrese un nombre válido por favor </mat-error>
                         </mat-form-field>
 
@@ -29,7 +29,7 @@
                 myelement: senderLastNameIsInvalid
               }">
                             <mat-label>Apellido remitente</mat-label>
-                            <input matInput formControlName="sender_last_name" value="" [placeholder]="" autocomplete="off" type="text" maxlength="30" />
+                            <input matInput formControlName="sender_last_name" value="" [placeholder]="" autocomplete="off" type="text" maxlength="30" required />
                             <mat-error *ngIf="senderLastNameIsInvalid"> Ingrese un apellido válido por favor </mat-error>
                         </mat-form-field>
 
@@ -37,7 +37,7 @@
                 myelement: phoneNumberIsInvalid
               }">
                             <mat-label>Teléfono</mat-label>
-                            <input matInput formControlName="phone_number" value="" autocomplete="off" onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="10" />
+                            <input matInput formControlName="phone_number" value="" autocomplete="off" onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="10" required />
                             <mat-error *ngIf="phoneNumberIsInvalid"> Ingrese un número válido por favor </mat-error>
                         </mat-form-field>
 
@@ -45,7 +45,7 @@
                 myelement: addressIsInvalid
               }">
                             <mat-label>Dirección</mat-label>
-                            <input matInput formControlName="address" value="" autocomplete="off" type="text" maxlength="30" />
+                            <input matInput formControlName="address" value="" autocomplete="off" type="text" maxlength="30" required />
                             <mat-error *ngIf="addressIsInvalid"> Ingrese un número válido por favor </mat-error>
                         </mat-form-field>
 
@@ -53,7 +53,7 @@
                 myelement: senderEmailIsInvalid
               }">
                             <mat-label>Email</mat-label>
-                            <input matInput formControlName="sender_email" value="" autocomplete="off" />
+                            <input matInput formControlName="sender_email" value="" autocomplete="off" required />
                             <mat-error *ngIf="senderEmailIsInvalid"> Ingrese un correo válido por favor </mat-error>
                         </mat-form-field>
 
@@ -69,7 +69,7 @@
                 myelement: identificationTypeIsInvalid
               }">
                             <mat-label>Tipo de identificación</mat-label>
-                            <mat-select formControlName="identification_type" name="typeId">
+                            <mat-select formControlName="identification_type" name="typeId" required>
                                 <mat-option *ngFor="let type of listIDTypes" [value]="type.id">{{ type.name }} </mat-option>
                             </mat-select>
                             <mat-error *ngIf="identificationTypeIsInvalid"> Seleccione un tipo válido por favor </mat-error>
@@ -79,29 +79,42 @@
                 myelement: senderIdentificationIsInvalid
               }">
                             <mat-label>Número de identificación</mat-label>
-                            <input matInput formControlName="sender_identification" value="" autocomplete="off" onkeypress="return event.charCode >= 48 && event.charCode <= 57" minlength="6" />
+                            <input matInput formControlName="sender_identification" value="" autocomplete="off" onkeypress="return event.charCode >= 48 && event.charCode <= 57" minlength="6" required />
                             <mat-error *ngIf="senderIdentificationIsInvalid"> Ingrese una identificación válida por favor </mat-error>
                         </mat-form-field>
                     </div>
                     <div class="col-sm">
                         <mat-form-field appearance="outline" class="full-width" [ngClass]="{
-                myelement: senderLastNameIsInvalid
+                myelement: dependencyIsInvalid
               }">
-                            <mat-label>Apellido remitente</mat-label>
-                            <input matInput formControlName="sender_last_name" value="" [placeholder]="" autocomplete="off" type="text" maxlength="30" />
-                            <mat-error *ngIf="senderLastNameIsInvalid"> Ingrese un apellido válido por favor </mat-error>
+                            <mat-label>Dependencia destino</mat-label>
+                            <mat-select formControlName="dependency" name="dependency" required>
+                                <mat-option *ngFor="let dependency of listDependencies" [value]="dependency.id">{{ dependency.name_dependency }}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="dependencyIsInvalid"> Seleccione una dependencia válida por favor </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="full-width" [ngClass]="{
+                myelement: subjectIsInvalid
+              }">
+                            <mat-label>Asunto</mat-label>
+                            <textarea matInput formControlName="subject" placeholder="Descripcíon del documento - máx. 500 carácteres." cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="6" cdkAutosizeMaxRows="6" maxlength="500" required></textarea>
+                            <mat-error *ngIf="subjectIsInvalid"> Ingrese un asunto por favor </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="full-width" [ngClass]="{
+                myelement: documentTypeIsInvalid
+              }">
+                            <mat-label>Tipo de documento</mat-label>
+                            <mat-select formControlName="document_type" name="document_type" required>
+                                <mat-option *ngFor="let docType of listDocumentType" [value]="docType.id">{{ docType.name_document_type }} ({{ docType.suggested_working_days }} días).
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="documentTypeIsInvalid"> Seleccione un tipo de documento válido por favor </mat-error>
                         </mat-form-field>
                     </div>
                 </div>
-                <!--  <div class="row">
-                <mat-form-field appearance="outline" class="full-width" [ngClass]="{
-            myelement: senderFirstNameIsInvalid
-          }">
-                    <mat-label>Nombre remitente</mat-label>
-                    <input matInput formControlName="sender_first_name" value="" [placeholder]="" autocomplete="off" type="text" pattern="[a-z0-9.-]+.[a-z0-9]{2,3}$" />
-                    <mat-error *ngIf="senderFirstNameIsInvalid"> Ingrese un nombre válido por favor </mat-error>
-                </mat-form-field>
-            </div> -->
             </form>
         </mat-card>
     </div>
