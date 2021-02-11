@@ -13,6 +13,7 @@ import { DependicesComponent } from './dependencies/dependices.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { CreateOfficerComponent } from './officers/create-officer/create-officer.component';
 import { DocTypesComponent } from './doc-types/doc-types.component';
+import { CreateDocumentComponent } from './documents/create-document/create-document.component';
 
 const childRoutes: Routes = [
   {
@@ -40,6 +41,8 @@ const childRoutes: Routes = [
   },
   {
     path: 'home',
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard],
     component: HomeComponent,
   },
   {
@@ -61,6 +64,12 @@ const childRoutes: Routes = [
   {
     path: 'returned',
     component: ReturnedComponent,
+  },
+  {
+    path: 'create-doc',
+    canActivate: [AuthGuard, AdminGuard],
+    canLoad: [AuthGuard],
+    component: CreateDocumentComponent,
   },
   {
     path: 'doc-types',
