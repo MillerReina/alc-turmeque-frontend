@@ -26,3 +26,48 @@
 .btn-question {
     border-radius: 100px !important;
 }
+
+.text-not {
+    color: $principal-color-pinkish;
+}
+
+
+/* Dropzone */
+
+ngx-dropzone,
+.custom-dropzone {
+    margin: 20px;
+}
+
+ngx-dropzone-preview {
+    background-image: url('./../../../../../assets/icon/pdf-icon.png');
+    text-align: center !important;
+    background-repeat: no-repeat, repeat;
+    border: 2px solid rgb(233, 233, 233);
+    background-color: rgb(233, 233, 233);
+}
+
+ngx-dropzone-preview:hover {
+    background-image: url('./../../../../../assets/icon/pdf-icon.png');
+}
+
+.custom-dropzone {
+    height: 250px;
+    background: rgb(255, 255, 255);
+    color: rgb(156, 156, 156);
+    border: 5px dashed #E1E1E1(235, 79, 79);
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.custom-dropzone:hover {
+    height: 250px;
+    background: rgb(255, 255, 255);
+    border-radius: 5px;
+    font-size: 20px;
+    border: 2px solid rgb(156, 156, 156);
+}
+
+.custom-dropzone.ngx-dz-hovered {
+    border: 2px solid rgb(255, 0, 125);
+}

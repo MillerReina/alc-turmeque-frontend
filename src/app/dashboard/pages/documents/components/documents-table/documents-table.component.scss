@@ -4,3 +4,9 @@ td,
 th {
     width: 14% !important;
 }
+
+@media (max-width: 700px) {
+    .badge {
+        margin-left: 10px !important;
+    }
+}

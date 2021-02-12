@@ -16,6 +16,7 @@ import { CustomMatPaginatorIntl } from './dashboard/i18n/paginator-es';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { SharedModule } from './shared/shared.module';
 import { AngularMaterialModule } from './shared-module/angular-material/angular-material.module';
+
 registerLocaleData(localeES, 'es');
 
 @NgModule({

@@ -5,6 +5,7 @@ import { IDocument, IDocuments } from '../../interfaces/documents-interface';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { OfficersData } from '../../models/officer.model';
+import { IDocumentDetail } from 'src/app/interfaces/document-detail-interface';
 
 const base_url = environment.base_url;
 
@@ -39,5 +40,20 @@ export class DocumentsService {
       }),
       map((res) => res.results)
     );
+  }
+
+  /**
+   * Radica nuevo documento en el sistema
+   */
+  createDocument(formData): Observable<any> {
+    console.log(formData);
+    return this.http.post<any>(`${base_url}/documents/document`, formData);
+  }
+
+  /**
+   * Obtiene la información de un documento por id
+   */
+  getDetailDocument(id): Observable<IDocumentDetail> {
+    return this.http.get<IDocumentDetail>(`${base_url}/documents/document?id=${id}`);
   }
 }

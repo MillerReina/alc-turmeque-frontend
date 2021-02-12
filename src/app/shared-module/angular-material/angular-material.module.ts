@@ -21,6 +21,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { NgxDropzoneModule } from 'ngx-dropzone';
+import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { MatCommonModule, MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
@@ -50,6 +52,8 @@ import { MatCommonModule, MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/
     MatCheckboxModule,
     MatChipsModule,
     MatToolbarModule,
+    NgxDropzoneModule,
+    RxReactiveFormsModule,
   ],
   exports: [
     MatInputModule,
@@ -75,6 +79,8 @@ import { MatCommonModule, MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/
     MatCheckboxModule,
     MatChipsModule,
     MatToolbarModule,
+    NgxDropzoneModule,
+    RxReactiveFormsModule,
   ],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'es-CO' }],
 })

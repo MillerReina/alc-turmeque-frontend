@@ -18,6 +18,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AlphabetOnlyDirective } from './officers/directives/alphabet-only-directive.directive';
 import { DocumentsComponentsModule } from './documents/components/documents-components.module';
 import { CreateDocumentComponent } from './documents/create-document/create-document.component';
+import { PipesModule } from '../../pipes/pipes.module';
+import { DocumentDetailComponent } from './documents/document-detail/document-detail.component';
+import { Ng2Module } from '../../shared-module/ng2/ng2.module';
 
 @NgModule({
   declarations: [
@@ -33,16 +36,19 @@ import { CreateDocumentComponent } from './documents/create-document/create-docu
     CreateOfficerComponent,
     AlphabetOnlyDirective,
     CreateDocumentComponent,
+    DocumentDetailComponent,
   ],
   imports: [
     CommonModule,
     AngularMaterialModule,
     NgPrimeModule,
+    Ng2Module,
     ComponentsModule,
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
     DocumentsComponentsModule,
+    PipesModule,
   ],
 })
 export class PagesModule {}

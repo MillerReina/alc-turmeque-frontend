@@ -3,6 +3,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { IDocument } from '../../../../../interfaces/documents-interface';
 import { DocumentsService } from '../../../../services/documents.service';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-documents-table',
@@ -59,7 +60,7 @@ export class DocumentsTableComponent implements OnInit {
    */
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  constructor(private documentService: DocumentsService) {
+  constructor(private documentService: DocumentsService, private router: Router) {
     this.preload = true;
     this.pageSize = 10;
     this.pageNumber = 1;
@@ -110,6 +111,6 @@ export class DocumentsTableComponent implements OnInit {
   }
 
   getDocument(element): void {
-    console.log(element);
+    this.router.navigate([`/dashboard/detail/${element.id}/document`]);
   }
 }

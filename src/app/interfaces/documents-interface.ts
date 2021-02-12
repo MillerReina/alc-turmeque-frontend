@@ -8,6 +8,7 @@ export interface IDocuments {
 }
 
 export interface IDocument {
+  id: number;
   file_number: string;
   document_state: string;
   register_date: Date;

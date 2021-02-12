@@ -14,6 +14,7 @@ import { MyProfileComponent } from './my-profile/my-profile.component';
 import { CreateOfficerComponent } from './officers/create-officer/create-officer.component';
 import { DocTypesComponent } from './doc-types/doc-types.component';
 import { CreateDocumentComponent } from './documents/create-document/create-document.component';
+import { DocumentDetailComponent } from './documents/document-detail/document-detail.component';
 
 const childRoutes: Routes = [
   {
@@ -70,6 +71,12 @@ const childRoutes: Routes = [
     canActivate: [AuthGuard, AdminGuard],
     canLoad: [AuthGuard],
     component: CreateDocumentComponent,
+  },
+  {
+    path: 'detail/:id/document',
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard],
+    component: DocumentDetailComponent,
   },
   {
     path: 'doc-types',

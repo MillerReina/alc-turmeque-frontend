@@ -1,8 +1,10 @@
-<div class="title-users mt-4 d-flex justify-content-between mt-4">
-    <h1>Dependencias</h1>
-    <div class="right-side">
-        <button mat-raised-button class="btn-create-user" (click)="createDependency()">Crear dependencia</button>
+<div class="example-container">
+    <div class="title-users mt-4 d-flex justify-content-between mt-4">
+        <h1>Dependencias</h1>
+        <div class="right-side">
+            <button mat-raised-button class="btn-create-user" (click)="createDependency()">Crear dependencia</button>
+        </div>
     </div>
+    <app-dependencies-table></app-dependencies-table>
 </div>
-<app-dependencies-table></app-dependencies-table>
 <p-toast></p-toast>
