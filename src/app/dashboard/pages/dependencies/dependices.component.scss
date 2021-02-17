@@ -22,9 +22,12 @@
 
 @media (max-width: 700px) {
     .title-users h1 {
-        font-size: 2em;
+        font-size: 1.8em;
     }
     .example-container {
-        padding: 15px !important;
+        padding-left: 15px !important;
+    }
+    .btn-create-user {
+        font-size: 0.9em;
     }
 }

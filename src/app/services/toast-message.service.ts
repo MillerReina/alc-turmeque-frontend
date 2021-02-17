@@ -13,6 +13,12 @@ export class ToastMessageService {
     this.messageService.add({ severity: 'success', summary: title, detail: text, life: 5000 });
   }
   /**
+   * Mensaje de ok para radicados
+   */
+  showSuccessMessageDocuments(title: string, text: string) {
+    this.messageService.add({ severity: 'success', summary: title, detail: text, life: 8000 });
+  }
+  /**
    * Mensaje de advertencia
    */
   showWarningMessage(title: string, text: string) {

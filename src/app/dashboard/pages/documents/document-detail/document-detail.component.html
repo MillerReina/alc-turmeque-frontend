@@ -1,3 +1,8 @@
-<!-- <div #viewer class="webviewer"></div> -->
-
-<pdf-viewer [src]="pdfSrc" [render-text]="true" style="display: block"></pdf-viewer>
+<div *ngIf="preload" class="row justify-content-center full-height" style="min-height: 100% !important">
+    <div class="col-12 center-horizontal-vertical full-height flexbox-col">
+        <img src="../../../../assets/loading/loading.gif" height="400px" alt="gif cargando" />
+    </div>
+</div>
+<div *ngIf="!preload">
+    <pdf-viewer [src]="pdfSrc" [render-text]="true" style="display: block"></pdf-viewer>
+</div>

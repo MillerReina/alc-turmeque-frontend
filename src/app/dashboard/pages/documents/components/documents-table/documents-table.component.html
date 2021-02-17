@@ -6,7 +6,7 @@
 <div *ngIf="!preload" class="col-12 example-container">
     <div class="row text-center" style="margin-top: 30px !important">
         <mat-form-field>
-            <mat-label>Buscar documento por: radicado, funcionario o dependencia </mat-label>
+            <mat-label>Buscar documento por: No. radicado, remitente, dependencia o funcionario. </mat-label>
             <input matInput (keyup)="searchDocumentsByCoincidence(input.value)" #input id="term" />
         </mat-form-field>
         <div *ngIf="preloadSearch" class="row justify-content-center full-height" style="min-height: 100% !important">

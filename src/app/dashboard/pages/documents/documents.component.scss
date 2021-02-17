@@ -1,1 +1,12 @@
-
+@import './../../../../styles.scss';
+@media (max-width: 700px) {
+    .title-users h1 {
+        font-size: 1.8em;
+    }
+    .example-container {
+        padding-left: 15px !important;
+    }
+    .btn-create-user {
+        font-size: 0.9em;
+    }
+}

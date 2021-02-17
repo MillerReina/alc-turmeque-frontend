@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { DocumentsService } from '../../../services/documents.service';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
 import Swal from 'sweetalert2';
+import { ToastMessageService } from '../../../../services/toast-message.service';
 
 @Component({
   selector: 'app-create-document',
@@ -50,7 +51,8 @@ export class CreateDocumentComponent implements OnInit {
     private createService: CreateService,
     private documentTypeService: DocTypeService,
     private router: Router,
-    private documentService: DocumentsService
+    private documentService: DocumentsService,
+    private toastService: ToastMessageService
   ) {
     this.createRegisterForm();
     this.preload = true;
@@ -173,22 +175,35 @@ export class CreateDocumentComponent implements OnInit {
         confirmButtonText: 'Aceptar',
       });
     } else {
-      const file = this.files[0];
-      /* const data = new FormData();
-      data.append('file', file, file.name);*/
-      this.registerForm.get('file_document').setValue(this.files[0]);
-
-      const reader = new FileReader();
-      const url = reader.readAsDataURL(file);
-      console.log(url);
-
-      reader.onloadend = () => {
-        /*         this.registerForm.get('file_document').setValue(reader.result); */
-        console.log(this.registerForm.get('file_document').value);
-        this.documentService.createDocument(this.registerForm.value).subscribe((res) => {
-          console.log(res);
-        });
-      };
+      this.postCreate = true;
+      const formData = new FormData();
+      formData.append('sender_first_name', this.registerForm.get('sender_first_name').value);
+      formData.append('sender_last_name', this.registerForm.get('sender_last_name').value);
+      formData.append('phone_number', this.registerForm.get('phone_number').value);
+      formData.append('sender_email', this.registerForm.get('sender_email').value);
+      formData.append('institution_name', this.registerForm.get('institution_name').value);
+      formData.append('address', this.registerForm.get('address').value);
+      formData.append('sender_identification', this.registerForm.get('sender_identification').value);
+      formData.append('identification_type', this.registerForm.get('identification_type').value);
+      formData.append('dependency', this.registerForm.get('dependency').value);
+      formData.append('subject', this.registerForm.get('subject').value);
+      formData.append('document_type', this.registerForm.get('document_type').value);
+      formData.append('file_document', this.registerForm.get('file_document').value);
+      console.log(this.registerForm.get('file_document').value);
+      this.documentService.createDocument(formData).subscribe(
+        (res) => {
+          this.toastService.showSuccessMessageDocuments(`RADICADO GENERADO`, res.message);
+          this.router.navigate([`dashboard/all`]);
+        },
+        (err) => {
+          Swal.fire({
+            title: 'Error al crear radicado',
+            icon: 'error',
+            text: err,
+            confirmButtonText: 'Aceptar',
+          });
+        }
+      );
     }
   }
   /**
@@ -197,6 +212,7 @@ export class CreateDocumentComponent implements OnInit {
   onSelect(event): void {
     if (this.files.length < 1) {
       this.files.push(...event.addedFiles);
+      this.registerForm.get('file_document').setValue(this.files[0]);
     }
   }
   /**

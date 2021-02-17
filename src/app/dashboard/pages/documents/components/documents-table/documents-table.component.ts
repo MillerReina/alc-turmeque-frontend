@@ -76,7 +76,7 @@ export class DocumentsTableComponent implements OnInit {
 
   loadDocuments(): void {
     this.preloadSearch = true;
-    this.documentService.getAllDocuments(this.documentType, this.pageNumber.toString(), true).subscribe((res) => {
+    this.documentService.getAllDocuments(this.documentType, this.pageNumber.toString(), true, '').subscribe((res) => {
       this.documentsFiled = res;
       this.totalData = this.documentService.getPagination.total_records;
       this.refreshTable();
@@ -90,9 +90,9 @@ export class DocumentsTableComponent implements OnInit {
     this.preloadSearch = false;
   }
 
-  searchDocumentsByCoincidence(): void {
+  searchDocumentsByCoincidence(term): void {
     this.preloadSearch = true;
-    this.documentService.getAllDocuments(this.documentType, this.pageNumber.toString(), true).subscribe((res) => {
+    this.documentService.getAllDocuments(this.documentType, this.pageNumber.toString(), true, term).subscribe((res) => {
       this.documentsFiled = res;
       this.totalData = this.documentService.getPagination.total_records;
       this.refreshTable();
@@ -104,7 +104,7 @@ export class DocumentsTableComponent implements OnInit {
     this.pageNumber = e.pageIndex + 1;
     const inputValue = (document.getElementById('term') as HTMLInputElement).value;
     if (inputValue) {
-      this.searchDocumentsByCoincidence();
+      this.searchDocumentsByCoincidence(inputValue);
     } else {
       this.loadDocuments();
     }

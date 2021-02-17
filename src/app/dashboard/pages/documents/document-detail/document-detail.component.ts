@@ -9,27 +9,26 @@ import { DocumentsService } from '../../../services/documents.service';
 })
 export class DocumentDetailComponent implements OnInit, AfterViewInit {
   /**
+   * Precarga del documento
+   */
+  public preload: boolean;
+  /**
    * Id  del documento
    */
   public idDocument: string;
-  public pdfSrc = 'https://www.orientacionandujar.es/wp-content/uploads/2014/09/TEST-ESTILO-DEAPRENDIZAJES.pdf';
+  /**
+   * Recurso del documento - path
+   */
+  public pdfSrc: string;
+
   @ViewChild('viewer') viewerRef: ElementRef;
 
   constructor(private router: Router, private documentService: DocumentsService) {
     this.idDocument = this.router.url.split('/')[3];
+    this.preload = true;
   }
 
-  ngAfterViewInit(): void {
-    /* WebViewer(
-      {
-        path: '../assets/lib',
-        initialDoc: 'https://www.orientacionandujar.es/wp-content/uploads/2014/09/TEST-ESTILO-DEAPRENDIZAJES.pdf',
-      },
-      this.viewerRef.nativeElement
-    ).then((instance) => {
-      instance.setLanguage('es');
-    }); */
-  }
+  ngAfterViewInit(): void {}
 
   ngOnInit(): void {
     this.getDocumentDetail();
@@ -37,7 +36,8 @@ export class DocumentDetailComponent implements OnInit, AfterViewInit {
 
   getDocumentDetail(): void {
     this.documentService.getDetailDocument(this.idDocument).subscribe((res) => {
-      console.log(res);
+      this.pdfSrc = res.file_document;
+      this.preload = false;
     });
   }
 }
