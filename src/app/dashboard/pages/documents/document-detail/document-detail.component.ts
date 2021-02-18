@@ -33,7 +33,9 @@ export class DocumentDetailComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.getDocumentDetail();
   }
-
+  /**
+   * Obtiene los detalles de un documento por id
+   */
   getDocumentDetail(): void {
     this.documentService.getDetailDocument(this.idDocument).subscribe((res) => {
       this.pdfSrc = res.file_document;

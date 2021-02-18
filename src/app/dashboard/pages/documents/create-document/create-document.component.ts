@@ -189,7 +189,6 @@ export class CreateDocumentComponent implements OnInit {
       formData.append('subject', this.registerForm.get('subject').value);
       formData.append('document_type', this.registerForm.get('document_type').value);
       formData.append('file_document', this.registerForm.get('file_document').value);
-      console.log(this.registerForm.get('file_document').value);
       this.documentService.createDocument(formData).subscribe(
         (res) => {
           this.toastService.showSuccessMessageDocuments(`RADICADO GENERADO`, res.message);

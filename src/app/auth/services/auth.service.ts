@@ -39,6 +39,10 @@ export class AuthService {
     return this.getRole === 'Administrador' ? true : false;
   }
 
+  get isMainConfirmation(): boolean {
+    return this.getRole === 'Titular' ? true : false;
+  }
+
   /* Inicia sesion */
   login(formData: ILoginForm): Observable<any> {
     return this.http.post<any>(`${base_url}/users/login`, formData).pipe(

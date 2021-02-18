@@ -4,6 +4,7 @@ import { IDocument } from '../../../../../interfaces/documents-interface';
 import { DocumentsService } from '../../../../services/documents.service';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../../../auth/services/auth.service';
 
 @Component({
   selector: 'app-documents-table',
@@ -56,22 +57,31 @@ export class DocumentsTableComponent implements OnInit {
    */
   public totalData: number;
   /**
+   * Es titular
+   */
+  public isMain: boolean;
+  /**
    * Paginador
    */
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  constructor(private documentService: DocumentsService, private router: Router) {
+  constructor(private documentService: DocumentsService, private router: Router, private authService: AuthService) {
     this.preload = true;
     this.pageSize = 10;
     this.pageNumber = 1;
   }
 
   ngOnInit(): void {
+    this.isMainAccount();
     this.loadDocuments();
   }
 
   get inputTerm(): string {
     return (document.getElementById('term') as HTMLInputElement).value;
+  }
+
+  isMainAccount(): void {
+    this.isMain = this.authService.isMainConfirmation;
   }
 
   loadDocuments(): void {
