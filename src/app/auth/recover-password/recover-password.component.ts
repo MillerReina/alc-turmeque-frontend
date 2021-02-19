@@ -56,15 +56,26 @@ export class RecoverPasswordComponent implements OnInit {
         allowOutsideClick: false,
       });
       Swal.showLoading();
-      this.authService.recoverPassword(this.recoveryForm.value).subscribe((__) => {
-        Swal.close();
-        Swal.fire({
-          title: '¡Correo enviado!',
-          icon: 'success',
-          text: 'Revisa tu bandeja de entrada y/o spam',
-          confirmButtonText: 'Aceptar',
-        });
-      });
+      this.authService.recoverPassword(this.recoveryForm.value).subscribe(
+        (__) => {
+          Swal.close();
+          Swal.fire({
+            title: '¡Correo enviado!',
+            icon: 'success',
+            text: 'Revisa tu bandeja de entrada y/o spam',
+            confirmButtonText: 'Aceptar',
+          });
+        },
+        (__) => {
+          Swal.close();
+          Swal.fire({
+            title: '¡Correo no existe!',
+            icon: 'warning',
+            text: 'No existe ningún correo relacionado.',
+            confirmButtonText: 'Aceptar',
+          });
+        }
+      );
     }
   }
 }

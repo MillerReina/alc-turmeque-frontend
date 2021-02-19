@@ -31,7 +31,8 @@
                             "./node_modules/primeicons/primeicons.css",
                             "src/styles.scss"
                         ],
-                        "scripts": []
+                        "scripts": [],
+                        "allowedCommonJsDependencies": ["ng2-pdf-viewer", "file-saver"]
                     },
                     "configurations": {
                         "production": {

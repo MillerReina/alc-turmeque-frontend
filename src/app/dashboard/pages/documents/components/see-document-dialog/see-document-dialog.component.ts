@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { IDocumentDetail } from '../../../../../interfaces/document-detail-interface';
-import { saveAs } from 'file-saver';
+import FileSaver from 'file-saver/dist/FileSaver';
 
 @Component({
   selector: 'app-see-document-dialog',
@@ -24,10 +24,7 @@ export class SeeDocumentDialogComponent implements OnInit {
   ngOnInit(): void {}
 
   downloadDocument(): void {
-    var file = new Blob(['https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf'], {
-      type: 'application/pdf',
-    });
-    saveAs(file, 'mypdffilename.pdf');
+    FileSaver.saveAs(`${this.pdfSrc}`, 'mypdf.pdf');
   }
 
   loadingDocument() {

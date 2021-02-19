@@ -21,7 +21,7 @@
         <mat-card>
             <div class="row">
                 <div class="col-sm">
-                    <mat-card-title class="title-secondary">Datos del documento</mat-card-title>
+                    <mat-card-title class="title-secondary">Datos del documento: </mat-card-title>
                     <mat-form-field appearance="outline" class="full-width">
                         <mat-label>Fecha de radicación</mat-label>
                         <input matInput [value]="actualDocument.register_date | date: 'dd/MMM/yyyy h:mm a'" autocomplete="off" type="text" disabled />
@@ -58,14 +58,19 @@
                         <input matInput [value]="actualDocument.user_register.first_name + ' ' + actualDocument.user_register.last_name" autocomplete="off" type="text" disabled />
                     </mat-form-field>
 
-                    <mat-card-title class="title-secondary">Funcionario asociado</mat-card-title>
-                    <mat-form-field appearance="outline" class="full-width">
+                    <mat-card-title class="title-secondary">Funcionario asociado: </mat-card-title>
+                    <mat-form-field *ngIf="actualDocument.user_assign != null" appearance="outline" class="full-width">
                         <mat-label>Funcionario</mat-label>
                         <input matInput [value]="actualDocument.user_assign.first_name + ' ' + actualDocument.user_assign.last_name" autocomplete="off" type="text" disabled />
                     </mat-form-field>
+
+                    <mat-form-field *ngIf="actualDocument.user_assign === null" appearance="outline" class="full-width">
+                        <mat-label>Funcionario</mat-label>
+                        <input matInput value="Sin asignar" autocomplete="off" type="text" disabled />
+                    </mat-form-field>
                 </div>
                 <div class="col-sm">
-                    <mat-card-title class="title-secondary">Datos del remitente</mat-card-title>
+                    <mat-card-title class="title-secondary">Datos del remitente: </mat-card-title>
                     <mat-form-field appearance="outline" class="full-width">
                         <mat-label>Nombres</mat-label>
                         <input matInput [value]="actualDocument.sender_first_name + ' ' + actualDocument.sender_last_name" autocomplete="off" type="text" disabled />
@@ -96,7 +101,7 @@
                         <input matInput [value]="actualDocument.institution_name" autocomplete="off" type="text" disabled />
                     </mat-form-field>
 
-                    <mat-card-title class="title-secondary">Documento asociado</mat-card-title>
+                    <mat-card-title class="title-secondary">Documento asociado: </mat-card-title>
                     <mat-form-field appearance="outline" class="full-width">
                         <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="3.9" cdkAutosizeMaxRows="6" maxlength="500" disabled></textarea>
                         <a class="pointer" matTooltip="Ver documento" (click)="openDocument()">

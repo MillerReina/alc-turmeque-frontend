@@ -60,7 +60,9 @@ export class DocumentDetailComponent implements OnInit, AfterViewInit {
 
   isUserAssign(): void {
     this.authService.getMyDetails().subscribe((res) => {
-      if (res.user.username === this.actualDocument.user_assign.username) {
+      if (this.actualDocument.user_assign === null) {
+        this.preload = false;
+      } else if (res.user.username === this.actualDocument.user_assign.username) {
         this.isTheUser = true;
         this.preload = false;
       } else {
