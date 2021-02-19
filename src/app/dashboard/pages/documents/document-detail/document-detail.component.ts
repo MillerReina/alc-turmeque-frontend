@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { DocumentsService } from '../../../services/documents.service';
 import { IDocumentDetail } from '../../../../interfaces/document-detail-interface';
 import { AuthService } from '../../../../auth/services/auth.service';
+import { SeeDocumentDialogComponent } from '../components/see-document-dialog/see-document-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-document-detail',
@@ -19,10 +21,6 @@ export class DocumentDetailComponent implements OnInit, AfterViewInit {
    */
   public idDocument: string;
   /**
-   * Recurso del documento - path
-   */
-  public pdfSrc: string;
-  /**
    * Información del documento actual
    */
   public actualDocument: IDocumentDetail;
@@ -33,7 +31,12 @@ export class DocumentDetailComponent implements OnInit, AfterViewInit {
 
   @ViewChild('viewer') viewerRef: ElementRef;
 
-  constructor(private router: Router, private documentService: DocumentsService, private authService: AuthService) {
+  constructor(
+    private router: Router,
+    private documentService: DocumentsService,
+    private authService: AuthService,
+    public dialog: MatDialog
+  ) {
     this.idDocument = this.router.url.split('/')[3];
     this.preload = true;
     this.isTheUser = false;
@@ -51,7 +54,6 @@ export class DocumentDetailComponent implements OnInit, AfterViewInit {
   getDocumentDetail(): void {
     this.documentService.getDetailDocument(this.idDocument).subscribe((res) => {
       this.actualDocument = res;
-      this.pdfSrc = res.file_document;
       this.isUserAssign();
     });
   }
@@ -67,7 +69,17 @@ export class DocumentDetailComponent implements OnInit, AfterViewInit {
     });
   }
 
+  /**
+   * Abre el dialogo para ver radicado
+   */
   openDocument(): void {
-    console.log('OASD');
+    const dialogRef = this.dialog.open(SeeDocumentDialogComponent, {
+      width: '90%',
+      height: '90%',
+      data: this.actualDocument,
+      autoFocus: false,
+    });
+
+    dialogRef.afterClosed().subscribe((__) => {});
   }
 }

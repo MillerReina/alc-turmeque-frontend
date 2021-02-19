@@ -6,10 +6,17 @@ import { AngularMaterialModule } from '../../../../shared-module/angular-materia
 import { NgPrimeModule } from '../../../../shared-module/ng-prime/ng-prime.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AssingDocumentDialogComponent } from './assing-document-dialog/assing-document-dialog.component';
+import { SeeDocumentDialogComponent } from './see-document-dialog/see-document-dialog.component';
+import { Ng2Module } from '../../../../shared-module/ng2/ng2.module';
 
 @NgModule({
-  declarations: [DocumentsTableComponent, TitleDocumentsComponent, AssingDocumentDialogComponent],
-  imports: [CommonModule, AngularMaterialModule, NgPrimeModule, FormsModule, ReactiveFormsModule],
+  declarations: [
+    DocumentsTableComponent,
+    TitleDocumentsComponent,
+    AssingDocumentDialogComponent,
+    SeeDocumentDialogComponent,
+  ],
+  imports: [CommonModule, AngularMaterialModule, NgPrimeModule, FormsModule, ReactiveFormsModule, Ng2Module],
   exports: [DocumentsTableComponent, TitleDocumentsComponent],
 })
 export class DocumentsComponentsModule {}

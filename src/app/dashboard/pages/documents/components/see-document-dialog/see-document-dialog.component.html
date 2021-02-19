@@ -1,0 +1,22 @@
+<h1 mat-dialog-title class="title-users">Documento escaneado</h1>
+<div mat-dialog-actions class="center-horizontal full-width">
+    <div class="container secondary">
+        <div class="row">
+            <div class="col-10 d-flex justify-content-end">
+                <button mat-raised-button type="submit" (click)="downloadDocument()">
+          <i class="fas fa-file-download fa-lg" style="margin-right: 5px !important"></i>
+          Descargar documento
+        </button>
+            </div>
+            <div class="col d-flex justify-content-start">
+                <button mat-raised-button type="button" class="btn-close-dialog" (click)="cancel()">
+          <i class="fas fa-window-close fa-lg" style="margin-right: 5px !important"></i>
+          Cerrar
+        </button>
+            </div>
+        </div>
+    </div>
+</div>
+<mat-dialog-content style="margin-top: 30px !important">
+    <pdf-viewer [src]="pdfSrc" [rotation]="0" [fit-to-page]="true" [original-size]="true" [show-all]="true" style="display: block"></pdf-viewer>
+</mat-dialog-content>
