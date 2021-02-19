@@ -1,20 +1,26 @@
-<h1 mat-dialog-title class="title-users">Documento escaneado</h1>
-<div mat-dialog-actions class="center-horizontal full-width">
+<h1 mat-dialog-title class="title-users generic-style">Documento escaneado</h1>
+<div mat-dialog-actions class="center-horizontal full-width generic-style">
     <div class="container secondary col d-flex justify-content-end">
         <div class="row">
-            <div class="col d-flex justify-content-end">
-                <button mat-raised-button type="submit" (click)="downloadDocument()">
-          <i class="icon fas fa-file-download fa-lg" style="margin-right: 5px !important"></i>
+            <div class="col d-flex justify-content-end button-class">
+                <button mat-raised-button type="submit" (click)="downloadDocument()" matTooltip="Descargar archivo" matTooltipPosition="above">
+          <i class="icon fas fa-file-download fa-lg"></i>
         </button>
             </div>
-            <div class="col d-flex justify-content-end">
-                <button mat-raised-button type="button" class="btn-close-dialog" (click)="cancel()">
-          <i class="icon fas fa-window-close fa-lg" style="margin-right: 5px !important"></i>
+            <div class="col d-flex justify-content-end button-class">
+                <button mat-raised-button type="button" class="btn-close-dialog" (click)="cancel()" matTooltip="Cerrar ventana" matTooltipPosition="above">
+          <i class="icon fas fa-window-close fa-lg"></i>
         </button>
             </div>
         </div>
     </div>
 </div>
 <mat-dialog-content style="margin-top: 30px !important">
-    <pdf-viewer [src]="pdfSrc" [rotation]="0" [fit-to-page]="true" [original-size]="true" [show-all]="true" style="display: block"></pdf-viewer>
+    <div *ngIf="preload" class="row justify-content-center full-height" style="min-height: 100% !important">
+        <div class="col-12 center-horizontal-vertical full-height flexbox-col">
+            <img src="../../../../assets/loading/loading.gif" height="400px" alt="gif cargando" />
+        </div>
+    </div>
+    <pdf-viewer [src]="pdfSrc" [rotation]="0" [fit-to-page]="true" [original-size]="true" [page]="1" [show-all]="true" [show-borders]="true" style="display: block" (after-load-complete)="changeState()" (on-progress)="onProgress($event)">
+    </pdf-viewer>
 </mat-dialog-content>

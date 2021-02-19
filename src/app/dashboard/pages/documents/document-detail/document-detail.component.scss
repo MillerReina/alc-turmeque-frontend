@@ -8,6 +8,10 @@
     color: gray !important;
 }
 
+::ng-deep .mat-stroked-button {
+    outline: none !important;
+}
+
 .mat-card {
     max-height: 100% !important;
     overflow-y: auto;

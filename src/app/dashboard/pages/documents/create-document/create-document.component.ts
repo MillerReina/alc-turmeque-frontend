@@ -141,6 +141,9 @@ export class CreateDocumentComponent implements OnInit {
     });
   }
 
+  /**
+   * Crea la instancia del formulario reactivo
+   */
   createRegisterForm(): void {
     this.registerForm = this.fb.group({
       sender_first_name: ['Miller', [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
