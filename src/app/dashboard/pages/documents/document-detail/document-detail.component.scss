@@ -1,4 +1,42 @@
+@import './../../../../../styles.scss';
+@import './../../officers/create-officer/create-officer.component.scss';
+::ng-deep .mat-form-field-disabled {
+    .mat-input-element {
+        color: rgb(167, 167, 167);
+    }
+}
+
 .webviewer {
     width: 100% !important;
     height: 1000px !important;
+}
+
+.mat-button-action {
+    margin-left: 3px !important;
+    margin-right: 3px !important;
+    font-size: 1.5em !important;
+}
+
+.resolve {
+    color: whitesmoke !important;
+    background-color: $secondary-color-green;
+}
+
+.extension {
+    color: whitesmoke !important;
+    background-color: $secondary-color-yellow;
+}
+
+.return {
+    color: whitesmoke !important;
+    background-color: $secondary-color-red;
+}
+
+.title-secondary {
+    color: $principal-color-blue;
+    padding: 5px !important;
+}
+
+.pointer:hover {
+    cursor: pointer;
 }

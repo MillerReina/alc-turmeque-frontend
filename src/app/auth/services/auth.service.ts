@@ -63,7 +63,7 @@ export class AuthService {
   }
 
   getMyDetails(): Observable<any> {
-    return this.http.get<any>(`${base_url}/users/user`);
+    return this.http.get<any>(`${base_url}/users/officer`);
   }
   /* Valida que el token sea autentico */
   validateToken(): Observable<boolean> {
