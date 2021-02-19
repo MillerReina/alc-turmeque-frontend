@@ -1,17 +1,23 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { IDocument } from '../../../../../interfaces/documents-interface';
 import { DocumentsService } from '../../../../services/documents.service';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../../../auth/services/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AssingDocumentDialogComponent } from '../assing-document-dialog/assing-document-dialog.component';
+import { Subscription } from 'rxjs';
+import { AssignUserDialogService } from '../../../../services/assign-user-dialog.service';
+import { ToastMessageService } from '../../../../../services/toast-message.service';
+import { INewAssign } from '../../../../../interfaces/assign-user-interface';
 
 @Component({
   selector: 'app-documents-table',
   templateUrl: './documents-table.component.html',
   styleUrls: ['./documents-table.component.scss'],
 })
-export class DocumentsTableComponent implements OnInit {
+export class DocumentsTableComponent implements OnInit, OnDestroy {
   /**
    * Tipo de documento que se va a cargar
    */
@@ -61,11 +67,22 @@ export class DocumentsTableComponent implements OnInit {
    */
   public isMain: boolean;
   /**
+   * Subscripcion hacia el evento del dialog
+   */
+  public newAssignSubscrition: Subscription;
+  /**
    * Paginador
    */
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  constructor(private documentService: DocumentsService, private router: Router, private authService: AuthService) {
+  constructor(
+    private documentService: DocumentsService,
+    private router: Router,
+    private authService: AuthService,
+    public dialog: MatDialog,
+    public assignUserDialogService: AssignUserDialogService,
+    private toastService: ToastMessageService
+  ) {
     this.preload = true;
     this.pageSize = 10;
     this.pageNumber = 1;
@@ -74,16 +91,37 @@ export class DocumentsTableComponent implements OnInit {
   ngOnInit(): void {
     this.isMainAccount();
     this.loadDocuments();
+    this.valueChanges();
   }
 
+  ngOnDestroy(): void {
+    this.newAssignSubscrition.unsubscribe();
+  }
   get inputTerm(): string {
     return (document.getElementById('term') as HTMLInputElement).value;
   }
 
+  /**
+   * Detecta si es un titular
+   */
   isMainAccount(): void {
     this.isMain = this.authService.isMainConfirmation;
   }
 
+  valueChanges(): void {
+    this.newAssignSubscrition = this.assignUserDialogService.newAssign.subscribe((res: INewAssign) => {
+      this.preload = true;
+      this.toastService.showSuccessMessageDocuments(
+        'RADICADO ASIGNADO',
+        `El funcionario: ${res.user_name.toUpperCase()} de la dependencia: ${res.name_dependency.toUpperCase()} tiene un nuevo radicado.`
+      );
+      this.loadDocuments();
+    });
+  }
+
+  /**
+   * Carga los documentos del sistema
+   */
   loadDocuments(): void {
     this.preloadSearch = true;
     this.documentService.getAllDocuments(this.documentType, this.pageNumber.toString(), true, '').subscribe((res) => {
@@ -93,6 +131,9 @@ export class DocumentsTableComponent implements OnInit {
     });
   }
 
+  /**
+   * Refresca la tabla con los documentos
+   */
   refreshTable(): void {
     this.dataSource = new MatTableDataSource(this.documentsFiled);
     this.dataSource.paginator = this.paginator;
@@ -100,6 +141,9 @@ export class DocumentsTableComponent implements OnInit {
     this.preloadSearch = false;
   }
 
+  /**
+   * Busca documento por coincidencia
+   */
   searchDocumentsByCoincidence(term): void {
     this.preloadSearch = true;
     this.documentService.getAllDocuments(this.documentType, this.pageNumber.toString(), true, term).subscribe((res) => {
@@ -109,6 +153,10 @@ export class DocumentsTableComponent implements OnInit {
     });
   }
 
+  /**
+   * Paginador
+   * @param e Accion de atras o siguente
+   */
   handlePage(e: PageEvent): void {
     this.pageSize = e.pageSize;
     this.pageNumber = e.pageIndex + 1;
@@ -120,7 +168,24 @@ export class DocumentsTableComponent implements OnInit {
     }
   }
 
+  /**
+   * Abre documento en especifico por id
+   */
   getDocument(element): void {
     this.router.navigate([`/dashboard/detail/${element.id}/document`]);
+  }
+
+  /**
+   * Abre el dialogo para asignar radicado
+   */
+  openDialog(element): void {
+    const dialogRef = this.dialog.open(AssingDocumentDialogComponent, {
+      width: '500px',
+      height: '300px',
+      data: element,
+      autoFocus: false,
+    });
+
+    dialogRef.afterClosed().subscribe((__) => {});
   }
 }

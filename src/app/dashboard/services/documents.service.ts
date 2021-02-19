@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { OfficersData } from '../../models/officer.model';
 import { IDocumentDetail } from 'src/app/interfaces/document-detail-interface';
+import { IAssignUser } from '../../interfaces/assign-user-interface';
 
 const base_url = environment.base_url;
 
@@ -48,7 +49,6 @@ export class DocumentsService {
    * Radica nuevo documento en el sistema
    */
   createDocument(formData): Observable<any> {
-    console.log(formData);
     return this.http.post<any>(`${base_url}/documents/document`, formData);
   }
 
@@ -57,5 +57,16 @@ export class DocumentsService {
    */
   getDetailDocument(id): Observable<IDocumentDetail> {
     return this.http.get<IDocumentDetail>(`${base_url}/documents/document?id=${id}`);
+  }
+
+  /**
+   * Obtiene los funcionarios disponibles para asignar
+   */
+  getOfficersToAssign(): Observable<IAssignUser[]> {
+    return this.http.get<IAssignUser[]>(`${base_url}/users/officer_form`);
+  }
+
+  assignOfficerToDocument(formData): Observable<any> {
+    return this.http.post<any>(`${base_url}/documents/assign`, formData);
   }
 }
