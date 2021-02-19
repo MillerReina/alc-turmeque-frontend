@@ -24,86 +24,86 @@
                     <mat-card-title class="title-secondary">Datos del documento: </mat-card-title>
                     <mat-form-field appearance="outline" class="full-width">
                         <mat-label>Fecha de radicación</mat-label>
-                        <input matInput [value]="actualDocument.register_date | date: 'dd/MMM/yyyy h:mm a'" autocomplete="off" type="text" disabled />
+                        <input matInput [value]="actualDocument.register_date | date: 'dd/MMM/yyyy h:mm a'" autocomplete="off" type="text" readonly />
                     </mat-form-field>
 
                     <mat-form-field appearance="outline" class="full-width">
                         <mat-label>Asunto</mat-label>
-                        <textarea matInput [value]="actualDocument.subject" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="6.4" cdkAutosizeMaxRows="6" maxlength="500" disabled></textarea>
+                        <textarea matInput [value]="actualDocument.subject" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="6.4" cdkAutosizeMaxRows="6" maxlength="500" readonly></textarea>
                     </mat-form-field>
 
                     <mat-form-field appearance="outline" class="full-width">
                         <mat-label>Estado del documento</mat-label>
-                        <input matInput [value]="actualDocument.document_state | stateDocument" autocomplete="off" type="text" disabled />
+                        <input matInput [value]="actualDocument.document_state | stateDocument" autocomplete="off" type="text" readonly />
                     </mat-form-field>
 
                     <mat-form-field appearance="outline" class="full-width">
                         <mat-label>Requerimiento</mat-label>
-                        <input matInput [value]="actualDocument.document_type.name_document_type" autocomplete="off" type="text" disabled />
+                        <input matInput [value]="actualDocument.document_type.name_document_type" autocomplete="off" type="text" readonly />
                     </mat-form-field>
 
                     <mat-form-field appearance="outline" class="full-width">
                         <mat-label>Días hábiles</mat-label>
-                        <input matInput [value]="actualDocument.document_type.suggested_working_days" autocomplete="off" type="text" disabled />
+                        <input matInput [value]="actualDocument.document_type.suggested_working_days" autocomplete="off" type="text" readonly />
                     </mat-form-field>
 
                     <mat-form-field appearance="outline" class="full-width">
                         <mat-label>Dependencia</mat-label>
-                        <input matInput [value]="actualDocument.dependency.name_dependency" autocomplete="off" type="text" disabled />
+                        <input matInput [value]="actualDocument.dependency.name_dependency" autocomplete="off" type="text" readonly />
                     </mat-form-field>
 
                     <mat-card-title class="title-secondary">Radicado por:</mat-card-title>
                     <mat-form-field appearance="outline" class="full-width">
                         <mat-label>Usuario</mat-label>
-                        <input matInput [value]="actualDocument.user_register.first_name + ' ' + actualDocument.user_register.last_name" autocomplete="off" type="text" disabled />
+                        <input matInput [value]="actualDocument.user_register.first_name + ' ' + actualDocument.user_register.last_name" autocomplete="off" type="text" readonly />
                     </mat-form-field>
 
                     <mat-card-title class="title-secondary">Funcionario asociado: </mat-card-title>
                     <mat-form-field *ngIf="actualDocument.user_assign != null" appearance="outline" class="full-width">
                         <mat-label>Funcionario</mat-label>
-                        <input matInput [value]="actualDocument.user_assign.first_name + ' ' + actualDocument.user_assign.last_name" autocomplete="off" type="text" disabled />
+                        <input matInput [value]="actualDocument.user_assign.first_name + ' ' + actualDocument.user_assign.last_name" autocomplete="off" type="text" readonly />
                     </mat-form-field>
 
                     <mat-form-field *ngIf="actualDocument.user_assign === null" appearance="outline" class="full-width">
                         <mat-label>Funcionario</mat-label>
-                        <input matInput value="Sin asignar" autocomplete="off" type="text" disabled />
+                        <input matInput value="Sin asignar" autocomplete="off" type="text" readonly />
                     </mat-form-field>
                 </div>
                 <div class="col-sm">
                     <mat-card-title class="title-secondary">Datos del remitente: </mat-card-title>
                     <mat-form-field appearance="outline" class="full-width">
                         <mat-label>Nombres</mat-label>
-                        <input matInput [value]="actualDocument.sender_first_name + ' ' + actualDocument.sender_last_name" autocomplete="off" type="text" disabled />
+                        <input matInput [value]="actualDocument.sender_first_name + ' ' + actualDocument.sender_last_name" autocomplete="off" type="text" readonly />
                     </mat-form-field>
 
                     <mat-form-field appearance="outline" class="full-width">
                         <mat-label>Correo</mat-label>
-                        <input matInput [value]="actualDocument.sender_email" autocomplete="off" type="text" disabled />
+                        <input matInput [value]="actualDocument.sender_email" autocomplete="off" type="text" readonly />
                     </mat-form-field>
 
                     <mat-form-field appearance="outline" class="full-width">
                         <mat-label>Teléfono</mat-label>
-                        <input matInput [value]="actualDocument.phone_number" autocomplete="off" type="text" disabled />
+                        <input matInput [value]="actualDocument.phone_number" autocomplete="off" type="text" readonly />
                     </mat-form-field>
 
                     <mat-form-field appearance="outline" class="full-width">
                         <mat-label>Dirección</mat-label>
-                        <input matInput [value]="actualDocument.address" autocomplete="off" type="text" disabled />
+                        <input matInput [value]="actualDocument.address" autocomplete="off" type="text" readonly />
                     </mat-form-field>
 
                     <mat-form-field appearance="outline" class="full-width">
                         <mat-label>Identificación</mat-label>
-                        <input matInput [value]="actualDocument.sender_identification" autocomplete="off" type="text" disabled />
+                        <input matInput [value]="actualDocument.sender_identification" autocomplete="off" type="text" readonly />
                     </mat-form-field>
 
                     <mat-form-field appearance="outline" class="full-width">
                         <mat-label>Entidad</mat-label>
-                        <input matInput [value]="actualDocument.institution_name" autocomplete="off" type="text" disabled />
+                        <input matInput [value]="actualDocument.institution_name" autocomplete="off" type="text" readonly />
                     </mat-form-field>
 
                     <mat-card-title class="title-secondary">Documento asociado: </mat-card-title>
                     <mat-form-field appearance="outline" class="full-width">
-                        <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="3.9" cdkAutosizeMaxRows="6" maxlength="500" disabled></textarea>
+                        <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="3.9" cdkAutosizeMaxRows="6" maxlength="500" readonly></textarea>
                         <a class="pointer" matTooltip="Ver documento" (click)="openDocument()">
                             <img src="./../../../../../assets/icon/pdf-size-big.png" alt="icono de pdf" style="padding: 10px !important" />
                         </a>

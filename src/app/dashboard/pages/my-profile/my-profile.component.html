@@ -15,19 +15,19 @@
         <mat-card class="full-width full-height">
             <mat-label><strong>Nombre:</strong></mat-label>
             <mat-form-field class="full-width">
-                <input matInput [value]="actualUser.first_name" [disabled]="true" />
+                <input matInput [value]="actualUser.first_name" readonly />
                 <mat-icon matSuffix>spellcheck</mat-icon>
             </mat-form-field>
 
             <mat-label><strong>Apellido:</strong></mat-label>
             <mat-form-field class="full-width">
-                <input matInput [value]="actualUser.last_name" [disabled]="true" />
+                <input matInput [value]="actualUser.last_name" readonly />
                 <mat-icon matSuffix>spellcheck</mat-icon>
             </mat-form-field>
 
             <mat-label><strong>Usuario:</strong></mat-label>
             <mat-form-field class="full-width">
-                <input matInput [value]="actualUser.username" [disabled]="true" />
+                <input matInput [value]="actualUser.username" readonly />
                 <mat-icon matSuffix>face</mat-icon>
             </mat-form-field>
         </mat-card>
@@ -40,19 +40,19 @@
         <mat-card class="full-width full-height">
             <mat-label><strong>Email:</strong></mat-label>
             <mat-form-field class="full-width">
-                <input matInput [value]="actualUser.email" [disabled]="true" />
+                <input matInput [value]="actualUser.email" readonly />
                 <mat-icon matSuffix>email</mat-icon>
             </mat-form-field>
 
             <mat-label><strong>Teléfono:</strong></mat-label>
             <mat-form-field class="full-width">
-                <input matInput [value]="actualUser.phone_number" [disabled]="true" />
+                <input matInput [value]="actualUser.phone_number" readonly />
                 <mat-icon matSuffix>call</mat-icon>
             </mat-form-field>
 
             <mat-label><strong>Fecha de nacimiento:</strong></mat-label>
             <mat-form-field class="full-width">
-                <input matInput [value]="actualUser.birthdate" [disabled]="true" />
+                <input matInput [value]="actualUser.birthdate" readonly />
                 <mat-icon matSuffix>insert_invitation</mat-icon>
             </mat-form-field>
         </mat-card>
@@ -61,19 +61,19 @@
         <mat-card class="full-width full-height">
             <mat-label><strong>Identificación:</strong></mat-label>
             <mat-form-field class="full-width">
-                <input matInput [value]="actualUser.identification" [disabled]="true" />
+                <input matInput [value]="actualUser.identification" readonly />
                 <mat-icon matSuffix>assignment_ind</mat-icon>
             </mat-form-field>
 
             <mat-label><strong>Mi rol asignado:</strong></mat-label>
             <mat-form-field class="full-width">
-                <input matInput [disabled]="true" [value]="actualUser.role_name" />
+                <input matInput readonly [value]="actualUser.role_name" />
                 <mat-icon matSuffix>supervisor_account</mat-icon>
             </mat-form-field>
 
             <mat-label><strong>Mi dependencia:</strong></mat-label>
             <mat-form-field class="full-width">
-                <input matInput [value]="actualUser.dependency_name" [disabled]="true" />
+                <input matInput [value]="actualUser.dependency_name" readonly />
                 <mat-icon matSuffix>apartment</mat-icon>
             </mat-form-field>
         </mat-card>

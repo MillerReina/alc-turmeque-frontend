@@ -1,16 +1,15 @@
 <h1 mat-dialog-title class="title-users">Documento escaneado</h1>
 <div mat-dialog-actions class="center-horizontal full-width">
-    <div class="container secondary">
+    <div class="container secondary col d-flex justify-content-end">
         <div class="row">
-            <div class="col-10 d-flex justify-content-end">
+            <div class="col d-flex justify-content-end">
                 <button mat-raised-button type="submit" (click)="downloadDocument()">
-          <i class="fas fa-file-download fa-lg" style="margin-right: 5px !important"></i>
-          Descargar documento
+          <i class="icon fas fa-file-download fa-lg" style="margin-right: 5px !important"></i>
         </button>
             </div>
             <div class="col d-flex justify-content-end">
                 <button mat-raised-button type="button" class="btn-close-dialog" (click)="cancel()">
-          <i class="fas fa-window-close fa-lg" style="margin-right: 5px !important"></i>
+          <i class="icon fas fa-window-close fa-lg" style="margin-right: 5px !important"></i>
         </button>
             </div>
         </div>
