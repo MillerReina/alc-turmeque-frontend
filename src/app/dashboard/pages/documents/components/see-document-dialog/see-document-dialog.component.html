@@ -1,5 +1,5 @@
-<div mat-dialog-actions class="center-horizontal full-width generic-style">
-    <div class="container secondary col d-flex justify-content-end">
+<div mat-dialog-actions class="center-horizontal full-width">
+    <div class="container secondary col d-flex justify-content-end full-width">
         <div class="row">
             <div class="col d-flex justify-content-end button-class">
                 <button mat-raised-button type="file" (click)="downloadDocument()" matTooltip="Descargar archivo" matTooltipPosition="above">
@@ -17,7 +17,7 @@
 <mat-dialog-content style="margin-top: 30px !important">
     <div *ngIf="preload" class="row justify-content-center full-height" style="min-height: 100% !important">
         <div class="col-12 center-horizontal-vertical full-height flexbox-col">
-            <img src="../../../../assets/loading/loading.gif" height="400px" alt="gif cargando" />
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
         </div>
     </div>
     <pdf-viewer [src]="pdfSrc" [rotation]="0" [fit-to-page]="true" [original-size]="true" [page]="1" [show-all]="true" [show-borders]="true" style="display: block" (after-load-complete)="changeState()" (on-progress)="onProgress($event)">

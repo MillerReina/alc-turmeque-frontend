@@ -8,37 +8,37 @@
                         <div class="col-sm subtitle">
                             <mat-form-field class="full-width">
                                 <mat-label><strong>Usuario:</strong></mat-label>
-                                <input matInput [value]="actualUser.username" [disabled]="true" />
+                                <input matInput [value]="actualUser.username" readonly />
                             </mat-form-field>
                             <mat-form-field class="full-width">
                                 <mat-label><strong>Apellido:</strong></mat-label>
-                                <input matInput [value]="actualUser.last_name" [disabled]="true" />
+                                <input matInput [value]="actualUser.last_name" readonly />
                             </mat-form-field>
                             <mat-form-field class="full-width">
                                 <mat-label><strong>Identificación:</strong></mat-label>
-                                <input matInput [value]="actualUser.identification" [disabled]="true" />
+                                <input matInput [value]="actualUser.identification" readonly />
                             </mat-form-field>
                             <mat-form-field class="full-width">
                                 <mat-label><strong>Estado:</strong></mat-label>
-                                <input matInput [value]="actualUser.is_active | isActive" [disabled]="true" />
+                                <input matInput [value]="actualUser.is_active | isActive" readonly />
                             </mat-form-field>
                         </div>
                         <div class="col-sm subtitle">
                             <mat-form-field class="full-width">
                                 <mat-label><strong>Nombre:</strong></mat-label>
-                                <input matInput [value]="actualUser.first_name" [disabled]="true" />
+                                <input matInput [value]="actualUser.first_name" readonly />
                             </mat-form-field>
                             <mat-form-field class="full-width">
                                 <mat-label> <strong>Dependencia:</strong></mat-label>
-                                <input matInput [value]="actualUser.name_dependency" [disabled]="true" />
+                                <input matInput [value]="actualUser.name_dependency" readonly />
                             </mat-form-field>
                             <mat-form-field class="full-width">
                                 <mat-label><strong>Email:</strong></mat-label>
-                                <input matInput [value]="actualUser.email" [disabled]="true" />
+                                <input matInput [value]="actualUser.email" readonly />
                             </mat-form-field>
                             <mat-form-field class="full-width">
                                 <mat-label><strong>Rol asignado:</strong></mat-label>
-                                <input matInput [value]="actualUser.name_role" [disabled]="true" />
+                                <input matInput [value]="actualUser.name_role" readonly />
                             </mat-form-field>
                         </div>
                     </div>

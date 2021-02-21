@@ -19,6 +19,10 @@
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
+::ng-deep .mat-form-field {
+    color: gray !important;
+}
+
 mat-form-field {
     padding-right: 15px !important;
 }

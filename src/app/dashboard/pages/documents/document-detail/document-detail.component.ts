@@ -77,8 +77,6 @@ export class DocumentDetailComponent implements OnInit, AfterViewInit {
    */
   openDocument(): void {
     const dialogRef = this.dialog.open(SeeDocumentDialogComponent, {
-      width: '90%',
-      height: '90%',
       data: this.actualDocument,
       autoFocus: false,
     });
