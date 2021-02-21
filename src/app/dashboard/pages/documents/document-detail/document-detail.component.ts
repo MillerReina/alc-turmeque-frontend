@@ -5,6 +5,7 @@ import { IDocumentDetail } from '../../../../interfaces/document-detail-interfac
 import { AuthService } from '../../../../auth/services/auth.service';
 import { SeeDocumentDialogComponent } from '../components/see-document-dialog/see-document-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-document-detail',
@@ -83,5 +84,23 @@ export class DocumentDetailComponent implements OnInit, AfterViewInit {
     });
 
     dialogRef.afterClosed().subscribe((__) => {});
+  }
+
+  returnDocument(): void {
+    Swal.fire({
+      title: `Devolver solicitud`,
+      text: 'Esta acción solo se puede realizar una única vez, ¿desea continuar?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#1d59c9',
+      cancelButtonColor: '#ff007d',
+      confirmButtonText: '¡Sí, devolver!',
+      cancelButtonText: 'Cancelar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+      } else {
+        console.log('Cancelado');
+      }
+    });
   }
 }

@@ -11,7 +11,9 @@
         <div class="buttons-actions">
             <button *ngIf="isTheUser" class="mat-button-action resolve" mat-stroked-button>Resolver</button>
             <button *ngIf="isTheUser" class="mat-button-action extension" mat-stroked-button>Prórroga</button>
-            <button *ngIf="isTheUser" class="mat-button-action return" mat-stroked-button>Devolver</button>
+            <button *ngIf="isTheUser" class="mat-button-action return" mat-stroked-button (click)="returnDocument()">
+        Devolver
+      </button>
         </div>
     </div>
 
@@ -100,11 +102,15 @@
                     </mat-form-field>
 
                     <mat-card-title class="title-secondary">Documento asociado: </mat-card-title>
+
                     <mat-form-field appearance="outline" class="full-width">
-                        <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="3.9" cdkAutosizeMaxRows="6" maxlength="500" readonly></textarea>
-                        <a class="pointer" matTooltip="Ver documento" (click)="openDocument()">
-                            <img src="./../../../../../assets/icon/pdf-size-big.png" alt="icono de pdf" style="padding: 10px !important" />
-                        </a>
+                        <input matInput [value]="" autocomplete="off" type="text" readonly />
+                        <div>
+                            <a class="pointer" matTooltip="Ver documento" (click)="openDocument()">
+                                <img class="pdf-img" src="./../../../../../assets/icon/pdf-size-big.png" alt="icono de pdf" style="margin-bottom: 15px !important; padding: 10px !important" />
+                                <p class="name-pdf center-horizontal">Nombre del documento.pdf</p>
+                            </a>
+                        </div>
                     </mat-form-field>
                 </div>
             </div>

@@ -29,16 +29,26 @@ export class SeeDocumentDialogComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  /**
+   * Descarga el documento actual
+   */
   downloadDocument(): void {
-    FileSaver.saveAs(`${this.pdfSrc}`, 'mypdf.pdf');
+    /*       window.open(this.pdfSrc, "_blank"); */
+    FileSaver.saveAs(`${this.pdfSrc}`, `${this.data.file_number}`);
   }
 
+  /**
+   * Progreso de carga de visualización de pdf
+   */
   onProgress(progressData: PDFProgressData): void {
     if (progressData) {
       this.preload = true;
     }
   }
 
+  /**
+   * Estado de carga
+   */
   changeState(): void {
     this.preload = false;
   }
