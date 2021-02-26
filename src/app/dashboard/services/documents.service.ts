@@ -66,7 +66,19 @@ export class DocumentsService {
     return this.http.get<IAssignUser[]>(`${base_url}/users/officer_form`);
   }
 
+  /**
+   * Asigna del documento a un funcionario
+   */
   assignOfficerToDocument(formData): Observable<any> {
     return this.http.post<any>(`${base_url}/documents/assign`, formData);
+  }
+
+  /**
+   * Devuelve el documento a una dependencia
+   */
+  returnDocument(formData): Observable<any> {
+    console.log(formData);
+
+    return this.http.post<any>(`${base_url}/documents/reassign`, formData);
   }
 }

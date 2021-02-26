@@ -6,6 +6,7 @@ import { AuthService } from '../../../../auth/services/auth.service';
 import { SeeDocumentDialogComponent } from '../components/see-document-dialog/see-document-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
+import { ReturnDocumentDialogComponent } from '../components/return-document-dialog/return-document-dialog.component';
 
 @Component({
   selector: 'app-document-detail',
@@ -96,9 +97,22 @@ export class DocumentDetailComponent implements OnInit, AfterViewInit {
       cancelButtonText: 'Cancelar',
     }).then((result) => {
       if (result.isConfirmed) {
-      } else {
-        console.log('Cancelado');
+        this.openReturnDocument();
       }
     });
+  }
+
+  /**
+   * Abre el dialogo para devolver radicado
+   */
+  openReturnDocument(): void {
+    const dialogRef = this.dialog.open(ReturnDocumentDialogComponent, {
+      data: this.actualDocument,
+      height: '500px',
+      width: '500px',
+      autoFocus: false,
+    });
+
+    dialogRef.afterClosed().subscribe((__) => {});
   }
 }

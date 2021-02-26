@@ -1,0 +1,55 @@
+<div class="container principal">
+    <h1 mat-dialog-title class="title center-horizontal">Devolver radicado</h1>
+
+    <div mat-dialog-content>
+        <div class="container center-horizontal-vertical full-height">
+            <div class="row full-height full-width">
+                <div class="container">
+                    <div class="row">
+                        <form autocomplete="off" [formGroup]="registerForm" (ngSubmit)="assignDocumentToDependency()">
+                            <div class="col subtitle">
+                                <mat-form-field appearance="outline" class="full-width" [ngClass]="{
+                    myelement: officerAssignIsInvalid
+                  }">
+                                    <mat-label>Dependencia</mat-label>
+                                    <mat-select formControlName="dependency" name="officer" required>
+                                        <mat-option *ngFor="let dependency of listDependencies" [value]="dependency.id">
+                                            {{ dependency.name_dependency }}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="officerAssignIsInvalid"> Seleccione un funcionario por favor </mat-error>
+                                </mat-form-field>
+
+                                <mat-form-field appearance="outline" class="full-width" [ngClass]="{
+                    myelement: subjectIsInvalid
+                  }">
+                                    <mat-label>Razón</mat-label>
+                                    <textarea matInput formControlName="comment" placeholder="Justificación de la devolución - máx. 500 carácteres." cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="6.4" cdkAutosizeMaxRows="6" maxlength="500" required></textarea>
+                                    <mat-error *ngIf="subjectIsInvalid"> Ingrese un asunto por favor </mat-error>
+                                </mat-form-field>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div mat-dialog-actions class="center-horizontal full-width">
+        <div class="container secondary">
+            <div class="row">
+                <div class="col d-flex justify-content-end">
+                    <button mat-raised-button type="submit" class="full-width" (click)="assignDocumentToDependency()">
+            <i class="fas fa-retweet fa-lg" style="margin-right: 5px !important"></i>
+            Devolver radicado
+          </button>
+                </div>
+                <div class="col d-flex justify-content-start">
+                    <button mat-raised-button type="button" class="btn-close-dialog full-width" (click)="cancel()">
+            <i class="fas fa-window-close fa-lg" style="margin-right: 5px !important"></i>
+            Cerrar
+          </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

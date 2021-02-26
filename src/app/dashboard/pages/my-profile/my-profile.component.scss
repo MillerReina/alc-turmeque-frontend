@@ -1,9 +1,5 @@
 @import './../../../../styles.scss';
 @import './../officers/create-officer/create-officer.component.scss';
-::ng-deep .mat-form-field {
-    color: gray !important;
-}
-
 .mat-card {
     height: 90% !important;
     position: relative;

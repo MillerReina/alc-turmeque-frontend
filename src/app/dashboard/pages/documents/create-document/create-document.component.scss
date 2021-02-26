@@ -31,6 +31,11 @@
     color: $principal-color-pinkish;
 }
 
+.myelement {
+    animation: headShake;
+    animation-duration: 1s;
+}
+
 
 /* Dropzone */
 

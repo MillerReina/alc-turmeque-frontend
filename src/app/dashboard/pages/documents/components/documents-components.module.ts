@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AssingDocumentDialogComponent } from './assing-document-dialog/assing-document-dialog.component';
 import { SeeDocumentDialogComponent } from './see-document-dialog/see-document-dialog.component';
 import { Ng2Module } from '../../../../shared-module/ng2/ng2.module';
+import { ReturnDocumentDialogComponent } from './return-document-dialog/return-document-dialog.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { Ng2Module } from '../../../../shared-module/ng2/ng2.module';
     TitleDocumentsComponent,
     AssingDocumentDialogComponent,
     SeeDocumentDialogComponent,
+    ReturnDocumentDialogComponent,
   ],
   imports: [CommonModule, AngularMaterialModule, NgPrimeModule, FormsModule, ReactiveFormsModule, Ng2Module],
   exports: [DocumentsTableComponent, TitleDocumentsComponent],

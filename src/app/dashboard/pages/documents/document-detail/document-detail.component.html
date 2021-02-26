@@ -106,9 +106,9 @@
                     <mat-form-field appearance="outline" class="full-width">
                         <input matInput [value]="" autocomplete="off" type="text" readonly />
                         <div>
-                            <a class="pointer" matTooltip="Ver documento" (click)="openDocument()">
+                            <a class="pointer" [matTooltip]="actualDocument.file_number" (click)="openDocument()">
                                 <img class="pdf-img" src="./../../../../../assets/icon/pdf-size-big.png" alt="icono de pdf" style="margin-bottom: 15px !important; padding: 10px !important" />
-                                <p class="name-pdf center-horizontal">Nombre del documento.pdf</p>
+                                <!--  <p class="name-pdf center-horizontal">Nombre del documento.pdf</p> -->
                             </a>
                         </div>
                     </mat-form-field>
