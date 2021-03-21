@@ -7,6 +7,7 @@ import { SeeDocumentDialogComponent } from '../components/see-document-dialog/se
 import { MatDialog } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
 import { ReturnDocumentDialogComponent } from '../components/return-document-dialog/return-document-dialog.component';
+/* import { DOC } from '../mocks/get-document-detail.mock'; */
 
 @Component({
   selector: 'app-document-detail',
@@ -54,6 +55,8 @@ export class DocumentDetailComponent implements OnInit, AfterViewInit {
    * Obtiene los detalles de un documento por id
    */
   getDocumentDetail(): void {
+    /* this.actualDocument = DOC;
+    this.isUserAssign(); */
     this.documentService.getDetailDocument(this.idDocument).subscribe((res) => {
       this.actualDocument = res;
       this.isUserAssign();
