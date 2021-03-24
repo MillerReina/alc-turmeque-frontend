@@ -45,7 +45,7 @@
                 myelement: addressIsInvalid
               }">
                             <mat-label>Dirección</mat-label>
-                            <input matInput formControlName="address" value="" autocomplete="off" type="text" maxlength="30" required />
+                            <input matInput formControlName="address" value="" autocomplete="off" type="text" maxlength="30" minlength="14" required />
                             <mat-error *ngIf="addressIsInvalid"> Ingrese un número válido por favor </mat-error>
                         </mat-form-field>
 

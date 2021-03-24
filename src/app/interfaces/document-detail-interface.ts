@@ -18,6 +18,7 @@ export interface IDocumentDetail {
   identification_type: number;
   sender_identification: string;
   institution_name: string;
+  end_date: string;
 }
 
 export interface Dependency {

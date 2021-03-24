@@ -52,3 +52,15 @@ $secondary-color-red: #ff625f !important;
     background-color: $secondary-color-red;
     font-size: 0.8rem;
 }
+
+.badge-active-user {
+    color: white !important;
+    background-color: $principal-color-blue;
+    font-size: 0.8rem;
+}
+
+.badge-inactive-user {
+    color: white !important;
+    background-color: $principal-color-pinkish;
+    font-size: 0.8rem;
+}

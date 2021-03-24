@@ -18,10 +18,17 @@
                                 <mat-label><strong>Identificación:</strong></mat-label>
                                 <input matInput [value]="actualUser.identification" readonly />
                             </mat-form-field>
-                            <mat-form-field class="full-width">
-                                <mat-label><strong>Estado:</strong></mat-label>
-                                <input matInput [value]="actualUser.is_active | isActive" readonly />
-                            </mat-form-field>
+                            <div>
+                                <mat-label class="state">Estado:</mat-label>
+                            </div>
+                            <div style="margin-top: 5px !important; margin-bottom: 8px !important">
+                                <span matInput *ngIf="actualUser.is_active" class="badge badge-active-user">{{
+                  actualUser.is_active | isActive
+                }}</span>
+                                <span matInput *ngIf="!actualUser.is_active" class="badge badge-inactive-user">{{
+                  actualUser.is_active | isActive
+                }}</span>
+                            </div>
                         </div>
                         <div class="col-sm subtitle">
                             <mat-form-field class="full-width">

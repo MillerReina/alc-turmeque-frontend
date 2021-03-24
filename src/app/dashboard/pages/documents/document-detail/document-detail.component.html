@@ -33,18 +33,47 @@
                     </mat-form-field>
 
                     <mat-form-field appearance="outline" class="full-width">
-                        <mat-label>Estado del documento</mat-label>
-                        <input matInput [value]="actualDocument.document_state | stateDocument" autocomplete="off" type="text" readonly />
-                    </mat-form-field>
-
-                    <mat-form-field appearance="outline" class="full-width">
                         <mat-label>Requerimiento</mat-label>
                         <input matInput [value]="actualDocument.document_type.name_document_type" autocomplete="off" type="text" readonly />
                     </mat-form-field>
 
-                    <mat-form-field appearance="outline" class="full-width">
-                        <mat-label>Días hábiles</mat-label>
-                        <input matInput [value]="actualDocument.document_type.suggested_working_days" autocomplete="off" type="text" readonly />
+                    <div class="container document-section">
+                        <div class="row">
+                            <div class="col">
+                                <mat-form-field appearance="outline" class="full-width">
+                                    <mat-label>Días hábiles</mat-label>
+                                    <input matInput [value]="actualDocument.document_type.suggested_working_days" autocomplete="off" type="text" readonly />
+                                </mat-form-field>
+                            </div>
+                            <div class="col">
+                                <mat-form-field appearance="outline" class="full-width">
+                                    <mat-label>Fecha máxima de resolución:</mat-label>
+                                    <input matInput [value]="actualDocument.end_date | date: 'dd/MMM/yyyy'" autocomplete="off" type="text" readonly />
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    <mat-form-field appearance="outline" [ngSwitch]="actualDocument.document_state | stateDocument" class="full-width">
+                        <mat-label>Estado del documento</mat-label>
+                        <mat-chip-list aria-label="Color selection" style="padding: 0px !important; margin: 0px !important">
+                            <mat-chip style="background-color: transparent !important; padding: 0px !important">
+                                <span *ngSwitchCase="'Radicado'" class="badge badge-file-document">{{
+                  actualDocument.document_state | stateDocument
+                }}</span>
+                                <span *ngSwitchCase="'En proceso'" class="badge badge-process">{{
+                  actualDocument.document_state | stateDocument
+                }}</span>
+                                <span *ngSwitchCase="'Resuelto'" class="badge badge-resolved">{{
+                  actualDocument.document_state | stateDocument
+                }}</span>
+                                <span *ngSwitchCase="'Finalizado'" class="badge badge-finished">{{
+                  actualDocument.document_state | stateDocument
+                }}</span>
+                                <span *ngSwitchCase="'Devuelto'" class="badge badge-returned">{{
+                  actualDocument.document_state | stateDocument
+                }}</span>
+                            </mat-chip>
+                        </mat-chip-list>
                     </mat-form-field>
 
                     <mat-form-field appearance="outline" class="full-width">
@@ -98,7 +127,8 @@
 
                     <mat-form-field appearance="outline" class="full-width">
                         <mat-label>Entidad</mat-label>
-                        <input matInput [value]="actualDocument.institution_name" autocomplete="off" type="text" readonly />
+                        <input *ngIf="!actualDocument.institution_name" matInput [value]="'Sin entidad'" autocomplete="off" type="text" readonly />
+                        <input *ngIf="actualDocument.institution_name" matInput [value]="actualDocument.institution_name" autocomplete="off" type="text" readonly />
                     </mat-form-field>
 
                     <mat-card-title class="title-secondary">Documento asociado: </mat-card-title>
@@ -108,7 +138,6 @@
                         <div>
                             <a class="pointer" [matTooltip]="actualDocument.file_number" (click)="openDocument()">
                                 <img class="pdf-img" src="./../../../../../assets/icon/pdf-size-big.png" alt="icono de pdf" style="margin-bottom: 15px !important; padding: 10px !important" />
-                                <!--  <p class="name-pdf center-horizontal">Nombre del documento.pdf</p> -->
                             </a>
                         </div>
                     </mat-form-field>

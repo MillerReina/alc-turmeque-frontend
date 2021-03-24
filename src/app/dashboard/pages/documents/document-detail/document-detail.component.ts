@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { DocumentsService } from '../../../services/documents.service';
 import { IDocumentDetail } from '../../../../interfaces/document-detail-interface';
@@ -14,7 +14,7 @@ import { ReturnDocumentDialogComponent } from '../components/return-document-dia
   templateUrl: './document-detail.component.html',
   styleUrls: ['./document-detail.component.scss'],
 })
-export class DocumentDetailComponent implements OnInit, AfterViewInit {
+export class DocumentDetailComponent implements OnInit {
   /**
    * Precarga del documento
    */
@@ -45,8 +45,6 @@ export class DocumentDetailComponent implements OnInit, AfterViewInit {
     this.isTheUser = false;
   }
 
-  ngAfterViewInit(): void {}
-
   ngOnInit(): void {
     this.getDocumentDetail();
   }
@@ -57,10 +55,17 @@ export class DocumentDetailComponent implements OnInit, AfterViewInit {
   getDocumentDetail(): void {
     /* this.actualDocument = DOC;
     this.isUserAssign(); */
-    this.documentService.getDetailDocument(this.idDocument).subscribe((res) => {
-      this.actualDocument = res;
-      this.isUserAssign();
-    });
+    this.documentService.getDetailDocument(this.idDocument).subscribe(
+      (res) => {
+        console.log(res);
+
+        this.actualDocument = res;
+        this.isUserAssign();
+      },
+      (__) => {
+        this.router.navigate([`dashboard/all`]);
+      }
+    );
   }
 
   isUserAssign(): void {

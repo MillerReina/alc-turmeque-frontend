@@ -154,7 +154,7 @@ export class CreateDocumentComponent implements OnInit {
         [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$')],
       ],
       institution_name: ['Acerias paz del rio', [Validators.pattern('^[a-zA-Z ]*$')]],
-      address: ['Carrera 10#27-22', [Validators.required, Validators.minLength(15)]],
+      address: ['Carrera 10#27-22', [Validators.required, Validators.minLength(14)]],
       sender_identification: ['1057603823', [Validators.required]],
       identification_type: [1, [Validators.required]],
       dependency: [, [Validators.required]],
