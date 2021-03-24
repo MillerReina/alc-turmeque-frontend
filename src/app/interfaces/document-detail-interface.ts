@@ -19,6 +19,7 @@ export interface IDocumentDetail {
   sender_identification: string;
   institution_name: string;
   end_date: string;
+  history: TraceHistory[];
 }
 
 export interface Dependency {
@@ -40,4 +41,11 @@ export interface User {
   last_name: string;
   username: string;
   email: string;
+}
+
+export interface TraceHistory {
+  id: number;
+  user: User;
+  action: string;
+  comment: string;
 }

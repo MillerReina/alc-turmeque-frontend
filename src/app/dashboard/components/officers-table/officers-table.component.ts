@@ -118,7 +118,6 @@ export class OfficersTableComponent implements OnInit {
       data: element,
       autoFocus: false,
     });
-
     dialogRef.afterClosed().subscribe((__) => {});
   }
 

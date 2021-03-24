@@ -1,0 +1,52 @@
+@import './../../../../../../styles.scss';
+@import './../assing-document-dialog/assing-document-dialog.component.scss';
+td,
+th {
+    width: 33% !important;
+}
+
+.mat-dialog-content {
+    margin-top: 30px !important;
+    height: 100%;
+}
+
+.title-text {
+    text-align: center !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.btn-right-close {
+    margin-right: 5px !important;
+}
+
+.icon-btn-close {
+    padding: 0px !important;
+}
+
+.contain-text {
+    background-color: $principal-color-blue;
+    padding: 0px !important;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    justify-content: center !important;
+}
+
+.contain-button {
+    background-color: $principal-color-blue;
+    padding: 0px !important;
+    padding-right: 10px !important;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    justify-content: center !important;
+}
+
+@media (max-width: 700px) {
+    .mat-dialog-content {
+        margin-top: 20px !important;
+    }
+    .btn-close-dialog {
+        margin-top: 3px !important;
+    }
+    .contain-button {
+        padding-right: 0px !important;
+    }
+}

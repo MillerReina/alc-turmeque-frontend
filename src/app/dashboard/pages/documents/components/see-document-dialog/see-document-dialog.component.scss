@@ -22,7 +22,8 @@ mat-dialog-content {
 }
 
 .secondary {
-    background-image: radial-gradient( circle at 120.71% 50%, #3d3d3d 0, #3d3d3d 5%, #3d3d3d 10%, #3d3d3d 15%, #3d3d3d 20%, #3d3d3d 25%, #3d3d3d 30%, #3d3d3d 35%, #3d3d3d 40%, #3d3d3d 45%, #3d3d3d 50%, #3d3d3d 55%, #3d3d3d 60%, #3d3d3d 65%, #3d3d3d 70%, #3d3d3d 75%, #3d3d3d 80%, #3d3d3d 85%, #3d3d3d 90%, #3d3d3d 95%, #3d3d3d 100%);
+    background: rgb(26, 86, 199);
+    background: radial-gradient(circle, rgba(26, 86, 199, 1) 0%, rgba(29, 89, 201, 1) 100%);
 }
 
 .button-class {

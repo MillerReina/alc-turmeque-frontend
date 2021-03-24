@@ -6,7 +6,12 @@
 <div *ngIf="!preload">
     <div class="title-users d-flex justify-content-between mt-4" style="margin-left: 10px !important">
         <div>
-            <h1>Radicado # {{ actualDocument.file_number }}</h1>
+            <h1>
+                Radicado # {{ actualDocument.file_number }}
+                <button mat-raised-button class="btn-history" type="button" matTooltip="Ver historial del documento" (click)="openDialog(actualDocument)">
+          <i class="fas fa-history fa-lg"></i>
+        </button>
+            </h1>
         </div>
         <div class="buttons-actions">
             <button *ngIf="isTheUser" class="mat-button-action resolve" mat-stroked-button>Resolver</button>

@@ -37,7 +37,6 @@ export class ReturnDocumentDialogComponent implements OnInit {
     private documentService: DocumentsService,
     private createService: CreateService,
     public dialogRef: MatDialogRef<DependencyDialogComponent>,
-
     @Inject(MAT_DIALOG_DATA) public data: IDocument
   ) {
     this.createRegisterForm();

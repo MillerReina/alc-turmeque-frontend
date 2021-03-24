@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
 import { ReturnDocumentDialogComponent } from '../components/return-document-dialog/return-document-dialog.component';
 /* import { DOC } from '../mocks/get-document-detail.mock'; */
+import { DocumentHistoryDialogComponent } from '../components/document-history-dialog/document-history-dialog.component';
 
 @Component({
   selector: 'app-document-detail',
@@ -90,6 +91,16 @@ export class DocumentDetailComponent implements OnInit {
       autoFocus: false,
     });
 
+    dialogRef.afterClosed().subscribe((__) => {});
+  }
+
+  openDialog(element): void {
+    const dialogRef = this.dialog.open(DocumentHistoryDialogComponent, {
+      width: '700px',
+      height: '720px',
+      data: element,
+      autoFocus: false,
+    });
     dialogRef.afterClosed().subscribe((__) => {});
   }
 

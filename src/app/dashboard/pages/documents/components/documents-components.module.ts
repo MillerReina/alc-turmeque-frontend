@@ -9,6 +9,7 @@ import { AssingDocumentDialogComponent } from './assing-document-dialog/assing-d
 import { SeeDocumentDialogComponent } from './see-document-dialog/see-document-dialog.component';
 import { Ng2Module } from '../../../../shared-module/ng2/ng2.module';
 import { ReturnDocumentDialogComponent } from './return-document-dialog/return-document-dialog.component';
+import { DocumentHistoryDialogComponent } from './document-history-dialog/document-history-dialog.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { ReturnDocumentDialogComponent } from './return-document-dialog/return-d
     AssingDocumentDialogComponent,
     SeeDocumentDialogComponent,
     ReturnDocumentDialogComponent,
+    DocumentHistoryDialogComponent,
   ],
   imports: [CommonModule, AngularMaterialModule, NgPrimeModule, FormsModule, ReactiveFormsModule, Ng2Module],
   exports: [DocumentsTableComponent, TitleDocumentsComponent],

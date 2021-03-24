@@ -20,6 +20,14 @@ mat-dialog-container {
     flex: 1;
 }
 
+.mat-row:nth-child(n + 1) {
+    background-color: #ffffff;
+}
+
+.mat-row:not(:nth-child(2n + 1)) {
+    background-color: #f1f1f1;
+}
+
 @media (max-width: 700px) {
     .example-container {
         margin-bottom: 0px !important;
