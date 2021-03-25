@@ -5,10 +5,9 @@ import { IDocumentDetail } from '../../../../interfaces/document-detail-interfac
 import { AuthService } from '../../../../auth/services/auth.service';
 import { SeeDocumentDialogComponent } from '../components/see-document-dialog/see-document-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import Swal from 'sweetalert2';
 import { ReturnDocumentDialogComponent } from '../components/return-document-dialog/return-document-dialog.component';
-/* import { DOC } from '../mocks/get-document-detail.mock'; */
 import { DocumentHistoryDialogComponent } from '../components/document-history-dialog/document-history-dialog.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-document-detail',
@@ -58,8 +57,6 @@ export class DocumentDetailComponent implements OnInit {
     this.isUserAssign(); */
     this.documentService.getDetailDocument(this.idDocument).subscribe(
       (res) => {
-        console.log(res);
-
         this.actualDocument = res;
         this.isUserAssign();
       },
@@ -69,6 +66,9 @@ export class DocumentDetailComponent implements OnInit {
     );
   }
 
+  /**
+   * Detecta si es el usuario asignado al documento
+   */
   isUserAssign(): void {
     this.authService.getMyDetails().subscribe((res) => {
       if (this.actualDocument.user_assign === null) {
@@ -94,16 +94,22 @@ export class DocumentDetailComponent implements OnInit {
     dialogRef.afterClosed().subscribe((__) => {});
   }
 
+  /**
+   * Abre el dialog para poder ver el historial de un documento
+   */
   openDialog(element): void {
     const dialogRef = this.dialog.open(DocumentHistoryDialogComponent, {
-      width: '700px',
-      height: '720px',
+      width: '900px',
+      height: '450px',
       data: element,
       autoFocus: false,
     });
     dialogRef.afterClosed().subscribe((__) => {});
   }
 
+  /**
+   * Aviso de advertencia para devolver un radicado
+   */
   returnDocument(): void {
     Swal.fire({
       title: `Devolver solicitud`,
@@ -127,7 +133,7 @@ export class DocumentDetailComponent implements OnInit {
   openReturnDocument(): void {
     const dialogRef = this.dialog.open(ReturnDocumentDialogComponent, {
       data: this.actualDocument,
-      height: '500px',
+      height: '400px',
       width: '500px',
       autoFocus: false,
     });

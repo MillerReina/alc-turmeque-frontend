@@ -48,4 +48,5 @@ export interface TraceHistory {
   user: User;
   action: string;
   comment: string;
+  register_date: Date;
 }

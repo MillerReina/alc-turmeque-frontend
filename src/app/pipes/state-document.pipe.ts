@@ -16,6 +16,8 @@ export class StateDocumentPipe implements PipeTransform {
         return 'Finalizado';
       case 'DE':
         return 'Devuelto';
+      case 'AS':
+        return 'Asignado';
       default:
         break;
     }

@@ -10,6 +10,7 @@ import { SeeDocumentDialogComponent } from './see-document-dialog/see-document-d
 import { Ng2Module } from '../../../../shared-module/ng2/ng2.module';
 import { ReturnDocumentDialogComponent } from './return-document-dialog/return-document-dialog.component';
 import { DocumentHistoryDialogComponent } from './document-history-dialog/document-history-dialog.component';
+import { PipesModule } from '../../../../pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,15 @@ import { DocumentHistoryDialogComponent } from './document-history-dialog/docume
     ReturnDocumentDialogComponent,
     DocumentHistoryDialogComponent,
   ],
-  imports: [CommonModule, AngularMaterialModule, NgPrimeModule, FormsModule, ReactiveFormsModule, Ng2Module],
+  imports: [
+    CommonModule,
+    AngularMaterialModule,
+    NgPrimeModule,
+    FormsModule,
+    ReactiveFormsModule,
+    Ng2Module,
+    PipesModule,
+  ],
   exports: [DocumentsTableComponent, TitleDocumentsComponent],
 })
 export class DocumentsComponentsModule {}

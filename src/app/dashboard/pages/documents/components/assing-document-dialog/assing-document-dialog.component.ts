@@ -85,7 +85,6 @@ export class AssingDocumentDialogComponent implements OnInit {
           this.cancel();
         },
         (err) => {
-          console.log(err);
           Swal.fire({
             title: '¡No se pudo asignar radicado!',
             icon: 'error',

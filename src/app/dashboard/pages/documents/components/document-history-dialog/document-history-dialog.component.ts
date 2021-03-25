@@ -9,7 +9,7 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./document-history-dialog.component.scss'],
 })
 export class DocumentHistoryDialogComponent implements OnInit {
-  public displayedColumns: string[] = ['accion', 'usuario', 'comentario'];
+  public displayedColumns: string[] = ['accion', 'usuario', 'fecha', 'comentario'];
   /**
    * Información fuente que se carga desde el servicio
    */

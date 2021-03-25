@@ -2,7 +2,7 @@
 @import './../assing-document-dialog/assing-document-dialog.component.scss';
 td,
 th {
-    width: 33% !important;
+    width: 25% !important;
 }
 
 .mat-dialog-content {
@@ -39,9 +39,23 @@ th {
     justify-content: center !important;
 }
 
+.mat-cell {
+    text-align: center !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.mat-table {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px !important;
+}
+
 @media (max-width: 700px) {
     .mat-dialog-content {
         margin-top: 20px !important;
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+        padding-right: 10px !important;
+        padding-left: 10px !important;
     }
     .btn-close-dialog {
         margin-top: 3px !important;

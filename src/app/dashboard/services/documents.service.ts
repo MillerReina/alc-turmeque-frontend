@@ -77,8 +77,6 @@ export class DocumentsService {
    * Devuelve el documento a una dependencia
    */
   returnDocument(formData): Observable<any> {
-    console.log(formData);
-
     return this.http.post<any>(`${base_url}/documents/reassign`, formData);
   }
 }

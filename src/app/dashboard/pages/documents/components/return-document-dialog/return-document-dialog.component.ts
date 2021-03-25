@@ -7,6 +7,8 @@ import { DocumentsService } from '../../../../services/documents.service';
 import { INewAssign } from '../../../../../interfaces/assign-user-interface';
 import { IDepedency } from '../../../../../interfaces/dependency-interface';
 import { CreateService } from '../../../../services/create.service';
+import { Router } from '@angular/router';
+import { ToastMessageService } from '../../../../../services/toast-message.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -36,6 +38,8 @@ export class ReturnDocumentDialogComponent implements OnInit {
     private fb: FormBuilder,
     private documentService: DocumentsService,
     private createService: CreateService,
+    private toastService: ToastMessageService,
+    private router: Router,
     public dialogRef: MatDialogRef<DependencyDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: IDocument
   ) {
@@ -83,23 +87,49 @@ export class ReturnDocumentDialogComponent implements OnInit {
       this.registerForm.markAllAsTouched();
     } else {
       this.registerForm.get('document').setValue(this.data.id);
-      console.log(this.registerForm.value);
-
-      this.documentService.returnDocument(this.registerForm.value).subscribe(
+      const formData = new FormData();
+      formData.append('document', this.registerForm.get('document').value);
+      formData.append('dependency', this.registerForm.get('dependency').value);
+      formData.append('comment', this.registerForm.get('comment').value);
+      this.documentService.returnDocument(formData).subscribe(
         (__) => {
-          console.log(__);
+          const documentReturned = {
+            document: this.actualDocument,
+            dependency: this.getDependencyName(),
+          };
+
+          this.cancel();
+          this.router.navigate([`dashboard/all`]);
+          this.toastService.showWarningMessage(
+            'RADICADO DEVUELTO',
+            `El documento: ${
+              documentReturned.document.file_number
+            } ha sido devuelto a la dependencia: ${documentReturned.dependency.toUpperCase()}.`
+          );
         },
         (err) => {
-          console.log(err);
           Swal.fire({
             title: '¡No se pudo devolver el radicado!',
             icon: 'error',
-            text: err.error.name_dependency,
+            text: err.error.error,
             confirmButtonText: 'Aceptar',
           });
         }
       );
     }
+  }
+
+  /**
+   * Obtiene el nombre de la dependencia
+   */
+  getDependencyName(): string {
+    let dependency = '';
+    this.listDependencies.forEach((element) => {
+      if (element.id === this.registerForm.get('dependency').value) {
+        dependency = `${element.name_dependency}`;
+      }
+    });
+    return dependency;
   }
 
   /**

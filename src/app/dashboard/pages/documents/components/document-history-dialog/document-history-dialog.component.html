@@ -12,7 +12,7 @@
         </div>
     </div>
 
-    <div mat-dialog-content>
+    <div mat-dialog-content style="height: 65% !important">
         <div class="container center-horizontal-vertical" style="margin-bottom: 10px !important">
             <div class="row full-height full-width">
                 <div class="container">
@@ -20,8 +20,22 @@
                         <table mat-table [dataSource]="dataSource" class="shadow full-width">
                             <ng-container matColumnDef="accion">
                                 <th mat-header-cell *matHeaderCellDef class="text-center">Acción</th>
-                                <td mat-cell *matCellDef="let element" style="padding-left: 10px !important">
-                                    {{ element.action }}
+                                <td mat-cell *matCellDef="let element" [ngSwitch]="element.action | stateDocument" style="padding-left: 10px !important">
+                                    <span *ngSwitchCase="'Radicado'" class="badge badge-file-document">
+                    {{ element.action | stateDocument }} por:
+                  </span>
+                                    <span *ngSwitchCase="'Asignado'" class="badge badge-process">
+                    {{ element.action | stateDocument }} por:
+                  </span>
+                                    <span *ngSwitchCase="'Resuelto'" class="badge badge-resolved">
+                    {{ element.action | stateDocument }} por:
+                  </span>
+                                    <span *ngSwitchCase="'Finalizado'" class="badge badge-finished">
+                    {{ element.action | stateDocument }} por:
+                  </span>
+                                    <span *ngSwitchCase="'Devuelto'" class="badge badge-returned">
+                    {{ element.action | stateDocument }} por:
+                  </span>
                                 </td>
                             </ng-container>
 
@@ -32,10 +46,17 @@
                                 </td>
                             </ng-container>
 
-                            <ng-container matColumnDef="comentario">
-                                <th mat-header-cell *matHeaderCellDef class="text-center">Comentario</th>
+                            <ng-container matColumnDef="fecha">
+                                <th mat-header-cell *matHeaderCellDef class="text-center">Fecha de la acción</th>
                                 <td mat-cell *matCellDef="let element" style="padding-left: 10px !important">
-                                    {{ element.comment }}
+                                    {{ element.register_date | date: 'dd/MMM/yyyy h:mm a' }}
+                                </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="comentario">
+                                <th mat-header-cell *matHeaderCellDef class="text-center">Observaciones</th>
+                                <td mat-cell *matCellDef="let element" style="padding-left: 10px !important">
+                                    {{ element.comment || 'Sin observaciones' }}
                                 </td>
                             </ng-container>
 
