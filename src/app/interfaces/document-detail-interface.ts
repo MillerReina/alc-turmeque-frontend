@@ -1,3 +1,5 @@
+import { IExtensionDetail } from './extension-detail-interface';
+
 export interface IDocumentDetail {
   id: number;
   file_number: string;
@@ -20,6 +22,7 @@ export interface IDocumentDetail {
   institution_name: string;
   end_date: string;
   history: TraceHistory[];
+  extension: IExtensionDetail;
 }
 
 export interface Dependency {

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { DocumentsService } from '../../../services/documents.service';
 import { IDocumentDetail } from '../../../../interfaces/document-detail-interface';
@@ -7,15 +7,17 @@ import { SeeDocumentDialogComponent } from '../components/see-document-dialog/se
 import { MatDialog } from '@angular/material/dialog';
 import { ReturnDocumentDialogComponent } from '../components/return-document-dialog/return-document-dialog.component';
 import { DocumentHistoryDialogComponent } from '../components/document-history-dialog/document-history-dialog.component';
-import Swal from 'sweetalert2';
 import { ExtensionDocumentDialogComponent } from '../components/extension-document-dialog/extension-document-dialog.component';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+import Swal from 'sweetalert2';
+import { SnackBarComponent } from '../components/snack-bar/snack-bar.component';
 
 @Component({
   selector: 'app-document-detail',
   templateUrl: './document-detail.component.html',
   styleUrls: ['./document-detail.component.scss'],
 })
-export class DocumentDetailComponent implements OnInit {
+export class DocumentDetailComponent implements OnInit, OnDestroy {
   /**
    * Precarga del documento
    */
@@ -32,6 +34,18 @@ export class DocumentDetailComponent implements OnInit {
    * Verifica que el usuario sea el asignado
    */
   public isTheUser: boolean;
+  /**
+   * Posición horizontal del SnackBar
+   */
+  public horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  /**
+   * Posición vertical del SnackBar
+   */
+  public verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+  /**
+   * Prórroga activa
+   */
+  public hasExtensionActive: boolean;
 
   @ViewChild('viewer') viewerRef: ElementRef;
 
@@ -39,11 +53,16 @@ export class DocumentDetailComponent implements OnInit {
     private router: Router,
     private documentService: DocumentsService,
     private authService: AuthService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar
   ) {
     this.idDocument = this.router.url.split('/')[3];
     this.preload = true;
     this.isTheUser = false;
+    this.hasExtensionActive = false;
+  }
+  ngOnDestroy(): void {
+    this.snackBar.dismiss();
   }
 
   ngOnInit(): void {
@@ -80,6 +99,7 @@ export class DocumentDetailComponent implements OnInit {
       } else {
         this.preload = false;
       }
+      this.itHasExtensionActive();
     });
   }
 
@@ -153,5 +173,30 @@ export class DocumentDetailComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((__) => {});
+  }
+
+  itHasExtensionActive(): void {
+    if (JSON.stringify(this.actualDocument.extension) === '{}') {
+    } else if (this.isTheUser === false) {
+      this.openSnackBar();
+    }
+  }
+
+  /**
+   * Ventana emergente de notificación de prórroga activa
+   */
+  openSnackBar() {
+    this.snackBar.openFromComponent(SnackBarComponent, {
+      data: this.actualDocument,
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+    });
+  }
+
+  /**
+   * Ciera el snackbar de notificacion de prórroga activa
+   */
+  closeSnackBar() {
+    this.snackBar.dismiss();
   }
 }

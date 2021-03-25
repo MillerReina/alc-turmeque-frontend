@@ -1,0 +1,23 @@
+@import '../../../../../../styles.scss';
+::ng-deep .mat-snack-bar-container {
+    background-color: $principal-color-blue;
+    color: white !important;
+}
+
+.btn-right-close {
+    margin: 5px !important;
+    border-color: transparent !important;
+}
+
+.contain-text {
+    background-color: $principal-color-blue;
+    padding: 0px !important;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    justify-content: center !important;
+}
+
+.contain-text h4 {
+    text-align: center !important;
+    align-items: center !important;
+    justify-content: center !important;
+}

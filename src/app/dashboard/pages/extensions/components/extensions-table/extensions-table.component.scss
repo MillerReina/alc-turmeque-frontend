@@ -1,0 +1,20 @@
+@import './../../../../../../styles.scss';
+@import './../../../../components/officers-table/officers-table.component.scss';
+::ng-deep .mat-raised-button {
+    outline: none !important;
+}
+
+::ng-deep .mat-raised-button:hover {
+    background-color: $principal-color-pinkish;
+    color: whitesmoke !important;
+}
+
+td,
+th {
+    width: 16% !important;
+}
+
+.btn-username {
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+    outline: none;
+}

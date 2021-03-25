@@ -85,6 +85,7 @@ export class DependenciesTableComponent implements OnInit, OnDestroy {
       this.refreshTable();
     });
   }
+
   /**
    * Refresca la tabla con cada acción
    */
@@ -92,6 +93,7 @@ export class DependenciesTableComponent implements OnInit, OnDestroy {
     this.dataSource = new MatTableDataSource(this.dependencies);
     this.preload = false;
   }
+
   /**
    * Abre el dialogo para crear o editar
    */
