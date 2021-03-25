@@ -15,6 +15,7 @@ import { CreateOfficerComponent } from './officers/create-officer/create-officer
 import { DocTypesComponent } from './doc-types/doc-types.component';
 import { CreateDocumentComponent } from './documents/create-document/create-document.component';
 import { DocumentDetailComponent } from './documents/document-detail/document-detail.component';
+import { ExtensionsComponent } from './extensions/extensions.component';
 
 const childRoutes: Routes = [
   {
@@ -32,13 +33,6 @@ const childRoutes: Routes = [
     path: 'edit/:id/officer',
     component: CreateOfficerComponent,
     canActivate: [AuthGuard, AdminGuard],
-  },
-  {
-    path: 'dependency',
-    component: DependicesComponent,
-    canActivate: [AuthGuard, AdminGuard],
-    canLoad: [AuthGuard],
-    loadChildren: () => import('./../pages/dependencies/dependices.module').then((module) => module.DependicesModule),
   },
   {
     path: 'home',
@@ -86,9 +80,17 @@ const childRoutes: Routes = [
     loadChildren: () => import('./../pages/doc-types/doc-types.module').then((module) => module.DocTypesModule),
   },
   {
+    path: 'extensions',
+    component: ExtensionsComponent,
+    canActivate: [AdminGuard],
+    loadChildren: () => import('./../pages/extensions/extensions.module').then((module) => module.ExtensionsModule),
+  },
+  {
     path: 'dependencies',
     component: DependicesComponent,
     canActivate: [AdminGuard],
+    canLoad: [AuthGuard],
+    loadChildren: () => import('./../pages/dependencies/dependices.module').then((module) => module.DependicesModule),
   },
   {
     path: 'my-profile',

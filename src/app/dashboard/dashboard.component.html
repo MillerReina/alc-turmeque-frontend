@@ -79,26 +79,41 @@
                         <a mat-list-item [routerLink]="'/dashboard/returned'"> Devueltos</a>
                         <a mat-list-item [routerLink]="'/dashboard/doc-types'" *ngIf="isAdmin"> Tipos de documento</a>
                     </mat-nav-list>
+
+                    <hr *ngIf="isAdmin" />
+
+                    <a *ngIf="isAdmin" mat-list-item [routerLink]="'/dashboard/extensions'" (click)="sidenav.close()">
+                        <mat-icon mat-list-icon>watch_later</mat-icon>
+                        Prórrogas
+                    </a>
+
                     <hr />
+
                     <a *ngIf="isAdmin" mat-list-item (click)="toggleMenuUsers()">
                         <mat-icon mat-list-icon>face</mat-icon> Usuarios
                         <mat-icon *ngIf="!showMenuUsers">chevron_right</mat-icon>
                         <mat-icon *ngIf="showMenuUsers">expand_more</mat-icon>
                     </a>
+
                     <mat-nav-list class="sidenav-submenu" *ngIf="showMenuUsers" (click)="sidenav.close()">
                         <a mat-list-item [routerLink]="'/dashboard/officers'"> Funcionarios </a>
                     </mat-nav-list>
+
                     <hr *ngIf="isAdmin" />
+
                     <a *ngIf="isAdmin" mat-list-item [routerLink]="'/dashboard/dependencies'" (click)="sidenav.close()">
                         <mat-icon mat-list-icon>apartment</mat-icon>
                         Dependencias
                     </a>
+
                     <hr *ngIf="isAdmin" />
+
                     <a *ngIf="isAdmin" mat-list-item (click)="toggleMenuReports()">
                         <mat-icon mat-list-icon>bar_chart</mat-icon>Reportes
                         <mat-icon *ngIf="!showMenuReports">chevron_right</mat-icon>
                         <mat-icon *ngIf="showMenuReports">expand_more</mat-icon>
                     </a>
+
                     <mat-nav-list class="sidenav-submenu" *ngIf="showMenuReports" (click)="sidenav.close()">
                         <a mat-list-item> Gráficas</a>
                         <a mat-list-item> Registros</a>

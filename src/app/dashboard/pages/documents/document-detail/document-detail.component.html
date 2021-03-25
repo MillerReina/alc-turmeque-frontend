@@ -15,7 +15,9 @@
         </div>
         <div class="buttons-actions">
             <button *ngIf="isTheUser" class="mat-button-action resolve" mat-stroked-button>Resolver</button>
-            <button *ngIf="isTheUser" class="mat-button-action extension" mat-stroked-button>Prórroga</button>
+            <button *ngIf="isTheUser" class="mat-button-action extension" mat-stroked-button (click)="openDialogExtension(actualDocument)">
+        Prórroga
+      </button>
             <button *ngIf="isTheUser" class="mat-button-action return" mat-stroked-button (click)="returnDocument()">
         Devolver
       </button>

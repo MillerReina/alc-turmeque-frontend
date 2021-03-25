@@ -17,7 +17,7 @@ export class DocTypesComponent implements OnInit {
   createDocType(): void {
     const dialogRef = this.dialog.open(DocTypesDialogComponent, {
       width: '500px',
-      height: '300px ',
+      height: '350px ',
       autoFocus: false,
     });
     dialogRef.afterClosed().subscribe((__) => {});

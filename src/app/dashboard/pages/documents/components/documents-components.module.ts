@@ -11,6 +11,7 @@ import { Ng2Module } from '../../../../shared-module/ng2/ng2.module';
 import { ReturnDocumentDialogComponent } from './return-document-dialog/return-document-dialog.component';
 import { DocumentHistoryDialogComponent } from './document-history-dialog/document-history-dialog.component';
 import { PipesModule } from '../../../../pipes/pipes.module';
+import { ExtensionDocumentDialogComponent } from './extension-document-dialog/extension-document-dialog.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { PipesModule } from '../../../../pipes/pipes.module';
     SeeDocumentDialogComponent,
     ReturnDocumentDialogComponent,
     DocumentHistoryDialogComponent,
+    ExtensionDocumentDialogComponent,
   ],
   imports: [
     CommonModule,

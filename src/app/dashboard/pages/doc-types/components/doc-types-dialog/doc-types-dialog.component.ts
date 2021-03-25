@@ -43,6 +43,12 @@ export class DocTypesDialogComponent implements OnInit {
     return this.registerForm.get('name_document_type').invalid && this.registerForm.get('name_document_type').touched;
   }
 
+  get daysAssignIsInvalid(): boolean {
+    return (
+      this.registerForm.get('suggested_working_days').invalid && this.registerForm.get('suggested_working_days').touched
+    );
+  }
+
   /**
    * Activa el estado de editar
    */
@@ -60,7 +66,10 @@ export class DocTypesDialogComponent implements OnInit {
     this.registerForm = this.fb.group({
       id: [''],
       name_document_type: ['', [Validators.required]],
-      suggested_working_days: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(2)]],
+      suggested_working_days: [
+        '',
+        [Validators.required, Validators.minLength(1), Validators.maxLength(2), Validators.max(40)],
+      ],
     });
   }
   /**

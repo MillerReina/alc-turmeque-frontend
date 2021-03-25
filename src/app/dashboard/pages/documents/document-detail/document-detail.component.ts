@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ReturnDocumentDialogComponent } from '../components/return-document-dialog/return-document-dialog.component';
 import { DocumentHistoryDialogComponent } from '../components/document-history-dialog/document-history-dialog.component';
 import Swal from 'sweetalert2';
+import { ExtensionDocumentDialogComponent } from '../components/extension-document-dialog/extension-document-dialog.component';
 
 @Component({
   selector: 'app-document-detail',
@@ -101,6 +102,19 @@ export class DocumentDetailComponent implements OnInit {
     const dialogRef = this.dialog.open(DocumentHistoryDialogComponent, {
       width: '900px',
       height: '450px',
+      data: element,
+      autoFocus: false,
+    });
+    dialogRef.afterClosed().subscribe((__) => {});
+  }
+
+  /**
+   * Abre el dialog para poder solicitar prorroga
+   */
+  openDialogExtension(element): void {
+    const dialogRef = this.dialog.open(ExtensionDocumentDialogComponent, {
+      height: '400px',
+      width: '500px',
       data: element,
       autoFocus: false,
     });

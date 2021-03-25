@@ -25,19 +25,19 @@
                                 </mat-form-field>
 
                                 <mat-form-field *ngIf="!isEditing" class="full-width" [ngClass]="{
-                    myelement: docTypeIsInvalid
+                    myelement: daysAssignIsInvalid
                   }">
                                     <mat-label><strong>Cantidad de días:</strong></mat-label>
-                                    <input matInput formControlName="suggested_working_days" autocomplete="off" onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="2" />
-                                    <mat-error *ngIf="docTypeIsInvalid"> Ingrese una cantidad válida por favor</mat-error>
+                                    <input matInput formControlName="suggested_working_days" placeholder="40 días hábiles máx." autocomplete="off" onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="2" />
+                                    <mat-error *ngIf="daysAssignIsInvalid"> Ingrese una cantidad válida por favor</mat-error>
                                 </mat-form-field>
 
                                 <mat-form-field *ngIf="isEditing" class="full-width" [ngClass]="{
-                    myelement: docTypeIsInvalid
+                    myelement: daysAssignIsInvalid
                   }">
                                     <mat-label><strong>Cantidad de días:</strong></mat-label>
-                                    <input matInput formControlName="suggested_working_days" autocomplete="off" [value]="actualDocType.suggested_working_days" onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="2" />
-                                    <mat-error *ngIf="docTypeIsInvalid"> Ingrese una cantidad válida por favor </mat-error>
+                                    <input matInput formControlName="suggested_working_days" placeholder="40 días hábiles máx." autocomplete="off" [value]="actualDocType.suggested_working_days" onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="2" />
+                                    <mat-error *ngIf="daysAssignIsInvalid"> Ingrese una cantidad válida por favor </mat-error>
                                 </mat-form-field>
                             </div>
                         </form>
