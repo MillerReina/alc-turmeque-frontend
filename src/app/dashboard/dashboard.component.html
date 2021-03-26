@@ -32,12 +32,14 @@
                     <i class="fas fa-caret-down fa-2x"></i>
                   </button>
 
-                                    <mat-menu #menu="matMenu">
-                                        <button class="icon-btn drop-down" mat-menu-item [routerLink]="'/dashboard/my-profile'" (click)="sidenav.close()">
-                      Mi perfil
+                                    <mat-menu #menu="matMenu" #beforeMenu="matMenu" xPosition="before">
+                                        <button class="icon-btn drop-down" mat-menu-item [routerLink]="'/dashboard/my-profile'" style="text-align: center !important" (click)="sidenav.close()">
+                      <i class="icon fas fa-id-badge fa-lg" style="margin-right: 5px"></i>Ver mi perfil
                     </button>
                                         <hr />
-                                        <button class="icon-btn drop-down" mat-menu-item (click)="logout()">Cerrar sesión</button>
+                                        <button class="icon-btn drop-down" mat-menu-item (click)="logout()" style="text-align: center !important">
+                      <i class="icon fas fa-sign-out-alt fa-lg" style="margin-right: 5px"></i> Salir
+                    </button>
                                     </mat-menu>
                                 </div>
                             </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { ToastMessageService } from '../../services/toast-message.service';
@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
    * contador de intentos
    */
   public count: number;
+  public myRecaptcha = new FormControl(false);
 
   constructor(
     private fb: FormBuilder,
@@ -54,6 +55,10 @@ export class LoginComponent implements OnInit {
 
   get passwordIsInvalid(): boolean {
     return this.loginForm.get('password').invalid && this.loginForm.get('password').touched;
+  }
+
+  get captchaIsInvalid(): boolean {
+    return this.loginForm.get('captcha').invalid && this.loginForm.get('captcha').touched;
   }
 
   /**
@@ -89,9 +94,13 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.fb.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required]],
+      captcha: ['', [Validators.required]],
     });
   }
 
+  /**
+   * Acceso al sistema
+   */
   login(): void {
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
@@ -121,5 +130,12 @@ export class LoginComponent implements OnInit {
         }
       );
     }
+  }
+
+  /**
+   * Verificacion de captcha
+   */
+  showResponse(response) {
+    this.loginForm.get('captcha').setValue(response);
   }
 }

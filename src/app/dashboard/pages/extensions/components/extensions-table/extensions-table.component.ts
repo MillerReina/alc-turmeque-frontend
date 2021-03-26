@@ -3,8 +3,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { IExtensionDetail } from '../../../../../interfaces/extension-detail-interface';
 import { ExtensionsService } from '../../../../services/extensions.service';
 import { Router } from '@angular/router';
-import Swal from 'sweetalert2';
 import { ToastMessageService } from '../../../../../services/toast-message.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-extensions-table',

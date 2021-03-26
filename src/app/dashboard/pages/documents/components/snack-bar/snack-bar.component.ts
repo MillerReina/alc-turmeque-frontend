@@ -26,6 +26,7 @@ export class SnackBarComponent implements OnInit {
   approveExtension() {
     this.extensionService.approveExtension(this.actualDocument.extension.id).subscribe((res) => {
       this.toastService.showSuccessMessage('PRÓRROGA APROBADA', res.message);
+      this.snackBarRef.dismiss();
     });
   }
 }
