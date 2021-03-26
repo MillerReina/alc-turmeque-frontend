@@ -11,6 +11,7 @@ import { ExtensionDocumentDialogComponent } from '../components/extension-docume
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import Swal from 'sweetalert2';
 import { SnackBarComponent } from '../components/snack-bar/snack-bar.component';
+import { ResolveDocumentDialogComponent } from '../components/resolve-document-dialog/resolve-document-dialog.component';
 
 @Component({
   selector: 'app-document-detail',
@@ -198,5 +199,18 @@ export class DocumentDetailComponent implements OnInit, OnDestroy {
    */
   closeSnackBar() {
     this.snackBar.dismiss();
+  }
+
+  /**
+   * Abre el dialog para poder cargar los documentos de requerimiento
+   */
+  openResolveDocumentDialog(element): void {
+    const dialogRef = this.dialog.open(ResolveDocumentDialogComponent, {
+      width: '900px',
+      height: '600px',
+      data: element,
+      autoFocus: false,
+    });
+    dialogRef.afterClosed().subscribe((__) => {});
   }
 }

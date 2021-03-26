@@ -1,0 +1,60 @@
+<div class="container principal">
+    <h1 mat-dialog-title class="title center-horizontal">Resolver requerimiento</h1>
+
+    <div mat-dialog-content class="dialog-content">
+        <div class="container center-horizontal-vertical full-height">
+            <div class="row full-height full-width">
+                <div class="container">
+                    <div class="row">
+                        <div *ngIf="preload" class="row justify-content-center full-height" style="min-height: 100% !important">
+                            <div class="col-12 center-horizontal-vertical full-height flexbox-col">
+                                <img src="../../../../assets/loading/loading.gif" height="400px" alt="gif cargando" />
+                            </div>
+                        </div>
+                        <form *ngIf="!preload" autocomplete="off" [formGroup]="registerForm" (ngSubmit)="resolveDocument()">
+                            <div class="col subtitle">
+                                <mat-form-field appearance="outline" class="full-width" [ngClass]="{
+                    myelement: subjectIsInvalid
+                  }">
+                                    <mat-label><strong>Observaciones: </strong></mat-label>
+                                    <textarea matInput formControlName="observations" placeholder="Observación del requerimiento - máx. 500 carácteres." cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="6.4" cdkAutosizeMaxRows="6" maxlength="500" required></textarea>
+                                    <mat-error *ngIf="subjectIsInvalid"> Ingrese una observación por favor </mat-error>
+                                </mat-form-field>
+
+                                <div class="custom-dropzone" ngx-dropzone [accept]="'.pdf'" (change)="onSelect($event)" [expandable]="false" [multiple]="true" [disableClick]="files.length > 3" [expandable]="false" name="annex">
+                                    <ngx-dropzone-label>
+                                        <div>
+                                            <h2>Arrastra o selecciona los archivos de solución.</h2>
+                                            <h2>Máx. 3 archivos</h2>
+                                        </div>
+                                    </ngx-dropzone-label>
+                                    <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                                        <ngx-dropzone-label i ngx-dropzonee-label style="margin-top: 70px !important">{{ f.name | slice: 0:14 }}... {{ f.type | extension }}</ngx-dropzone-label>
+                                    </ngx-dropzone-preview>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!preload" mat-dialog-actions class="center-horizontal full-width">
+        <div class="container secondary">
+            <div class="row">
+                <div class="col d-flex justify-content-end">
+                    <button mat-raised-button type="submit" class="full-width" (click)="resolveDocument()">
+            <i class="fas fa-check fa-lg" style="margin-right: 5px !important"></i>
+            Resolver radicado
+          </button>
+                </div>
+                <div class="col d-flex justify-content-start">
+                    <button mat-raised-button type="button" class="btn-close-dialog full-width" (click)="cancel()">
+            <i class="fas fa-window-close fa-lg" style="margin-right: 5px !important"></i>
+            Cerrar
+          </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

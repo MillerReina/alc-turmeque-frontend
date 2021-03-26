@@ -13,6 +13,7 @@ import { DocumentHistoryDialogComponent } from './document-history-dialog/docume
 import { PipesModule } from '../../../../pipes/pipes.module';
 import { ExtensionDocumentDialogComponent } from './extension-document-dialog/extension-document-dialog.component';
 import { SnackBarComponent } from './snack-bar/snack-bar.component';
+import { ResolveDocumentDialogComponent } from './resolve-document-dialog/resolve-document-dialog.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { SnackBarComponent } from './snack-bar/snack-bar.component';
     DocumentHistoryDialogComponent,
     ExtensionDocumentDialogComponent,
     SnackBarComponent,
+    ResolveDocumentDialogComponent,
   ],
   imports: [
     CommonModule,

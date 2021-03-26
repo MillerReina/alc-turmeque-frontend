@@ -79,4 +79,16 @@ export class DocumentsService {
   returnDocument(formData): Observable<any> {
     return this.http.post<any>(`${base_url}/documents/reassign`, formData);
   }
+
+  /**
+   * Resuelve enviando los documentos
+   */
+  resolveDocument(data): Observable<any> {
+    /*    const { document, observations, annex } = data;
+    console.log(document);
+    console.log(observations);
+    console.log(annex); */
+
+    return this.http.post<any>(`${base_url}/documents/response`, data);
+  }
 }

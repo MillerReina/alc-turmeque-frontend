@@ -43,7 +43,7 @@
                             </div>
                         </div>
                         <div class="col-12 cont-captcha center-horizontal-vertical mt-3">
-                            <p-captcha ngForm="myRecaptcha" siteKey="6LcEEY8aAAAAANeTVpDmtfiG4rwwuMf5RTj2jOaT" (onResponse)="showResponse($event)" style="margin-left: 10px !important"></p-captcha>
+                            <p-captcha ngForm="myRecaptcha" siteKey="6LcEEY8aAAAAANeTVpDmtfiG4rwwuMf5RTj2jOaT" (onResponse)="showResponse($event)" style="margin-left: 10px !important" data-callback="enabledSubmit"></p-captcha>
                         </div>
                         <div class="col-12 cont-captcha center-horizontal-vertical" [ngClass]="{
                 myelement: captchaIsInvalid

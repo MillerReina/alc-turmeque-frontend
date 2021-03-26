@@ -35,6 +35,11 @@
     background-color: $secondary-color-red;
 }
 
+.finish {
+    color: whitesmoke !important;
+    background-color: $principal-color-blue;
+}
+
 .title-secondary {
     color: $principal-color-blue;
     padding: 5px !important;
@@ -78,6 +83,7 @@
     line-height: 32px;
     text-transform: uppercase;
     float: right;
+    margin-left: 10px !important;
 }
 
 ::ng-deep.mat-dialog-container {
@@ -98,5 +104,11 @@
     }
     .form-detail {
         width: 100% !important;
+    }
+    .btn-history {
+        margin-left: 0px !important;
+    }
+    .finish {
+        margin-top: 28px !important;
     }
 }

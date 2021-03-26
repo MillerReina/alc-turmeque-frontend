@@ -8,8 +8,8 @@ import { IDocType } from 'src/app/interfaces/doc-type-interface';
 import { Router } from '@angular/router';
 import { DocumentsService } from '../../../services/documents.service';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
-import Swal from 'sweetalert2';
 import { ToastMessageService } from '../../../../services/toast-message.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-create-document',
@@ -192,6 +192,7 @@ export class CreateDocumentComponent implements OnInit {
       formData.append('subject', this.registerForm.get('subject').value);
       formData.append('document_type', this.registerForm.get('document_type').value);
       formData.append('file_document', this.registerForm.get('file_document').value);
+
       this.documentService.createDocument(formData).subscribe(
         (res) => {
           this.toastService.showSuccessMessageDocuments(`RADICADO GENERADO`, res.message);
