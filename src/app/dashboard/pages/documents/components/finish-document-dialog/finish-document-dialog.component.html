@@ -18,9 +18,6 @@
                                         <h2>Arrastra o selecciona el comprobante.</h2>
                                     </div>
                                 </ngx-dropzone-label>
-                                <!-- <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
-                                    <ngx-dropzone-label i ngx-dropzonee-label style="margin-top: 70px !important">{{ f.name | slice: 0:14 }}... {{ f.type | extension }}</ngx-dropzone-label>
-                                </ngx-dropzone-preview> -->
                                 <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
                                     <ngx-dropzone-label i ngx-dropzonee-label style="margin-top: 70px !important">{{ f.name | slice: 0:14 }}... {{ f.type | extension }}</ngx-dropzone-label>
                                 </ngx-dropzone-image-preview>
