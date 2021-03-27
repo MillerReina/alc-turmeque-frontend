@@ -199,10 +199,12 @@ export class CreateDocumentComponent implements OnInit {
           this.router.navigate([`dashboard/all`]);
         },
         (err) => {
+          console.log(err);
+          this.postCreate = false;
           Swal.fire({
-            title: 'Error al crear radicado',
+            title: '¡Error al crear radicado!',
             icon: 'error',
-            text: err,
+            text: 'La dependencia no tiene un titular designado.',
             confirmButtonText: 'Aceptar',
           });
         }

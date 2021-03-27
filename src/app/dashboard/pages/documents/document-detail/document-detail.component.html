@@ -14,18 +14,18 @@
             </h1>
         </div>
         <div class="buttons-actions">
-            <button *ngIf="isTheUser && actualDocument.document_state === 'RE'" class="mat-button-action finish" mat-stroked-button>
+            <button *ngIf="isTheUser && actualDocument.document_state === 'RE'" class="mat-button-action finish" mat-stroked-button (click)="openFinishDocumentDialog(actualDocument)">
         Finalizar
       </button>
-            <button *ngIf="isTheUser && actualDocument.document_state != 'RE'" class="mat-button-action resolve" mat-stroked-button (click)="openResolveDocumentDialog(actualDocument)">
-        Resolver
-      </button>
-            <button *ngIf="isTheUser && actualDocument.document_state != 'RE'" class="mat-button-action extension" mat-stroked-button (click)="openDialogExtension(actualDocument)">
-        Prórroga
-      </button>
-            <button *ngIf="isTheUser && actualDocument.document_state != 'RE'" class="mat-button-action return" mat-stroked-button (click)="returnDocument()">
-        Devolver
-      </button>
+            <div *ngIf="isTheUser && actualDocument.document_state != 'FI' && actualDocument.document_state != 'RE'">
+                <button class="mat-button-action resolve" mat-stroked-button (click)="openResolveDocumentDialog(actualDocument)">
+          Resolver
+        </button>
+                <button class="mat-button-action extension" mat-stroked-button (click)="openDialogExtension(actualDocument)">
+          Prórroga
+        </button>
+                <button class="mat-button-action return" mat-stroked-button (click)="returnDocument()">Devolver</button>
+            </div>
         </div>
     </div>
 

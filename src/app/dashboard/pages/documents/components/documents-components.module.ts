@@ -14,6 +14,7 @@ import { PipesModule } from '../../../../pipes/pipes.module';
 import { ExtensionDocumentDialogComponent } from './extension-document-dialog/extension-document-dialog.component';
 import { SnackBarComponent } from './snack-bar/snack-bar.component';
 import { ResolveDocumentDialogComponent } from './resolve-document-dialog/resolve-document-dialog.component';
+import { FinishDocumentDialogComponent } from './finish-document-dialog/finish-document-dialog.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { ResolveDocumentDialogComponent } from './resolve-document-dialog/resolv
     ExtensionDocumentDialogComponent,
     SnackBarComponent,
     ResolveDocumentDialogComponent,
+    FinishDocumentDialogComponent,
   ],
   imports: [
     CommonModule,

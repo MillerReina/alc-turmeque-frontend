@@ -1,7 +1,7 @@
 @import './../../../../../../styles.scss';
 @import './../assing-document-dialog/assing-document-dialog.component.scss';
 .dialog-content {
-    height: 75% !important;
+    height: 65% !important;
 }
 
 
@@ -13,7 +13,6 @@ ngx-dropzone,
 }
 
 ngx-dropzone-preview {
-    background-image: url('./../../../../../../assets/icon/file-icon.png');
     text-align: center !important;
     background-repeat: no-repeat, repeat;
     border: 2px solid rgb(233, 233, 233);

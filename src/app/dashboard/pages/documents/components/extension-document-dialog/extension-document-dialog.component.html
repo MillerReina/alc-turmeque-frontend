@@ -12,7 +12,7 @@
                     myelement: daysAssignIsInvalid
                   }">
                                     <mat-label><strong>Cantidad de días:</strong></mat-label>
-                                    <input matInput formControlName="days" placeholder="10 días hábiles máx." autocomplete="off" onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="2" />
+                                    <input matInput formControlName="days" placeholder="5 días hábiles máx." autocomplete="off" onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="2" />
                                     <mat-error *ngIf="daysAssignIsInvalid"> Ingrese una cantidad de días válida por favor </mat-error>
                                 </mat-form-field>
 

@@ -9,9 +9,10 @@ import { ReturnDocumentDialogComponent } from '../components/return-document-dia
 import { DocumentHistoryDialogComponent } from '../components/document-history-dialog/document-history-dialog.component';
 import { ExtensionDocumentDialogComponent } from '../components/extension-document-dialog/extension-document-dialog.component';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
-import Swal from 'sweetalert2';
 import { SnackBarComponent } from '../components/snack-bar/snack-bar.component';
 import { ResolveDocumentDialogComponent } from '../components/resolve-document-dialog/resolve-document-dialog.component';
+import Swal from 'sweetalert2';
+import { FinishDocumentDialogComponent } from '../components/finish-document-dialog/finish-document-dialog.component';
 
 @Component({
   selector: 'app-document-detail',
@@ -208,6 +209,19 @@ export class DocumentDetailComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(ResolveDocumentDialogComponent, {
       width: '900px',
       height: '600px',
+      data: element,
+      autoFocus: false,
+    });
+    dialogRef.afterClosed().subscribe((__) => {});
+  }
+
+  /**
+   * Abre el dialog para poder cargar los documentos de requerimiento
+   */
+  openFinishDocumentDialog(element): void {
+    const dialogRef = this.dialog.open(FinishDocumentDialogComponent, {
+      height: '400px',
+      width: '540px',
       data: element,
       autoFocus: false,
     });

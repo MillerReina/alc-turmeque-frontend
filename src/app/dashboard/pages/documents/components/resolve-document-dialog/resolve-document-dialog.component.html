@@ -21,7 +21,7 @@
                                     <mat-error *ngIf="subjectIsInvalid"> Ingrese una observación por favor </mat-error>
                                 </mat-form-field>
 
-                                <div class="custom-dropzone" ngx-dropzone [accept]="'.pdf'" (change)="onSelect($event)" [expandable]="false" [multiple]="true" [disableClick]="files.length > 3" [expandable]="false" name="annex">
+                                <div class="custom-dropzone" ngx-dropzone [accept]="'.pdf,image/*'" (change)="onSelect($event)" [expandable]="false" [multiple]="true" [disableClick]="files.length > 3" [expandable]="false" name="annex">
                                     <ngx-dropzone-label>
                                         <div>
                                             <h2>Arrastra o selecciona los archivos de solución.</h2>

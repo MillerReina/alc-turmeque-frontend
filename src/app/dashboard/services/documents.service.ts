@@ -83,12 +83,14 @@ export class DocumentsService {
   /**
    * Resuelve enviando los documentos
    */
-  resolveDocument(data): Observable<any> {
-    /*    const { document, observations, annex } = data;
-    console.log(document);
-    console.log(observations);
-    console.log(annex); */
+  resolveDocument(formData): Observable<any> {
+    return this.http.post<any>(`${base_url}/documents/response`, formData);
+  }
 
-    return this.http.post<any>(`${base_url}/documents/response`, data);
+  /**
+   * Finaliza el radicado adjuntando el comprobante de entrega
+   */
+  finishDocument(id, formData): Observable<any> {
+    return this.http.post<any>(`${base_url}/documents/final/${id}`, formData);
   }
 }
