@@ -23,9 +23,7 @@
                             </div>
                             <div class="col-4 d-flex justify-content-end" style="padding-right: 0px !important">
                                 <div>
-                                    <button class="btn-bell" mat-raised-button matBadge="1" matBadgePosition="before" matBadgeColor="accent" [matBadgeHidden]="hidden" (click)="toggleBadgeVisibility()" style="margin-left: 10px !important">
-                    <mat-icon mat-list-icon class="icon-bell">notifications</mat-icon>
-                  </button>
+                                    <app-menu-notifications></app-menu-notifications>
                                 </div>
                                 <div>
                                     <button class="icon-btn full-height center-horizontal-vertical" mat-button [matMenuTriggerFor]="menu">

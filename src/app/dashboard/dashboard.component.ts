@@ -31,10 +31,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
    * Estado activo/inactivo del menu reportes
    */
   public showMenuReports: boolean;
-  /**
-   * Estado del badge
-   */
-  public hidden: boolean;
+
   /**
    * Rol administrador?
    */
@@ -107,12 +104,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   logout(): void {
     this.authService.logout();
     this.router.navigateByUrl('/login');
-  }
-  /**
-   * Visibilidad del Badge notifications
-   */
-  toggleBadgeVisibility(): void {
-    this.hidden = !this.hidden;
   }
 
   ngAfterViewInit(): void {}

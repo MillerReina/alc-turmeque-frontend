@@ -12,6 +12,7 @@ import { PagesModule } from './pages/pages.module';
 import { DashboardComponent } from './dashboard.component';
 /* Servicio toast */
 import { ToastMessageService } from '../services/toast-message.service';
+import { ComponentsModule } from './components/components.module';
 
 @NgModule({
   declarations: [DashboardComponent],
@@ -23,6 +24,7 @@ import { ToastMessageService } from '../services/toast-message.service';
     AngularMaterialModule,
     NgPrimeModule,
     PagesModule,
+    ComponentsModule,
   ],
   providers: [ToastMessageService],
 })

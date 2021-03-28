@@ -207,6 +207,14 @@ export class CreateDocumentComponent implements OnInit {
             text: 'La dependencia no tiene un titular designado.',
             confirmButtonText: 'Aceptar',
           });
+          if (err.error.file_document) {
+            Swal.fire({
+              title: '¡Error al crear radicado!',
+              icon: 'error',
+              text: err.error.file_document,
+              confirmButtonText: 'Aceptar',
+            });
+          }
         }
       );
     }

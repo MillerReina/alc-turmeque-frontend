@@ -48,7 +48,7 @@ export class ExtensionDocumentDialogComponent implements OnInit {
   createRegisterForm(): void {
     this.registerForm = this.fb.group({
       document: [''],
-      description: ['', [Validators.required]],
+      description: ['', [Validators.required, Validators.max(120)]],
       days: ['', [Validators.required, Validators.max(5)]],
     });
   }

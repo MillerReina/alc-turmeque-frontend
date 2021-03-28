@@ -6,10 +6,11 @@ import { ProfileInfoDialogComponent } from './profile-info-dialog/profile-info-d
 import { PipesModule } from '../../pipes/pipes.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgPrimeModule } from '../../shared-module/ng-prime/ng-prime.module';
+import { MenuNotificationsComponent } from './menu-notifications/menu-notifications.component';
 
 @NgModule({
-  declarations: [OfficersTableComponent, ProfileInfoDialogComponent],
+  declarations: [OfficersTableComponent, ProfileInfoDialogComponent, MenuNotificationsComponent],
   imports: [CommonModule, AngularMaterialModule, NgPrimeModule, PipesModule, ReactiveFormsModule, FormsModule],
-  exports: [OfficersTableComponent, ProfileInfoDialogComponent],
+  exports: [OfficersTableComponent, ProfileInfoDialogComponent, MenuNotificationsComponent],
 })
 export class ComponentsModule {}

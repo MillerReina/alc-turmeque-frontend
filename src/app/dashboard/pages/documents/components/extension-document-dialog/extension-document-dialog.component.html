@@ -20,7 +20,7 @@
                     myelement: subjectIsInvalid
                   }">
                                     <mat-label><strong>Razón</strong></mat-label>
-                                    <textarea matInput formControlName="description" placeholder="Justificación de la prórroga - máx. 500 carácteres." cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="6.4" cdkAutosizeMaxRows="6" maxlength="500" required></textarea>
+                                    <textarea matInput formControlName="description" placeholder="Justificación de la prórroga - máx. 120 carácteres." cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="6.4" cdkAutosizeMaxRows="6" maxlength="120" required></textarea>
                                     <mat-error *ngIf="subjectIsInvalid"> Ingrese una justificación por favor </mat-error>
                                 </mat-form-field>
                             </div>

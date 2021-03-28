@@ -24,7 +24,7 @@
                     myelement: subjectIsInvalid
                   }">
                                     <mat-label>Razón</mat-label>
-                                    <textarea matInput formControlName="comment" placeholder="Justificación de la devolución - máx. 500 carácteres." cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="6.4" cdkAutosizeMaxRows="6" maxlength="500" required></textarea>
+                                    <textarea matInput formControlName="comment" placeholder="Justificación de la devolución - máx. 400 carácteres." cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="6.4" cdkAutosizeMaxRows="6" maxlength="400" required></textarea>
                                     <mat-error *ngIf="subjectIsInvalid"> Ingrese un asunto por favor </mat-error>
                                 </mat-form-field>
                             </div>

@@ -66,7 +66,7 @@ export class ReturnDocumentDialogComponent implements OnInit {
     this.registerForm = this.fb.group({
       document: [''],
       dependency: ['', [Validators.required]],
-      comment: ['', [Validators.required]],
+      comment: ['', [Validators.required, Validators.max(400)]],
     });
   }
 
