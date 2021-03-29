@@ -246,9 +246,18 @@ export class DocumentDetailComponent implements OnInit, OnDestroy {
     const today = new Date();
     const responseTime = endDate.getTime() - today.getTime();
 
-    if (responseTime < this.twoDays && responseTime >= 0) {
+    if (
+      responseTime < this.twoDays &&
+      responseTime >= 0 &&
+      this.actualDocument.document_state != 'RE' &&
+      this.actualDocument.document_state != 'FI'
+    ) {
       this.timeToResponse = 1;
-    } else if (endDate.getTime() < today.getTime()) {
+    } else if (
+      endDate.getTime() < today.getTime() &&
+      this.actualDocument.document_state != 'RE' &&
+      this.actualDocument.document_state != 'FI'
+    ) {
       this.timeToResponse = 2;
     } else {
       this.timeToResponse = 0;
@@ -259,7 +268,11 @@ export class DocumentDetailComponent implements OnInit, OnDestroy {
    * Emite la alerta de tiempo
    */
   emitAlert(): void {
-    if (this.timeToResponse === 1) {
+    if (
+      this.timeToResponse === 1 &&
+      this.actualDocument.document_state != 'RE' &&
+      this.actualDocument.document_state != 'FI'
+    ) {
       this.toastService.showWarningMessageAlmostTime(
         '¡REQUIERE ATENCIÓN!',
         `Este requerimiento está pronto a vencer fecha máxima: ${this.actualDocument.end_date}`
