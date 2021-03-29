@@ -199,7 +199,6 @@ export class CreateDocumentComponent implements OnInit {
           this.router.navigate([`dashboard/all`]);
         },
         (err) => {
-          console.log(err);
           this.postCreate = false;
           Swal.fire({
             title: '¡Error al crear radicado!',

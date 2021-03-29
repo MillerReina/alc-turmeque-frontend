@@ -1,0 +1,8 @@
+<div class="container-buttons-navigation">
+    <button *ngIf="actualDocument.document_state === 'RE' || actualDocument.document_state === 'FI'" matRipple matRipp class="button-navigation mat-elevation-z3" matTooltip="Archivos de respuesta" matTooltipPosition="left">
+    <img src="./../../../../../../assets/icon/files.png" height="25px" alt="" />
+  </button>
+    <button *ngIf="actualDocument.document_state === 'FI'" matRipple class="button-navigation mat-elevation-z3" matTooltip="Ver comprobante" matTooltipPosition="left">
+    <img src="./../../../../../../assets/icon/voucher.png" height="25px" alt="" />
+  </button>
+</div>

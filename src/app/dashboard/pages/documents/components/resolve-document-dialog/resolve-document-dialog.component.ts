@@ -61,8 +61,8 @@ export class ResolveDocumentDialogComponent implements OnInit {
   createRegisterForm(): void {
     this.registerForm = this.fb.group({
       document: [''],
-      observations: ['', [Validators.required]],
-      annex: ['', [Validators.required]],
+      observations: ['', [Validators.required, Validators.max(200)]],
+      annex: [''],
     });
   }
 
@@ -83,7 +83,6 @@ export class ResolveDocumentDialogComponent implements OnInit {
       this.registerForm.get('document').setValue(this.actualDocument.id);
       const formData = new FormData();
 
-      console.log(this.registerForm.value);
       formData.append('document', this.registerForm.get('document').value);
       formData.append('observations', this.registerForm.get('observations').value);
       formData.append('annex', this.files[0]);
@@ -98,13 +97,28 @@ export class ResolveDocumentDialogComponent implements OnInit {
         },
         (err) => {
           this.preload = false;
-          console.log(err);
           Swal.fire({
             title: '¡No se pudo resolver el requerimiento!',
             icon: 'error',
             text: err.error.error,
             confirmButtonText: 'Aceptar',
           });
+          if (err.error.observations) {
+            Swal.fire({
+              title: '¡No se pudo resolver el requerimiento!',
+              icon: 'error',
+              text: err.error.observations,
+              confirmButtonText: 'Aceptar',
+            });
+          }
+          if (err.error.file_document) {
+            Swal.fire({
+              title: '¡No se pudo resolver el requerimiento!',
+              icon: 'error',
+              text: err.error.file_document,
+              confirmButtonText: 'Aceptar',
+            });
+          }
         }
       );
     }

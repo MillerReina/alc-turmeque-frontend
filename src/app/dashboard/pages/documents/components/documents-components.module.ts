@@ -15,6 +15,7 @@ import { ExtensionDocumentDialogComponent } from './extension-document-dialog/ex
 import { SnackBarComponent } from './snack-bar/snack-bar.component';
 import { ResolveDocumentDialogComponent } from './resolve-document-dialog/resolve-document-dialog.component';
 import { FinishDocumentDialogComponent } from './finish-document-dialog/finish-document-dialog.component';
+import { ButtonsDocumentsComponent } from './buttons-documents/buttons-documents.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { FinishDocumentDialogComponent } from './finish-document-dialog/finish-d
     SnackBarComponent,
     ResolveDocumentDialogComponent,
     FinishDocumentDialogComponent,
+    ButtonsDocumentsComponent,
   ],
   imports: [
     CommonModule,
@@ -38,6 +40,6 @@ import { FinishDocumentDialogComponent } from './finish-document-dialog/finish-d
     Ng2Module,
     PipesModule,
   ],
-  exports: [DocumentsTableComponent, TitleDocumentsComponent],
+  exports: [DocumentsTableComponent, TitleDocumentsComponent, ButtonsDocumentsComponent],
 })
 export class DocumentsComponentsModule {}

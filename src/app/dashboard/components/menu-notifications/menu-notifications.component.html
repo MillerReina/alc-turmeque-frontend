@@ -2,7 +2,7 @@
   <mat-icon mat-list-icon class="icon-bell">notifications</mat-icon>
 </button>
 <mat-menu #belowMenu="matMenu" xPosition="before" class="animate__animated animate__fadeIn animate__faster">
-    <div class="card" *ngFor="let notification of notifications.notifications">
+    <div class="card" *ngFor="let notification of notifications.notifications" style="margin-bottom: 7px !important">
         <div class="card-header center-vertical">
             <mat-icon mat-list-icon style="margin-right: 10px !important">description</mat-icon> {{ getDay(notification) }}
         </div>

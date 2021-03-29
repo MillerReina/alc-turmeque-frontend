@@ -61,7 +61,6 @@ export class FinishDocumentDialogComponent implements OnInit {
         },
         (err) => {
           this.preload = false;
-          console.log(err);
           Swal.fire({
             title: '¡No se pudo finalizar el requerimiento!',
             icon: 'error',

@@ -1,0 +1,24 @@
+@import '../../../../../../styles.scss';
+.container-buttons-navigation {
+    z-index: 99999999999999999999 !important;
+    position: fixed;
+    bottom: 5%;
+    right: 40px !important;
+    display: flex;
+    flex-direction: column;
+}
+
+.button-navigation {
+    width: 50px !important;
+    height: 50px !important;
+    border-radius: 50% !important;
+    padding: 10px !important;
+    margin-bottom: 10px;
+    color: white !important;
+    border: 1px solid lightgray;
+    background-color: white !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+}

@@ -3,6 +3,10 @@ mat-dialog-container {
     overflow: inherit !important;
 }
 
+::ng-deep .mat-icon-button {
+    outline: none !important;
+}
+
 .example-container {
     display: flex;
     flex-direction: column;

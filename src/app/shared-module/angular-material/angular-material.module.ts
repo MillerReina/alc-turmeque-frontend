@@ -25,6 +25,7 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatRippleModule } from '@angular/material/core';
 import { MatCommonModule, MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
@@ -58,6 +59,7 @@ import { MatCommonModule, MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/
     RxReactiveFormsModule,
     MatProgressBarModule,
     MatSnackBarModule,
+    MatRippleModule,
   ],
   exports: [
     MatInputModule,
@@ -87,6 +89,7 @@ import { MatCommonModule, MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/
     RxReactiveFormsModule,
     MatProgressBarModule,
     MatSnackBarModule,
+    MatRippleModule,
   ],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'es-CO' }],
 })

@@ -17,7 +17,7 @@
                     myelement: subjectIsInvalid
                   }">
                                     <mat-label><strong>Observaciones: </strong></mat-label>
-                                    <textarea matInput formControlName="observations" placeholder="Observación del requerimiento - máx. 500 carácteres." cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="6.4" cdkAutosizeMaxRows="6" maxlength="500" required></textarea>
+                                    <textarea matInput formControlName="observations" placeholder="Observación del requerimiento - máx. 200 carácteres." cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="6.4" cdkAutosizeMaxRows="6" maxlength="200" required></textarea>
                                     <mat-error *ngIf="subjectIsInvalid"> Ingrese una observación por favor </mat-error>
                                 </mat-form-field>
 
