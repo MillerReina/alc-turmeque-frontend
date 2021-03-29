@@ -4,6 +4,7 @@ import { AuthService } from '../auth/services/auth.service';
 import { ToastMessageService } from '../services/toast-message.service';
 import { User } from '../models/user.model';
 import { MatSidenav } from '@angular/material/sidenav';
+import { INotifications } from '../interfaces/notification-interface';
 
 @Component({
   selector: 'app-dashboard',
@@ -40,6 +41,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
    * usuario
    */
   public user: User;
+  /**
+   * Arreglo de notificaciones
+   */
+  public notifications: INotifications;
+
   @ViewChild('sidenav') sidenav: MatSidenav;
 
   constructor(private authService: AuthService, private router: Router, private toastService: ToastMessageService) {
@@ -50,6 +56,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    this.getNotifications();
     this.changeVisibility();
     this.getUserFromService();
   }
@@ -70,6 +77,15 @@ export class DashboardComponent implements OnInit, AfterViewInit {
    */
   getUserFromService(): void {
     this.user = this.authService.user;
+  }
+
+  /**
+   * Obtiene las notificaciones del usuario
+   */
+  getNotifications(): void {
+    this.authService.getNotifications().subscribe((res) => {
+      this.notifications = res;
+    });
   }
 
   /**

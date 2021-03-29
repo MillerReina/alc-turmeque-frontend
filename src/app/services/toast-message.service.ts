@@ -42,4 +42,19 @@ export class ToastMessageService {
   showInfoMessage(title: string, text: string) {
     this.messageService.add({ severity: 'info', summary: title, detail: text, life: 5000 });
   }
+
+  /* Alertas para requerimientos sin plazo */
+  /**
+   * Requerimiento pronto a vencer
+   */
+  showWarningMessageAlmostTime(title: string, text: string) {
+    this.messageService.add({ severity: 'warn', summary: title, detail: text, life: 8000 });
+  }
+
+  /**
+   * Requerimiento sin tiempo y sin respuesta
+   */
+  showErrorMessageNotTime(title: string, text: string) {
+    this.messageService.add({ severity: 'error', summary: title, detail: text, life: 8000 });
+  }
 }

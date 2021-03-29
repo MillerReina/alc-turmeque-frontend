@@ -11,8 +11,9 @@ import { ExtensionDocumentDialogComponent } from '../components/extension-docume
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { SnackBarComponent } from '../components/snack-bar/snack-bar.component';
 import { ResolveDocumentDialogComponent } from '../components/resolve-document-dialog/resolve-document-dialog.component';
-import Swal from 'sweetalert2';
 import { FinishDocumentDialogComponent } from '../components/finish-document-dialog/finish-document-dialog.component';
+import Swal from 'sweetalert2';
+import { ToastMessageService } from '../../../../services/toast-message.service';
 
 @Component({
   selector: 'app-document-detail',
@@ -37,17 +38,25 @@ export class DocumentDetailComponent implements OnInit, OnDestroy {
    */
   public isTheUser: boolean;
   /**
-   * Posición horizontal del SnackBar
+   * Posición horizontal del SnackBar de prorroga
    */
   public horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   /**
-   * Posición vertical del SnackBar
+   * Posición vertical del SnackBar de prorroga
    */
   public verticalPosition: MatSnackBarVerticalPosition = 'bottom';
   /**
    * Prórroga activa
    */
   public hasExtensionActive: boolean;
+  /**
+   * Dos días en ms
+   */
+  public twoDays = 172800000;
+  /**
+   * Variable para detectar el tiempo restante
+   */
+  public timeToResponse: number;
 
   @ViewChild('viewer') viewerRef: ElementRef;
 
@@ -56,7 +65,8 @@ export class DocumentDetailComponent implements OnInit, OnDestroy {
     private documentService: DocumentsService,
     private authService: AuthService,
     public dialog: MatDialog,
-    private snackBar: MatSnackBar
+    private snackBarExtension: MatSnackBar,
+    private toastService: ToastMessageService
   ) {
     this.idDocument = this.router.url.split('/')[3];
     this.preload = true;
@@ -64,7 +74,7 @@ export class DocumentDetailComponent implements OnInit, OnDestroy {
     this.hasExtensionActive = false;
   }
   ngOnDestroy(): void {
-    this.snackBar.dismiss();
+    this.snackBarExtension.dismiss();
   }
 
   ngOnInit(): void {
@@ -75,12 +85,11 @@ export class DocumentDetailComponent implements OnInit, OnDestroy {
    * Obtiene los detalles de un documento por id
    */
   getDocumentDetail(): void {
-    /* this.actualDocument = DOC;
-    this.isUserAssign(); */
     this.documentService.getDetailDocument(this.idDocument).subscribe(
       (res) => {
         this.actualDocument = res;
         this.isUserAssign();
+        this.getDay();
       },
       (__) => {
         this.router.navigate([`dashboard/all`]);
@@ -102,6 +111,7 @@ export class DocumentDetailComponent implements OnInit, OnDestroy {
         this.preload = false;
       }
       this.itHasExtensionActive();
+      if (this.timeToResponse === 1 || this.timeToResponse === 2) this.emitAlert();
     });
   }
 
@@ -188,7 +198,7 @@ export class DocumentDetailComponent implements OnInit, OnDestroy {
    * Ventana emergente de notificación de prórroga activa
    */
   openSnackBar() {
-    this.snackBar.openFromComponent(SnackBarComponent, {
+    this.snackBarExtension.openFromComponent(SnackBarComponent, {
       data: this.actualDocument,
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
@@ -199,7 +209,7 @@ export class DocumentDetailComponent implements OnInit, OnDestroy {
    * Ciera el snackbar de notificacion de prórroga activa
    */
   closeSnackBar() {
-    this.snackBar.dismiss();
+    this.snackBarExtension.dismiss();
   }
 
   /**
@@ -226,5 +236,44 @@ export class DocumentDetailComponent implements OnInit, OnDestroy {
       autoFocus: false,
     });
     dialogRef.afterClosed().subscribe((__) => {});
+  }
+
+  /**
+   * Manejo de días para la notificación
+   */
+  getDay(): void {
+    const endDate = new Date(this.actualDocument.end_date);
+    const today = new Date();
+    const responseTime = endDate.getTime() - today.getTime();
+
+    if (responseTime < this.twoDays && responseTime >= 0) {
+      this.timeToResponse = 1;
+    } else if (endDate.getTime() < today.getTime()) {
+      this.timeToResponse = 2;
+    } else {
+      this.timeToResponse = 0;
+    }
+  }
+
+  /**
+   * Emite la alerta de tiempo
+   */
+  emitAlert(): void {
+    if (this.timeToResponse === 1) {
+      this.toastService.showWarningMessageAlmostTime(
+        '¡REQUIERE ATENCIÓN!',
+        `Este requerimiento está pronto a vencer fecha máxima: ${this.actualDocument.end_date}`
+      );
+    }
+    if (
+      this.timeToResponse === 2 &&
+      this.actualDocument.document_state != 'FI' &&
+      this.actualDocument.document_state != 'RE'
+    ) {
+      this.toastService.showErrorMessageNotTime(
+        '¡SIN SOLUCIONAR!',
+        `Requerimiento vencido y sin respuesta, requiere atención.`
+      );
+    }
   }
 }

@@ -134,4 +134,10 @@ export class AuthService {
   changeMyPassword(uid: string, token: string, formData): Observable<any> {
     return this.http.post<any>(`${base_url}/users/reset-password/${uid}/${token}`, formData);
   }
+  /**
+   * Obtiene las notificaciones del usuario
+   */
+  getNotifications(): Observable<any> {
+    return this.http.get<any>(`${base_url}/users/notifications`);
+  }
 }

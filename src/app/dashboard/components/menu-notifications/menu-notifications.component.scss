@@ -1,2 +1,9 @@
 @import '../../../../styles.scss';
 @import '../../dashboard.component.scss';
+::ng-deep .cdk-overlay-pane {
+    max-height: 78vh !important;
+}
+
+.mat-menu-panel {
+    width: 900px !important;
+}

@@ -58,9 +58,14 @@
                                 </mat-form-field>
                             </div>
                             <div class="col">
-                                <mat-form-field appearance="outline" class="full-width">
+                                <mat-form-field appearance="outline" class="full-width" [ngSwitch]="timeToResponse">
                                     <mat-label>Fecha máxima de resolución:</mat-label>
-                                    <input matInput [value]="actualDocument.end_date | date: 'dd/MMM/yyyy'" autocomplete="off" type="text" readonly />
+                                    <input matInput *ngSwitchCase="'0'" [value]="actualDocument.end_date | date: 'dd/MMM/yyyy'" autocomplete="off" type="text" readonly style="font-weight: bold; color: #1d59c9 !important" />
+                                    <input matInput *ngSwitchCase="'1'" [value]="actualDocument.end_date | date: 'dd/MMM/yyyy'" autocomplete="off" type="text" readonly style="font-weight: bold; color: orange !important" />
+                                    <input matInput *ngSwitchCase="'2'" [value]="actualDocument.end_date | date: 'dd/MMM/yyyy'" autocomplete="off" type="text" readonly style="font-weight: bold; color: red !important" />
+                                    <mat-icon matSuffix *ngSwitchCase="'0'" style="color: #1d59c9 !important">info</mat-icon>
+                                    <mat-icon matSuffix *ngSwitchCase="'1'" style="color: orange !important">info</mat-icon>
+                                    <mat-icon matSuffix *ngSwitchCase="'2'" style="color: red !important">info</mat-icon>
                                 </mat-form-field>
                             </div>
                         </div>
