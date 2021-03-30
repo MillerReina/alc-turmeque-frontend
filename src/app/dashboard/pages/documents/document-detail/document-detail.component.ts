@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { DocumentsService } from '../../../services/documents.service';
 import { IDocumentDetail } from '../../../../interfaces/document-detail-interface';
 import { AuthService } from '../../../../auth/services/auth.service';
@@ -58,10 +58,9 @@ export class DocumentDetailComponent implements OnInit, OnDestroy {
    */
   public timeToResponse: number;
 
-  @ViewChild('viewer') viewerRef: ElementRef;
-
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private documentService: DocumentsService,
     private authService: AuthService,
     public dialog: MatDialog,
@@ -73,19 +72,23 @@ export class DocumentDetailComponent implements OnInit, OnDestroy {
     this.isTheUser = false;
     this.hasExtensionActive = false;
   }
+
   ngOnDestroy(): void {
     this.snackBarExtension.dismiss();
   }
 
   ngOnInit(): void {
-    this.getDocumentDetail();
+    this.route.params.subscribe((params) => {
+      this.preload = true;
+      this.getDocumentDetail(params['id']);
+    });
   }
 
   /**
    * Obtiene los detalles de un documento por id
    */
-  getDocumentDetail(): void {
-    this.documentService.getDetailDocument(this.idDocument).subscribe(
+  getDocumentDetail(id): void {
+    this.documentService.getDetailDocument(id).subscribe(
       (res) => {
         this.actualDocument = res;
         this.isUserAssign();

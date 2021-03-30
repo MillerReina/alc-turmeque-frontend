@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { INotifications } from '../../../interfaces/notification-interface';
 import { AuthService } from '../../../auth/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu-notifications',
@@ -21,7 +22,7 @@ export class MenuNotificationsComponent implements OnInit {
    */
   public preload: boolean;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.notifications.notifications.reverse();
@@ -64,5 +65,14 @@ export class MenuNotificationsComponent implements OnInit {
     } else {
       return element.register_date;
     }
+  }
+
+  /**
+   * Va hacia el documento de la notificación
+   */
+  goToDocument(id): void {
+    /* this.router.navigate([`/dashboard/detail/${id}/document`]); */
+
+    this.router.navigate([`/dashboard/detail/${id}/document`]);
   }
 }

@@ -33,7 +33,6 @@ export class SeeDocumentDialogComponent implements OnInit {
    * Descarga el documento actual
    */
   downloadDocument(): void {
-    /*       window.open(this.pdfSrc, "_blank"); */
     FileSaver.saveAs(`${this.pdfSrc}`, `${this.data.file_number}`);
   }
 

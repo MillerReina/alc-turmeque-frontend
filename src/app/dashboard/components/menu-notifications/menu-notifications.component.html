@@ -8,7 +8,7 @@
         </div>
     </div>
     <div *ngIf="!preload">
-        <div class="card" *ngFor="let notification of notifications.notifications" style="margin-bottom: 7px !important">
+        <div class="card" *ngFor="let notification of notifications.notifications" style="margin-bottom: 7px !important" (click)="goToDocument(notification.document)">
             <div class="card-header center-vertical">
                 <mat-icon mat-list-icon style="margin-right: 10px !important">description</mat-icon> {{ getDay(notification) }}
             </div>
