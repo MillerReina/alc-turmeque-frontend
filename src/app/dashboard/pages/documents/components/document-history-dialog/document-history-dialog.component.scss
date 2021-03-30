@@ -49,6 +49,11 @@ th {
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px !important;
 }
 
+.observations {
+    font-style: oblique;
+    font-weight: bold;
+}
+
 @media (max-width: 700px) {
     .mat-dialog-content {
         margin-top: 20px !important;

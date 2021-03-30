@@ -159,7 +159,7 @@ export class DocumentDetailComponent implements OnInit, OnDestroy {
   returnDocument(): void {
     Swal.fire({
       title: `Devolver solicitud`,
-      text: 'Esta acción solo se puede realizar una única vez, ¿desea continuar?',
+      html: 'Esta acción solo se puede realizar <b>una única vez</b>, ¿desea continuar?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#1d59c9',
