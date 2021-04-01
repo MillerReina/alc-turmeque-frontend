@@ -97,6 +97,7 @@ export class DocumentsTableComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.newAssignSubscrition.unsubscribe();
   }
+
   get inputTerm(): string {
     return (document.getElementById('term') as HTMLInputElement).value;
   }

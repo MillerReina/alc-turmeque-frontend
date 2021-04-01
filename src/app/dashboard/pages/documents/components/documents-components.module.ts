@@ -16,6 +16,8 @@ import { SnackBarComponent } from './snack-bar/snack-bar.component';
 import { ResolveDocumentDialogComponent } from './resolve-document-dialog/resolve-document-dialog.component';
 import { FinishDocumentDialogComponent } from './finish-document-dialog/finish-document-dialog.component';
 import { ButtonsDocumentsComponent } from './buttons-documents/buttons-documents.component';
+import { SeeVoucherDialogComponent } from './see-voucher-dialog/see-voucher-dialog.component';
+import { SeeReponsesDialogComponent } from './see-reponses-dialog/see-reponses-dialog.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { ButtonsDocumentsComponent } from './buttons-documents/buttons-documents
     ResolveDocumentDialogComponent,
     FinishDocumentDialogComponent,
     ButtonsDocumentsComponent,
+    SeeVoucherDialogComponent,
+    SeeReponsesDialogComponent,
   ],
   imports: [
     CommonModule,

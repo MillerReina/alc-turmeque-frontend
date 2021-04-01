@@ -80,7 +80,7 @@ export class DocumentDetailComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.preload = true;
-      this.getDocumentDetail(params['id']);
+      this.getDocumentDetail(params.id);
     });
   }
 
@@ -114,20 +114,30 @@ export class DocumentDetailComponent implements OnInit, OnDestroy {
         this.preload = false;
       }
       this.itHasExtensionActive();
-      if (this.timeToResponse === 1 || this.timeToResponse === 2) this.emitAlert();
+      if (this.timeToResponse === 1 || this.timeToResponse === 2) {
+        this.emitAlert();
+      }
     });
   }
 
   /**
-   * Abre el dialogo para ver radicado
+   * Abre el dialogo para ver el radicado
    */
   openDocument(): void {
-    const dialogRef = this.dialog.open(SeeDocumentDialogComponent, {
-      data: this.actualDocument,
-      autoFocus: false,
-    });
+    this.documentService.getDetailDocument(this.idDocument).subscribe(
+      (res) => {
+        this.actualDocument = res;
+        const dialogRef = this.dialog.open(SeeDocumentDialogComponent, {
+          data: this.actualDocument,
+          autoFocus: false,
+        });
 
-    dialogRef.afterClosed().subscribe((__) => {});
+        dialogRef.afterClosed().subscribe((__) => {});
+      },
+      (__) => {
+        this.router.navigate([`dashboard/all`]);
+      }
+    );
   }
 
   /**
@@ -200,7 +210,7 @@ export class DocumentDetailComponent implements OnInit, OnDestroy {
   /**
    * Ventana emergente de notificación de prórroga activa
    */
-  openSnackBar() {
+  openSnackBar(): void {
     this.snackBarExtension.openFromComponent(SnackBarComponent, {
       data: this.actualDocument,
       horizontalPosition: this.horizontalPosition,
@@ -211,7 +221,7 @@ export class DocumentDetailComponent implements OnInit, OnDestroy {
   /**
    * Ciera el snackbar de notificacion de prórroga activa
    */
-  closeSnackBar() {
+  closeSnackBar(): void {
     this.snackBarExtension.dismiss();
   }
 
@@ -252,14 +262,14 @@ export class DocumentDetailComponent implements OnInit, OnDestroy {
     if (
       responseTime < this.twoDays &&
       responseTime >= 0 &&
-      this.actualDocument.document_state != 'RE' &&
-      this.actualDocument.document_state != 'FI'
+      this.actualDocument.document_state !== 'RE' &&
+      this.actualDocument.document_state !== 'FI'
     ) {
       this.timeToResponse = 1;
     } else if (
       endDate.getTime() < today.getTime() &&
-      this.actualDocument.document_state != 'RE' &&
-      this.actualDocument.document_state != 'FI'
+      this.actualDocument.document_state !== 'RE' &&
+      this.actualDocument.document_state !== 'FI'
     ) {
       this.timeToResponse = 2;
     } else {
@@ -273,8 +283,8 @@ export class DocumentDetailComponent implements OnInit, OnDestroy {
   emitAlert(): void {
     if (
       this.timeToResponse === 1 &&
-      this.actualDocument.document_state != 'RE' &&
-      this.actualDocument.document_state != 'FI'
+      this.actualDocument.document_state !== 'RE' &&
+      this.actualDocument.document_state !== 'FI'
     ) {
       this.toastService.showWarningMessageAlmostTime(
         '¡REQUIERE ATENCIÓN!',
@@ -283,8 +293,8 @@ export class DocumentDetailComponent implements OnInit, OnDestroy {
     }
     if (
       this.timeToResponse === 2 &&
-      this.actualDocument.document_state != 'FI' &&
-      this.actualDocument.document_state != 'RE'
+      this.actualDocument.document_state !== 'FI' &&
+      this.actualDocument.document_state !== 'RE'
     ) {
       this.toastService.showErrorMessageNotTime(
         '¡SIN SOLUCIONAR!',

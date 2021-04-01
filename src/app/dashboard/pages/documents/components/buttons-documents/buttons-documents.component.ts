@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IDocumentDetail } from '../../../../../interfaces/document-detail-interface';
+import { SeeReponsesDialogComponent } from '../see-reponses-dialog/see-reponses-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-buttons-documents',
@@ -12,9 +14,20 @@ export class ButtonsDocumentsComponent implements OnInit {
    */
   @Input() actualDocument: IDocumentDetail;
 
-  constructor() {}
+  constructor(public dialog: MatDialog) {}
 
-  ngOnInit(): void {
-    console.log(this.actualDocument);
+  ngOnInit(): void {}
+
+  /**
+   * Abre el dialog para poder descargar los documentos del requerimiento
+   */
+  openResolveFiles(): void {
+    const dialogRef = this.dialog.open(SeeReponsesDialogComponent, {
+      width: '900px',
+      height: '450px',
+      data: this.actualDocument,
+      autoFocus: false,
+    });
+    dialogRef.afterClosed().subscribe((__) => {});
   }
 }

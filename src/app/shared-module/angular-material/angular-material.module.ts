@@ -26,6 +26,8 @@ import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatRippleModule } from '@angular/material/core';
+import { MatSortModule } from '@angular/material/sort';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCommonModule, MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
@@ -60,6 +62,8 @@ import { MatCommonModule, MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/
     MatProgressBarModule,
     MatSnackBarModule,
     MatRippleModule,
+    MatSortModule,
+    MatProgressSpinnerModule,
   ],
   exports: [
     MatInputModule,
@@ -90,6 +94,8 @@ import { MatCommonModule, MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/
     MatProgressBarModule,
     MatSnackBarModule,
     MatRippleModule,
+    MatSortModule,
+    MatProgressSpinnerModule,
   ],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'es-CO' }],
 })

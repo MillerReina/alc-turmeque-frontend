@@ -4,6 +4,11 @@ mat-dialog-content {
     width: 1000px !important;
 }
 
+::ng-deep .mat-progress-spinner circle,
+.mat-spinner circle {
+    stroke: $principal-color-blue;
+}
+
 .title-users {
     margin-bottom: 0px !important;
     font-weight: bold;
