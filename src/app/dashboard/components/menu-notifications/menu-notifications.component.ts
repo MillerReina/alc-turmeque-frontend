@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { INotifications } from '../../../interfaces/notification-interface';
 import { AuthService } from '../../../auth/services/auth.service';
 import { Router } from '@angular/router';
@@ -12,7 +12,7 @@ export class MenuNotificationsComponent implements OnInit {
   /**
    * Array de notificaciones que llega del usuario
    */
-  @Input() notifications: INotifications;
+  public notifications: INotifications;
   /**
    * Estado del badge
    */
@@ -22,11 +22,12 @@ export class MenuNotificationsComponent implements OnInit {
    */
   public preload: boolean;
 
-  constructor(private authService: AuthService, private router: Router) {}
-
-  ngOnInit(): void {
-    this.notifications.notifications.reverse();
+  constructor(private authService: AuthService, private router: Router) {
+    this.preload = true;
   }
+
+  ngOnInit(): void {}
+
   /**
    * Obtiene las notificaciones del usuario
    */
@@ -34,6 +35,7 @@ export class MenuNotificationsComponent implements OnInit {
     this.authService.getNotifications().subscribe((res) => {
       this.notifications = res;
       this.notifications.notifications.reverse();
+      this.notifications.notifications.splice(15, this.notifications.notifications.length);
       this.preload = false;
     });
   }
@@ -48,31 +50,9 @@ export class MenuNotificationsComponent implements OnInit {
   }
 
   /**
-   * Analiza el día para devolver un registro de fecha
-   */
-  getDay(element) {
-    const date = new Date(element.register_date);
-    const today = new Date();
-    const responseTime = date.getTime() - today.getTime();
-    const value = responseTime.toString().substring(1, 2);
-    /* console.log(responseTime + '  num' + element.id); */
-    if (value === '7' || value === '8' || value === '9') {
-      return 'Hoy';
-    } else if (value === '1') {
-      return 'Ayer';
-    } else if (value === '2') {
-      return 'Hace dos días';
-    } else {
-      return element.register_date;
-    }
-  }
-
-  /**
    * Va hacia el documento de la notificación
    */
   goToDocument(id): void {
-    /* this.router.navigate([`/dashboard/detail/${id}/document`]); */
-
     this.router.navigate([`/dashboard/detail/${id}/document`]);
   }
 }

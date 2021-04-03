@@ -2,7 +2,7 @@
     <div class="container secondary col d-flex justify-content-end full-width">
         <div class="row">
             <div class="col d-flex justify-content-end button-class">
-                <button mat-raised-button type="file" (click)="downloadDocument()" matTooltip="Descargar archivo" matTooltipPosition="above">
+                <button mat-raised-button type="file" (click)="downloadDocument()" matTooltip="Descargar archivo" matTooltipPosition="above" [disabled]="preload">
           <i class="icon fas fa-file-download fa-lg"></i>
         </button>
             </div>

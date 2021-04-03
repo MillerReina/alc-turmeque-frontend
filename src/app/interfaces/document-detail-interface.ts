@@ -23,6 +23,7 @@ export interface IDocumentDetail {
   end_date: string;
   history: TraceHistory[];
   extension: IExtensionDetail;
+  response: Response;
 }
 
 export interface Dependency {
@@ -51,5 +52,11 @@ export interface TraceHistory {
   user: User;
   action: string;
   comment: string;
+  register_date: Date;
+}
+
+export interface Response {
+  files: File[];
+  observations: string;
   register_date: Date;
 }

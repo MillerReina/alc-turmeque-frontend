@@ -1,1 +1,27 @@
-<p>see-reponses-dialog works!</p>
+<div class="container principal">
+    <h1 mat-dialog-title class="title center-horizontal">Archivos de respuesta</h1>
+
+    <div mat-dialog-content class="dialog-content">
+        <div class="container center-horizontal-vertical full-height">
+            <div class="row full-height full-width">
+                <div class="container">
+                    <div class="row">
+                        <div *ngIf="preload" class="row justify-content-center full-height" style="min-height: 100% !important">
+                            <div class="col-12 center-horizontal-vertical full-height flexbox-col">
+                                <img src="../../../../assets/loading/loading.gif" height="400px" alt="gif cargando" />
+                            </div>
+                        </div>
+                        <div class="col subtitle">
+                            <div class="custom-dropzone" ngx-dropzone [accept]="'.pdf,image/*'" [expandable]="false" [multiple]="true" [disableClick]="files.length > 0" [expandable]="false" name="annex">
+                                <ngx-dropzone-preview *ngFor="let file of files; index as i" [removable]="false">
+                                    <ngx-dropzone-label i ngx-dropzonee-label style="margin-top: 70px !important" (click)="fileInformation(file)" matTooltip="Ver archivo">
+                                        Doc. {{ i + 1 }} - {{ actualDocument.file_number }}</ngx-dropzone-label>
+                                </ngx-dropzone-preview>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

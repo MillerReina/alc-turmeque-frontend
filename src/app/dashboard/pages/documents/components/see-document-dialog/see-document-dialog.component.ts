@@ -23,11 +23,12 @@ export class SeeDocumentDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: IDocumentDetail,
     public dialogRef: MatDialogRef<SeeDocumentDialogComponent>
   ) {
-    this.pdfSrc = this.data.file_document;
     this.preload = true;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.pdfSrc = this.data.file_document;
+  }
 
   /**
    * Descarga el documento actual

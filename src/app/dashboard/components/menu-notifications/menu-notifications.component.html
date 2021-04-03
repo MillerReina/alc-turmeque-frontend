@@ -10,7 +10,8 @@
     <div *ngIf="!preload">
         <div class="card" *ngFor="let notification of notifications.notifications" style="margin-bottom: 7px !important" (click)="goToDocument(notification.document)">
             <div class="card-header center-vertical">
-                <mat-icon mat-list-icon style="margin-right: 10px !important">description</mat-icon> {{ getDay(notification) }}
+                <mat-icon mat-list-icon style="margin-right: 10px !important">description</mat-icon>
+                {{ notification.register_date | dateNotification }}
             </div>
             <div class="card-body">
                 <blockquote class="blockquote mb-0">

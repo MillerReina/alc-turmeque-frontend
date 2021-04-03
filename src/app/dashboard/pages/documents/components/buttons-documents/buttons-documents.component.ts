@@ -24,8 +24,8 @@ export class ButtonsDocumentsComponent implements OnInit {
   openResolveFiles(): void {
     const dialogRef = this.dialog.open(SeeReponsesDialogComponent, {
       width: '900px',
-      height: '450px',
-      data: this.actualDocument,
+      height: '400px',
+      data: this.actualDocument.id,
       autoFocus: false,
     });
     dialogRef.afterClosed().subscribe((__) => {});
