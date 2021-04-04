@@ -24,6 +24,7 @@ export interface IDocumentDetail {
   history: TraceHistory[];
   extension: IExtensionDetail;
   response: Response;
+  file_finalized: string;
 }
 
 export interface Dependency {

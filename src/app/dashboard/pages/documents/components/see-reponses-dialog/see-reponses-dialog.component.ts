@@ -46,11 +46,9 @@ export class SeeReponsesDialogComponent implements OnInit {
   }
 
   /**
-   * Descarga el documento seleccionado
+   * Abre una nueva ventana para ver el documento seleccionado
    */
   fileInformation(file): void {
     window.open(file.file_annex, '_blank');
-    /* this.files.forEach((element) => { */
-    /* FileSaver.saveAs(`${file.file_annex}`, `Doc. ${1} ${this.data.file_number}`); */
   }
 }

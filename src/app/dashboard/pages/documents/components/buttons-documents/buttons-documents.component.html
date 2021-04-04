@@ -2,7 +2,8 @@
     <button *ngIf="actualDocument.document_state === 'RE' || actualDocument.document_state === 'FI'" matRipple matRipp class="button-navigation mat-elevation-z3" matTooltip="Archivos de respuesta" matTooltipPosition="left" (click)="openResolveFiles()">
     <img src="./../../../../../../assets/icon/files.png" height="25px" alt="" />
   </button>
-    <button *ngIf="actualDocument.document_state === 'FI'" matRipple class="button-navigation mat-elevation-z3" matTooltip="Ver comprobante" matTooltipPosition="left">
-    <img src="./../../../../../../assets/icon/voucher.png" height="25px" alt="" />
+    <button *ngIf="actualDocument.document_state === 'FI'" matRipple class="button-navigation mat-elevation-z3" matTooltip="Ver comprobante" matTooltipPosition="left" (click)="fileInformation()">
+    <img *ngIf="!preload" src="./../../../../../../assets/icon/voucher.png" height="25px" alt="" />
+    <mat-spinner *ngIf="preload" mode="indeterminate" diameter="20"></mat-spinner>
   </button>
 </div>
