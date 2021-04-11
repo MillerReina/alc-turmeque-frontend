@@ -8,9 +8,19 @@ import { ComponentsModule } from './components/components.module';
 import { ExternalDetailComponent } from './external-detail/external-detail.component';
 import { CreateExternalComponent } from './create-external/create-external.component';
 import { PipesModule } from '../../../pipes/pipes.module';
+import { ExternalFinishedComponent } from './external-finished/external-finished.component';
+import { ExternalResolvedComponent } from './external-resolved/external-resolved.component';
+import { ExternalInProcessComponent } from './external-in-process/external-in-process.component';
 
 @NgModule({
-  declarations: [ExternalComponent, ExternalDetailComponent, CreateExternalComponent],
+  declarations: [
+    ExternalComponent,
+    ExternalDetailComponent,
+    CreateExternalComponent,
+    ExternalFinishedComponent,
+    ExternalResolvedComponent,
+    ExternalInProcessComponent,
+  ],
   imports: [
     CommonModule,
     AngularMaterialModule,

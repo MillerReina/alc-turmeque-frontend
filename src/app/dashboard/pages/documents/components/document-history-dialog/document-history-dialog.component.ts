@@ -18,6 +18,10 @@ export class DocumentHistoryDialogComponent implements OnInit {
    * Historial del documento
    */
   public documentHistory: TraceHistory[];
+  /**
+   * Es documento externo o interno
+   */
+  public documentKind: boolean;
 
   constructor(
     public dialogRef: MatDialogRef<DocumentHistoryDialogComponent>,
@@ -25,9 +29,17 @@ export class DocumentHistoryDialogComponent implements OnInit {
   ) {
     this.documentHistory = data.history;
     this.dataSource = new MatTableDataSource(this.documentHistory);
+    this.typeOfDocument();
   }
 
   ngOnInit(): void {}
+
+  /**
+   * Identifica el tipo de documento si es externo o interno
+   */
+  typeOfDocument(): void {
+    this.data.user_assign ? (this.documentKind = true) : (this.documentKind = false);
+  }
 
   /**
    * Cierra el dialog

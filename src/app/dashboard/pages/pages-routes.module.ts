@@ -19,6 +19,9 @@ import { DocumentDetailComponent } from './documents/document-detail/document-de
 import { ExtensionsComponent } from './extensions/extensions.component';
 import { ExternalComponent } from './external/external.component';
 import { CreateExternalComponent } from './external/create-external/create-external.component';
+import { ExternalInProcessComponent } from './external/external-in-process/external-in-process.component';
+import { ExternalResolvedComponent } from './external/external-resolved/external-resolved.component';
+import { ExternalFinishedComponent } from './external/external-finished/external-finished.component';
 
 const childRoutes: Routes = [
   {
@@ -45,10 +48,14 @@ const childRoutes: Routes = [
   },
   {
     path: 'all',
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard],
     component: DocumentsComponent,
   },
   {
     path: 'in-process',
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard],
     component: InProcessComponent,
   },
   {
@@ -57,10 +64,14 @@ const childRoutes: Routes = [
   },
   {
     path: 'finished',
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard],
     component: FinishedComponent,
   },
   {
     path: 'returned',
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard],
     component: ReturnedComponent,
   },
   {
@@ -101,10 +112,15 @@ const childRoutes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'external',
-    component: ExternalComponent,
+    path: 'ext',
     canLoad: [AuthGuard],
+    component: ExternalComponent,
     loadChildren: () => import('./../pages/external/external.module').then((module) => module.ExternalModule),
+  },
+  {
+    path: 'external',
+    canLoad: [AuthGuard],
+    component: ExternalComponent,
   },
   {
     path: 'create-external',
@@ -117,6 +133,24 @@ const childRoutes: Routes = [
     canActivate: [AuthGuard],
     canLoad: [AuthGuard],
     component: ExternalDetailComponent,
+  },
+  {
+    path: 'external/in-process',
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard],
+    component: ExternalInProcessComponent,
+  },
+  {
+    path: 'external/resolved',
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard],
+    component: ExternalResolvedComponent,
+  },
+  {
+    path: 'external/finished',
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard],
+    component: ExternalFinishedComponent,
   },
 ];
 @NgModule({

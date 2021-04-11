@@ -2,7 +2,12 @@
     <div class="container">
         <div class="row">
             <div class="col-8 col-md-11 center-vertical contain-text">
-                <h1 mat-dialog-title class="title title-text center-horizontal-vertical">Historial del radicado</h1>
+                <h1 *ngIf="documentKind" mat-dialog-title class="title title-text center-horizontal-vertical">
+                    Historial del radicado
+                </h1>
+                <h1 *ngIf="!documentKind" mat-dialog-title class="title title-text center-horizontal-vertical">
+                    Historial de la solicitud
+                </h1>
             </div>
             <div class="col col-md-1 center-vertical contain-button" style="justify-content: flex-end">
                 <button mat-raised-button type="button" class="btn-right-close" style="justify-content: flex-end" (click)="cancel()" matTooltip="Cerrar ventana" matTooltipPosition="above">
