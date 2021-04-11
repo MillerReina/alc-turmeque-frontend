@@ -45,4 +45,11 @@ export class ExternalDocumentsService {
         map((res) => res.results)
       );
   }
+
+  /**
+   * Radica nueva solicitud externa en el sistema
+   */
+  createDocument(formData): Observable<any> {
+    return this.http.post<any>(`${base_url}/documents/doc_external`, formData);
+  }
 }

@@ -1,10 +1,5 @@
 <div class="example-container">
-    <div class="title-users mt-4 d-flex justify-content-between mt-4">
-        <h1>Solicitudes Externas</h1>
-        <div class="right-side">
-            <button mat-raised-button class="btn-create-user" (click)="createExternalDocument()">Crear solicitud</button>
-        </div>
-    </div>
+    <app-title-documents titleHeader="Todas las solicitudes"></app-title-documents>
     <app-external-table documentType=""></app-external-table>
 </div>
 <p-toast></p-toast>

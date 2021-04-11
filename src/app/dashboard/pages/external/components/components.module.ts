@@ -4,10 +4,11 @@ import { ExternalTableComponent } from './external-table/external-table.componen
 import { AngularMaterialModule } from '../../../../shared-module/angular-material/angular-material.module';
 import { NgPrimeModule } from '../../../../shared-module/ng-prime/ng-prime.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TitleDocumentsComponent } from './title-documents/title-documents.component';
 
 @NgModule({
-  declarations: [ExternalTableComponent],
+  declarations: [ExternalTableComponent, TitleDocumentsComponent],
   imports: [CommonModule, AngularMaterialModule, NgPrimeModule, FormsModule, ReactiveFormsModule],
-  exports: [ExternalTableComponent],
+  exports: [ExternalTableComponent, TitleDocumentsComponent],
 })
 export class ComponentsModule {}

@@ -9,6 +9,4 @@ export class ExternalComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
-
-  createExternalDocument() {}
 }

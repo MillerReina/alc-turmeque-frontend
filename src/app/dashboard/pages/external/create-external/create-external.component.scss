@@ -1,0 +1,78 @@
+@import './../../../../../styles.scss';
+::ng-deep .mat-raised-button {
+    outline: none !important;
+}
+
+::ng-deep .mat-raised-button:hover {
+    background-color: $principal-color-pinkish;
+    color: whitesmoke !important;
+}
+
+.content-principal {
+    margin-top: 60px !important;
+    background-color: $principal-color-gray !important;
+    padding: 0px !important;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.title-documents h1 {
+    margin-bottom: 0px !important;
+    font-weight: bold;
+    color: $principal-color-blue;
+    font-size: 2.5em;
+    text-shadow: 0px 2px 2px rgba(150, 150, 150, 1);
+}
+
+.btn-question {
+    border-radius: 100px !important;
+}
+
+.text-not {
+    color: $principal-color-pinkish;
+}
+
+.myelement {
+    animation: headShake;
+    animation-duration: 1s;
+}
+
+
+/* Dropzone */
+
+ngx-dropzone,
+.custom-dropzone {
+    margin: 20px;
+}
+
+ngx-dropzone-preview {
+    background-image: url('./../../../../../assets/icon/pdf-icon.png');
+    text-align: center !important;
+    background-repeat: no-repeat, repeat;
+    border: 2px solid rgb(233, 233, 233);
+    background-color: rgb(233, 233, 233);
+}
+
+ngx-dropzone-preview:hover {
+    background-image: url('./../../../../../assets/icon/pdf-icon.png');
+}
+
+.custom-dropzone {
+    height: 250px;
+    background: rgb(255, 255, 255);
+    color: rgb(156, 156, 156);
+    border: 5px dashed #E1E1E1(235, 79, 79);
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.custom-dropzone:hover {
+    height: 250px;
+    background: rgb(255, 255, 255);
+    border-radius: 5px;
+    font-size: 20px;
+    border: 2px solid rgb(156, 156, 156);
+}
+
+.custom-dropzone.ngx-dz-hovered {
+    border: 2px solid rgb(255, 0, 125);
+}

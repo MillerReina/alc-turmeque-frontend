@@ -1,0 +1,7 @@
+@import './../../../../../../styles.scss';
+@import './../../../dependencies/dependices.component.scss';
+@media (max-width: 700px) {
+    .title-users h1 {
+        font-size: 1.6em;
+    }
+}

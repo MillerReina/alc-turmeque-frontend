@@ -17,6 +17,7 @@ import { CreateDocumentComponent } from './documents/create-document/create-docu
 import { DocumentDetailComponent } from './documents/document-detail/document-detail.component';
 import { ExtensionsComponent } from './extensions/extensions.component';
 import { ExternalComponent } from './external/external.component';
+import { CreateExternalComponent } from './external/create-external/create-external.component';
 
 const childRoutes: Routes = [
   {
@@ -103,6 +104,12 @@ const childRoutes: Routes = [
     component: ExternalComponent,
     canLoad: [AuthGuard],
     loadChildren: () => import('./../pages/external/external.module').then((module) => module.ExternalModule),
+  },
+  {
+    path: 'create-external',
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard],
+    component: CreateExternalComponent,
   },
 ];
 @NgModule({

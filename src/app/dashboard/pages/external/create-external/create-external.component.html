@@ -1,0 +1,72 @@
+<div *ngIf="preload || postCreate" class="row justify-content-center full-height" style="min-height: 100% !important">
+    <div class="col-12 center-horizontal-vertical full-height flexbox-col">
+        <img src="../../../../assets/loading/loading.gif" height="400px" alt="gif cargando" />
+    </div>
+</div>
+
+<div *ngIf="!preload && !postCreate">
+    <div class="title-documents d-flex justify-content-between mt-4" style="margin-left: 10px !important">
+        <h1>Realizar nueva solicitud</h1>
+        <button class="btn-question" mat-raised-button matTooltip="Sección para solicitar documentos a otras entidades desde la alcaldía." aria-label="Button that displays a tooltip when focused or hovered over">
+      <i class="fas fa-question-circle fa-2x"></i>
+    </button>
+    </div>
+    <div class="container content-principal">
+        <mat-card>
+            <form autocomplete="off" [formGroup]="registerForm" (ngSubmit)="registerDocument()">
+                <div class="row">
+                    <div class="col-sm">
+                        <mat-form-field appearance="outline" class="full-width" [ngClass]="{
+                myelement: subjectIsInvalid
+              }">
+                            <mat-label>Asunto</mat-label>
+                            <textarea matInput formControlName="subject" placeholder="Descripcíon del documento - máx. 500 carácteres." cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="6.4" cdkAutosizeMaxRows="6" maxlength="500" required></textarea>
+                            <mat-error *ngIf="subjectIsInvalid"> Ingrese un asunto por favor </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="full-width" [ngClass]="{
+                myelement: documentTypeIsInvalid
+              }">
+                            <mat-label>Tipo de documento</mat-label>
+                            <mat-select formControlName="document_type" name="document_type" required>
+                                <mat-option *ngFor="let docType of listDocumentType" [value]="docType.id">{{ docType.name_document_type }} ({{ docType.suggested_working_days }} días).
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="documentTypeIsInvalid"> Seleccione un tipo de documento válido por favor </mat-error>
+                        </mat-form-field>
+
+                        <div class="custom-dropzone" ngx-dropzone [accept]="'.pdf'" (change)="onSelect($event)" [expandable]="false" [multiple]="false" [disableClick]="files.length > 0" [expandable]="false" name="file_document">
+                            <ngx-dropzone-label>
+                                <div>
+                                    <h2>Arrastra o selecciona el documento asociado.</h2>
+                                </div>
+                            </ngx-dropzone-label>
+                            <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                                <ngx-dropzone-label i ngx-dropzonee-label style="margin-top: 70px !important">{{ f.name | slice: 0:14 }}... {{ f.type | extension }}</ngx-dropzone-label>
+                            </ngx-dropzone-preview>
+                        </div>
+                        <mat-error *ngIf="fileIsInvalid"> Seleccione un documento por favor </mat-error>
+                    </div>
+                </div>
+                <div mat-dialog-actions class="content-actions center-horizontal full-width mt-4 mb-3">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col d-flex justify-content-end">
+                                <button mat-raised-button type="submit" class="btn-create full-width">
+                  <i class="fas fa-file-upload fa-lg" style="margin-right: 5px !important"></i>
+                  Generar solicitud
+                </button>
+                            </div>
+                            <div class="col d-flex justify-content-start content-type-id">
+                                <button mat-raised-button type="button" (click)="goToBack()" class="full-width">
+                  <i class="fas fa-window-close fa-lg" style="margin-right: 5px !important"></i>
+                  Cancelar acción
+                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </mat-card>
+    </div>
+</div>

@@ -2,7 +2,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { IExternal } from '../../../../../interfaces/external-document-interface';
 import { ExternalDocumentsService } from '../../../../services/external-documents.service';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 
 @Component({
@@ -59,10 +59,16 @@ export class ExternalTableComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadExternalDocuments();
+  }
+
+  /**
+   * Carga las solicitudes externas
+   */
+  loadExternalDocuments(): void {
     this.externalDocumentService
       .getAllDocuments(this.documentType, this.pageNumber.toString(), true, '')
       .subscribe((res) => {
-        console.log(res);
         this.documentsFiled = res;
         this.totalData = this.externalDocumentService.getPagination.total_records;
         this.refreshTable();
@@ -84,5 +90,34 @@ export class ExternalTableComponent implements OnInit {
    */
   getDocument(element): void {
     this.router.navigate([`/dashboard/detail/${element.id}/document`]);
+  }
+
+  /**
+   * Busca documento por coincidencia
+   */
+  searchDocumentsByCoincidence(term): void {
+    this.preloadSearch = true;
+    this.externalDocumentService
+      .getAllDocuments(this.documentType, this.pageNumber.toString(), true, term)
+      .subscribe((res) => {
+        this.documentsFiled = res;
+        this.totalData = this.externalDocumentService.getPagination.total_records;
+        this.refreshTable();
+      });
+  }
+
+  /**
+   * Paginador
+   * @param e Accion de atras o siguente
+   */
+  handlePage(e: PageEvent): void {
+    this.pageSize = e.pageSize;
+    this.pageNumber = e.pageIndex + 1;
+    const inputValue = (document.getElementById('term') as HTMLInputElement).value;
+    if (inputValue) {
+      this.searchDocumentsByCoincidence(inputValue);
+    } else {
+      this.loadExternalDocuments();
+    }
   }
 }
