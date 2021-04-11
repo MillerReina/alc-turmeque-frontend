@@ -1,0 +1,33 @@
+@import './../../../../styles.scss';
+::ng-deep .mat-raised-button {
+    outline: none !important;
+}
+
+.btn-create-user:hover {
+    background-color: rgb(78, 65, 255) !important;
+}
+
+.btn-create-user {
+    background-color: $principal-color-blue;
+    color: whitesmoke !important;
+}
+
+.title-users h1 {
+    margin-bottom: 0px !important;
+    font-weight: bold;
+    color: $principal-color-blue;
+    font-size: 2.5em;
+    text-shadow: 0px 2px 2px rgba(150, 150, 150, 1);
+}
+
+@media (max-width: 700px) {
+    .title-users h1 {
+        font-size: 1.8em;
+    }
+    .example-container {
+        padding-left: 15px !important;
+    }
+    .btn-create-user {
+        font-size: 0.9em;
+    }
+}

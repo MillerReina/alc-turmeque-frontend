@@ -81,6 +81,7 @@ export class DocumentDetailComponent implements OnInit, OnDestroy {
     this.route.params.subscribe((params) => {
       this.preload = true;
       this.getDocumentDetail(params.id);
+      this.closeSnackBar();
     });
   }
 

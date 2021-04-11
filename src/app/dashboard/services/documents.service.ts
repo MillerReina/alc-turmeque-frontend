@@ -28,7 +28,7 @@ export class DocumentsService {
   }
 
   /**
-   * Obtiene todos los documentos raciados
+   * Obtiene todos los documentos radicados
    */
   getAllDocuments(state: string, pg: string, dp: boolean, term: string): Observable<IDocument[]> {
     return this.http

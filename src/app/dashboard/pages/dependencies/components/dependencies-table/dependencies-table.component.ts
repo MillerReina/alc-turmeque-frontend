@@ -19,6 +19,9 @@ export class DependenciesTableComponent implements OnInit, OnDestroy {
    * Estado de carga
    */
   public preload: boolean;
+  /**
+   * Columnas
+   */
   public displayedColumns: string[] = ['dependencia', 'titular', 'total', 'activo', 'editar', 'estado', 'borrar'];
   /**
    * Información fuente que se carga desde el servicio

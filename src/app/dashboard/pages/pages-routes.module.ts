@@ -16,6 +16,7 @@ import { DocTypesComponent } from './doc-types/doc-types.component';
 import { CreateDocumentComponent } from './documents/create-document/create-document.component';
 import { DocumentDetailComponent } from './documents/document-detail/document-detail.component';
 import { ExtensionsComponent } from './extensions/extensions.component';
+import { ExternalComponent } from './external/external.component';
 
 const childRoutes: Routes = [
   {
@@ -96,6 +97,12 @@ const childRoutes: Routes = [
     path: 'my-profile',
     component: MyProfileComponent,
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'external',
+    component: ExternalComponent,
+    canLoad: [AuthGuard],
+    loadChildren: () => import('./../pages/external/external.module').then((module) => module.ExternalModule),
   },
 ];
 @NgModule({

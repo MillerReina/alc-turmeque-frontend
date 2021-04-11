@@ -89,6 +89,13 @@
 
                     <hr />
 
+                    <a mat-list-item [routerLink]="'/dashboard/external'" (click)="sidenav.close()">
+                        <mat-icon mat-list-icon>outbox</mat-icon>
+                        Solicitudes externas
+                    </a>
+
+                    <hr />
+
                     <a *ngIf="isAdmin" mat-list-item (click)="toggleMenuUsers()">
                         <mat-icon mat-list-icon>face</mat-icon> Usuarios
                         <mat-icon *ngIf="!showMenuUsers">chevron_right</mat-icon>
