@@ -89,10 +89,18 @@
 
                     <hr />
 
-                    <a mat-list-item [routerLink]="'/dashboard/external'" (click)="sidenav.close()">
+                    <a mat-list-item (click)="toggleMenuExternal()">
                         <mat-icon mat-list-icon>outbox</mat-icon>
-                        Solicitudes externas
+                        Solicitudes ext.
+                        <mat-icon *ngIf="!showMenuExternal">chevron_right</mat-icon>
+                        <mat-icon *ngIf="showMenuExternal">expand_more</mat-icon>
                     </a>
+                    <mat-nav-list class="sidenav-submenu" *ngIf="showMenuExternal" (click)="sidenav.close()">
+                        <a mat-list-item [routerLink]="'/dashboard/external'"> Todas</a>
+                        <a mat-list-item [routerLink]="'/dashboard/external/in-process'"> Radicadas</a>
+                        <a mat-list-item [routerLink]="'/dashboard/external/resolved'"> Resueltas</a>
+                        <a mat-list-item [routerLink]="'/dashboard/external/finished'"> Finalizadas</a>
+                    </mat-nav-list>
 
                     <hr />
 

@@ -1,0 +1,114 @@
+@import './../../../../../styles.scss';
+@import './../../officers/create-officer/create-officer.component.scss';
+::ng-deep .mat-stroked-button {
+    outline: none !important;
+}
+
+.mat-card {
+    max-height: 100% !important;
+    overflow-y: auto;
+}
+
+.webviewer {
+    width: 100% !important;
+    height: 1000px !important;
+}
+
+.mat-button-action {
+    margin-left: 3px !important;
+    margin-right: 3px !important;
+    font-size: 1.5em !important;
+}
+
+.resolve {
+    color: whitesmoke !important;
+    background-color: $secondary-color-green;
+}
+
+.extension {
+    color: whitesmoke !important;
+    background-color: $secondary-color-yellow;
+}
+
+.return {
+    color: whitesmoke !important;
+    background-color: $secondary-color-red;
+}
+
+.finish {
+    color: whitesmoke !important;
+    background-color: $principal-color-blue;
+}
+
+.title-secondary {
+    color: $principal-color-blue;
+    padding: 5px !important;
+}
+
+.pointer {
+    margin: 10px !important;
+}
+
+.pointer:hover {
+    cursor: pointer;
+}
+
+.pdf-img {
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.name-pdf {
+    background-color: rgba(255, 255, 255, 0.384);
+    display: block;
+    position: absolute;
+    top: 140px !important;
+    padding: 5px;
+    color: grey;
+}
+
+.distance {
+    padding: 5px !important;
+}
+
+.document-section {
+    padding: 0px !important;
+}
+
+.btn-history {
+    width: 30px;
+    height: 30px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 500px !important;
+    line-height: 32px;
+    text-transform: uppercase;
+    float: right;
+    margin-left: 10px !important;
+}
+
+::ng-deep.mat-dialog-container {
+    padding-top: 0px !important;
+    padding-bottom: 5px !important;
+}
+
+@media (max-width: 700px) {
+    .title-users {
+        font-size: 0.7em;
+        text-shadow: 0px 2px 2px rgba(150, 150, 150, 1);
+    }
+    .mat-button-action {
+        margin: 2px !important;
+    }
+    ng-deep.mat-dialog-container {
+        padding-left: 0px !important;
+    }
+    .form-detail {
+        width: 100% !important;
+    }
+    .btn-history {
+        margin-left: 0px !important;
+    }
+    .finish {
+        margin-top: 28px !important;
+    }
+}

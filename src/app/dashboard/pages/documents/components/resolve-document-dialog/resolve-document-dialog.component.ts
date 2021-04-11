@@ -29,6 +29,10 @@ export class ResolveDocumentDialogComponent implements OnInit {
    * Archivo de subida
    */
   public files: File[] = [];
+  /**
+   * Es documento externo o interno
+   */
+  public documentKind: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -40,12 +44,11 @@ export class ResolveDocumentDialogComponent implements OnInit {
   ) {
     this.createRegisterForm();
     this.actualDocument = data;
+    this.typeOfDocument();
     this.preload = false;
   }
 
-  ngOnInit(): void {
-    this;
-  }
+  ngOnInit(): void {}
 
   get subjectIsInvalid(): boolean {
     return this.registerForm.get('observations').invalid && this.registerForm.get('observations').touched;
@@ -64,6 +67,13 @@ export class ResolveDocumentDialogComponent implements OnInit {
       observations: ['', [Validators.required, Validators.max(200)]],
       annex: [''],
     });
+  }
+
+  /**
+   * Identifica el tipo de documento si es externo o interno
+   */
+  typeOfDocument(): void {
+    this.actualDocument.user_assign ? (this.documentKind = true) : (this.documentKind = false);
   }
 
   /**
@@ -92,8 +102,13 @@ export class ResolveDocumentDialogComponent implements OnInit {
       this.documentsService.resolveDocument(formData).subscribe(
         (res) => {
           this.cancel();
-          this.router.navigate([`dashboard/all`]);
-          this.toastService.showSuccessMessageDocuments('REQUERIMIENTO RESUELTO', res.message);
+          if (this.documentKind) {
+            this.router.navigate([`dashboard/all`]);
+            this.toastService.showSuccessMessageDocuments('REQUERIMIENTO RESUELTO', res.message);
+          } else {
+            this.router.navigate([`dashboard/external`]);
+            this.toastService.showSuccessMessageDocuments('SOLICITUD EXTERNA RESUELTA', res.message);
+          }
         },
         (err) => {
           this.preload = false;
@@ -138,7 +153,6 @@ export class ResolveDocumentDialogComponent implements OnInit {
     if (this.files.length < 3) {
       this.files.push(...event.addedFiles);
       this.registerForm.get('annex').setValue(this.files);
-      /* this.filesInArray(); */
     }
   }
   /**

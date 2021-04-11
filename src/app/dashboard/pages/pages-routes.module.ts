@@ -1,3 +1,4 @@
+import { ExternalDetailComponent } from './external/external-detail/external-detail.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DocumentsComponent } from './documents/documents.component';
@@ -110,6 +111,12 @@ const childRoutes: Routes = [
     canActivate: [AuthGuard],
     canLoad: [AuthGuard],
     component: CreateExternalComponent,
+  },
+  {
+    path: 'detail/:id/external',
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard],
+    component: ExternalDetailComponent,
   },
 ];
 @NgModule({

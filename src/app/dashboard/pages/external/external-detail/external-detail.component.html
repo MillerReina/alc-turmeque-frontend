@@ -1,1 +1,119 @@
-<p>external-detail works!</p>
+<div *ngIf="preload" class="row justify-content-center full-height" style="min-height: 100% !important">
+    <div class="col-12 center-horizontal-vertical full-height flexbox-col">
+        <img src="../../../../assets/loading/loading.gif" height="400px" alt="gif cargando" />
+    </div>
+</div>
+<div *ngIf="!preload">
+    <div class="title-users d-flex justify-content-between mt-4" style="margin-left: 10px !important">
+        <div>
+            <h1>
+                Solicitud # {{ actualDocument.file_number }}
+                <button mat-raised-button class="btn-history" type="button" matTooltip="Ver historial del documento" (click)="openDialog(actualDocument)">
+          <i class="fas fa-history fa-lg"></i>
+        </button>
+            </h1>
+        </div>
+        <div class="buttons-actions">
+            <button *ngIf="isTheUser && actualDocument.document_state === 'RE'" class="mat-button-action finish" mat-stroked-button (click)="openFinishDocumentDialog()">
+        Finalizar
+      </button>
+            <div *ngIf="actualDocument.document_state != 'FI' && actualDocument.document_state != 'RE'">
+                <button class="mat-button-action resolve" mat-stroked-button (click)="openResolveDocumentDialog(actualDocument)">
+          Resolver
+        </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container content-principal">
+        <mat-card>
+            <div class="row">
+                <div class="col-sm">
+                    <mat-card-title class="title-secondary">Datos de la solicitud: </mat-card-title>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Fecha de generación</mat-label>
+                        <input matInput [value]="actualDocument.register_date | date: 'dd/MMM/yyyy h:mm a'" autocomplete="off" type="text" readonly />
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Asunto</mat-label>
+                        <textarea matInput [value]="actualDocument.subject" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="6.4" cdkAutosizeMaxRows="6" maxlength="500" readonly></textarea>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Requerimiento</mat-label>
+                        <input matInput [value]="actualDocument.document_type.name_document_type" autocomplete="off" type="text" readonly />
+                    </mat-form-field>
+
+                    <div class="container document-section">
+                        <div class="row">
+                            <div class="col">
+                                <mat-form-field appearance="outline" class="full-width">
+                                    <mat-label>Días hábiles</mat-label>
+                                    <input matInput [value]="actualDocument.document_type.suggested_working_days" autocomplete="off" type="text" readonly />
+                                </mat-form-field>
+                            </div>
+                            <div class="col">
+                                <mat-form-field appearance="outline" class="full-width" [ngSwitch]="timeToResponse">
+                                    <mat-label>Fecha máxima de resolución:</mat-label>
+                                    <input matInput *ngSwitchCase="'0'" [value]="actualDocument.end_date | date: 'dd/MMM/yyyy'" autocomplete="off" type="text" readonly style="font-weight: bold; color: #1d59c9 !important" />
+                                    <input matInput *ngSwitchCase="'1'" [value]="actualDocument.end_date | date: 'dd/MMM/yyyy'" autocomplete="off" type="text" readonly style="font-weight: bold; color: orange !important" />
+                                    <input matInput *ngSwitchCase="'2'" [value]="actualDocument.end_date | date: 'dd/MMM/yyyy'" autocomplete="off" type="text" readonly style="font-weight: bold; color: red !important" />
+                                    <mat-icon matSuffix *ngSwitchCase="'0'" style="color: #1d59c9 !important">info</mat-icon>
+                                    <mat-icon matSuffix *ngSwitchCase="'1'" style="color: orange !important">info</mat-icon>
+                                    <mat-icon matSuffix *ngSwitchCase="'2'" style="color: red !important">info</mat-icon>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    <mat-form-field appearance="outline" [ngSwitch]="actualDocument.document_state | stateDocument" class="full-width">
+                        <mat-label>Estado del documento</mat-label>
+                        <mat-chip-list aria-label="Color selection" style="padding: 0px !important; margin: 0px !important">
+                            <mat-chip style="background-color: transparent !important; padding: 0px !important">
+                                <span *ngSwitchCase="'Radicado'" class="badge badge-file-document">{{
+                  actualDocument.document_state | stateDocument
+                }}</span>
+                                <span *ngSwitchCase="'En proceso'" class="badge badge-process">{{
+                  actualDocument.document_state | stateDocument
+                }}</span>
+                                <span *ngSwitchCase="'Resuelto'" class="badge badge-resolved">{{
+                  actualDocument.document_state | stateDocument
+                }}</span>
+                                <span *ngSwitchCase="'Finalizado'" class="badge badge-finished">{{
+                  actualDocument.document_state | stateDocument
+                }}</span>
+                                <span *ngSwitchCase="'Devuelto'" class="badge badge-returned">{{
+                  actualDocument.document_state | stateDocument
+                }}</span>
+                            </mat-chip>
+                        </mat-chip-list>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm">
+                    <mat-card-title class="title-secondary">Radicada por:</mat-card-title>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Funcionario</mat-label>
+                        <input matInput [value]="actualDocument.user_register.first_name + ' ' + actualDocument.user_register.last_name" autocomplete="off" type="text" readonly />
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Dependencia</mat-label>
+                        <input matInput [value]="actualDocument.dependency.name_dependency" autocomplete="off" type="text" readonly />
+                    </mat-form-field>
+                    <mat-card-title class="title-secondary" style="margin-top: 10px !important">Documento asociado:
+                    </mat-card-title>
+
+                    <mat-form-field appearance="outline" class="full-width" style="margin-top: 10px !important">
+                        <input matInput [value]="" autocomplete="off" type="text" readonly />
+                        <div>
+                            <a class="pointer" [matTooltip]="actualDocument.file_number" (click)="openDocument()">
+                                <img class="pdf-img" src="./../../../../../assets/icon/pdf-size-big.png" alt="icono de pdf" style="margin-bottom: 15px !important; padding: 10px !important" />
+                            </a>
+                        </div>
+                    </mat-form-field>
+                </div>
+            </div>
+        </mat-card>
+    </div>
+</div>
+<!-- <app-buttons-documents *ngIf="!preload" [actualDocument]="actualDocument"></app-buttons-documents> -->

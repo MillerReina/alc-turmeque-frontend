@@ -25,6 +25,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
    */
   public showMenuDocuments: boolean;
   /**
+   * Estado activo/inactivo del menu solicitudes
+   */
+  public showMenuExternal: boolean;
+  /**
    * Estado activo/inactivo del menu usuarios
    */
   public showMenuUsers: boolean;
@@ -51,6 +55,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   constructor(private authService: AuthService, private router: Router, private toastService: ToastMessageService) {
     this.showMenuDocuments = false;
     this.showMenuUsers = false;
+    this.showMenuExternal = false;
     this.isAdmin = false;
     this.preload = true;
   }
@@ -114,6 +119,14 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   toggleMenuReports(): void {
     this.showMenuReports = !this.showMenuReports;
   }
+
+  /**
+   * Ocultar/mostrar menu solicitudes externas
+   */
+  toggleMenuExternal(): void {
+    this.showMenuExternal = !this.showMenuExternal;
+  }
+
   /**
    * Cerrar sesión
    */

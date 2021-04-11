@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { AuthGuard } from '../guards/auth.guard';
+import { NotFoundComponent } from '../not-found/not-found.component';
 
 const routes: Routes = [
   { path: 'dashboard', pathMatch: 'full', redirectTo: 'dashboard/home' },
@@ -12,6 +13,7 @@ const routes: Routes = [
     canLoad: [AuthGuard],
     loadChildren: () => import('./pages/pages-routes.module').then((module) => module.PagesRoutesModule),
   },
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({

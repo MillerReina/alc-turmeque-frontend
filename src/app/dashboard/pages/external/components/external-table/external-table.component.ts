@@ -89,7 +89,7 @@ export class ExternalTableComponent implements OnInit {
    * Abre documento en especifico por id
    */
   getDocument(element): void {
-    this.router.navigate([`/dashboard/detail/${element.id}/document`]);
+    this.router.navigate([`/dashboard/detail/${element.id}/external`]);
   }
 
   /**

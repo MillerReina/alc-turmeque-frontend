@@ -1,5 +1,6 @@
 <div class="container principal">
-    <h1 mat-dialog-title class="title center-horizontal">Resolver requerimiento</h1>
+    <h1 *ngIf="documentKind" mat-dialog-title class="title center-horizontal">Resolver requerimiento</h1>
+    <h1 *ngIf="!documentKind" mat-dialog-title class="title center-horizontal">Resolver solicitud</h1>
 
     <div mat-dialog-content class="dialog-content">
         <div class="container center-horizontal-vertical full-height">
@@ -43,9 +44,13 @@
         <div class="container secondary">
             <div class="row">
                 <div class="col d-flex justify-content-end">
-                    <button mat-raised-button type="submit" class="full-width" (click)="resolveDocument()">
+                    <button *ngIf="documentKind" mat-raised-button type="submit" class="full-width" (click)="resolveDocument()">
             <i class="fas fa-check fa-lg" style="margin-right: 5px !important"></i>
             Resolver radicado
+          </button>
+                    <button *ngIf="!documentKind" mat-raised-button type="submit" class="full-width" (click)="resolveDocument()">
+            <i class="fas fa-check fa-lg" style="margin-right: 5px !important"></i>
+            Resolver Solicitud
           </button>
                 </div>
                 <div class="col d-flex justify-content-start">

@@ -12,8 +12,8 @@ import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition
 import { SnackBarComponent } from '../components/snack-bar/snack-bar.component';
 import { ResolveDocumentDialogComponent } from '../components/resolve-document-dialog/resolve-document-dialog.component';
 import { FinishDocumentDialogComponent } from '../components/finish-document-dialog/finish-document-dialog.component';
-import Swal from 'sweetalert2';
 import { ToastMessageService } from '../../../../services/toast-message.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-document-detail',
