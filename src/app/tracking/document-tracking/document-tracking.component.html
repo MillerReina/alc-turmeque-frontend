@@ -1,4 +1,9 @@
 <app-header></app-header>
+<div *ngIf="preload" class="row justify-content-center full-height" style="min-height: 100% !important">
+    <div class="col-12 center-horizontal-vertical full-height flexbox-col">
+        <img src="../../../../assets/loading/loading.gif" height="400px" alt="gif cargando" />
+    </div>
+</div>
 <div *ngIf="!preload" class="center-horizontal-vertical">
     <mat-card class="welcome-card mat-elevation-z8">
         <div class="container principal">
@@ -12,7 +17,7 @@
                 <div class="row">
                     <div class="col-sm" style="margin-top: 10px !important">
                         <mat-form-field appearance="outline" class="full-width">
-                            <mat-label>Nombre remitente</mat-label>
+                            <mat-label>Nombre del remitente</mat-label>
                             <input matInput [value]="fullName" [placeholder]="" autocomplete="off" type="text" maxlength="30" required readonly />
                         </mat-form-field>
                         <mat-form-field appearance="outline" class="full-width">

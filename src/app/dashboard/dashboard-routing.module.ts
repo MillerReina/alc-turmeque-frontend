@@ -5,6 +5,7 @@ import { AuthGuard } from '../guards/auth.guard';
 import { NotFoundComponent } from '../not-found/not-found.component';
 
 const routes: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: 'dashboard/home' },
   { path: 'dashboard', pathMatch: 'full', redirectTo: 'dashboard/home' },
   {
     path: 'dashboard',
