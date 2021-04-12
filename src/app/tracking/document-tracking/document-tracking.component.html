@@ -1,0 +1,100 @@
+<app-header></app-header>
+<div *ngIf="!preload" class="center-horizontal-vertical">
+    <mat-card class="welcome-card mat-elevation-z8">
+        <div class="container principal">
+            <div class="container">
+                <div class="row">
+                    <h1 mat-dialog-title class="title title-text center-horizontal-vertical">Historial del radicado</h1>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm" style="margin-top: 10px !important">
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>Nombre remitente</mat-label>
+                            <input matInput [value]="fullName" [placeholder]="" autocomplete="off" type="text" maxlength="30" required readonly />
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>Identificacion del remitente</mat-label>
+                            <input matInput [value]="documentTracked.sender_identification" [placeholder]="" autocomplete="off" type="text" maxlength="30" required readonly />
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm">
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>Estado del documento</mat-label>
+                            <mat-chip-list [ngSwitch]="documentTracked.document_state | stateDocument" aria-label="Color selection" style="padding: 0px !important; margin: 0px !important">
+                                <mat-chip style="background-color: transparent !important; padding: 0px !important">
+                                    <span *ngSwitchCase="'Radicado'" class="badge badge-file-document">{{
+                    documentTracked.document_state | stateDocument
+                  }}</span>
+                                    <span *ngSwitchCase="'En proceso'" class="badge badge-process">{{
+                    documentTracked.document_state | stateDocument
+                  }}</span>
+                                    <span *ngSwitchCase="'Resuelto'" class="badge badge-resolved">{{
+                    documentTracked.document_state | stateDocument
+                  }}</span>
+                                    <span *ngSwitchCase="'Finalizado'" class="badge badge-finished">{{
+                    documentTracked.document_state | stateDocument
+                  }}</span>
+                                    <span *ngSwitchCase="'Devuelto'" class="badge badge-returned">{{
+                    documentTracked.document_state | stateDocument
+                  }}</span>
+                                </mat-chip>
+                            </mat-chip-list>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>Fecha de radicación</mat-label>
+                            <input matInput [value]="documentTracked.register_date | date: 'dd/MMMM/yyyy h:mm a'" autocomplete="off" type="text" readonly />
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+
+            <div mat-dialog-content style="height: 100% !important">
+                <div class="container center-horizontal-vertical">
+                    <div class="row full-height full-width">
+                        <div class="container">
+                            <div class="row">
+                                <table mat-table [dataSource]="dataSource" class="shadow full-width">
+                                    <ng-container matColumnDef="accion">
+                                        <th mat-header-cell *matHeaderCellDef class="text-center">Acción</th>
+                                        <td mat-cell *matCellDef="let element" [ngSwitch]="element.action | stateDocument" style="padding-left: 10px !important">
+                                            <span *ngSwitchCase="'Radicado'" class="badge badge-file-document">
+                        {{ element.action | stateDocument }}
+                      </span>
+                                            <span *ngSwitchCase="'Asignado'" class="badge badge-process">
+                        {{ element.action | stateDocument }}
+                      </span>
+                                            <span *ngSwitchCase="'Resuelto'" class="badge badge-resolved">
+                        {{ element.action | stateDocument }}
+                      </span>
+                                            <span *ngSwitchCase="'Finalizado'" class="badge badge-finished">
+                        {{ element.action | stateDocument }}
+                      </span>
+                                            <span *ngSwitchCase="'Devuelto'" class="badge badge-returned">
+                        {{ element.action | stateDocument }}
+                      </span>
+                                        </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="fecha">
+                                        <th mat-header-cell *matHeaderCellDef class="text-center">Fecha de la acción</th>
+                                        <td mat-cell *matCellDef="let element" style="padding-left: 10px !important">
+                                            {{ element.register_date | date: 'dd/MMMM/yyyy h:mm a' }}
+                                        </td>
+                                    </ng-container>
+
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-card>
+</div>
+<app-footer></app-footer>

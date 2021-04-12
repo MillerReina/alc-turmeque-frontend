@@ -1,3 +1,4 @@
+import { TrackingModule } from './tracking/tracking.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
@@ -16,18 +17,18 @@ import { CustomMatPaginatorIntl } from './dashboard/i18n/paginator-es';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { SharedModule } from './shared/shared.module';
 import { AngularMaterialModule } from './shared-module/angular-material/angular-material.module';
-import { TrackingComponent } from './tracking/tracking.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 registerLocaleData(localeES, 'es');
 
 @NgModule({
-  declarations: [AppComponent, NotFoundComponent, TrackingComponent],
+  declarations: [AppComponent, NotFoundComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     AuthModule,
+    TrackingModule,
     BrowserAnimationsModule,
     SharedModule,
     AngularMaterialModule,

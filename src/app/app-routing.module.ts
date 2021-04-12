@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthRoutingModule } from './auth/auth-routing.module';
 import { DashboardRoutingModule } from './dashboard/dashboard-routing.module';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { TrackingRoutingModule } from './tracking/tracking-routing.module';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'dashboard/home' },
@@ -14,7 +15,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes), AuthRoutingModule, DashboardRoutingModule],
+  imports: [RouterModule.forRoot(routes), AuthRoutingModule, TrackingRoutingModule, DashboardRoutingModule],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

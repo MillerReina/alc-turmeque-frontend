@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { TrackingService } from '../services/tracking.service';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-tracking',
-  templateUrl: './tracking.component.html',
-  styleUrls: ['./tracking.component.scss'],
+  selector: 'app-search-tracking',
+  templateUrl: './search-tracking.component.html',
+  styleUrls: ['./search-tracking.component.scss'],
 })
-export class TrackingComponent implements OnInit {
+export class SearchTrackingComponent implements OnInit {
   /**
    * Formulario reactivo para crear documento
    */
@@ -22,7 +21,7 @@ export class TrackingComponent implements OnInit {
    */
   public isSearching: boolean;
 
-  constructor(private fb: FormBuilder, private trackingService: TrackingService, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router) {
     this.createRegisterForm();
     this.preload = false;
     this.isSearching = false;
@@ -51,16 +50,10 @@ export class TrackingComponent implements OnInit {
     if (this.registerForm.invalid) {
       this.registerForm.markAllAsTouched();
     } else {
+      this.preload = true;
       const idDocument = this.registerForm.get('id_document').value;
-      this.trackingService.getHistoric(idDocument).subscribe(
-        (__) => {
-          this.router.navigate([`tracking/${idDocument}/document`]);
-          this.preload = false;
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
+      this.router.navigate([`tracking/${idDocument}/document`]);
+      this.preload = false;
     }
   }
 }
