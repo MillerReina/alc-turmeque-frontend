@@ -16,11 +16,13 @@ import { CustomMatPaginatorIntl } from './dashboard/i18n/paginator-es';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { SharedModule } from './shared/shared.module';
 import { AngularMaterialModule } from './shared-module/angular-material/angular-material.module';
+import { TrackingComponent } from './tracking/tracking.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 registerLocaleData(localeES, 'es');
 
 @NgModule({
-  declarations: [AppComponent, NotFoundComponent],
+  declarations: [AppComponent, NotFoundComponent, TrackingComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -29,6 +31,8 @@ registerLocaleData(localeES, 'es');
     BrowserAnimationsModule,
     SharedModule,
     AngularMaterialModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [
     DatePipe,

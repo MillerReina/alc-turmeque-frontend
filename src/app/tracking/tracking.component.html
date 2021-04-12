@@ -1,0 +1,31 @@
+<app-header></app-header>
+<div class="center-horizontal-vertical">
+    <div *ngIf="!isSearching">
+        <mat-card class="welcome-card mat-elevation-z8" style="margin-top: 130px !important; margin-bottom: 50px !important; padding: 50px !important">
+            <h1 class="text-center">Realiza el seguimiento a tu petición</h1>
+            <mat-card-content class="full-height"> </mat-card-content>
+            <div class="container description full-width">
+                <form autocomplete="off" [formGroup]="registerForm" (ngSubmit)="searchMyDocument()">
+                    <div class="row">
+                        <mat-form-field appearance="outline" class="full-width" [ngClass]="{
+                myelement: idDocumentIsInvalid
+              }">
+                            <mat-label>No. Radicado</mat-label>
+                            <input matInput formControlName="id_document" value="" [placeholder]="'Ingresa solo los números'" autocomplete="off" onkeypress="return event.charCode >= 48 && event.charCode <= 57" minlength="12" required />
+                            <mat-error *ngIf="idDocumentIsInvalid"> Ingrese un número de radicado válido por favor </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="full-width">
+                        <button mat-raised-button class="btn-login full-width" color="accent" style="margin-right: 10px !important" (click)="searchMyDocument()">
+              Buscar
+            </button>
+                    </div>
+                </form>
+            </div>
+        </mat-card>
+    </div>
+    <div *ngIf="isSearching">
+        <h1>historial</h1>
+    </div>
+</div>
+<app-footer></app-footer>

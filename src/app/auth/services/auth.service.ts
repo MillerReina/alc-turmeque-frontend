@@ -65,6 +65,7 @@ export class AuthService {
   getMyDetails(): Observable<any> {
     return this.http.get<any>(`${base_url}/users/officer`);
   }
+
   /* Valida que el token sea autentico */
   validateToken(): Observable<boolean> {
     return this.http.get(`${base_url}/users/officer`).pipe(
@@ -85,6 +86,7 @@ export class AuthService {
           role,
           role_name,
         } = res.user;
+
         this.user = new User(
           dependency,
           id,

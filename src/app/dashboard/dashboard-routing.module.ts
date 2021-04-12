@@ -3,8 +3,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { AuthGuard } from '../guards/auth.guard';
 import { NotFoundComponent } from '../not-found/not-found.component';
+import { TrackingComponent } from '../tracking/tracking.component';
 
 const routes: Routes = [
+  { path: 'tracking', component: TrackingComponent },
   { path: 'dashboard', pathMatch: 'full', redirectTo: 'dashboard/home' },
   {
     path: 'dashboard',
