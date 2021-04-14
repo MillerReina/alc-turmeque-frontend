@@ -1,19 +1,21 @@
 import { MONTHS } from './../../consts/const-months';
-import { Component, AfterViewInit, Input, OnChanges, SimpleChanges, OnDestroy } from '@angular/core';
-import * as am4core from '@amcharts/amcharts4/core';
-import * as am4charts from '@amcharts/amcharts4/charts';
-import am4themes_animated from '@amcharts/amcharts4/themes/animated';
+import { Component, AfterViewInit, Input, OnChanges, SimpleChanges, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ReportsService } from '../../services/reports.service';
 import { ANIOS } from '../../consts/const-anios';
+import { DepenciesService } from '../../../../services/depencies.service';
+
+import * as am4core from '@amcharts/amcharts4/core';
+import * as am4charts from '@amcharts/amcharts4/charts';
 import * as moment from 'moment';
+import am4themes_animated from '@amcharts/amcharts4/themes/animated';
 
 @Component({
   selector: 'app-graphic',
   templateUrl: './graphic.component.html',
   styleUrls: ['./graphic.component.scss'],
 })
-export class GraphicComponent implements AfterViewInit, OnChanges, OnDestroy {
+export class GraphicComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy {
   /**
    * Variable de entrada
    */
@@ -39,16 +41,49 @@ export class GraphicComponent implements AfterViewInit, OnChanges, OnDestroy {
    * Constante de meses
    */
   public months = MONTHS;
-
+  /**
+   * Control de formulario para el anio
+   */
+  public dependencySelected: FormControl;
+  /**
+   * Constante de meses
+   */
+  public dependencies: any;
+  /**
+   *
+   */
   public currentMonth: any;
   public currentYear: any;
+  public currentDependency: any;
 
-  constructor(private reportsService: ReportsService) {
+  constructor(private reportsService: ReportsService, private dependencyService: DepenciesService) {
     this.addYears();
+    console.log(this.anios);
+
+    this.currentMonth = '';
+    this.currentYear = moment().format('YYYY');
     this.anioSelected = new FormControl();
     this.monthSelected = new FormControl();
+    this.dependencySelected = new FormControl();
   }
 
+  /**
+   * Llamado al servicio de dependencias y agregación
+   */
+  ngOnInit(): void {
+    this.dependencyService.getAllDependecies().subscribe((res) => {
+      const data = {
+        id: '',
+        name_dependency: 'Todas',
+      };
+      this.dependencies = res;
+      this.dependencies.unshift(data);
+    });
+  }
+
+  /**
+   * Destruye el chart
+   */
   ngOnDestroy(): void {
     if (this.chart) {
       this.chart.dispose();
@@ -76,12 +111,16 @@ export class GraphicComponent implements AfterViewInit, OnChanges, OnDestroy {
    */
   changeAnio() {
     const anio = this.anioSelected.value;
-    this.reportsService.getMyDocumentsReport('', '', anio, '').subscribe((res) => {
+    this.currentYear = anio;
+    this.reportsService.getMyDocumentsReport(this.currentMonth, '', anio, 'PR').subscribe((res) => {
       this.chart.data = res;
       console.log(this.chart.data);
     });
   }
 
+  /**
+   * Actualización de años desde el inicio
+   */
   addYears() {
     const initialYear = moment(this.anios[0].toString());
     let result = initialYear.diff(moment(), 'years');
@@ -89,11 +128,34 @@ export class GraphicComponent implements AfterViewInit, OnChanges, OnDestroy {
     for (let index = 1; index <= result; index++) {
       this.anios.push(this.anios[0] + index);
     }
+    const unicos = this.anios.filter((valor, indice) => {
+      return this.anios.indexOf(valor) === indice;
+    });
+    this.anios = unicos;
   }
 
+  /**
+   * Selección del mes
+   */
   changeMonth() {
     const month = this.monthSelected.value;
-    console.log(month);
+    this.currentMonth = month;
+    this.reportsService.getMyDocumentsReport(month, '', this.currentYear, 'PR').subscribe((res) => {
+      this.chart.data = res;
+      console.log(this.chart.data);
+    });
+  }
+
+  /**
+   * Selección de la dependencia
+   */
+  changeDependency() {
+    const dependency = this.dependencySelected.value;
+    this.currentDependency = dependency;
+    this.reportsService.getMyDocumentsReport(this.currentMonth, dependency, this.currentYear, 'PR').subscribe((res) => {
+      this.chart.data = res;
+      console.log(this.chart.data);
+    });
   }
 
   /**
