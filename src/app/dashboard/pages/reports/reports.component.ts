@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ReportsService } from './services/reports.service';
 import { IDocumentReport } from '../../../interfaces/document-report-interface';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-reports',
@@ -25,16 +26,30 @@ export class ReportsComponent implements OnInit {
   ngOnDestroy(): void {}
 
   ngOnInit(): void {
-    this.firtsLoad();
+    this.firstTab();
+    this.secondTab();
+    this.thirdTab();
   }
 
   public nextTab() {
     this.selectedIndex = this.tabGroup.selectedIndex;
   }
 
-  firtsLoad(): void {
-    this.reportService.getMyDocumentsReport('', '', 2021, '').subscribe((res) => {
+  firstTab(): void {
+    const anio = moment().format('YYYY');
+    this.reportService.getMyDocumentsReport('', '', anio, 'PR').subscribe((res) => {
       this.tab1 = res;
+    });
+  }
+
+  secondTab(): void {
+    const anio = moment().format('YYYY');
+    this.reportService.getMyDocumentsReport('', '', anio, '').subscribe((__) => {});
+  }
+
+  thirdTab(): void {
+    const anio = moment().format('YYYY');
+    this.reportService.getMyDocumentsReport('', '', anio, '').subscribe((__) => {
       this.preload = false;
     });
   }

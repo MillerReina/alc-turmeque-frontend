@@ -1,39 +1,104 @@
-import { Component, AfterViewInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { MONTHS } from './../../consts/const-months';
+import { Component, AfterViewInit, Input, OnChanges, SimpleChanges, OnDestroy } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 import am4themes_animated from '@amcharts/amcharts4/themes/animated';
 import { FormControl } from '@angular/forms';
+import { ReportsService } from '../../services/reports.service';
+import { ANIOS } from '../../consts/const-anios';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-graphic',
   templateUrl: './graphic.component.html',
   styleUrls: ['./graphic.component.scss'],
 })
-export class GraphicComponent implements AfterViewInit, OnChanges {
+export class GraphicComponent implements AfterViewInit, OnChanges, OnDestroy {
+  /**
+   * Variable de entrada
+   */
   @Input() tab1: any[];
+
+  /**
+   * Variable para el gráfico
+   */
   public chart: any;
   /**
-   * Grafico seleccionado
+   * Control de formulario para el anio
    */
   public anioSelected: FormControl;
+  /**
+   * Constante de anios
+   */
+  public anios = ANIOS;
+  /**
+   * Control de formulario para el anio
+   */
+  public monthSelected: FormControl;
+  /**
+   * Constante de meses
+   */
+  public months = MONTHS;
 
-  constructor() {
+  public currentMonth: any;
+  public currentYear: any;
+
+  constructor(private reportsService: ReportsService) {
+    this.addYears();
     this.anioSelected = new FormControl();
+    this.monthSelected = new FormControl();
   }
 
+  ngOnDestroy(): void {
+    if (this.chart) {
+      this.chart.dispose();
+    }
+  }
+
+  /**
+   * Crea despues de haber sido construido
+   */
   ngAfterViewInit(): void {
+    console.log(this.tab1);
     this.createGraphic();
   }
 
+  /**
+   * Detecta cambios en el ciclo de vida
+   */
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.tab1.currentValue != changes.tab1.previousValue) {
     }
   }
 
+  /**
+   * Cambia de año
+   */
   changeAnio() {
-    console.log(this.anioSelected.value);
+    const anio = this.anioSelected.value;
+    this.reportsService.getMyDocumentsReport('', '', anio, '').subscribe((res) => {
+      this.chart.data = res;
+      console.log(this.chart.data);
+    });
   }
 
+  addYears() {
+    const initialYear = moment(this.anios[0].toString());
+    let result = initialYear.diff(moment(), 'years');
+    result = result * -1;
+    for (let index = 1; index <= result; index++) {
+      this.anios.push(this.anios[0] + index);
+    }
+  }
+
+  changeMonth() {
+    const month = this.monthSelected.value;
+    console.log(month);
+  }
+
+  /**
+   * Crea la gráfica
+   */
   createGraphic() {
     am4core.useTheme(am4themes_animated);
 
@@ -71,8 +136,8 @@ export class GraphicComponent implements AfterViewInit, OnChanges {
     labelBullet.label.text = "{values.valueY.workingValue.formatNumber('#.')}";
 
     let title = chart.titles.create();
-    title.text = 'Radicados asignados por dependencia';
-    title.fontSize = 25;
+    title.text = 'Radicados asignados/dependencia';
+    title.fontSize = 17;
 
     chart.cursor = new am4charts.XYCursor();
 
