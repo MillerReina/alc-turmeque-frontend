@@ -129,8 +129,16 @@
                         <mat-icon *ngIf="showMenuReports">expand_more</mat-icon>
                     </a>
 
-                    <mat-nav-list class="sidenav-submenu" *ngIf="showMenuReports" (click)="sidenav.close()">
-                        <a mat-list-item> Gráficas</a>
+                    <mat-nav-list class="sidenav-submenu" *ngIf="showMenuReports">
+                        <a *ngIf="isAdmin" mat-list-item (click)="toggleMenuGraphics()">
+                            <mat-icon mat-list-icon>horizontal_rule</mat-icon>Gráficos
+                            <mat-icon *ngIf="!showMenuGraphics">chevron_right</mat-icon>
+                            <mat-icon *ngIf="showMenuGraphics">expand_more</mat-icon>
+                        </a>
+                        <mat-nav-list class="sidenav-submenu" *ngIf="showMenuGraphics" (click)="sidenav.close()">
+                            <a mat-list-item style="padding-left: 20px !important" [routerLink]="'reports/documents'">
+                                <mat-icon mat-list-icon>add</mat-icon> Documentos</a>
+                        </mat-nav-list>
                         <a mat-list-item> Registros</a>
                     </mat-nav-list>
                 </mat-nav-list>

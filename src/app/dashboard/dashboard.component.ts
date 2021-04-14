@@ -36,7 +36,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
    * Estado activo/inactivo del menu reportes
    */
   public showMenuReports: boolean;
-
+  /**
+   * Estado activo/inactivo del menu reportes
+   */
+  public showMenuGraphics: boolean;
   /**
    * Rol administrador?
    */
@@ -56,6 +59,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.showMenuDocuments = false;
     this.showMenuUsers = false;
     this.showMenuExternal = false;
+    this.showMenuGraphics = false;
     this.isAdmin = false;
     this.preload = true;
   }
@@ -101,18 +105,21 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       this.toastService.showSuccessMessage('SESIÓN INICIADA', `Logueado como: ${this.user.firstName.toUpperCase()}`);
     }, 500);
   }
+
   /**
    * Ocultar/mostrar menu documentos
    */
   toggleMenuDocuments(): void {
     this.showMenuDocuments = !this.showMenuDocuments;
   }
+
   /**
    * Ocultar/mostrar menu usuarios
    */
   toggleMenuUsers(): void {
     this.showMenuUsers = !this.showMenuUsers;
   }
+
   /**
    * Ocultar/mostrar menu reportes
    */
@@ -125,6 +132,13 @@ export class DashboardComponent implements OnInit, AfterViewInit {
    */
   toggleMenuExternal(): void {
     this.showMenuExternal = !this.showMenuExternal;
+  }
+
+  /**
+   * Ocultar/mostrar menu de gráficos
+   */
+  toggleMenuGraphics(): void {
+    this.showMenuGraphics = !this.showMenuGraphics;
   }
 
   /**

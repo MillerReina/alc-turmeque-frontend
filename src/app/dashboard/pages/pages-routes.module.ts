@@ -22,6 +22,7 @@ import { CreateExternalComponent } from './external/create-external/create-exter
 import { ExternalInProcessComponent } from './external/external-in-process/external-in-process.component';
 import { ExternalResolvedComponent } from './external/external-resolved/external-resolved.component';
 import { ExternalFinishedComponent } from './external/external-finished/external-finished.component';
+import { ReportsComponent } from './reports/reports.component';
 
 const childRoutes: Routes = [
   {
@@ -151,6 +152,18 @@ const childRoutes: Routes = [
     canActivate: [AuthGuard],
     canLoad: [AuthGuard],
     component: ExternalFinishedComponent,
+  },
+  {
+    path: 'reports',
+    canActivate: [AuthGuard, AdminGuard],
+    canLoad: [AuthGuard],
+    loadChildren: () => import('./../pages/reports/reports.module').then((module) => module.ReportsModule),
+  },
+  {
+    path: 'reports/documents',
+    canActivate: [AuthGuard, AdminGuard],
+    canLoad: [AuthGuard],
+    component: ReportsComponent,
   },
 ];
 @NgModule({

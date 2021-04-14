@@ -27,6 +27,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatRippleModule } from '@angular/material/core';
 import { MatSortModule } from '@angular/material/sort';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCommonModule, MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 
@@ -64,6 +65,7 @@ import { MatCommonModule, MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/
     MatRippleModule,
     MatSortModule,
     MatProgressSpinnerModule,
+    MatTabsModule,
   ],
   exports: [
     MatInputModule,
@@ -96,6 +98,7 @@ import { MatCommonModule, MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/
     MatRippleModule,
     MatSortModule,
     MatProgressSpinnerModule,
+    MatTabsModule,
   ],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'es-CO' }],
 })

@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row">
+        <div id="graph" class="col-12 col-md-9" style="margin-bottom: 20px; margin-top: 20px">
+            <mat-card class="full-width">
+                <div id="chartdiv" style="width: 100%; height: 400px"></div>
+            </mat-card>
+        </div>
+        <div class="col-12 col-md-3" style="margin-bottom: 20px; margin-top: 20px">
+            <mat-card class="full-width mat-elevation-z3">
+                <div class="full-width container-title-options">
+                    Filtros
+                    <mat-icon style="color: lightgrey">format_list_bulleted</mat-icon>
+                </div>
+                <mat-form-field class="full-width">
+                    <mat-label>Año</mat-label>
+                    <mat-select [formControl]="anioSelected" (selectionChange)="changeAnio()">
+                        <mat-option value="2021">2021</mat-option>
+                        <mat-option value="2020">2020</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-card>
+        </div>
+    </div>
+</div>
