@@ -47,38 +47,30 @@
             </ng-container>
 
             <ng-container matColumnDef="solucionados">
-                <th mat-header-cell *matHeaderCellDef class="text-center">Solucionados</th>
+                <th mat-header-cell *matHeaderCellDef class="text-center solved">Solucionados</th>
                 <td mat-cell *matCellDef="let element">
-                    <span *ngIf="element.user" class="badge badge-finished" style="color: black !important">{{
-            element.solved || '-'
-          }}</span>
+                    {{ element.solved || '-' }}
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="no_solucionados">
-                <th mat-header-cell *matHeaderCellDef class="text-center">Sin solucionar</th>
+                <th mat-header-cell *matHeaderCellDef class="text-center not-solved">Sin solucionar</th>
                 <td mat-cell *matCellDef="let element">
-                    <span *ngIf="element.user" class="badge badge-returned" style="color: black !important">{{
-            element.no_solved || '-'
-          }}</span>
+                    {{ element.no_solved || '-' }}
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="en_tiempo">
-                <th mat-header-cell *matHeaderCellDef class="text-center">A tiempo</th>
+                <th mat-header-cell *matHeaderCellDef class="text-center in-time">A tiempo</th>
                 <td mat-cell *matCellDef="let element">
-                    <span *ngIf="element.user" class="badge badge-process" style="color: black !important">{{
-            element.in_time || '-'
-          }}</span>
+                    {{ element.in_time || '-' }}
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="des_tiempo">
-                <th mat-header-cell *matHeaderCellDef class="text-center">Fuera de tiempo</th>
+                <th mat-header-cell *matHeaderCellDef class="text-center out-time">Fuera de tiempo</th>
                 <td mat-cell *matCellDef="let element" style="padding-left: 10px !important">
-                    <span *ngIf="element.user" class="badge badge-resolved" style="color: black !important">{{
-            element.out_time || '-'
-          }}</span>
+                    {{ element.out_time || '-' }}
                 </td>
             </ng-container>
 
@@ -93,4 +85,5 @@
         </table>
     </div>
 </div>
+<app-button-download [report]="reportOfficers" [currentDependencyName]="actualDependencyName" [currentYear]="actualAnio"></app-button-download>
 <p-toast></p-toast>

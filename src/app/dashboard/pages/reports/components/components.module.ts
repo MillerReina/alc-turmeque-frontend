@@ -5,10 +5,11 @@ import { AngularMaterialModule } from '../../../../shared-module/angular-materia
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RegistersTableComponent } from './registers-table/registers-table.component';
 import { NgPrimeModule } from '../../../../shared-module/ng-prime/ng-prime.module';
+import { ButtonDownloadComponent } from './button-download/button-download.component';
 
 @NgModule({
-  declarations: [GraphicComponent, RegistersTableComponent],
+  declarations: [GraphicComponent, RegistersTableComponent, ButtonDownloadComponent],
   imports: [CommonModule, AngularMaterialModule, ReactiveFormsModule, FormsModule, NgPrimeModule],
-  exports: [GraphicComponent, RegistersTableComponent],
+  exports: [GraphicComponent, RegistersTableComponent, ButtonDownloadComponent],
 })
 export class ComponentsModule {}

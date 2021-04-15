@@ -9,7 +9,6 @@ import * as moment from 'moment';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 import am4themes_animated from '@amcharts/amcharts4/themes/animated';
-import { ExportToExcelService } from '../../services/export-to-excel.service';
 
 @Component({
   selector: 'app-graphic',
@@ -83,11 +82,7 @@ export class GraphicComponent implements OnInit, AfterViewInit, OnChanges, OnDes
    */
   public currentState: any;
 
-  constructor(
-    private reportsService: ReportsService,
-    private dependencyService: DepenciesService,
-    private exportExcelService: ExportToExcelService
-  ) {
+  constructor(private reportsService: ReportsService, private dependencyService: DepenciesService) {
     this.preload = false;
     this.addYears();
     this.currentMonth = '';
@@ -127,7 +122,9 @@ export class GraphicComponent implements OnInit, AfterViewInit, OnChanges, OnDes
    * Crea despues de haber sido construido
    */
   ngAfterViewInit(): void {
-    this.createGraphic();
+    setTimeout(() => {
+      this.createGraphic();
+    }, 100);
   }
 
   /**
@@ -335,15 +332,5 @@ export class GraphicComponent implements OnInit, AfterViewInit, OnChanges, OnDes
       title.fontSize = 17;
     }
     this.preload = false;
-  }
-
-  /**
-   * Descargra excel con los datos
-   */
-  downloadExcel() {
-    this.exportExcelService.exportAsExcelFile(
-      this.report,
-      `Dependencia_${this.currentDependencyName}-Año_${this.currentYear}`
-    );
   }
 }

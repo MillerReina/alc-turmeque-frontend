@@ -70,6 +70,10 @@ export class RegistersTableComponent implements OnInit, OnDestroy {
    * Constante de meses
    */
   public dependencies: any;
+  /**
+   * Nombre de la dependencia actual elegida
+   */
+  public actualDependencyName: any;
 
   constructor(
     private reportService: ReportsService,
@@ -131,6 +135,7 @@ export class RegistersTableComponent implements OnInit, OnDestroy {
    * Refresca la tabla con cada acción
    */
   refreshTable(): void {
+    this.dependencyName();
     this.dataSource = new MatTableDataSource(this.reportOfficers);
     this.preload = false;
   }
@@ -160,5 +165,20 @@ export class RegistersTableComponent implements OnInit, OnDestroy {
       this.reportOfficers = res;
       this.refreshTable();
     });
+  }
+
+  /**
+   * Nombre de la dependencia
+   */
+  dependencyName() {
+    if (this.actualDependency === '') {
+      this.actualDependencyName = 'Todas';
+    } else {
+      this.dependencies.forEach((element) => {
+        if (element.id == this.actualDependency) {
+          this.actualDependencyName = element.name_dependency;
+        }
+      });
+    }
   }
 }

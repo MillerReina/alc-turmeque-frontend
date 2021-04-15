@@ -5,7 +5,6 @@
 </div>
 
 <div class="container">
-    <button (click)="downloadExcel()">Descargar</button>
     <div [ngStyle]="{ visibility: preload == false ? 'visible' : 'hidden' }">
         <div class="row">
             <div id="graph" class="col-12 col-md-9" style="margin-bottom: 20px; margin-top: 20px">
@@ -71,3 +70,4 @@
         </div>
     </div>
 </div>
+<app-button-download [report]="report" [currentDependencyName]="currentDependencyName" [currentYear]="currentYear"></app-button-download>

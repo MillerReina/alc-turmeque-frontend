@@ -2,3 +2,23 @@ td,
 th {
     width: 20% !important;
 }
+
+.solved {
+    border: solid !important;
+    border-color: transparent transparent #7ad63c transparent !important;
+}
+
+.not-solved {
+    border: solid !important;
+    border-color: transparent transparent #ff4e4e transparent !important;
+}
+
+.in-time {
+    border: solid !important;
+    border-color: transparent transparent #1ccbe0 transparent !important;
+}
+
+.out-time {
+    border: solid !important;
+    border-color: transparent transparent #f8cb00 transparent !important;
+}

@@ -1,0 +1,6 @@
+<div class="container-buttons-navigation">
+    <button matRipple class="button-navigation mat-elevation-z3" matTooltip="Descargar datos" matTooltipPosition="left" (click)="downloadExcel()">
+    <img *ngIf="!preload" src="./../../../../../../assets/icon/download.png" height="25px" alt="" />
+    <mat-spinner *ngIf="preload" mode="indeterminate" diameter="20"></mat-spinner>
+  </button>
+</div>
