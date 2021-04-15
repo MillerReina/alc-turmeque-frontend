@@ -1,11 +1,4 @@
-import {
-  HttpErrorResponse,
-  HttpEvent,
-  HttpHandler,
-  HttpHeaders,
-  HttpInterceptor,
-  HttpRequest,
-} from '@angular/common/http';
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 
@@ -23,14 +16,17 @@ export class AuthInterceptorService implements HttpInterceptor {
    * Interceptor de auth
    */
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const headers = new HttpHeaders({
-      Authorization: `Token ${this.getToken}`,
-    });
+    const re = '/tracking';
 
-    const reqClone = req.clone({
-      headers,
-    });
-    return next.handle(reqClone);
+    if (req.url.search(re) === -1) {
+      req = req.clone({
+        setHeaders: {
+          Authorization: `Token ${this.getToken}`,
+        },
+      });
+    }
+
+    return next.handle(req);
   }
 
   /**

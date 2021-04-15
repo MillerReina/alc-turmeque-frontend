@@ -27,6 +27,10 @@ export class AuthService {
     return this.user.roleName;
   }
 
+  get getToken(): string {
+    return localStorage.getItem('token') || '';
+  }
+
   get getMessageConfirmation(): string {
     return this.messageConfirmation;
   }
@@ -37,6 +41,14 @@ export class AuthService {
 
   get isMainConfirmation(): boolean {
     return this.getRole === 'Titular' ? true : false;
+  }
+
+  get getHeaders() {
+    return {
+      headers: {
+        Authorization: `Token ${this.getToken}`,
+      },
+    };
   }
 
   /* Inicia sesion */

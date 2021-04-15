@@ -6,7 +6,7 @@ import { registerLocaleData } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from './auth/auth.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 /* Core */
 import { AppComponent } from './app.component';
@@ -17,6 +17,7 @@ import { CustomMatPaginatorIntl } from './dashboard/i18n/paginator-es';
 import { SharedModule } from './shared/shared.module';
 import { AngularMaterialModule } from './shared-module/angular-material/angular-material.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AuthInterceptorService } from './services/auth-interceptor.service';
 
 registerLocaleData(localeES, 'es');
 
@@ -41,6 +42,7 @@ registerLocaleData(localeES, 'es');
       useClass: CustomMatPaginatorIntl,
     },
     { provide: LOCALE_ID, useValue: 'es' },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },
   ],
   bootstrap: [AppComponent],
 })

@@ -38,7 +38,7 @@ export class SearchTrackingComponent implements OnInit {
    */
   createRegisterForm(): void {
     this.registerForm = this.fb.group({
-      id_document: ['202104000005', [Validators.required]],
+      id_document: ['', [Validators.required]],
     });
   }
 
