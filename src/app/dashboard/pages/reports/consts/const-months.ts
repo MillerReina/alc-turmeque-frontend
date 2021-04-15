@@ -1,6 +1,6 @@
 export const MONTHS = [
   {
-    text: 'Total',
+    text: 'Todos',
     value: '',
   },
   {

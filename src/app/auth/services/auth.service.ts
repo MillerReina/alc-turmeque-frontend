@@ -22,10 +22,6 @@ export class AuthService {
   private messageConfirmation = 'La cuenta ya fue confirmada';
 
   constructor(private http: HttpClient) {}
-  /* Obtiene el token del usuario */
-  get getToken(): string {
-    return localStorage.getItem('tkn-user') || '';
-  }
 
   get getRole(): string {
     return this.user.roleName;

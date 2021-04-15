@@ -16,6 +16,8 @@ export class TrackingService {
    * Obtiene la información del documento para el usuario
    */
   getHistoric(id): Observable<ITracking> {
+    console.log();
+
     return this.http.get<ITracking>(`${base_url}/documents/tracking/${id}`);
   }
 }

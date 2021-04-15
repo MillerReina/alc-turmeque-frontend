@@ -2,22 +2,16 @@
     <h1>Reportes de documentos</h1>
 </div>
 <div>
-    <div class="col-12 example-container" style="height: 100% !important">
+    <div class="col-12 example-container" style="height: 100% !important; margin-top: 20px">
         <div class="row text-center" style="margin-top: 30px !important">
-            <mat-tab-group mat-stretch-tabs (click)="nextTab()" #tabGroup>
-                <mat-tab label="Asignados">
-                    <mat-card class="full-width mat-elevation-z3">
-                        <div *ngIf="preload" class="row justify-content-center full-height center-horizontal-vertical">
-                            <div class="col-12 center-horizontal-vertical full-height flexbox-col">
-                                <mat-spinner mode="indeterminate" diameter="50"></mat-spinner>
-                            </div>
-                        </div>
-                        <app-graphic *ngIf="!preload" [tab1]="tab1"></app-graphic>
-                    </mat-card>
-                </mat-tab>
-                <mat-tab label="Finalizados"> </mat-tab>
-                <mat-tab label="Sin finalizar"> </mat-tab>
-            </mat-tab-group>
+            <mat-card class="full-width mat-elevation-z3">
+                <div *ngIf="preload" class="row justify-content-center full-height center-horizontal-vertical">
+                    <div class="col-12 center-horizontal-vertical full-height flexbox-col">
+                        <mat-spinner mode="indeterminate" diameter="50"></mat-spinner>
+                    </div>
+                </div>
+                <app-graphic *ngIf="!preload" [report]="tab1"></app-graphic>
+            </mat-card>
         </div>
     </div>
 </div>

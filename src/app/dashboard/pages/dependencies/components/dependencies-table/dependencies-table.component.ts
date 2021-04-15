@@ -116,11 +116,11 @@ export class DependenciesTableComponent implements OnInit, OnDestroy {
    */
   activateDependency(element): void {
     this.preload = true;
-    if (element.is_active) {
+    if (!element.state_dependency) {
       this.dependeciesService.activateDependency(element.id).subscribe((__) => {
         Swal.fire({
-          title: 'DEPENDENCIA DESACTIVADA',
-          text: `La dependencia: ${element.name_dependency} ha sido desactivada`,
+          title: 'DEPENDENCIA ACTIVADA',
+          text: `La dependencia: ${element.name_dependency} ha sido activada`,
           icon: 'success',
           confirmButtonText: 'Aceptar',
         });
@@ -129,8 +129,8 @@ export class DependenciesTableComponent implements OnInit, OnDestroy {
     } else {
       this.dependeciesService.activateDependency(element.id).subscribe((__) => {
         Swal.fire({
-          title: 'DEPENDENCIA ACTIVADA',
-          text: `La dependencia: ${element.name_dependency} ha sido activada`,
+          title: 'DEPENDENCIA DESACTIVADA',
+          text: `La dependencia: ${element.name_dependency} ha sido desactivada`,
           icon: 'success',
           confirmButtonText: 'Aceptar',
         });

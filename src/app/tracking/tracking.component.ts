@@ -52,6 +52,7 @@ export class TrackingComponent implements OnInit {
       this.registerForm.markAllAsTouched();
     } else {
       const idDocument = this.registerForm.get('id_document').value;
+
       this.trackingService.getHistoric(idDocument).subscribe(
         (__) => {
           this.router.navigate([`tracking/${idDocument}/document`]);

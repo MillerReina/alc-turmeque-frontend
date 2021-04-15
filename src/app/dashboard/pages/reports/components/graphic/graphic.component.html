@@ -1,38 +1,71 @@
 <div class="container">
-    <div class="row">
-        <div id="graph" class="col-12 col-md-9" style="margin-bottom: 20px; margin-top: 20px">
-            <mat-card class="full-width">
-                <div id="chartdiv" style="width: 100%; height: 400px"></div>
-            </mat-card>
+    <div *ngIf="preload" class="row justify-content-center full-height" style="min-height: 100% !important">
+        <div class="col-12 center-horizontal-vertical full-height flexbox-col">
+            <mat-spinner class="center-horizontal-vertical" mode="indeterminate" diameter="50"></mat-spinner>
         </div>
-        <div class="col-12 col-md-3" style="margin-bottom: 20px; margin-top: 20px">
-            <mat-card class="full-width mat-elevation-z3">
-                <div class="full-width container-title-options">
-                    Filtros
-                    <mat-icon style="color: lightgrey">format_list_bulleted</mat-icon>
-                </div>
-                <mat-form-field class="full-width">
-                    <mat-label>Año</mat-label>
-                    <mat-select [formControl]="anioSelected" (selectionChange)="changeAnio()">
-                        <mat-option *ngFor="let anio of anios" [value]="anio">{{ anio }}</mat-option>
-                    </mat-select>
-                </mat-form-field>
+    </div>
+    <div [ngStyle]="{ visibility: preload == false ? 'visible' : 'hidden' }">
+        <div class="row">
+            <div id="graph" class="col-12 col-md-9" style="margin-bottom: 20px; margin-top: 20px">
+                <mat-card class="full-width">
+                    <div id="chartdiv" style="width: 100%; height: 400px"></div>
+                </mat-card>
+            </div>
+            <div class="col-12 col-md-3" style="margin-bottom: 20px; margin-top: 20px">
+                <mat-card class="full-width mat-elevation-z3">
+                    <div class="full-width container-title-options">
+                        Filtros
+                        <mat-icon style="color: lightgrey">format_list_bulleted</mat-icon>
+                    </div>
+                    <mat-form-field class="full-width">
+                        <mat-label>Año</mat-label>
+                        <mat-select [formControl]="anioSelected" (selectionChange)="changeAnio()">
+                            <mat-option *ngFor="let anio of anios" [value]="anio">{{ anio }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
 
-                <mat-form-field class="full-width">
-                    <mat-label>Mes</mat-label>
-                    <mat-select [formControl]="monthSelected" (selectionChange)="changeMonth()">
-                        <mat-option *ngFor="let month of months" [value]="month.value">{{ month.text }}</mat-option>
-                    </mat-select>
-                </mat-form-field>
+                    <mat-form-field class="full-width">
+                        <mat-label>Mes</mat-label>
+                        <mat-select [formControl]="monthSelected" (selectionChange)="changeMonth()">
+                            <mat-option *ngFor="let month of months" [value]="month.value">{{ month.text }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
 
-                <mat-form-field class="full-width">
-                    <mat-label>Dependencia</mat-label>
-                    <mat-select [formControl]="dependencySelected" (selectionChange)="changeDependency()">
-                        <mat-option *ngFor="let dependency of dependencies" [value]="dependency.id">{{ dependency.name_dependency }}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </mat-card>
+                    <mat-form-field class="full-width">
+                        <mat-label>Dependencia</mat-label>
+                        <mat-select [formControl]="dependencySelected" (selectionChange)="changeDependency()">
+                            <mat-option *ngFor="let dependency of dependencies" [value]="dependency.id">{{ dependency.name_dependency }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width">
+                        <mat-label>Estado</mat-label>
+                        <mat-select [formControl]="stateDocumentSelectd" (selectionChange)="changeState()">
+                            <mat-option value=""> Todos </mat-option>
+                            <mat-option value="PR">Asignados </mat-option>
+                            <mat-option value="FI">Finalizados </mat-option>
+                            <mat-option value="NR">Sin finalizar </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </mat-card>
+
+                <mat-card class="full-width mat-elevation-z3" style="margin-top: 5px">
+                    <div class="full-width container-title-options">
+                        Gráficos
+                        <mat-icon style="color: lightgrey">analytics</mat-icon>
+                    </div>
+
+                    <mat-form-field class="full-width">
+                        <mat-label>Tipo</mat-label>
+                        <mat-select [formControl]="graphicSelected" (selectionChange)="changeGraphic()">
+                            <mat-option value="Bars">Barras</mat-option>
+                            <mat-option value="Semi pie">Dona</mat-option>
+                            <mat-option value="Piramid">Pirámide</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </mat-card>
+            </div>
         </div>
     </div>
 </div>

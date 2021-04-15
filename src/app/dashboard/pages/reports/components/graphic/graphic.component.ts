@@ -5,9 +5,9 @@ import { ReportsService } from '../../services/reports.service';
 import { ANIOS } from '../../consts/const-anios';
 import { DepenciesService } from '../../../../services/depencies.service';
 
+import * as moment from 'moment';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
-import * as moment from 'moment';
 import am4themes_animated from '@amcharts/amcharts4/themes/animated';
 
 @Component({
@@ -16,10 +16,11 @@ import am4themes_animated from '@amcharts/amcharts4/themes/animated';
   styleUrls: ['./graphic.component.scss'],
 })
 export class GraphicComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy {
+  public preload: boolean;
   /**
    * Variable de entrada
    */
-  @Input() tab1: any[];
+  @Input() report: any[];
 
   /**
    * Variable para el gráfico
@@ -50,21 +51,31 @@ export class GraphicComponent implements OnInit, AfterViewInit, OnChanges, OnDes
    */
   public dependencies: any;
   /**
-   *
+   * Control de formulario para el anio
    */
+  public stateDocumentSelectd: FormControl;
+  /**
+   * Control de formulario para el anio
+   */
+  public graphicSelected: FormControl;
   public currentMonth: any;
   public currentYear: any;
   public currentDependency: any;
+  public currentDependencyName: any;
+  public currentState: any;
 
   constructor(private reportsService: ReportsService, private dependencyService: DepenciesService) {
+    this.preload = false;
     this.addYears();
-    console.log(this.anios);
-
     this.currentMonth = '';
+    this.currentState = '';
+    this.currentDependency = '';
     this.currentYear = moment().format('YYYY');
     this.anioSelected = new FormControl();
     this.monthSelected = new FormControl();
     this.dependencySelected = new FormControl();
+    this.stateDocumentSelectd = new FormControl();
+    this.graphicSelected = new FormControl('Bars');
   }
 
   /**
@@ -94,7 +105,7 @@ export class GraphicComponent implements OnInit, AfterViewInit, OnChanges, OnDes
    * Crea despues de haber sido construido
    */
   ngAfterViewInit(): void {
-    console.log(this.tab1);
+    console.log(this.report);
     this.createGraphic();
   }
 
@@ -102,7 +113,7 @@ export class GraphicComponent implements OnInit, AfterViewInit, OnChanges, OnDes
    * Detecta cambios en el ciclo de vida
    */
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.tab1.currentValue != changes.tab1.previousValue) {
+    if (changes.report.currentValue != changes.report.previousValue) {
     }
   }
 
@@ -110,12 +121,15 @@ export class GraphicComponent implements OnInit, AfterViewInit, OnChanges, OnDes
    * Cambia de año
    */
   changeAnio() {
+    this.preload = true;
     const anio = this.anioSelected.value;
     this.currentYear = anio;
-    this.reportsService.getMyDocumentsReport(this.currentMonth, '', anio, 'PR').subscribe((res) => {
-      this.chart.data = res;
-      console.log(this.chart.data);
-    });
+    this.reportsService
+      .getMyDocumentsReport(this.currentMonth, this.currentDependency, anio, this.currentState)
+      .subscribe((res) => {
+        this.report = res;
+        this.createGraphic();
+      });
   }
 
   /**
@@ -138,75 +152,164 @@ export class GraphicComponent implements OnInit, AfterViewInit, OnChanges, OnDes
    * Selección del mes
    */
   changeMonth() {
+    this.preload = true;
     const month = this.monthSelected.value;
     this.currentMonth = month;
-    this.reportsService.getMyDocumentsReport(month, '', this.currentYear, 'PR').subscribe((res) => {
-      this.chart.data = res;
-      console.log(this.chart.data);
-    });
+    this.reportsService
+      .getMyDocumentsReport(month, this.currentDependency, this.currentYear, this.currentState)
+      .subscribe((res) => {
+        this.report = res;
+        this.createGraphic();
+      });
   }
 
   /**
    * Selección de la dependencia
    */
   changeDependency() {
+    this.preload = true;
     const dependency = this.dependencySelected.value;
     this.currentDependency = dependency;
-    this.reportsService.getMyDocumentsReport(this.currentMonth, dependency, this.currentYear, 'PR').subscribe((res) => {
-      this.chart.data = res;
-      console.log(this.chart.data);
-    });
+    this.reportsService
+      .getMyDocumentsReport(this.currentMonth, dependency, this.currentYear, this.currentState)
+      .subscribe((res) => {
+        this.report = res;
+        this.createGraphic();
+      });
+  }
+
+  /**
+   * Selección del estado del documento
+   */
+  changeState() {
+    this.preload = true;
+    const state = this.stateDocumentSelectd.value;
+    this.currentState = state;
+    this.reportsService
+      .getMyDocumentsReport(this.currentMonth, this.currentDependency, this.currentYear, state)
+      .subscribe((res) => {
+        this.report = res;
+        this.createGraphic();
+      });
+  }
+
+  /**
+   * Selección de gráfica
+   */
+  changeGraphic() {
+    this.preload = true;
+    this.reportsService
+      .getMyDocumentsReport(this.currentMonth, this.currentDependency, this.currentYear, this.currentState)
+      .subscribe((res) => {
+        this.report = res;
+        this.createGraphic();
+      });
+  }
+
+  /**
+   * Nombre de la dependencia
+   */
+  dependencyName() {
+    if (this.currentDependency === '') {
+      this.currentDependencyName = 'Todas';
+    } else {
+      this.dependencies.forEach((element) => {
+        if (element.id == this.currentDependency) {
+          this.currentDependencyName = element.name_dependency;
+        }
+      });
+    }
   }
 
   /**
    * Crea la gráfica
    */
   createGraphic() {
+    this.dependencyName();
+    if (this.chart) {
+      this.anioSelected.setValue(parseInt(this.currentYear));
+      this.chart.dispose();
+    }
     am4core.useTheme(am4themes_animated);
+    if (this.graphicSelected.value == 'Bars') {
+      let chart = am4core.create('chartdiv', am4charts.XYChart);
 
-    let chart = am4core.create('chartdiv', am4charts.XYChart);
+      chart.data = this.report;
+      chart.padding(40, 40, 40, 40);
 
-    chart.data = this.tab1;
-    chart.padding(40, 40, 40, 40);
+      let categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+      categoryAxis.renderer.grid.template.location = 0;
+      categoryAxis.dataFields.category = 'name_dependency';
+      categoryAxis.renderer.minGridDistance = 60;
+      categoryAxis.renderer.inversed = true;
+      categoryAxis.renderer.grid.template.disabled = true;
 
-    let categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
-    categoryAxis.renderer.grid.template.location = 0;
-    categoryAxis.dataFields.category = 'name_dependency';
-    categoryAxis.renderer.minGridDistance = 60;
-    categoryAxis.renderer.inversed = true;
-    categoryAxis.renderer.grid.template.disabled = true;
+      let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+      valueAxis.min = 0;
+      valueAxis.extraMax = 0.1;
 
-    let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-    valueAxis.min = 0;
-    valueAxis.extraMax = 0.1;
-    //valueAxis.rangeChangeEasing = am4core.ease.linear;
-    //valueAxis.rangeChangeDuration = 1500;
+      let series = chart.series.push(new am4charts.ColumnSeries());
+      series.dataFields.categoryX = 'name_dependency';
+      series.dataFields.valueY = 'total';
+      series.tooltipText = '{valueY.value}';
+      series.columns.template.strokeOpacity = 0;
+      series.columns.template.column.cornerRadiusTopRight = 10;
+      series.columns.template.column.cornerRadiusTopLeft = 10;
 
-    let series = chart.series.push(new am4charts.ColumnSeries());
-    series.dataFields.categoryX = 'name_dependency';
-    series.dataFields.valueY = 'total';
-    series.tooltipText = '{valueY.value}';
-    series.columns.template.strokeOpacity = 0;
-    series.columns.template.column.cornerRadiusTopRight = 10;
-    series.columns.template.column.cornerRadiusTopLeft = 10;
+      let labelBullet = series.bullets.push(new am4charts.LabelBullet());
+      labelBullet.label.verticalCenter = 'bottom';
+      labelBullet.label.dy = -10;
+      labelBullet.label.text = "{values.valueY.workingValue.formatNumber('#.')}";
 
-    //series.interpolationDuration = 1500;
-    //series.interpolationEasing = am4core.ease.linear;
-    let labelBullet = series.bullets.push(new am4charts.LabelBullet());
-    labelBullet.label.verticalCenter = 'bottom';
-    labelBullet.label.dy = -10;
-    labelBullet.label.text = "{values.valueY.workingValue.formatNumber('#.')}";
+      let title = chart.titles.create();
+      title.text = `Cant. Radicados / Dependencia: ${this.currentDependencyName}`;
+      title.fontSize = 17;
 
-    let title = chart.titles.create();
-    title.text = 'Radicados asignados/dependencia';
-    title.fontSize = 17;
+      chart.cursor = new am4charts.XYCursor();
 
-    chart.cursor = new am4charts.XYCursor();
+      series.columns.template.adapter.add('fill', function (__, target) {
+        return chart.colors.getIndex(target.dataItem.index);
+      });
+      this.chart = chart;
+      categoryAxis.sortBySeries = series;
+    } else if (this.graphicSelected.value == 'Semi pie') {
+      if (this.chart) {
+        this.chart.dispose();
+      }
+      let chart = am4core.create('chartdiv', am4charts.PieChart);
+      chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
+      chart.data = this.report;
 
-    series.columns.template.adapter.add('fill', function (__, target) {
-      return chart.colors.getIndex(target.dataItem.index);
-    });
-    this.chart = chart;
-    categoryAxis.sortBySeries = series;
+      let series = chart.series.push(new am4charts.PieSeries());
+      series.dataFields.value = 'total';
+      series.dataFields.radiusValue = 'total';
+      series.dataFields.category = 'name_dependency';
+      series.slices.template.cornerRadius = 6;
+      series.colors.step = 3;
+
+      series.hiddenState.properties.endAngle = -90;
+
+      let title = chart.titles.create();
+      title.text = `Cant. Radicados / Dependencia: ${this.currentDependencyName}`;
+      title.fontSize = 17;
+
+      chart.legend = new am4charts.Legend();
+      this.chart = chart;
+    } else if ((this, this.graphicSelected.value == 'Piramid')) {
+      if (this.chart) {
+        this.chart.dispose();
+      }
+      let chart = am4core.create('chartdiv', am4charts.SlicedChart);
+      chart.data = this.report;
+      let series2 = chart.series.push(new am4charts.PyramidSeries());
+      series2.dataFields.value = 'total';
+      series2.dataFields.category = 'name_dependency';
+      series2.labels.template.disabled = true;
+
+      let title = chart.titles.create();
+      title.text = `Cant. Radicados / Dependencia: ${this.currentDependencyName}`;
+      title.fontSize = 17;
+    }
+    this.preload = false;
   }
 }

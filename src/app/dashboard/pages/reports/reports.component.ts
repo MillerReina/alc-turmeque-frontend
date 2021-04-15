@@ -27,29 +27,12 @@ export class ReportsComponent implements OnInit {
 
   ngOnInit(): void {
     this.firstTab();
-    this.secondTab();
-    this.thirdTab();
-  }
-
-  public nextTab() {
-    this.selectedIndex = this.tabGroup.selectedIndex;
   }
 
   firstTab(): void {
     const anio = moment().format('YYYY');
-    this.reportService.getMyDocumentsReport('', '', anio, 'PR').subscribe((res) => {
+    this.reportService.getMyDocumentsReport('', '', anio, '').subscribe((res) => {
       this.tab1 = res;
-    });
-  }
-
-  secondTab(): void {
-    const anio = moment().format('YYYY');
-    this.reportService.getMyDocumentsReport('', '', anio, '').subscribe((__) => {});
-  }
-
-  thirdTab(): void {
-    const anio = moment().format('YYYY');
-    this.reportService.getMyDocumentsReport('', '', anio, '').subscribe((__) => {
       this.preload = false;
     });
   }
