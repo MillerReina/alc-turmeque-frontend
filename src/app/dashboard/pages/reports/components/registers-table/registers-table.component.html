@@ -4,41 +4,81 @@
     </div>
 </div>
 <div *ngIf="!preload" class="col-12 example-container" style="margin-top: 50px !important">
+    <div class="container">
+        <mat-card class="full-width mat-elevation-z3">
+            <div class="row">
+                <div class="col-sm">
+                    <mat-form-field class="full-width">
+                        <mat-label>Dependencia</mat-label>
+                        <mat-select [formControl]="dependencySelected" (selectionChange)="changeDependency()">
+                            <mat-option *ngFor="let dependency of dependencies" [value]="dependency.id">{{ dependency.name_dependency }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm">
+                    <mat-form-field class="full-width">
+                        <mat-label>Mes</mat-label>
+                        <mat-select [formControl]="monthSelected" (selectionChange)="changeMonth()">
+                            <mat-option *ngFor="let month of months" [value]="month.value">{{ month.text }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm">
+                    <mat-form-field class="full-width">
+                        <mat-label>Año</mat-label>
+                        <mat-select [formControl]="anioSelected" (selectionChange)="changeAnio()">
+                            <mat-option *ngFor="let anio of anios" [value]="anio">{{ anio }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </mat-card>
+    </div>
+
     <div class="row text-center" style="margin-top: 30px !important">
         <table mat-table [dataSource]="dataSource" class="shadow full-width">
             <ng-container matColumnDef="usuario">
                 <th mat-header-cell *matHeaderCellDef class="text-center">Usuario</th>
                 <td mat-cell *matCellDef="let element">
                     <span *ngIf="!element.user" class="badge badge-not-assign">Sin asignar</span>
-                    <span *ngIf="element.user" class="badge badge-assign">{{ element.user }}</span>
+                    <span *ngIf="element.user" class="badge badge-assign">{{ element.user }} </span>
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="solucionados">
                 <th mat-header-cell *matHeaderCellDef class="text-center">Solucionados</th>
                 <td mat-cell *matCellDef="let element">
-                    <span *ngIf="element.user" class="badge badge-finished">{{ element.solved }}</span>
+                    <span *ngIf="element.user" class="badge badge-finished" style="color: black !important">{{
+            element.solved || '-'
+          }}</span>
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="no_solucionados">
                 <th mat-header-cell *matHeaderCellDef class="text-center">Sin solucionar</th>
                 <td mat-cell *matCellDef="let element">
-                    <span *ngIf="element.user" class="badge badge-returned">{{ element.no_solved }}</span>
+                    <span *ngIf="element.user" class="badge badge-returned" style="color: black !important">{{
+            element.no_solved || '-'
+          }}</span>
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="en_tiempo">
                 <th mat-header-cell *matHeaderCellDef class="text-center">A tiempo</th>
                 <td mat-cell *matCellDef="let element">
-                    <span *ngIf="element.user" class="badge badge-process">{{ element.in_time }}</span>
+                    <span *ngIf="element.user" class="badge badge-process" style="color: black !important">{{
+            element.in_time || '-'
+          }}</span>
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="des_tiempo">
                 <th mat-header-cell *matHeaderCellDef class="text-center">Fuera de tiempo</th>
                 <td mat-cell *matCellDef="let element" style="padding-left: 10px !important">
-                    <span *ngIf="element.user" class="badge badge-resolved">{{ element.out_time }}</span>
+                    <span *ngIf="element.user" class="badge badge-resolved" style="color: black !important">{{
+            element.out_time || '-'
+          }}</span>
                 </td>
             </ng-container>
 

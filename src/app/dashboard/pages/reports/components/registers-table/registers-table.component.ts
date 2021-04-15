@@ -1,15 +1,16 @@
-import { ToastMessageService } from './../../../../../services/toast-message.service';
+import { ANIOS } from './../../consts/const-anios';
+/* import { ToastMessageService } from './../../../../../services/toast-message.service'; */
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { DepenciesService } from 'src/app/dashboard/services/depencies.service';
-import { IDepedency } from 'src/app/interfaces/dependency-interface';
+
 import { MatDialog } from '@angular/material/dialog';
-import { Subscription } from 'rxjs';
-import { DependecyDialogService } from 'src/app/dashboard/services/dependecy-dialog.service';
-import { DependencyDialogComponent } from '../../../dependencies/components/dependency-dialog/dependency-dialog.component';
-import Swal from 'sweetalert2';
+
 import { ReportsService } from '../../services/reports.service';
 import { IUserReport } from '../../../../../interfaces/user-report-interface';
+import { FormControl } from '@angular/forms';
+import * as moment from 'moment';
+import { DepenciesService } from 'src/app/dashboard/services/depencies.service';
+import { MONTHS } from '../../consts/const-months';
 
 @Component({
   selector: 'app-registers-table',
@@ -34,59 +35,93 @@ export class RegistersTableComponent implements OnInit, OnDestroy {
    */
   public reportOfficers: IUserReport[];
   /**
-   * Subscripcion hacia el evento del dialog
+   * Control de formulario para el anio
    */
-  public dependecyCreateSubscription: Subscription;
+  public monthSelected: FormControl;
   /**
-   * Subscripcion hacia el evento del dialog
+   * Control de formulario para el anio
    */
-  public dependecyUpdateSubscription: Subscription;
+  public dependencySelected: FormControl;
+  /**
+   * Control de formulario para el anio
+   */
+  public anioSelected: FormControl;
+  /**
+   * Constante de anios
+   */
+  public anios = ANIOS;
+  /**
+   * Constante de meses
+   */
+  public months = MONTHS;
+  /**
+   * Año seleccionado en el momento
+   */
+  public actualAnio: any;
+  /**
+   * Mes seleccionado en el momento
+   */
+  public actualMonth: any;
+  /**
+   * Dependencia selecionada en el momento
+   */
+  public actualDependency: any;
+  /**
+   * Constante de meses
+   */
+  public dependencies: any;
 
   constructor(
     private reportService: ReportsService,
-    private dependeciesService: DepenciesService,
-    private toastService: ToastMessageService,
-    private dependencyDialogService: DependecyDialogService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private dependencyService: DepenciesService
   ) {
+    this.addYears();
     this.preload = true;
+    this.actualMonth = '';
+    this.actualDependency = '';
+    this.actualAnio = moment().format('YYYY');
+    this.monthSelected = new FormControl();
+    this.dependencySelected = new FormControl();
+    this.anioSelected = new FormControl();
+    this.anioSelected.setValue(parseInt(moment().format('YYYYY')));
   }
 
   ngOnInit(): void {
-    this.loadDependencies();
-    this.valueChanges();
+    this.dependencyService.getAllDependecies().subscribe((res) => {
+      const data = {
+        id: '',
+        name_dependency: 'Todas',
+      };
+      this.dependencies = res;
+      this.dependencies.unshift(data);
+    });
+    this.loadReports();
   }
 
-  ngOnDestroy(): void {
-    this.dependecyCreateSubscription.unsubscribe();
-    this.dependecyUpdateSubscription.unsubscribe();
+  ngOnDestroy(): void {}
+
+  /**
+   * Actualización de años desde el inicio
+   */
+  addYears() {
+    const initialYear = moment(this.anios[0].toString());
+    let result = initialYear.diff(moment(), 'years');
+    result = result * -1;
+    for (let index = 1; index <= result; index++) {
+      this.anios.push(this.anios[0] + index);
+    }
+    const unicos = this.anios.filter((valor, indice) => {
+      return this.anios.indexOf(valor) === indice;
+    });
+    this.anios = unicos;
   }
 
   /**
-   * Suscripcion al dialog cuando hay cambios
+   * Carga el reporte de funcionarios desde servicio
    */
-
-  valueChanges(): void {
-    this.dependecyCreateSubscription = this.dependencyDialogService.newDependecy.subscribe((res) => {
-      this.preload = true;
-      this.toastService.showSuccessMessage('DEPENDENCIA CREADA', `Dependencia: ${res.toUpperCase()} ha sido agregada`);
-      this.loadDependencies();
-    });
-    this.dependecyUpdateSubscription = this.dependencyDialogService.updateDependecy.subscribe((res) => {
-      this.preload = true;
-      this.toastService.showInfoMessage(
-        'DEPENDENCIA ACTUALIZADA',
-        `Dependencia: ${res.toUpperCase()} ha sido actualizada`
-      );
-      this.loadDependencies();
-    });
-  }
-
-  /**
-   * Carga las dependencias desde servicio
-   */
-  loadDependencies(): void {
-    this.reportService.getOfficersReport('', '', 2021).subscribe((res) => {
+  loadReports(): void {
+    this.reportService.getOfficersReport('', '', this.anioSelected.value).subscribe((res) => {
       this.reportOfficers = res;
       this.refreshTable();
     });
@@ -100,81 +135,30 @@ export class RegistersTableComponent implements OnInit, OnDestroy {
     this.preload = false;
   }
 
-  /**
-   * Abre el dialogo para crear o editar
-   */
-  openDialog(element): void {
-    const dialogRef = this.dialog.open(DependencyDialogComponent, {
-      width: '500px',
-      height: '300px',
-      data: element,
-      autoFocus: false,
+  changeDependency() {
+    const dependency = this.dependencySelected.value;
+    this.actualDependency = dependency;
+    this.reportService.getOfficersReport(this.actualMonth, this.actualDependency, this.actualAnio).subscribe((res) => {
+      this.reportOfficers = res;
+      this.refreshTable();
     });
-
-    dialogRef.afterClosed().subscribe((__) => {});
   }
 
-  /**
-   *  Activa una dependencia
-   */
-  activateDependency(element): void {
-    this.preload = true;
-    if (!element.state_dependency) {
-      this.dependeciesService.activateDependency(element.id).subscribe((__) => {
-        Swal.fire({
-          title: 'DEPENDENCIA ACTIVADA',
-          text: `La dependencia: ${element.name_dependency} ha sido activada`,
-          icon: 'success',
-          confirmButtonText: 'Aceptar',
-        });
-        this.loadDependencies();
-      });
-    } else {
-      this.dependeciesService.activateDependency(element.id).subscribe((__) => {
-        Swal.fire({
-          title: 'DEPENDENCIA DESACTIVADA',
-          text: `La dependencia: ${element.name_dependency} ha sido desactivada`,
-          icon: 'success',
-          confirmButtonText: 'Aceptar',
-        });
-        this.loadDependencies();
-      });
-    }
+  changeMonth() {
+    const month = this.monthSelected.value;
+    this.actualMonth = month;
+    this.reportService.getOfficersReport(this.actualMonth, this.actualDependency, this.actualAnio).subscribe((res) => {
+      this.reportOfficers = res;
+      this.refreshTable();
+    });
   }
-  /**
-   * Borra una dependencia sin antes solicitar confirmación
-   */
-  deleteDependency(element: IDepedency): void {
-    Swal.fire({
-      title: `¿Estás seguro de eliminar: ${element.name_dependency}?`,
-      text: 'No vas a poder revertir esta acción',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#1d59c9',
-      cancelButtonColor: '#ff007d',
-      confirmButtonText: '¡Sí, borrarla!',
-      cancelButtonText: 'Cancelar',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.dependeciesService.deleteDependencyById(element.id).subscribe(
-          (__) => {
-            this.preload = true;
-            this.toastService.showWarningMessage(
-              'DEPENDENCIA BORRADA',
-              `La dependencia: ${element.name_dependency.toUpperCase()} fue eliminada satisfactoriamente`
-            );
-            this.loadDependencies();
-          },
-          (__) => {
-            Swal.fire({
-              title: '¡No se puede borrar!',
-              icon: 'error',
-              text: 'La dependencia tiene funcionarios asociados.',
-              confirmButtonText: 'Aceptar',
-            });
-          }
-        );
-      }
+
+  changeAnio() {
+    const anio = this.anioSelected.value;
+    this.actualAnio = anio;
+    this.reportService.getOfficersReport(this.actualMonth, this.actualDependency, this.actualAnio).subscribe((res) => {
+      this.reportOfficers = res;
+      this.refreshTable();
     });
   }
 }
