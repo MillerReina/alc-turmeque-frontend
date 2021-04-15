@@ -1,9 +1,10 @@
-<div class="container">
-    <div *ngIf="preload" class="row justify-content-center full-height" style="min-height: 100% !important">
-        <div class="col-12 center-horizontal-vertical full-height flexbox-col">
-            <mat-spinner class="center-horizontal-vertical" mode="indeterminate" diameter="50"></mat-spinner>
-        </div>
+<div *ngIf="preload" class="row justify-content-center full-height" style="min-height: 100% !important">
+    <div class="col-12 center-horizontal-vertical full-height flexbox-col">
+        <mat-spinner class="center-horizontal-vertical" mode="indeterminate" diameter="50"></mat-spinner>
     </div>
+</div>
+
+<div class="container">
     <div [ngStyle]="{ visibility: preload == false ? 'visible' : 'hidden' }">
         <div class="row">
             <div id="graph" class="col-12 col-md-9" style="margin-bottom: 20px; margin-top: 20px">

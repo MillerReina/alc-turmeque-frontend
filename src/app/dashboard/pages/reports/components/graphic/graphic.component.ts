@@ -16,6 +16,9 @@ import am4themes_animated from '@amcharts/amcharts4/themes/animated';
   styleUrls: ['./graphic.component.scss'],
 })
 export class GraphicComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy {
+  /**
+   * Precarga del componente
+   */
   public preload: boolean;
   /**
    * Variable de entrada
@@ -58,10 +61,25 @@ export class GraphicComponent implements OnInit, AfterViewInit, OnChanges, OnDes
    * Control de formulario para el anio
    */
   public graphicSelected: FormControl;
+  /**
+   * Mes en selección actual
+   */
   public currentMonth: any;
+  /**
+   * Año en selección actual
+   */
   public currentYear: any;
+  /**
+   * Dependencia en selección actual
+   */
   public currentDependency: any;
+  /**
+   * Nombre de la deependencia en selección actual
+   */
   public currentDependencyName: any;
+  /**
+   * Estado actual de documento
+   */
   public currentState: any;
 
   constructor(private reportsService: ReportsService, private dependencyService: DepenciesService) {
@@ -96,9 +114,8 @@ export class GraphicComponent implements OnInit, AfterViewInit, OnChanges, OnDes
    * Destruye el chart
    */
   ngOnDestroy(): void {
-    if (this.chart) {
-      this.chart.dispose();
-    }
+    this.chart.dispose();
+    am4core.disposeAllCharts();
   }
 
   /**

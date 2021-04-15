@@ -139,7 +139,8 @@
                             <a mat-list-item style="padding-left: 20px !important" [routerLink]="'reports/documents'">
                                 <mat-icon mat-list-icon>horizontal_rule</mat-icon> Documentos</a>
                         </mat-nav-list>
-                        <a mat-list-item [routerLink]="'reports/officers'"> Registros</a>
+                        <a mat-list-item [routerLink]="'reports/officers'" (click)="sidenav.close()">
+                            <mat-icon mat-list-icon>add</mat-icon> Funcionarios</a>
                     </mat-nav-list>
                 </mat-nav-list>
             </mat-sidenav>
