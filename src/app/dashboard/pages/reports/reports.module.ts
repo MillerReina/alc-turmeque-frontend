@@ -5,9 +5,10 @@ import { ReportsComponent } from './reports.component';
 import { AngularMaterialModule } from '../../../shared-module/angular-material/angular-material.module';
 import { ComponentsModule } from './components/components.module';
 import { NgPrimeModule } from '../../../shared-module/ng-prime/ng-prime.module';
+import { RegistryOfficersComponent } from './registry-officers/registry-officers.component';
 
 @NgModule({
-  declarations: [ReportsComponent],
+  declarations: [ReportsComponent, RegistryOfficersComponent],
   imports: [CommonModule, AngularMaterialModule, ComponentsModule, NgPrimeModule],
 })
 export class ReportsModule {}

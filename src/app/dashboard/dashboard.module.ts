@@ -13,6 +13,8 @@ import { DashboardComponent } from './dashboard.component';
 /* Servicio toast */
 import { ToastMessageService } from '../services/toast-message.service';
 import { ComponentsModule } from './components/components.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptorService } from '../services/auth-interceptor.service';
 
 @NgModule({
   declarations: [DashboardComponent],
@@ -26,6 +28,6 @@ import { ComponentsModule } from './components/components.module';
     PagesModule,
     ComponentsModule,
   ],
-  providers: [ToastMessageService],
+  providers: [ToastMessageService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }],
 })
 export class DashboardModule {}

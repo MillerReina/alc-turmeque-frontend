@@ -13,6 +13,8 @@ import { RecoverPasswordComponent } from './recover-password/recover-password.co
 import { AuthComponent } from './auth.component';
 import { NgPrimeModule } from '../shared-module/ng-prime/ng-prime.module';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptorService } from '../services/auth-interceptor.service';
 
 @NgModule({
   declarations: [LoginComponent, RecoverPasswordComponent, AuthComponent, ChangePasswordComponent],
@@ -26,5 +28,6 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     FormsModule,
     ReactiveFormsModule,
   ],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }],
 })
 export class AuthModule {}
