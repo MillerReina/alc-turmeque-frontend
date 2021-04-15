@@ -9,6 +9,7 @@ import * as moment from 'moment';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 import am4themes_animated from '@amcharts/amcharts4/themes/animated';
+import { ExportToExcelService } from '../../services/export-to-excel.service';
 
 @Component({
   selector: 'app-graphic',
@@ -82,7 +83,11 @@ export class GraphicComponent implements OnInit, AfterViewInit, OnChanges, OnDes
    */
   public currentState: any;
 
-  constructor(private reportsService: ReportsService, private dependencyService: DepenciesService) {
+  constructor(
+    private reportsService: ReportsService,
+    private dependencyService: DepenciesService,
+    private exportExcelService: ExportToExcelService
+  ) {
     this.preload = false;
     this.addYears();
     this.currentMonth = '';
@@ -122,7 +127,6 @@ export class GraphicComponent implements OnInit, AfterViewInit, OnChanges, OnDes
    * Crea despues de haber sido construido
    */
   ngAfterViewInit(): void {
-    console.log(this.report);
     this.createGraphic();
   }
 
@@ -246,6 +250,7 @@ export class GraphicComponent implements OnInit, AfterViewInit, OnChanges, OnDes
     if (this.chart) {
       this.anioSelected.setValue(parseInt(this.currentYear));
       this.chart.dispose();
+      am4core.disposeAllCharts();
     }
     am4core.useTheme(am4themes_animated);
     if (this.graphicSelected.value == 'Bars') {
@@ -292,6 +297,7 @@ export class GraphicComponent implements OnInit, AfterViewInit, OnChanges, OnDes
     } else if (this.graphicSelected.value == 'Semi pie') {
       if (this.chart) {
         this.chart.dispose();
+        am4core.disposeAllCharts();
       }
       let chart = am4core.create('chartdiv', am4charts.PieChart);
       chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
@@ -315,6 +321,7 @@ export class GraphicComponent implements OnInit, AfterViewInit, OnChanges, OnDes
     } else if ((this, this.graphicSelected.value == 'Piramid')) {
       if (this.chart) {
         this.chart.dispose();
+        am4core.disposeAllCharts();
       }
       let chart = am4core.create('chartdiv', am4charts.SlicedChart);
       chart.data = this.report;
@@ -328,5 +335,15 @@ export class GraphicComponent implements OnInit, AfterViewInit, OnChanges, OnDes
       title.fontSize = 17;
     }
     this.preload = false;
+  }
+
+  /**
+   * Descargra excel con los datos
+   */
+  downloadExcel() {
+    this.exportExcelService.exportAsExcelFile(
+      this.report,
+      `Dependencia_${this.currentDependencyName}-Año_${this.currentYear}`
+    );
   }
 }
