@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { TrackingService } from '../../services/tracking.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IHistory, ITracking } from '../../interfaces/tracking-interface';
 import { MatTableDataSource } from '@angular/material/table';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-document-tracking',
@@ -35,7 +36,11 @@ export class DocumentTrackingComponent implements OnInit {
    */
   public fullName: string;
 
-  constructor(private trackingService: TrackingService, private activatedRoute: ActivatedRoute) {
+  constructor(
+    private trackingService: TrackingService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+  ) {
     this.preload = true;
   }
 
@@ -58,7 +63,14 @@ export class DocumentTrackingComponent implements OnInit {
         this.preload = false;
       },
       (err) => {
-        console.log(err);
+        Swal.fire({
+          title: 'IMPOSIBLE REALIZAR SEGUIMIENTO',
+          text: err.error.error,
+          icon: 'error',
+          confirmButtonText: 'Aceptar',
+        });
+        this.router.navigate([`tracking`]);
+        this.preload = false;
       }
     );
   }
