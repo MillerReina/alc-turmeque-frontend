@@ -1,0 +1,17 @@
+<div class="title-users d-flex justify-content-between mt-4">
+    <h1>Desempeño dependencias</h1>
+</div>
+<div>
+    <div class="col-12 example-container" style="height: 100% !important; margin-top: 20px">
+        <div class="row text-center" style="margin-top: 30px !important">
+            <mat-card class="full-width mat-elevation-z3">
+                <div *ngIf="preload" class="row justify-content-center full-height center-horizontal-vertical">
+                    <div class="col-12 center-horizontal-vertical full-height flexbox-col">
+                        <mat-spinner mode="indeterminate" diameter="50"></mat-spinner>
+                    </div>
+                </div>
+                <app-graphic-performance *ngIf="!preload" [report]="tab1"></app-graphic-performance>
+            </mat-card>
+        </div>
+    </div>
+</div>

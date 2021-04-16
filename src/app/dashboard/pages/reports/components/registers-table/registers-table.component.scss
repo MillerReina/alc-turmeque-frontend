@@ -22,3 +22,32 @@ th {
     border: solid !important;
     border-color: transparent transparent #f8cb00 transparent !important;
 }
+
+@media (max-width: 700px) {
+    .card {
+        min-width: 100% !important;
+    }
+    .example-container {
+        overflow-x: scroll;
+    }
+    .mat-table .mat-cell {
+        font-size: 0.8em;
+        height: 30px;
+        margin-bottom: 4%;
+    }
+    .mat-header-cell {
+        word-wrap: initial;
+        display: table-cell;
+        padding: 0px 10px;
+        line-break: unset;
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        vertical-align: middle;
+        font-size: 0.9em;
+    }
+    .btn-username {
+        font-size: 1em;
+        margin-right: 10px !important;
+    }
+}

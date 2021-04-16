@@ -24,6 +24,7 @@ import { ExternalResolvedComponent } from './external/external-resolved/external
 import { ExternalFinishedComponent } from './external/external-finished/external-finished.component';
 import { ReportsComponent } from './reports/reports.component';
 import { RegistryOfficersComponent } from './reports/registry-officers/registry-officers.component';
+import { PerformanceComponent } from './reports/performance/performance.component';
 
 const childRoutes: Routes = [
   {
@@ -171,6 +172,12 @@ const childRoutes: Routes = [
     canActivate: [AuthGuard, AdminGuard],
     canLoad: [AuthGuard],
     component: RegistryOfficersComponent,
+  },
+  {
+    path: 'reports/performance',
+    canActivate: [AuthGuard, AdminGuard],
+    canLoad: [AuthGuard],
+    component: PerformanceComponent,
   },
 ];
 @NgModule({

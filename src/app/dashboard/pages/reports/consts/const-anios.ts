@@ -1,1 +1,1 @@
-export const ANIOS = [2019];
+export const ANIOS = [2020];

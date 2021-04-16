@@ -285,6 +285,17 @@ export class GraphicComponent implements OnInit, AfterViewInit, OnChanges, OnDes
       title.fontSize = 17;
 
       chart.cursor = new am4charts.XYCursor();
+      // Enable export
+      chart.exporting.menu = new am4core.ExportMenu();
+      chart.exporting.menu.items = [
+        {
+          label: '...',
+          menu: [
+            { type: 'png', label: 'PNG' },
+            { type: 'jpg', label: 'JPG' },
+          ],
+        },
+      ];
 
       series.columns.template.adapter.add('fill', function (__, target) {
         return chart.colors.getIndex(target.dataItem.index);
@@ -313,6 +324,18 @@ export class GraphicComponent implements OnInit, AfterViewInit, OnChanges, OnDes
       title.text = `Cant. Radicados / Dependencia: ${this.currentDependencyName}`;
       title.fontSize = 17;
 
+      // Enable export
+      chart.exporting.menu = new am4core.ExportMenu();
+      chart.exporting.menu.items = [
+        {
+          label: '...',
+          menu: [
+            { type: 'png', label: 'PNG' },
+            { type: 'jpg', label: 'JPG' },
+          ],
+        },
+      ];
+
       chart.legend = new am4charts.Legend();
       this.chart = chart;
     } else if ((this, this.graphicSelected.value == 'Piramid')) {
@@ -326,6 +349,19 @@ export class GraphicComponent implements OnInit, AfterViewInit, OnChanges, OnDes
       series2.dataFields.value = 'total';
       series2.dataFields.category = 'name_dependency';
       series2.labels.template.disabled = true;
+
+      // Enable export
+      chart.exporting.menu = new am4core.ExportMenu();
+
+      chart.exporting.menu.items = [
+        {
+          label: '...',
+          menu: [
+            { type: 'png', label: 'PNG' },
+            { type: 'jpg', label: 'JPG' },
+          ],
+        },
+      ];
 
       let title = chart.titles.create();
       title.text = `Cant. Radicados / Dependencia: ${this.currentDependencyName}`;
