@@ -25,6 +25,7 @@ import { ExternalFinishedComponent } from './external/external-finished/external
 import { ReportsComponent } from './reports/reports.component';
 import { RegistryOfficersComponent } from './reports/registry-officers/registry-officers.component';
 import { PerformanceComponent } from './reports/performance/performance.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 const childRoutes: Routes = [
   {
@@ -178,6 +179,12 @@ const childRoutes: Routes = [
     canActivate: [AuthGuard, AdminGuard],
     canLoad: [AuthGuard],
     component: PerformanceComponent,
+  },
+  {
+    path: 'notifications',
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard],
+    component: NotificationsComponent,
   },
 ];
 @NgModule({

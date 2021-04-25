@@ -1,0 +1,17 @@
+<div class="example-container">
+    <div class="title-users mt-4 d-flex justify-content-between mt-4">
+        <h1>Notificaciones</h1>
+    </div>
+</div>
+
+<div *ngIf="preload" class="row justify-content-center full-height" style="min-height: 100% !important">
+    <div class="col-12 center-horizontal-vertical full-height flexbox-col">
+        <img src="../../../../assets/loading/loading.gif" height="400px" alt="gif cargando" />
+    </div>
+</div>
+<div class="cards" *ngIf="!preload">
+    <mat-card class="card mat-elevation-z8" *ngFor="let notification of notifications.notifications" (click)="goToDocument(notification.document)">
+        <mat-card-title class="center-horizontal">{{ notification.register_date | dateNotification }}</mat-card-title>
+        <mat-card-content>{{ notification.description }}</mat-card-content>
+    </mat-card>
+</div>

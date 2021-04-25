@@ -7,10 +7,19 @@ import { PipesModule } from '../../pipes/pipes.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgPrimeModule } from '../../shared-module/ng-prime/ng-prime.module';
 import { MenuNotificationsComponent } from './menu-notifications/menu-notifications.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [OfficersTableComponent, ProfileInfoDialogComponent, MenuNotificationsComponent],
-  imports: [CommonModule, AngularMaterialModule, NgPrimeModule, PipesModule, ReactiveFormsModule, FormsModule],
+  imports: [
+    CommonModule,
+    AngularMaterialModule,
+    NgPrimeModule,
+    PipesModule,
+    ReactiveFormsModule,
+    FormsModule,
+    RouterModule,
+  ],
   exports: [OfficersTableComponent, ProfileInfoDialogComponent, MenuNotificationsComponent],
 })
 export class ComponentsModule {}

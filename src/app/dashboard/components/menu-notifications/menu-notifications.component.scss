@@ -4,6 +4,11 @@
     max-height: 78vh !important;
 }
 
+::ng-deep .mat-flat-button {
+    outline: none !important;
+    background-color: $principal-color-blue;
+}
+
 .mat-menu-panel {
     width: 900px !important;
 }

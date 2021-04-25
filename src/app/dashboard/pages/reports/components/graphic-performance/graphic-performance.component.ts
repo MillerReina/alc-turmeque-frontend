@@ -89,10 +89,10 @@ export class GraphicPerformanceComponent implements OnInit, AfterViewInit, OnCha
     this.currentState = '';
     this.currentDependency = '';
     this.currentYear = moment().format('YYYY');
-    this.anioSelected = new FormControl();
-    this.monthSelected = new FormControl();
-    this.dependencySelected = new FormControl();
-    this.stateDocumentSelectd = new FormControl();
+    this.anioSelected = new FormControl(parseInt(moment().format('YYYY')));
+    this.monthSelected = new FormControl('');
+    this.dependencySelected = new FormControl('');
+    this.stateDocumentSelectd = new FormControl('');
     this.graphicSelected = new FormControl();
   }
 

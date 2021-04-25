@@ -85,10 +85,9 @@ export class RegistersTableComponent implements OnInit, OnDestroy {
     this.actualMonth = '';
     this.actualDependency = '';
     this.actualAnio = moment().format('YYYY');
-    this.monthSelected = new FormControl();
-    this.dependencySelected = new FormControl();
-    this.anioSelected = new FormControl();
-    this.anioSelected.setValue(parseInt(moment().format('YYYYY')));
+    this.monthSelected = new FormControl('');
+    this.dependencySelected = new FormControl('');
+    this.anioSelected = new FormControl(parseInt(moment().format('YYYY')));
   }
 
   ngOnInit(): void {
