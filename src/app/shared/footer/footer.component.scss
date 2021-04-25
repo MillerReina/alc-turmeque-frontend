@@ -12,6 +12,15 @@ hr {
     background-color: $principal-color-blue;
 }
 
+::ng-deep .mat-fab {
+    outline: none !important;
+    background-color: $principal-color-blue;
+}
+
+.mat-fab:hover:hover {
+    background-color: #1f61db !important;
+}
+
 .logo img {
     width: 50% !important;
     height: 50% !important;

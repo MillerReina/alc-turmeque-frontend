@@ -11,9 +11,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DocumentTrackingComponent } from './document-tracking/document-tracking.component';
 import { SearchTrackingComponent } from './search-tracking/search-tracking.component';
 import { PipesModule } from '../pipes/pipes.module';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
-  declarations: [TrackingComponent, DocumentTrackingComponent, SearchTrackingComponent],
+  declarations: [TrackingComponent, DocumentTrackingComponent, SearchTrackingComponent, AboutComponent],
   imports: [
     CommonModule,
     RouterModule,
