@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { INotifications } from '../../../interfaces/notification-interface';
 import { AuthService } from '../../../auth/services/auth.service';
 import { Router } from '@angular/router';
@@ -12,7 +12,7 @@ import { SnackNotificationComponent } from '../snack-notification/snack-notifica
   templateUrl: './menu-notifications.component.html',
   styleUrls: ['./menu-notifications.component.scss'],
 })
-export class MenuNotificationsComponent implements OnInit, OnChanges {
+export class MenuNotificationsComponent implements OnInit {
   public quanty;
   /**
    * Array de notificaciones que llega del usuario
@@ -46,11 +46,6 @@ export class MenuNotificationsComponent implements OnInit, OnChanges {
     private snackBarExtension: MatSnackBar
   ) {
     this.preload = true;
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes.quanty.currentValue != changes.quanty.previousValue) {
-    }
   }
 
   ngOnInit(): void {
