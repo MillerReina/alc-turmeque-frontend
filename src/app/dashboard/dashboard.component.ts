@@ -69,6 +69,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.changeVisibility();
     this.getUserFromService();
   }
+
   /**
    * Cambiar la visibilidad de acuerdo a mi rol
    */

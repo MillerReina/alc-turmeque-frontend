@@ -1,0 +1,38 @@
+@import '../../../../styles.scss';
+::ng-deep .mat-snack-bar-container {
+    color: white !important;
+    animation-name: example;
+    animation-duration: 7s;
+}
+
+.btn-right-close {
+    margin: 5px !important;
+    border-color: transparent !important;
+}
+
+.contain-text {
+    padding: 0px !important;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    justify-content: center !important;
+}
+
+.contain-text h4 {
+    text-align: center !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+@keyframes example {
+    0% {
+        background-color: #1d59c9;
+    }
+    25% {
+        background-color: #1d59c9;
+    }
+    40% {
+        background-color: #34d0ff;
+    }
+    100% {
+        background-color: #ff007d;
+    }
+}

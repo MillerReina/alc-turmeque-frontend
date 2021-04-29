@@ -27,6 +27,14 @@ export class AuthService {
     return this.user.roleName;
   }
 
+  get getUserID(): string {
+    return this.user.id;
+  }
+
+  get getUserName(): string {
+    return this.user.firstName;
+  }
+
   get getToken(): string {
     return localStorage.getItem('token') || '';
   }

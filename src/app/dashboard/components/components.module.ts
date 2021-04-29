@@ -8,9 +8,10 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgPrimeModule } from '../../shared-module/ng-prime/ng-prime.module';
 import { MenuNotificationsComponent } from './menu-notifications/menu-notifications.component';
 import { RouterModule } from '@angular/router';
+import { SnackNotificationComponent } from './snack-notification/snack-notification.component';
 
 @NgModule({
-  declarations: [OfficersTableComponent, ProfileInfoDialogComponent, MenuNotificationsComponent],
+  declarations: [OfficersTableComponent, ProfileInfoDialogComponent, MenuNotificationsComponent, SnackNotificationComponent],
   imports: [
     CommonModule,
     AngularMaterialModule,

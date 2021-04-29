@@ -18,6 +18,7 @@ import { SharedModule } from './shared/shared.module';
 import { AngularMaterialModule } from './shared-module/angular-material/angular-material.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
+import { SocketService } from './services/socket.service';
 
 registerLocaleData(localeES, 'es');
 
@@ -36,6 +37,7 @@ registerLocaleData(localeES, 'es');
     FormsModule,
   ],
   providers: [
+    SocketService,
     DatePipe,
     {
       provide: MatPaginatorIntl,

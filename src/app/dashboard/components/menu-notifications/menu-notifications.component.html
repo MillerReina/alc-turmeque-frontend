@@ -1,4 +1,4 @@
-<button class="btn-bell" mat-raised-button [matMenuTriggerFor]="belowMenu" matBadge="1" matBadgePosition="before" matBadgeColor="accent" [matBadgeHidden]="hidden" (click)="toggleBadgeVisibility()" style="margin-left: 10px !important">
+<button class="btn-bell" mat-raised-button [matMenuTriggerFor]="belowMenu" [matBadge]="quanty" matBadgePosition="before" matBadgeColor="accent" [matBadgeHidden]="hidden" (click)="toggleBadgeVisibility()" style="margin-left: 10px !important">
   <mat-icon mat-list-icon class="icon-bell">notifications</mat-icon>
 </button>
 <mat-menu #belowMenu="matMenu" xPosition="before">
