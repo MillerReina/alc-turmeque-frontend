@@ -1,17 +1,18 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth/services/auth.service';
 import { ToastMessageService } from '../services/toast-message.service';
 import { User } from '../models/user.model';
 import { MatSidenav } from '@angular/material/sidenav';
 import { INotifications } from '../interfaces/notification-interface';
+import { SocketService } from '../services/socket.service';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent implements OnInit, AfterViewInit {
+export class DashboardComponent implements OnInit {
   /**
    * preload
    */
@@ -55,7 +56,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   @ViewChild('sidenav') sidenav: MatSidenav;
 
-  constructor(private authService: AuthService, private router: Router, private toastService: ToastMessageService) {
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private toastService: ToastMessageService,
+    private socketService: SocketService
+  ) {
     this.showMenuDocuments = false;
     this.showMenuUsers = false;
     this.showMenuExternal = false;
@@ -65,7 +71,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.getNotifications();
     this.changeVisibility();
     this.getUserFromService();
   }
@@ -87,15 +92,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
    */
   getUserFromService(): void {
     this.user = this.authService.user;
-  }
-
-  /**
-   * Obtiene las notificaciones del usuario
-   */
-  getNotifications(): void {
-    this.authService.getNotifications().subscribe((res) => {
-      this.notifications = res;
-    });
   }
 
   /**
@@ -147,8 +143,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
    */
   logout(): void {
     this.authService.logout();
+    this.socketService.closeSocket();
     this.router.navigateByUrl('/login');
   }
-
-  ngAfterViewInit(): void {}
 }

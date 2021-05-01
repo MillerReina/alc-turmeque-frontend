@@ -6,10 +6,16 @@ import { environment } from '../../environments/environment';
   providedIn: 'root',
 })
 export class SocketService {
+  /**
+   * Atributo para la instancia del socket
+   */
   public socket: WebSocket;
   constructor() {}
 
-  public getMessages = (id) => {
+  /**
+   * Obtiene las notificaciones por medio del usuario actual conectado
+   */
+  getMessages = (id) => {
     this.socket = new WebSocket(`${environment.ws_url}/${id}`);
     return new Observable((obs) => {
       this.socket.onmessage = (e) => obs.next(e.data);
@@ -18,4 +24,11 @@ export class SocketService {
       return () => this.socket.close(3000, 'Usuario desconectado');
     });
   };
+
+  /**
+   * Cierra el socket
+   */
+  closeSocket() {
+    this.socket.close();
+  }
 }

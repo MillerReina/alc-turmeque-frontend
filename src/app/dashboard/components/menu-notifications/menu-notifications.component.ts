@@ -57,6 +57,7 @@ export class MenuNotificationsComponent implements OnInit {
     this.wsSuscription = this.socketService.getMessages(this.authService.getUserID).subscribe((res) => {
       this.quanty = JSON.parse(res.toString()).count;
       if (this.quanty != 0) {
+        this.hidden = false;
         this.openSnackBar();
       }
     });
@@ -82,6 +83,7 @@ export class MenuNotificationsComponent implements OnInit {
       this.notifications = res;
       this.notifications.notifications.reverse();
       this.notifications.notifications.splice(15, this.notifications.notifications.length);
+      this.hidden = true;
       this.preload = false;
     });
   }
