@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatSnackBarRef } from '@angular/material/snack-bar';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatSnackBarRef, MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
 import { AuthService } from '../../../auth/services/auth.service';
 
 @Component({
@@ -13,7 +13,11 @@ export class SnackNotificationComponent implements OnInit {
    */
   public userName: string;
 
-  constructor(public snackBarRef: MatSnackBarRef<SnackNotificationComponent>, private authService: AuthService) {}
+  constructor(
+    public snackBarRef: MatSnackBarRef<SnackNotificationComponent>,
+    private authService: AuthService,
+    @Inject(MAT_SNACK_BAR_DATA) public data: Boolean
+  ) {}
 
   ngOnInit(): void {
     this.userName = this.authService.getUserName;

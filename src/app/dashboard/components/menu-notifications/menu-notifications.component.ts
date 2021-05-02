@@ -58,7 +58,11 @@ export class MenuNotificationsComponent implements OnInit {
       this.quanty = JSON.parse(res.toString()).count;
       if (this.quanty != 0) {
         this.hidden = false;
-        this.openSnackBar();
+        if (this.quanty === 1) {
+          this.openSnackBar(false);
+        } else {
+          this.openSnackBar(true);
+        }
       }
     });
   }
@@ -66,9 +70,9 @@ export class MenuNotificationsComponent implements OnInit {
   /**
    * Ventana emergente de notificación de prórroga activa
    */
-  openSnackBar(): void {
+  openSnackBar(value): void {
     this.snackBarExtension.openFromComponent(SnackNotificationComponent, {
-      data: null,
+      data: value,
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
       duration: 6 * 1000,
