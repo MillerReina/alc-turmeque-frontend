@@ -32,6 +32,12 @@
     font-size: 1.4rem !important;
 }
 
+.title-user-two {
+    font-style: italic !important;
+    font-weight: 700 !important;
+    font-size: 1.8rem !important;
+}
+
 @media (max-width: 700px) {
     .title {
         font-size: 2rem !important;
@@ -41,5 +47,8 @@
     }
     .title-user {
         font-size: 1rem !important;
+    }
+    .title-user-two {
+        font-size: 1.4rem !important;
     }
 }
